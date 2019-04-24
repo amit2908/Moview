@@ -31,6 +31,8 @@
 		930E831A226DDCA2000C40E2 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930E8319226DDCA2000C40E2 /* Navigation.swift */; };
 		930E831C226DDF17000C40E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930E831B226DDF17000C40E2 /* Main.storyboard */; };
 		930E831E226DDF4E000C40E2 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930E831D226DDF4E000C40E2 /* DashboardViewController.swift */; };
+		9346E925227079E200BE2B08 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9346E924227079E200BE2B08 /* CustomNavigationBar.swift */; };
+		9346E92722707A0800BE2B08 /* CustomNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */; };
 		DD6DAF3D4D5BFB90307BE7EB /* Pods_Moview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF46F48B9827869BF34A0AC /* Pods_Moview.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,8 @@
 		930E8319226DDCA2000C40E2 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		930E831B226DDF17000C40E2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		930E831D226DDF4E000C40E2 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		9346E924227079E200BE2B08 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNavigationBar.xib; sourceTree = "<group>"; };
 		DC7074D03C7C9502ECF9D95D /* Pods-Moview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.release.xcconfig"; path = "Pods/Target Support Files/Pods-Moview/Pods-Moview.release.xcconfig"; sourceTree = "<group>"; };
 		E63C259AEC2EB98B92096A30 /* Pods-Moview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Moview/Pods-Moview.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,21 +112,19 @@
 		930E82BA226D8672000C40E2 /* Moview */ = {
 			isa = PBXGroup;
 			children = (
+				9346E9232270799100BE2B08 /* CustomViews */,
+				9346E920227078D600BE2B08 /* Modules */,
+				9346E91F227078BE00BE2B08 /* Utilities */,
+				9346E91E2270705D00BE2B08 /* Navigation */,
 				930E830C226DD084000C40E2 /* Animations */,
 				930E8301226DBCFC000C40E2 /* Destringers */,
 				930E8300226DBCD8000C40E2 /* Network */,
 				930E82FB226DBCB8000C40E2 /* Extensions */,
 				930E82BB226D8672000C40E2 /* AppDelegate.swift */,
-				930E830A226DD049000C40E2 /* ApplicationManager.swift */,
 				930E82E4226DA315000C40E2 /* Constants.swift */,
-				930E82BD226D8672000C40E2 /* SignInViewController.swift */,
-				930E831B226DDF17000C40E2 /* Main.storyboard */,
-				930E831D226DDF4E000C40E2 /* DashboardViewController.swift */,
-				930E82BF226D8672000C40E2 /* SignedOut.storyboard */,
 				930E82C2226D8675000C40E2 /* Assets.xcassets */,
 				930E82C4226D8675000C40E2 /* LaunchScreen.storyboard */,
 				930E82C7226D8675000C40E2 /* Info.plist */,
-				930E8319226DDCA2000C40E2 /* Navigation.swift */,
 			);
 			path = Moview;
 			sourceTree = "<group>";
@@ -183,6 +185,58 @@
 				930E8313226DD084000C40E2 /* LaunchViewTransition.swift */,
 			);
 			path = ViewControllerTransitions;
+			sourceTree = "<group>";
+		};
+		9346E91E2270705D00BE2B08 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				930E8319226DDCA2000C40E2 /* Navigation.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		9346E91F227078BE00BE2B08 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				930E830A226DD049000C40E2 /* ApplicationManager.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9346E920227078D600BE2B08 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				9346E922227078F600BE2B08 /* Main */,
+				9346E921227078E900BE2B08 /* Registration */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		9346E921227078E900BE2B08 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				930E82BF226D8672000C40E2 /* SignedOut.storyboard */,
+				930E82BD226D8672000C40E2 /* SignInViewController.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		9346E922227078F600BE2B08 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				930E831B226DDF17000C40E2 /* Main.storyboard */,
+				930E831D226DDF4E000C40E2 /* DashboardViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		9346E9232270799100BE2B08 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				9346E924227079E200BE2B08 /* CustomNavigationBar.swift */,
+				9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		DCFEECF514F781F42E1BC527 /* Frameworks */ = {
@@ -254,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				930E82C6226D8675000C40E2 /* LaunchScreen.storyboard in Resources */,
+				9346E92722707A0800BE2B08 /* CustomNavigationBar.xib in Resources */,
 				930E82C3226D8675000C40E2 /* Assets.xcassets in Resources */,
 				930E82C1226D8672000C40E2 /* SignedOut.storyboard in Resources */,
 				930E831C226DDF17000C40E2 /* Main.storyboard in Resources */,
@@ -330,6 +385,7 @@
 				930E8316226DD084000C40E2 /* RAMPointUpAnimation.swift in Sources */,
 				930E82E7226DA498000C40E2 /* Keys.swift in Sources */,
 				930E8303226DCCCB000C40E2 /* Font.swift in Sources */,
+				9346E925227079E200BE2B08 /* CustomNavigationBar.swift in Sources */,
 				930E8305226DCD4F000C40E2 /* Color.swift in Sources */,
 				930E831E226DDF4E000C40E2 /* DashboardViewController.swift in Sources */,
 				930E82BE226D8672000C40E2 /* SignInViewController.swift in Sources */,

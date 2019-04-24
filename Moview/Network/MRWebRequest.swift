@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 import Alamofire
 
 let DEBUG_REQUEST: Bool = true
@@ -97,7 +96,7 @@ class MRWebRequest: NSObject {
         if DEBUG_REQUEST {
             print("Request Headers : \(String(describing: req.allHTTPHeaderFields))")  // original URL request
             if let p = params {
-                print("Request Params : \(JSON(p))\n")
+                print("Request Params : \(p)\n")
             }
         }
         
@@ -141,10 +140,10 @@ class MRWebRequest: NSObject {
     class func createMultipart(params: [String: Any],headers: [String: Any], url: String, image: Data, fileType:String, imageName: String, completion: @escaping (_ result: Any) -> Void, failure: @escaping (_ failure: (Error)) -> Void){
         
         // use SwiftyJSON to convert a dictionary to JSON
-        let parameterJSON = JSON(params)
-        // JSON stringify
-        let parameterString = parameterJSON.rawString(String.Encoding.utf8, options: .prettyPrinted)//rawString(encoding: NSUTF8StringEncoding, options: nil)
-        _ = parameterString!.data(using: String.Encoding.utf8, allowLossyConversion: true)
+//        let parameterJSON = JSON(params)
+//        // JSON stringify
+//        let parameterString = parameterJSON.rawString(String.Encoding.utf8, options: .prettyPrinted)//rawString(encoding: NSUTF8StringEncoding, options: nil)
+//        _ = parameterString!.data(using: String.Encoding.utf8, allowLossyConversion: true)
         
 //        print("Params: \(params)")
 //        print("Headers: \(headers)")
@@ -174,8 +173,8 @@ class MRWebRequest: NSObject {
                     
                 })
                 upload.responseJSON { response in
-                    let json = JSON(response)
-                    print("json:: \(json)")
+//                    let json = JSON(response)
+                    print("json:: \(response)")
                     debugPrint(response)
                     if let res = response.result.value {
                         completion(res as Any)

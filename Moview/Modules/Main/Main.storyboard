@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,15 +15,28 @@
             <objects>
                 <viewController storyboardIdentifier="DashboardViewController" id="vja-t6-3LX" customClass="DashboardViewController" customModule="Moview" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yyh-dz-t9R">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBQ-qL-XWi" customClass="CustomNavigationBar" customModule="Moview" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="97.333333333333329"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mBQ-qL-XWi" firstAttribute="leading" secondItem="KiZ-zP-5b0" secondAttribute="leading" id="4db-Xh-tSO"/>
+                            <constraint firstItem="mBQ-qL-XWi" firstAttribute="height" secondItem="yyh-dz-t9R" secondAttribute="height" multiplier="0.12" id="D1J-RP-DZC"/>
+                            <constraint firstItem="mBQ-qL-XWi" firstAttribute="trailing" secondItem="KiZ-zP-5b0" secondAttribute="trailing" id="t2F-8O-6p9"/>
+                            <constraint firstItem="mBQ-qL-XWi" firstAttribute="top" secondItem="yyh-dz-t9R" secondAttribute="top" id="y2J-bH-Bjn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="KiZ-zP-5b0"/>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wgw-OR-QRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-278" y="154"/>
+            <point key="canvasLocation" x="-279.19999999999999" y="153.69458128078819"/>
         </scene>
     </scenes>
 </document>

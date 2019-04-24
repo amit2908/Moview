@@ -22,8 +22,7 @@ class Service {
         
         MRWebRequest.GET(url: url, headers: headers, completion: { (result) in
             if let userResult = result as? Dictionary<String, Any> {
-                do {
-//                    let res = try JSONSerialization.jsonObject(with: userResult, options: JSONSerialization.ReadingOptions.allowFragments) as! Dictionary<String, Any>
+               
                     let res = userResult
                     if let success = res["success"] as? Bool, success == true {
                         
@@ -35,12 +34,7 @@ class Service {
                             failure((res["errorCode"] as? Int) ?? 404, (res["message"] as? String) ?? "unknownErrorMsg".localized())
                         }
                     }
-                }catch {
-                    print(error)
-                    DispatchQueue.main.async {
-                        failure(400, error.localizedDescription)
-                    }
-                }
+                
                 
             }
         }) { (error) in
@@ -66,8 +60,7 @@ class Service {
         
         MRWebRequest.POST(url: url, authType: MRWebRequestAuthorizationType.none , headers: headers, params: params, completion: { (result) in
             if let sessionResult = result as? Dictionary<String, Any> {
-                do {
-//                    let res = try JSONSerialization.jsonObject(with: sessionResult, options: JSONSerialization.ReadingOptions.allowFragments) as! Dictionary<String, Any>
+            
                     let res = sessionResult
                     if let success = res["success"] as? Bool, success == true {
                         
@@ -79,12 +72,6 @@ class Service {
                             failure((res["errorCode"] as? Int) ?? 404, (res["message"] as? String) ?? "unknownErrorMsg".localized())
                         }
                     }
-                }catch {
-                    print(error)
-                    DispatchQueue.main.async {
-                        failure(400, error.localizedDescription)
-                    }
-                }
             }
         }) { (error) in
             DispatchQueue.main.async {

@@ -7,6 +7,14 @@
 //
 
 import Foundation
+import UIKit
+
+//Dimensions
+
+let SCREEN_WIDTH_MULTIPLIER = ((UIApplication.shared.delegate as? AppDelegate)?.window?.bounds.size.width ?? 375.0) / 375.0
+let SCREEN_HEIGHT_MULTIPLIER = ((UIApplication.shared.delegate as? AppDelegate)?.window?.bounds.size.height ?? 812.0) / 812.0
+let SCREEN_WIDTH = (UIApplication.shared.delegate as? AppDelegate)?.window?.bounds.size.width ?? CGFloat(0.0)
+let SCREEN_HEIGHT = (UIApplication.shared.delegate as? AppDelegate)?.window?.bounds.size.height ?? CGFloat(0.0)
 
 let API_KEY = Bundle.main.object(forInfoDictionaryKey: "api_key") as! String
 let BASE_PATH = "https://api.themoviedb.org/3"

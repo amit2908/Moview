@@ -11,8 +11,11 @@ import UIKit
 struct Navigation {
     static let shared = Navigation()
     
+    
     func navigateToDashboard(navigationController: UINavigationController){
         let dashboardVC = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.dashboard)
-        navigationController.show(dashboardVC, sender: nil)
+        navigationController.viewControllers = [dashboardVC]
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.window?.makeKeyAndVisible()
     }
 }

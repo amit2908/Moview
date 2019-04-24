@@ -7,17 +7,24 @@
 //
 
 import UIKit
+import JVFloatLabeledTextField
 
 class SignInViewController: UIViewController {
 
-    @IBOutlet weak var tf_username: UITextField!
-    @IBOutlet weak var tf_password: UITextField!
+    @IBOutlet weak var tf_username: JVFloatLabeledTextField!
+    @IBOutlet weak var tf_password: JVFloatLabeledTextField!
     
+    @IBOutlet weak var const_topSpace: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        const_topSpace.constant = SCREEN_HEIGHT * 0.3
     }
 
     @IBAction func loginButtonTapped(_ sender: UIButton) {
