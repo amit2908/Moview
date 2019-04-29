@@ -81,6 +81,32 @@ class Service {
         
     }
     
+    func getConfiguration(completion: @escaping ()->(), failure: @escaping (_ errorCode: Int, _ errorMessage: String)->()){
+        
+        let url = BASE_PATH + CONFIGURATION
+        
+        MRWebRequest.GET(url: url, completion: { (result) in
+            if let configuration = result as? Dictionary<String, Any> {
+                
+                let res = moviesResult
+                if let results = res["results"] {
+                    
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }else {
+                    DispatchQueue.main.async {
+                        failure((res["errorCode"] as? Int) ?? 404, (res["message"] as? String) ?? "unknownErrorMsg".localized())
+                    }
+                }
+            }
+        }) { (error) in
+            DispatchQueue.main.async {
+                failure(error?.code ?? 500, error?.localizedDescription ?? "unknownErrorMsg".localized())
+            }
+        }
+    }
+    
     
     func fetchUpcomingMovies(fromDate: String, toDate: String,completion: @escaping ()->(), failure: @escaping (_ errorCode: Int, _ errorMessage: String)->() ){
         let url = BASE_PATH + GET_UPCOMING_MOVIES_END_URL

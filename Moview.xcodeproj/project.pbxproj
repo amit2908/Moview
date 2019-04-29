@@ -386,7 +386,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Moview/Pods-Moview-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Moview/Pods-Moview-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
@@ -407,7 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Moview/Pods-Moview-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Moview/Pods-Moview-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		392BA40D31F1D71C4522470E /* [CP] Check Pods Manifest.lock */ = {
