@@ -49,19 +49,24 @@ class CustomNavigationBar: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        setBackground()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setBackground()
+        self.titleLabel.font = UIFont.appFontBold25
+//        self.titleLabel.font = UIFont.init(descriptor: UIFontDescriptor(fontAttributes: [UIFontDescriptor.AttributeName.family : "Acari Sans", UIFontDescriptor.AttributeName.textStyle : "Medium"]), size: 20)
     }
     
     private func setupView(){
-        Bundle.main.loadNibNamed("CustomNavigationBar", owner: self, options: nil)
-        contentView.tintColor = UIColor.blue
-        contentView.fixInView(self)
+        let contentView = Bundle.main.loadNibNamed("CustomNavigationBar", owner: self, options: nil)?[0] as? UIView
+        contentView!.tintColor = UIColor.blue
+        contentView!.fixInView(self)
     }
     
     func setBackground(){
@@ -70,7 +75,7 @@ class CustomNavigationBar: UIView {
     }
     
     func addGradientBackground(){
-        self.contentView.setGradientBackground(colorOne: .softBlue, colorTwo: .cornflower, direction: .leftToRight)
+        self.contentView.setGradientBackground(colorOne: .salmon, colorTwo: .red, direction: .leftToRight)
     }
     
     func removeGradient(){

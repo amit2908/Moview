@@ -25,6 +25,7 @@ class SignInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         const_topSpace.constant = SCREEN_HEIGHT * 0.3
+        Navigation.shared.navigateToDashboard(navigationController: self.navigationController!)
     }
 
     @IBAction func loginButtonTapped(_ sender: UIButton) {

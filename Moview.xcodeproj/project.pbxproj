@@ -33,6 +33,17 @@
 		930E831E226DDF4E000C40E2 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930E831D226DDF4E000C40E2 /* DashboardViewController.swift */; };
 		9346E925227079E200BE2B08 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9346E924227079E200BE2B08 /* CustomNavigationBar.swift */; };
 		9346E92722707A0800BE2B08 /* CustomNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */; };
+		9398D7E32276D24500EAAC3E /* AcariSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7E12276CC5E00EAAC3E /* AcariSans-Bold.otf */; };
+		9398D7E42276D24500EAAC3E /* AcariSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7DF2276CC5E00EAAC3E /* AcariSans-BoldItalic.ttf */; };
+		9398D7E52276D24500EAAC3E /* AcariSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7DA2276CC5D00EAAC3E /* AcariSans-Italic.ttf */; };
+		9398D7E62276D24500EAAC3E /* AcariSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7DB2276CC5D00EAAC3E /* AcariSans-Light.ttf */; };
+		9398D7E72276D24500EAAC3E /* AcariSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7DC2276CC5D00EAAC3E /* AcariSans-LightItalic.ttf */; };
+		9398D7E82276D24500EAAC3E /* AcariSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7D92276CC5D00EAAC3E /* AcariSans-Medium.otf */; };
+		9398D7E92276D24500EAAC3E /* AcariSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7DD2276CC5D00EAAC3E /* AcariSans-MediumItalic.ttf */; };
+		9398D7EA2276D24500EAAC3E /* AcariSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7DE2276CC5E00EAAC3E /* AcariSans-Regular.otf */; };
+		9398D7EB2276D24500EAAC3E /* AcariSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7E02276CC5E00EAAC3E /* AcariSans-SemiBold.ttf */; };
+		9398D7EC2276D24500EAAC3E /* AcariSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7E22276CC5E00EAAC3E /* AcariSans-SemiBoldItalic.ttf */; };
+		9398D7ED2276D24500EAAC3E /* Beyond Wonderland.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7D72276CA6600EAAC3E /* Beyond Wonderland.ttf */; };
 		DD6DAF3D4D5BFB90307BE7EB /* Pods_Moview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF46F48B9827869BF34A0AC /* Pods_Moview.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +77,17 @@
 		930E831D226DDF4E000C40E2 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		9346E924227079E200BE2B08 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNavigationBar.xib; sourceTree = "<group>"; };
+		9398D7D72276CA6600EAAC3E /* Beyond Wonderland.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Beyond Wonderland.ttf"; sourceTree = "<group>"; };
+		9398D7D92276CC5D00EAAC3E /* AcariSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Medium.otf"; sourceTree = "<group>"; };
+		9398D7DA2276CC5D00EAAC3E /* AcariSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Italic.ttf"; sourceTree = "<group>"; };
+		9398D7DB2276CC5D00EAAC3E /* AcariSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Light.ttf"; sourceTree = "<group>"; };
+		9398D7DC2276CC5D00EAAC3E /* AcariSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		9398D7DD2276CC5D00EAAC3E /* AcariSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-MediumItalic.ttf"; sourceTree = "<group>"; };
+		9398D7DE2276CC5E00EAAC3E /* AcariSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Regular.otf"; sourceTree = "<group>"; };
+		9398D7DF2276CC5E00EAAC3E /* AcariSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		9398D7E02276CC5E00EAAC3E /* AcariSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		9398D7E12276CC5E00EAAC3E /* AcariSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Bold.otf"; sourceTree = "<group>"; };
+		9398D7E22276CC5E00EAAC3E /* AcariSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		DC7074D03C7C9502ECF9D95D /* Pods-Moview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.release.xcconfig"; path = "Pods/Target Support Files/Pods-Moview/Pods-Moview.release.xcconfig"; sourceTree = "<group>"; };
 		E63C259AEC2EB98B92096A30 /* Pods-Moview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Moview/Pods-Moview.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +134,7 @@
 		930E82BA226D8672000C40E2 /* Moview */ = {
 			isa = PBXGroup;
 			children = (
+				9398D7D62276CA5900EAAC3E /* Resources */,
 				9346E9232270799100BE2B08 /* CustomViews */,
 				9346E920227078D600BE2B08 /* Modules */,
 				9346E91F227078BE00BE2B08 /* Utilities */,
@@ -239,6 +262,32 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		9398D7D62276CA5900EAAC3E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9398D7D82276CC4F00EAAC3E /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9398D7D82276CC4F00EAAC3E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9398D7E12276CC5E00EAAC3E /* AcariSans-Bold.otf */,
+				9398D7DF2276CC5E00EAAC3E /* AcariSans-BoldItalic.ttf */,
+				9398D7DA2276CC5D00EAAC3E /* AcariSans-Italic.ttf */,
+				9398D7DB2276CC5D00EAAC3E /* AcariSans-Light.ttf */,
+				9398D7DC2276CC5D00EAAC3E /* AcariSans-LightItalic.ttf */,
+				9398D7D92276CC5D00EAAC3E /* AcariSans-Medium.otf */,
+				9398D7DD2276CC5D00EAAC3E /* AcariSans-MediumItalic.ttf */,
+				9398D7DE2276CC5E00EAAC3E /* AcariSans-Regular.otf */,
+				9398D7E02276CC5E00EAAC3E /* AcariSans-SemiBold.ttf */,
+				9398D7E22276CC5E00EAAC3E /* AcariSans-SemiBoldItalic.ttf */,
+				9398D7D72276CA6600EAAC3E /* Beyond Wonderland.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		DCFEECF514F781F42E1BC527 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +356,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9398D7E32276D24500EAAC3E /* AcariSans-Bold.otf in Resources */,
+				9398D7E42276D24500EAAC3E /* AcariSans-BoldItalic.ttf in Resources */,
+				9398D7E52276D24500EAAC3E /* AcariSans-Italic.ttf in Resources */,
+				9398D7E62276D24500EAAC3E /* AcariSans-Light.ttf in Resources */,
+				9398D7E72276D24500EAAC3E /* AcariSans-LightItalic.ttf in Resources */,
+				9398D7E82276D24500EAAC3E /* AcariSans-Medium.otf in Resources */,
+				9398D7E92276D24500EAAC3E /* AcariSans-MediumItalic.ttf in Resources */,
+				9398D7EA2276D24500EAAC3E /* AcariSans-Regular.otf in Resources */,
+				9398D7EB2276D24500EAAC3E /* AcariSans-SemiBold.ttf in Resources */,
+				9398D7EC2276D24500EAAC3E /* AcariSans-SemiBoldItalic.ttf in Resources */,
+				9398D7ED2276D24500EAAC3E /* Beyond Wonderland.ttf in Resources */,
 				930E82C6226D8675000C40E2 /* LaunchScreen.storyboard in Resources */,
 				9346E92722707A0800BE2B08 /* CustomNavigationBar.xib in Resources */,
 				930E82C3226D8675000C40E2 /* Assets.xcassets in Resources */,

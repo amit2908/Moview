@@ -21,4 +21,4 @@ let BASE_PATH = "https://api.themoviedb.org/3"
 let GET_REQUEST_TOKEN_END_URL = "/authentication/token/new?api_key=\(API_KEY)"
 let CREATE_SESSION_WITH_TOKEN_END_URL = "/authentication/token/validate_with_login?api_key=\(API_KEY)"
 
-let APP_FONT_NAME = "Times New Roman"
+let APP_FONT_NAME = "AcariSans"
