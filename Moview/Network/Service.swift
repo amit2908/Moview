@@ -88,7 +88,7 @@ class Service {
         MRWebRequest.GET(url: url, completion: { (result) in
             if let configuration = result as? Dictionary<String, Any> {
                 
-                let res = moviesResult
+                let res = configuration
                 if let results = res["results"] {
                     
                     DispatchQueue.main.async {

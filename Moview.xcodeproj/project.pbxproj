@@ -44,6 +44,7 @@
 		9398D7EB2276D24500EAAC3E /* AcariSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7E02276CC5E00EAAC3E /* AcariSans-SemiBold.ttf */; };
 		9398D7EC2276D24500EAAC3E /* AcariSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7E22276CC5E00EAAC3E /* AcariSans-SemiBoldItalic.ttf */; };
 		9398D7ED2276D24500EAAC3E /* Beyond Wonderland.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7D72276CA6600EAAC3E /* Beyond Wonderland.ttf */; };
+		93F3D0E92278468C001B41A2 /* configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F3D0E82278468C001B41A2 /* configuration.swift */; };
 		DD6DAF3D4D5BFB90307BE7EB /* Pods_Moview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF46F48B9827869BF34A0AC /* Pods_Moview.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		9398D7E02276CC5E00EAAC3E /* AcariSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		9398D7E12276CC5E00EAAC3E /* AcariSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Bold.otf"; sourceTree = "<group>"; };
 		9398D7E22276CC5E00EAAC3E /* AcariSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		93F3D0E82278468C001B41A2 /* configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = configuration.swift; sourceTree = "<group>"; };
 		DC7074D03C7C9502ECF9D95D /* Pods-Moview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.release.xcconfig"; path = "Pods/Target Support Files/Pods-Moview/Pods-Moview.release.xcconfig"; sourceTree = "<group>"; };
 		E63C259AEC2EB98B92096A30 /* Pods-Moview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Moview/Pods-Moview.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -134,6 +136,7 @@
 		930E82BA226D8672000C40E2 /* Moview */ = {
 			isa = PBXGroup;
 			children = (
+				93F3D0E722784669001B41A2 /* Models */,
 				9398D7D62276CA5900EAAC3E /* Resources */,
 				9346E9232270799100BE2B08 /* CustomViews */,
 				9346E920227078D600BE2B08 /* Modules */,
@@ -288,6 +291,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		93F3D0E722784669001B41A2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				93F3D0E82278468C001B41A2 /* configuration.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		DCFEECF514F781F42E1BC527 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,7 +397,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Moview/Pods-Moview-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Moview/Pods-Moview-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
@@ -407,7 +418,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Moview/Pods-Moview-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Moview/Pods-Moview-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		392BA40D31F1D71C4522470E /* [CP] Check Pods Manifest.lock */ = {
@@ -439,6 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93F3D0E92278468C001B41A2 /* configuration.swift in Sources */,
 				930E82E5226DA315000C40E2 /* Constants.swift in Sources */,
 				930E8315226DD084000C40E2 /* RAMCameraAnimation.swift in Sources */,
 				930E8307226DCD97000C40E2 /* String.swift in Sources */,
