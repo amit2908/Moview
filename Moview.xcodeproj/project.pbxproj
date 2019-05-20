@@ -44,6 +44,7 @@
 		9398D7EB2276D24500EAAC3E /* AcariSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7E02276CC5E00EAAC3E /* AcariSans-SemiBold.ttf */; };
 		9398D7EC2276D24500EAAC3E /* AcariSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7E22276CC5E00EAAC3E /* AcariSans-SemiBoldItalic.ttf */; };
 		9398D7ED2276D24500EAAC3E /* Beyond Wonderland.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7D72276CA6600EAAC3E /* Beyond Wonderland.ttf */; };
+		93ABC95B2292D042000F3DC7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93ABC9592292D042000F3DC7 /* Model.xcdatamodeld */; };
 		93F3D0E92278468C001B41A2 /* configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F3D0E82278468C001B41A2 /* configuration.swift */; };
 		DD6DAF3D4D5BFB90307BE7EB /* Pods_Moview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF46F48B9827869BF34A0AC /* Pods_Moview.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +90,7 @@
 		9398D7E02276CC5E00EAAC3E /* AcariSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		9398D7E12276CC5E00EAAC3E /* AcariSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Bold.otf"; sourceTree = "<group>"; };
 		9398D7E22276CC5E00EAAC3E /* AcariSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		93ABC95A2292D042000F3DC7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		93F3D0E82278468C001B41A2 /* configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = configuration.swift; sourceTree = "<group>"; };
 		DC7074D03C7C9502ECF9D95D /* Pods-Moview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.release.xcconfig"; path = "Pods/Target Support Files/Pods-Moview/Pods-Moview.release.xcconfig"; sourceTree = "<group>"; };
 		E63C259AEC2EB98B92096A30 /* Pods-Moview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Moview/Pods-Moview.debug.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				930E82C2226D8675000C40E2 /* Assets.xcassets */,
 				930E82C4226D8675000C40E2 /* LaunchScreen.storyboard */,
 				930E82C7226D8675000C40E2 /* Info.plist */,
+				93ABC9592292D042000F3DC7 /* Model.xcdatamodeld */,
 			);
 			path = Moview;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93F3D0E92278468C001B41A2 /* configuration.swift in Sources */,
+				93ABC95B2292D042000F3DC7 /* Model.xcdatamodeld in Sources */,
 				930E82E5226DA315000C40E2 /* Constants.swift in Sources */,
 				930E8315226DD084000C40E2 /* RAMCameraAnimation.swift in Sources */,
 				930E8307226DCD97000C40E2 /* String.swift in Sources */,
@@ -677,6 +681,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		93ABC9592292D042000F3DC7 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				93ABC95A2292D042000F3DC7 /* Model.xcdatamodel */,
+			);
+			currentVersion = 93ABC95A2292D042000F3DC7 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 930E82B0226D8672000C40E2 /* Project object */;
 }
