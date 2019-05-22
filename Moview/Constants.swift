@@ -22,6 +22,7 @@ let SCREEN_HEIGHT = (UIApplication.shared.delegate as? AppDelegate)?.window?.bou
 let API_KEY = Bundle.main.object(forInfoDictionaryKey: "api_key") as! String
 
 let BASE_PATH = "https://api.themoviedb.org/3"
+let IMAGE_BASE_URL = "https://image.tmdb.org/t/p/"
 let GET_REQUEST_TOKEN_END_URL = "/authentication/token/new?api_key=\(API_KEY)"
 let CREATE_SESSION_WITH_TOKEN_END_URL = "/authentication/token/validate_with_login?api_key=\(API_KEY)"
 let CONFIGURATION = "/configuration?api_key=\(API_KEY)"

@@ -33,6 +33,7 @@
 		930E831E226DDF4E000C40E2 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930E831D226DDF4E000C40E2 /* DashboardViewController.swift */; };
 		9346E925227079E200BE2B08 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9346E924227079E200BE2B08 /* CustomNavigationBar.swift */; };
 		9346E92722707A0800BE2B08 /* CustomNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */; };
+		9346FB612294301E0092025D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9346FB602294301E0092025D /* CoreData.framework */; };
 		9398D7E32276D24500EAAC3E /* AcariSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7E12276CC5E00EAAC3E /* AcariSans-Bold.otf */; };
 		9398D7E42276D24500EAAC3E /* AcariSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7DF2276CC5E00EAAC3E /* AcariSans-BoldItalic.ttf */; };
 		9398D7E52276D24500EAAC3E /* AcariSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7DA2276CC5D00EAAC3E /* AcariSans-Italic.ttf */; };
@@ -45,7 +46,9 @@
 		9398D7EC2276D24500EAAC3E /* AcariSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7E22276CC5E00EAAC3E /* AcariSans-SemiBoldItalic.ttf */; };
 		9398D7ED2276D24500EAAC3E /* Beyond Wonderland.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7D72276CA6600EAAC3E /* Beyond Wonderland.ttf */; };
 		93ABC95B2292D042000F3DC7 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93ABC9592292D042000F3DC7 /* Model.xcdatamodeld */; };
-		93F3D0E92278468C001B41A2 /* configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F3D0E82278468C001B41A2 /* configuration.swift */; };
+		93D3D339229525B6006871B4 /* Movie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3D337229525B6006871B4 /* Movie+CoreDataClass.swift */; };
+		93D3D33A229525B6006871B4 /* Movie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3D338229525B6006871B4 /* Movie+CoreDataProperties.swift */; };
+		93F3D0E92278468C001B41A2 /* Configuration1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F3D0E82278468C001B41A2 /* Configuration1.swift */; };
 		DD6DAF3D4D5BFB90307BE7EB /* Pods_Moview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CF46F48B9827869BF34A0AC /* Pods_Moview.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +82,7 @@
 		930E831D226DDF4E000C40E2 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		9346E924227079E200BE2B08 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNavigationBar.xib; sourceTree = "<group>"; };
+		9346FB602294301E0092025D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9398D7D72276CA6600EAAC3E /* Beyond Wonderland.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Beyond Wonderland.ttf"; sourceTree = "<group>"; };
 		9398D7D92276CC5D00EAAC3E /* AcariSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Medium.otf"; sourceTree = "<group>"; };
 		9398D7DA2276CC5D00EAAC3E /* AcariSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Italic.ttf"; sourceTree = "<group>"; };
@@ -91,7 +95,9 @@
 		9398D7E12276CC5E00EAAC3E /* AcariSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Bold.otf"; sourceTree = "<group>"; };
 		9398D7E22276CC5E00EAAC3E /* AcariSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		93ABC95A2292D042000F3DC7 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		93F3D0E82278468C001B41A2 /* configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = configuration.swift; sourceTree = "<group>"; };
+		93D3D337229525B6006871B4 /* Movie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataClass.swift"; sourceTree = "<group>"; };
+		93D3D338229525B6006871B4 /* Movie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		93F3D0E82278468C001B41A2 /* Configuration1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration1.swift; sourceTree = "<group>"; };
 		DC7074D03C7C9502ECF9D95D /* Pods-Moview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.release.xcconfig"; path = "Pods/Target Support Files/Pods-Moview/Pods-Moview.release.xcconfig"; sourceTree = "<group>"; };
 		E63C259AEC2EB98B92096A30 /* Pods-Moview.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Moview/Pods-Moview.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9346FB612294301E0092025D /* CoreData.framework in Frameworks */,
 				DD6DAF3D4D5BFB90307BE7EB /* Pods_Moview.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +304,9 @@
 		93F3D0E722784669001B41A2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				93F3D0E82278468C001B41A2 /* configuration.swift */,
+				93D3D337229525B6006871B4 /* Movie+CoreDataClass.swift */,
+				93D3D338229525B6006871B4 /* Movie+CoreDataProperties.swift */,
+				93F3D0E82278468C001B41A2 /* Configuration1.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -305,6 +314,7 @@
 		DCFEECF514F781F42E1BC527 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9346FB602294301E0092025D /* CoreData.framework */,
 				1CF46F48B9827869BF34A0AC /* Pods_Moview.framework */,
 			);
 			name = Frameworks;
@@ -453,7 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				93F3D0E92278468C001B41A2 /* configuration.swift in Sources */,
+				93F3D0E92278468C001B41A2 /* Configuration1.swift in Sources */,
 				93ABC95B2292D042000F3DC7 /* Model.xcdatamodeld in Sources */,
 				930E82E5226DA315000C40E2 /* Constants.swift in Sources */,
 				930E8315226DD084000C40E2 /* RAMCameraAnimation.swift in Sources */,
@@ -469,6 +479,8 @@
 				930E831A226DDCA2000C40E2 /* Navigation.swift in Sources */,
 				930E82FF226DBCC5000C40E2 /* Miscellaneous.swift in Sources */,
 				930E8309226DCE35000C40E2 /* Button.swift in Sources */,
+				93D3D33A229525B6006871B4 /* Movie+CoreDataProperties.swift in Sources */,
+				93D3D339229525B6006871B4 /* Movie+CoreDataClass.swift in Sources */,
 				930E82FE226DBCC5000C40E2 /* View.swift in Sources */,
 				930E830B226DD049000C40E2 /* ApplicationManager.swift in Sources */,
 				930E82E3226DA0CE000C40E2 /* Service.swift in Sources */,

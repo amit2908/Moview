@@ -133,7 +133,7 @@ class Service {
         }
     }
     
-    func fetchMoviesInTheatre(fromDate: String, toDate: String,completion: @escaping ()->(), failure: @escaping (_ errorCode: Int, _ errorMessage: String)->() ){
+    func fetchMoviesInTheatre(fromDate: String, toDate: String,completion: @escaping ()->(page: Int, [Movie]), failure: @escaping (_ errorCode: Int, _ errorMessage: String)->() ){
         let url = BASE_PATH + GET_MOVIES_IN_THEATRES_END_URL
         
         MRWebRequest.GET(url: url, completion: { (result) in
@@ -142,8 +142,12 @@ class Service {
                 let res = moviesResult
                 if let results = res["results"] {
                     
+                    let encoder = JSONEncoder.init()
+                    
+                    
+                    
                     DispatchQueue.main.async {
-                        completion()
+                        completion(res["page"], results)
                     }
                 }else {
                     DispatchQueue.main.async {

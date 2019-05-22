@@ -22,7 +22,7 @@ class DashboardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupView()
-        
+        self.fetchPlayingNowMovies()
     }
     
     private func setupView(){
@@ -32,8 +32,8 @@ class DashboardViewController: UIViewController {
         pageControl_recent.hidesForSinglePage = true
     }
     
-    private func fetchRecentMovies(){
-        
+    private func fetchPlayingNowMovies(){
+        Service.shared.fet
     }
 
 }
