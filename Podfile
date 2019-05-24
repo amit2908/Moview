@@ -6,7 +6,7 @@
 platform :ios, '9.0'
 use_frameworks!
 def myPods
-  pod 'Alamofire'
+#  pod 'Alamofire', '5.0.0-beta.6'
   pod 'SwiftyJSON', '4.2'
   pod 'JVFloatLabeledTextField'
   pod 'SVProgressHUD'

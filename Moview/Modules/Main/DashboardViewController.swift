@@ -33,7 +33,9 @@ class DashboardViewController: UIViewController {
     }
     
     private func fetchPlayingNowMovies(){
-        Service.shared.fet
+        APIClient.shared.nowPlaying { (movie) in
+            print(movie)
+        }
     }
 
 }

@@ -7,15 +7,16 @@
 //
 
 import Foundation
+import Alamofire
 
-class Service {
+/*class Service {
     static let shared = Service()
     
     //GET REQUEST TOKEN
     
     func getRequestToken(completion: @escaping ((_ token: String)->()), failure: @escaping ((_ statusCode: Int, _ errorMsg: String)->()) ){
        
-        let url = BASE_PATH + GET_REQUEST_TOKEN_END_URL
+        let url = K.Server.baseURL + K.APIEndpoint.GET_REQUEST_TOKEN_END_URL
         let headers = [
             "Content-Type":"application/json",
         ]
@@ -47,7 +48,7 @@ class Service {
     //CREATE SESSION WITH TOKEN
     
     func createSession(requestToken: String, username: String, password: String, completion: @escaping ()->(), failure: @escaping (_ errorCode: Int, _ errorMessage: String)->() ){
-        let url = BASE_PATH + CREATE_SESSION_WITH_TOKEN_END_URL
+        let url = K.Server.baseURL + K.APIEndpoint.CREATE_SESSION_WITH_TOKEN_END_URL
         let headers = [
             "Content-Type" : "application/json"
         ]
@@ -83,7 +84,7 @@ class Service {
     
     func getConfiguration(completion: @escaping ()->(), failure: @escaping (_ errorCode: Int, _ errorMessage: String)->()){
         
-        let url = BASE_PATH + CONFIGURATION
+        let url = K.Server.baseURL + K.APIEndpoint.CONFIGURATION
         
         MRWebRequest.GET(url: url, completion: { (result) in
             if let configuration = result as? Dictionary<String, Any> {
@@ -109,7 +110,7 @@ class Service {
     
     
     func fetchUpcomingMovies(fromDate: String, toDate: String,completion: @escaping ()->(), failure: @escaping (_ errorCode: Int, _ errorMessage: String)->() ){
-        let url = BASE_PATH + GET_UPCOMING_MOVIES_END_URL
+        let url = K.Server.baseURL + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL
         
         MRWebRequest.GET(url: url, completion: { (result) in
             if let moviesResult = result as? Dictionary<String, Any> {
@@ -134,31 +135,10 @@ class Service {
     }
     
     func fetchMoviesInTheatre(fromDate: String, toDate: String,completion: @escaping ()->(page: Int, [Movie]), failure: @escaping (_ errorCode: Int, _ errorMessage: String)->() ){
-        let url = BASE_PATH + GET_MOVIES_IN_THEATRES_END_URL
         
-        MRWebRequest.GET(url: url, completion: { (result) in
-            if let moviesResult = result as? Dictionary<String, Any> {
-                
-                let res = moviesResult
-                if let results = res["results"] {
-                    
-                    let encoder = JSONEncoder.init()
-                    
-                    
-                    
-                    DispatchQueue.main.async {
-                        completion(res["page"], results)
-                    }
-                }else {
-                    DispatchQueue.main.async {
-                        failure((res["errorCode"] as? Int) ?? 404, (res["message"] as? String) ?? "unknownErrorMsg".localized())
-                    }
-                }
-            }
-        }) { (error) in
-            DispatchQueue.main.async {
-                failure(error?.code ?? 500, error?.localizedDescription ?? "unknownErrorMsg".localized())
-            }
-        }
+        let url = K.Server.baseURL + K.APIEndpoint.GET_MOVIES_IN_THEATRES_END_URL
+        
+        
     }
 }
+*/
