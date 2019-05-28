@@ -12,7 +12,7 @@ import Alamofire
 class APIClient {
     static let shared = APIClient();
     
-     func nowPlaying(completion:@escaping (Result<Movie>)->Void) {
+     func nowPlaying(completion:@escaping (AFResult<Movie>)->Void) {
         AF.request(MoviesEndpoint.nowPlaying)
             .responseDecodable { (response: DataResponse<Movie>) in
                 completion(response.result)

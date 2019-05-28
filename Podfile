@@ -3,10 +3,10 @@
 
 # Uncomment the next line to define a global platform for your project
 
-platform :ios, '9.0'
+platform :ios, '10.0'
 use_frameworks!
 def myPods
-#  pod 'Alamofire', '5.0.0-beta.6'
+  pod 'Alamofire', '5.0.0-beta.4'
   pod 'SwiftyJSON', '4.2'
   pod 'JVFloatLabeledTextField'
   pod 'SVProgressHUD'
