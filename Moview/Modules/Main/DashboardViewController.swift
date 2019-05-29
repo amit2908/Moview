@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class DashboardViewController: UIViewController {
     @IBOutlet weak var navBar: CustomNavigationBar!
     @IBOutlet weak var collection_recent: UICollectionView!
     @IBOutlet weak var pageControl_recent: UIPageControl!
+    
+    var nowPlayingMovies = [Movie]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +36,29 @@ class DashboardViewController: UIViewController {
     }
     
     private func fetchPlayingNowMovies(){
-        APIClient.shared.nowPlaying { (movie) in
-            print(movie)
+        self.showProgress(status: "Please wait...")
+        APIClient.shared.nowPlaying { (movies) in
+            self.hideProgress()
+            
+            let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
+            fetchRequest.fetchLimit = 5
+            fetchRequest.sortDescriptors[NSSortDescriptor.init(key: "title", ascending: true)]
+            
+            do {
+                let fetchResults = try AppDelegate.backgroundContext.fetch(fetchRequest)
+                for movie in fetchResults {
+                    print(movie.original_title ?? "")
+                }
+            }catch {
+                print(error)
+            }
         }
     }
 
 }
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return nowPlayingMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

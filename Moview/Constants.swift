@@ -25,7 +25,8 @@ struct K {
     static let API_SECURITY_KEY = Bundle.main.object(forInfoDictionaryKey: "api_key") as! String
     
     struct Server {
-        static let baseURL = "https://api.themoviedb.org/3"
+        static let baseURL = "https://api.themoviedb.org"
+        static let API_VERSION = "/3"
         static let imageBaseURL = "https://image.tmdb.org/t/p/"
     }
     
@@ -34,7 +35,7 @@ struct K {
         static let CREATE_SESSION_WITH_TOKEN_END_URL = "/authentication/token/validate_with_login?api_key=\(K.API_SECURITY_KEY)"
         static let CONFIGURATION = "/configuration?api_key=\(K.API_SECURITY_KEY)"
         static let GET_UPCOMING_MOVIES_END_URL = "/discover/movie?primary_release_date.gte=%@&primary_release_date.lte=%@&api_key=\(K.API_SECURITY_KEY)" //2019-05-05
-        static let GET_MOVIES_IN_THEATRES_END_URL = "/movie/now_playing?api_key=\(K.API_SECURITY_KEY)&language=en-US&page=1"
+        static let GET_MOVIES_IN_THEATRES_END_URL = "/movie/now_playing"
     }
     
     struct APIParameterKeys {

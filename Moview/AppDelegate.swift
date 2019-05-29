@@ -58,10 +58,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return AppDelegate.persistentContainer.viewContext
     }()
     
+    static var backgroundContext = {
+        return AppDelegate.persistentContainer.newBackgroundContext()
+    }()
+    
     // MARK: - Core Data Saving support
     
-    func saveContext () {
-        let context = AppDelegate.persistentContainer.viewContext
+    static func saveContext (context: NSManagedObjectContext) {
         if context.hasChanges {
             do {
                 try context.save()
@@ -96,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        self.saveContext()
+        AppDelegate.saveContext(context: AppDelegate.viewContext)
     }
 
 
