@@ -42,13 +42,14 @@ class DashboardViewController: UIViewController {
             
             let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
             fetchRequest.fetchLimit = 5
-            fetchRequest.sortDescriptors[NSSortDescriptor.init(key: "title", ascending: true)]
+            fetchRequest.sortDescriptors?.append(NSSortDescriptor.init(key: "title", ascending: true))
             
             do {
                 let fetchResults = try AppDelegate.backgroundContext.fetch(fetchRequest)
-                for movie in fetchResults {
-                    print(movie.original_title ?? "")
-                }
+                self.nowPlayingMovies = fetchResults
+                DispatchQueue.main.async(execute: {
+                    self.collection_recent.reloadData()
+                })
             }catch {
                 print(error)
             }
@@ -69,7 +70,18 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.pageControl_recent.currentPage = indexPath.row
+        let collectionCell = cell as? NowPlayingCollectionViewCell
+        
+        let posterPath = nowPlayingMovies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w500/" + nowPlayingMovies[indexPath.row].poster_path! : ""
+        
+        collectionCell?.imgV_poster.downloaded(from: URL.init(string: posterPath)!, contentMode: .top)
     }
 
     
+}
+
+extension DashboardViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: SCREEN_WIDTH, height: SCREEN_WIDTH)
+    }
 }
