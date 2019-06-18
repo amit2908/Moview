@@ -36,6 +36,7 @@ struct K {
         static let CONFIGURATION = "/configuration?api_key=\(K.API_SECURITY_KEY)"
         static let GET_UPCOMING_MOVIES_END_URL = "/discover/movie?primary_release_date.gte=%@&primary_release_date.lte=%@&api_key=\(K.API_SECURITY_KEY)" //2019-05-05
         static let GET_MOVIES_IN_THEATRES_END_URL = "/movie/now_playing"
+        static let GET_LATEST_MOVIES = "/movie/latest"
     }
     
     struct APIParameterKeys {

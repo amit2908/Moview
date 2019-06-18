@@ -15,6 +15,7 @@ enum MoviesEndpoint : APIConfiguration {
     
     case upcomingMovies(fromDate: String, toDate: String)
     
+    case latest
     
     //Http method
     var method: HTTPMethod {
@@ -22,6 +23,8 @@ enum MoviesEndpoint : APIConfiguration {
         case .nowPlaying :
             return .get
         case .upcomingMovies :
+            return .get
+        case .latest:
             return .get
         }
     }
@@ -32,6 +35,8 @@ enum MoviesEndpoint : APIConfiguration {
             return K.Server.API_VERSION + K.APIEndpoint.GET_MOVIES_IN_THEATRES_END_URL
         case .upcomingMovies(let fromDate, let toDate):
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL, fromDate, toDate);
+        case .latest:
+            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_LATEST_MOVIES, "en-US");
         }
     }
     
@@ -45,6 +50,8 @@ enum MoviesEndpoint : APIConfiguration {
                     ]
         case .upcomingMovies:
             return nil
+        case .latest:
+            return nil
         }
     }
     
@@ -57,6 +64,8 @@ enum MoviesEndpoint : APIConfiguration {
                 "page" : "1"
             ]
         case .upcomingMovies:
+            return nil
+        case .latest:
             return nil
         }
     }

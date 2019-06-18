@@ -18,12 +18,13 @@ extension UIView {
      */
     func fixInView(_ container: UIView!) -> Void{
     self.translatesAutoresizingMaskIntoConstraints = false;
-    self.frame = container.frame;
+    self.frame = container.bounds;
     container.addSubview(self);
     NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: container, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
     NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: container, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
     NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
     NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
+//    self.layoutIfNeeded()
     }
     
     /*
@@ -96,44 +97,79 @@ extension UIView {
     shadowLayer.removeFromSuperlayer()
     }
     
+    
+    
+    
     /*
      Add Gradient Layer to view
      */
     enum GradientDirection: Int {
-    case leftToRight = 1, topLeftToBottomRight, topRightToBottomLeft
+        case leftToRight = 1, topLeftToBottomRight, topRightToBottomLeft
     }
     
     func setGradientBackground(colorOne: UIColor, colorTwo: UIColor, direction: GradientDirection) {
     
     let gradientLayer = CAGradientLayer()
-    gradientLayer.frame = frame
+    gradientLayer.frame = bounds
     gradientLayer.colors = [colorOne.cgColor,colorTwo.cgColor]
     //        gradientLayer.locations = [1.0,1.0]
-    if direction == .topLeftToBottomRight {
-    gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-    gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        if direction == .topLeftToBottomRight {
+            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+            gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        }
+        else if direction == .leftToRight {
+            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        }
+        else if direction == .topRightToBottomLeft {
+            gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
+            gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.1)
+        }
+        
+        layer.insertSublayer(gradientLayer, at: 0)
+        self.layer.layoutSublayers()
+        gradientLayer.frame = layer.bounds
     }
-    else if direction == .leftToRight {
-    gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-    gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+    
+    
+    func setGradientBackground(array: [CGColor], direction: GradientDirection) {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = layer.bounds
+        gradientLayer.colors = array
+        //        gradientLayer.locations = [1.0,1.0]
+        gradientLayer.transform = CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)
+        
+        if direction == .topLeftToBottomRight {
+            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+            gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        }
+        else if direction == .leftToRight {
+            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        }
+        else if direction == .topRightToBottomLeft {
+            gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
+            gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.1)
+        }
+        
+        layer.addSublayer(gradientLayer)
     }
-    else if direction == .topRightToBottomLeft {
-    gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.0)
-    gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.1)
-    }
-    layer.insertSublayer(gradientLayer, at: 0)
-    }
+    
+    
+    
+    
     
     
     /*
      Added animation dispatch group to manage animation in a cooler way
      */
     static func animate(withDuration duration: TimeInterval, animations: @escaping () -> Void, group: DispatchGroup, completion: ((Bool) -> Void)?){
-    group.enter()
-    animate(withDuration: duration, animations: animations) { (success) in
-    completion?(success)
-    }
-    group.leave()
+        group.enter()
+        animate(withDuration: duration, animations: animations) { (success) in
+            completion?(success)
+        }
+        group.leave()
     }
     
     func shakeError(duration: Float, repeatCount: Float){
