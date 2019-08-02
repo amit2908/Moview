@@ -6,6 +6,8 @@
 //  Copyright © 2019 Shubham. All rights reserved.
 //
 
+/* Mark: Creating API ENDPOINTS TO CALL different apis using the ALAMOFIRE's APIConfiguration protocol */
+
 import Foundation
 import Alamofire
 

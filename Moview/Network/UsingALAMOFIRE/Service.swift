@@ -6,6 +6,9 @@
 //  Copyright © 2019 Empower. All rights reserved.
 //
 
+//Old concepts using Alamofire
+
+
 import Foundation
 import Alamofire
 
