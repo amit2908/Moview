@@ -11,4 +11,8 @@ import UIKit
 class NowPlayingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgV_poster: UIImageView!
     @IBOutlet weak var lbl_name: UILabel!
+    
+    //MARK: Actions
+    
+    
 }

@@ -55,6 +55,10 @@ class DashboardViewController: UIViewController {
             }
         }
     }
+    
+    //MARK: Actions
+    
+    
 
 }
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -76,6 +80,14 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         
         collectionCell?.imgV_poster.downloaded(from: URL.init(string: posterPath)!, contentMode: .top)
         collectionCell?.lbl_name.text = nowPlayingMovies[indexPath.row].original_title
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let itemIndex = indexPath.row
+        let movieDetailVC = UIStoryboard(name: Storyboards.shared.main, bundle: nil).instantiateViewController(withIdentifier: "MovieDetailViewController", creator: {
+            
+        })
+        self.navigationController?.pushViewController(movieDetailVC, animated: true)
     }
 
     
