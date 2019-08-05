@@ -37,25 +37,8 @@ class DashboardViewController: UIViewController {
     
     private func fetchPlayingNowMovies(){
         self.showProgress(status: "Please wait...")
-//        APIClient.shared.nowPlaying { (movies) in
-//            self.hideProgress()
-//
-//            let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
-//            fetchRequest.fetchLimit = 5
-//            fetchRequest.sortDescriptors?.append(NSSortDescriptor.init(key: "title", ascending: true))
-//
-//            do {
-//                let fetchResults = try AppDelegate.backgroundContext.fetch(fetchRequest)
-//                self.nowPlayingMovies = fetchResults
-//                DispatchQueue.main.async(execute: {
-//                    self.collection_recent.reloadData()
-//                })
-//            }catch {
-//                print(error)
-//            }
-//        }
         
-        APIClient.shared.GET(entity: Movie.self, urlRequest: MovieEndpoint.nowPlaying.urlRequest! , completionHandler: { (movie) -> (Void) in
+        APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: MovieEndpoint.nowPlaying.urlRequest! , completionHandler: { (nowPlayingResponse) -> (Void) in
             
             DispatchQueue.main.async(execute: {
                 self.hideProgress()

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,6 +31,7 @@
 		930E831A226DDCA2000C40E2 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930E8319226DDCA2000C40E2 /* Navigation.swift */; };
 		930E831C226DDF17000C40E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930E831B226DDF17000C40E2 /* Main.storyboard */; };
 		930E831E226DDF4E000C40E2 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930E831D226DDF4E000C40E2 /* DashboardViewController.swift */; };
+		933DC4CF22F80C9A001F32D3 /* NowPlayingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DC4CE22F80C9A001F32D3 /* NowPlayingResponse.swift */; };
 		9346E925227079E200BE2B08 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9346E924227079E200BE2B08 /* CustomNavigationBar.swift */; };
 		9346E92722707A0800BE2B08 /* CustomNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */; };
 		9346FB612294301E0092025D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9346FB602294301E0092025D /* CoreData.framework */; };
@@ -83,6 +84,7 @@
 		930E8319226DDCA2000C40E2 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		930E831B226DDF17000C40E2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		930E831D226DDF4E000C40E2 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		933DC4CE22F80C9A001F32D3 /* NowPlayingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingResponse.swift; sourceTree = "<group>"; };
 		9346E924227079E200BE2B08 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNavigationBar.xib; sourceTree = "<group>"; };
 		9346FB602294301E0092025D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -233,6 +235,14 @@
 			path = ViewControllerTransitions;
 			sourceTree = "<group>";
 		};
+		933DC4CD22F80C7F001F32D3 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				933DC4CE22F80C9A001F32D3 /* NowPlayingResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
 		9346E91E2270705D00BE2B08 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +325,7 @@
 		93F3D0E722784669001B41A2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				933DC4CD22F80C7F001F32D3 /* Responses */,
 				93D3D337229525B6006871B4 /* Movie+CoreDataClass.swift */,
 				93D3D338229525B6006871B4 /* Movie+CoreDataProperties.swift */,
 				93F3D0E82278468C001B41A2 /* Configuration1.swift */,
@@ -469,26 +480,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Moview/Pods-Moview-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
-				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SidebarOverlay/SidebarOverlay.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Moview/Pods-Moview-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SidebarOverlay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Moview/Pods-Moview-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -532,6 +528,7 @@
 				930E8314226DD084000C40E2 /* Pulse.swift in Sources */,
 				930E82BC226D8672000C40E2 /* AppDelegate.swift in Sources */,
 				93E207B22298026100261694 /* APIClient.swift in Sources */,
+				933DC4CF22F80C9A001F32D3 /* NowPlayingResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

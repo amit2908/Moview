@@ -55,6 +55,8 @@ class APIClient {
                 let responseData = data {
                 if httpResponse.statusCode == 200 {
                     let jsonDecoder = JSONDecoder()
+                    let bgContext = AppDelegate.backgroundContext
+                    jsonDecoder.userInfo.updateValue(bgContext, forKey: CodingUserInfoKey.managedObjectContext!)
                     var jsonObject : T?
                     do {
                         jsonObject = try jsonDecoder.decode(T.self, from: responseData)

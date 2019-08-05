@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-
+@objc
 extension Movie {
     
     enum CodingKeys : String, CodingKey {
@@ -40,7 +40,7 @@ extension Movie {
     @NSManaged public var title: String?
     @NSManaged public var popularity: Double
     @NSManaged public var poster_path: String?
-    @NSManaged public var original_language: String?
+    @NSManaged public var original_language: String
     @NSManaged public var original_title: String?
     @NSManaged public var genre_ids: [Int16]?
     @NSManaged public var backdrop_path: String?

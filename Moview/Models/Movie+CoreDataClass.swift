@@ -23,7 +23,6 @@ public class Movie: NSManagedObject, Codable {
         self.init(entity: entity, insertInto: managedObjectContext)
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.adult = try container.decode(Bool.self, forKey: .adult)
         self.genre_ids = try container.decode([Int16].self, forKey: .genre_ids)
         self.vote_count = try container.decode(Int64.self, forKey: .vote_count)
         self.id        = try container.decode(Int32.self, forKey: .id)
@@ -36,6 +35,8 @@ public class Movie: NSManagedObject, Codable {
         self.backdrop_path = try container.decode(String.self, forKey: .backdrop_path)
         self.overview = try container.decode(String.self, forKey: .overview)
         self.release_date = try container.decode(String.self, forKey: .overview)
+        self.adult = try container.decode(Bool.self, forKey: .adult)
+        
         
     }
     
