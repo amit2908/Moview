@@ -193,8 +193,8 @@
 		930E8300226DBCD8000C40E2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C89EE2E922F6826800CBF839 /* UsingAlamofire */,
 				C89EE2E422F67FC000CBF839 /* UsingURLSession */,
+				C89EE2E922F6826800CBF839 /* UsingAlamofire */,
 			);
 			path = Network;
 			sourceTree = "<group>";

@@ -27,6 +27,16 @@ extension Movie {
         case adult = "adult"
         case overview = "overview"
         case release_date = "release_date"
+//        case belongsToCollection = "belongs_to_collection"
+//        case budget
+//        case homepage
+//        case imdbID
+//        case productionCompanies = "production_companies"
+//        case productionCountries = "production_countries"
+//        case revenue, runtime
+//        case spokenLanguages = "spoken_languages"
+//        case status, tagline, title
+        
     }
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Movie> {
@@ -47,6 +57,14 @@ extension Movie {
     @NSManaged public var adult: Bool
     @NSManaged public var overview: String?
     @NSManaged public var release_date: String?
-    
+//    @NSManaged public var belongsToCollection = "belongs_to_collection"
+//    @NSManaged public var budget
+//    @NSManaged public var homepage
+//    @NSManaged public var imdbID
+//    @NSManaged public var productionCompanies = "production_companies"
+//    @NSManaged public var productionCountries = "production_countries"
+//    @NSManaged public var revenue, runtime
+//    @NSManaged public var spokenLanguages = "spoken_languages"
+//    @NSManaged public var status, tagline, title
 
 }
