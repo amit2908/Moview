@@ -19,7 +19,6 @@ class DashboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,9 +26,13 @@ class DashboardViewController: UIViewController {
         self.setupView()
         self.fetchPlayingNowMovies()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
     
     private func setupView(){
-        self.navBar.title = "Home".localized()
+        self.navBar.titleLabel.text = "Home"
         pageControl_recent.currentPage = 0
         pageControl_recent.numberOfPages = 5
         pageControl_recent.hidesForSinglePage = true
@@ -85,6 +88,12 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         collectionCell?.lbl_name.text = nowPlayingMovies[indexPath.row].original_title
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
+        let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
+        movieDetailVC?.movieId = Int(self.nowPlayingMovies[indexPath.row].id)
+        self.navigationController?.pushViewController(movieDetailVC!, animated: true)
+    }
     
 }
 

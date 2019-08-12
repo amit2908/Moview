@@ -65,6 +65,7 @@ class APIClient {
                     }
                     
                     if let res = jsonObject {
+                        print("Response:============: \(res)")
                         completionHandler?(res)
                     }else {
                         print("Failed decoding response")

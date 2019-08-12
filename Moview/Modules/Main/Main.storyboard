@@ -116,5 +116,20 @@
             </objects>
             <point key="canvasLocation" x="-698.39999999999998" y="153.69458128078819"/>
         </scene>
+        <!--Movie Detail View Controller-->
+        <scene sceneID="Zoa-cs-th0">
+            <objects>
+                <viewController storyboardIdentifier="MovieDetailViewController" id="XwG-bb-MN9" customClass="MovieDetailViewController" customModule="Moview" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aIh-iD-nNj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="06I-rR-oOp"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BaY-WN-76o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="83" y="155"/>
+        </scene>
     </scenes>
 </document>

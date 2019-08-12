@@ -23,7 +23,7 @@ public class Movie: NSManagedObject, Codable {
         self.init(entity: entity, insertInto: managedObjectContext)
         
         let container               = try decoder.container(keyedBy: CodingKeys.self)
-        self.genre_ids              = try container.decode([Int16].self, forKey: .genre_ids)
+        self.genre_ids              = try container.decodeIfPresent([Int16].self, forKey: .genre_ids)
         self.vote_count             = try container.decode(Int64.self,   forKey: .vote_count)
         self.id                     = try container.decode(Int32.self,   forKey: .id)
         self.video                  = try container.decode(Bool.self,    forKey: .video)

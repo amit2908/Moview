@@ -36,6 +36,8 @@
 		9346E925227079E200BE2B08 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9346E924227079E200BE2B08 /* CustomNavigationBar.swift */; };
 		9346E92722707A0800BE2B08 /* CustomNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */; };
 		9346FB612294301E0092025D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9346FB602294301E0092025D /* CoreData.framework */; };
+		938AA80C2301673F0088919C /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938AA80B2301673F0088919C /* MovieDetailViewController.swift */; };
+		938AA81223016B130088919C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 938AA81423016B130088919C /* Localizable.strings */; };
 		9398D7E32276D24500EAAC3E /* AcariSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7E12276CC5E00EAAC3E /* AcariSans-Bold.otf */; };
 		9398D7E42276D24500EAAC3E /* AcariSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7DF2276CC5E00EAAC3E /* AcariSans-BoldItalic.ttf */; };
 		9398D7E52276D24500EAAC3E /* AcariSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9398D7DA2276CC5D00EAAC3E /* AcariSans-Italic.ttf */; };
@@ -90,6 +92,11 @@
 		9346E924227079E200BE2B08 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNavigationBar.xib; sourceTree = "<group>"; };
 		9346FB602294301E0092025D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		938AA80B2301673F0088919C /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		938AA80D23016ABE0088919C /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/SignedOut.strings; sourceTree = "<group>"; };
+		938AA80E23016ABE0088919C /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		938AA81323016B130088919C /* hi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hi; path = hi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		938AA81523016B180088919C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9398D7D72276CA6600EAAC3E /* Beyond Wonderland.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Beyond Wonderland.ttf"; sourceTree = "<group>"; };
 		9398D7D92276CC5D00EAAC3E /* AcariSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Medium.otf"; sourceTree = "<group>"; };
 		9398D7DA2276CC5D00EAAC3E /* AcariSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AcariSans-Italic.ttf"; sourceTree = "<group>"; };
@@ -292,6 +299,7 @@
 			children = (
 				930E831B226DDF17000C40E2 /* Main.storyboard */,
 				930E831D226DDF4E000C40E2 /* DashboardViewController.swift */,
+				938AA80B2301673F0088919C /* MovieDetailViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -306,9 +314,18 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		938AA80F23016AE30088919C /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				938AA81423016B130088919C /* Localizable.strings */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
 		9398D7D62276CA5900EAAC3E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				938AA80F23016AE30088919C /* Strings */,
 				9398D7D82276CC4F00EAAC3E /* Fonts */,
 			);
 			path = Resources;
@@ -425,6 +442,7 @@
 			knownRegions = (
 				en,
 				Base,
+				hi,
 			);
 			mainGroup = 930E82AF226D8672000C40E2;
 			productRefGroup = 930E82B9226D8672000C40E2 /* Products */;
@@ -441,6 +459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				938AA81223016B130088919C /* Localizable.strings in Resources */,
 				9398D7E32276D24500EAAC3E /* AcariSans-Bold.otf in Resources */,
 				9398D7E42276D24500EAAC3E /* AcariSans-BoldItalic.ttf in Resources */,
 				9398D7E52276D24500EAAC3E /* AcariSans-Italic.ttf in Resources */,
@@ -540,6 +559,7 @@
 				930E8314226DD084000C40E2 /* Pulse.swift in Sources */,
 				930E82BC226D8672000C40E2 /* AppDelegate.swift in Sources */,
 				93E207B22298026100261694 /* APIClient.swift in Sources */,
+				938AA80C2301673F0088919C /* MovieDetailViewController.swift in Sources */,
 				933DC4CF22F80C9A001F32D3 /* NowPlayingResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +571,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				930E82C0226D8672000C40E2 /* Base */,
+				938AA80D23016ABE0088919C /* hi */,
 			);
 			name = SignedOut.storyboard;
 			sourceTree = "<group>";
@@ -559,8 +580,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				930E82C5226D8675000C40E2 /* Base */,
+				938AA80E23016ABE0088919C /* hi */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		938AA81423016B130088919C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				938AA81323016B130088919C /* hi */,
+				938AA81523016B180088919C /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -570,6 +601,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -631,6 +663,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

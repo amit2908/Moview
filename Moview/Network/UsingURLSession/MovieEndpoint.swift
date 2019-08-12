@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum MovieEndpoint : APIConfiguration {
+enum MovieEndpoint : APIConfig {
     
     case nowPlaying
     
@@ -16,14 +16,12 @@ enum MovieEndpoint : APIConfiguration {
     
     case latest
     
+    case movieDetails(movieId: String)
+    
     //Http method
     var method: HTTPMethod {
         switch self {
-        case .nowPlaying :
-            return .get
-        case .upcomingMovies :
-            return .get
-        case .latest:
+        default:
             return .get
         }
     }
@@ -36,6 +34,8 @@ enum MovieEndpoint : APIConfiguration {
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL, fromDate, toDate);
         case .latest:
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_LATEST_MOVIES, "en-US");
+        case .movieDetails(let id):
+            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_MOVIE_DETAILS, id);
         }
     }
     
@@ -47,9 +47,12 @@ enum MovieEndpoint : APIConfiguration {
                 URLQueryItem(name: "language", value: "en-US"),
                 URLQueryItem(name: "page", value: "1")
             ]
-        case .upcomingMovies:
-            return nil
-        case .latest:
+            
+        case .movieDetails:
+            return [
+                URLQueryItem(name: "api_key", value: K.API_SECURITY_KEY)
+            ]
+        default:
             return nil
         }
     }
@@ -62,9 +65,7 @@ enum MovieEndpoint : APIConfiguration {
                 "language": "en-US",
                 "page" : "1"
             ]
-        case .upcomingMovies:
-            return nil
-        case .latest:
+        default:
             return nil
         }
     }
