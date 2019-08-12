@@ -27,15 +27,15 @@ extension Movie {
         case adult = "adult"
         case overview = "overview"
         case release_date = "release_date"
-//        case belongsToCollection = "belongs_to_collection"
-//        case budget
-//        case homepage
-//        case imdbID
-//        case productionCompanies = "production_companies"
-//        case productionCountries = "production_countries"
-//        case revenue, runtime
-//        case spokenLanguages = "spoken_languages"
-//        case status, tagline, title
+        case belongsToCollection = "belongs_to_collection"
+        case budget
+        case homepage
+        case imdbID
+        case productionCompanies = "production_companies"
+        case productionCountries = "production_countries"
+        case revenue, runtime
+        case spokenLanguages = "spoken_languages"
+        case status, tagline, title
         
     }
 
@@ -57,14 +57,66 @@ extension Movie {
     @NSManaged public var adult: Bool
     @NSManaged public var overview: String?
     @NSManaged public var release_date: String?
-//    @NSManaged public var belongsToCollection = "belongs_to_collection"
-//    @NSManaged public var budget
-//    @NSManaged public var homepage
-//    @NSManaged public var imdbID
-//    @NSManaged public var productionCompanies = "production_companies"
-//    @NSManaged public var productionCountries = "production_countries"
-//    @NSManaged public var revenue, runtime
-//    @NSManaged public var spokenLanguages = "spoken_languages"
-//    @NSManaged public var status, tagline, title
+    @NSManaged public var belongsToCollection: JSONNull?
+    @NSManaged public var budget: Int64
+    @NSManaged public var homepage: String?
+    @NSManaged public var imdbID: String?
+    @NSManaged public var productionCompanies: [ProductionCompany]?
+    @NSManaged public var productionCountries: [ProductionCountry]?
+    @NSManaged public var revenue, runtime: Int64
+    @NSManaged public var spokenLanguages: [SpokenLanguage]?
+    @NSManaged public var status, tagline: String?
 
+}
+
+// MARK: - ProductionCompany
+@objcMembers public class ProductionCompany: NSObject, Codable {
+    let id: Int
+    let logoPath: String?
+    let name, originCountry: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case logoPath = "logo_path"
+        case name
+        case originCountry = "origin_country"
+    }
+    
+    init(id: Int, logoPath: String?, name: String, originCountry: String) {
+        self.id = id
+        self.logoPath = logoPath
+        self.name = name
+        self.originCountry = originCountry
+    }
+}
+
+
+// MARK: - ProductionCountry
+@objcMembers public class ProductionCountry: NSObject, Codable {
+    let iso3166_1, name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case iso3166_1 = "iso_3166_1"
+        case name
+    }
+    
+    init(iso3166_1: String, name: String) {
+        self.iso3166_1 = iso3166_1
+        self.name = name
+    }
+}
+
+// MARK: - SpokenLanguage
+@objcMembers public class SpokenLanguage: NSObject, Codable {
+    let iso639_1, name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case iso639_1 = "iso_639_1"
+        case name
+    }
+    
+    init(iso639_1: String, name: String) {
+        self.iso639_1 = iso639_1
+        self.name = name
+    }
 }

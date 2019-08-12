@@ -31,6 +31,7 @@
 		930E831A226DDCA2000C40E2 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930E8319226DDCA2000C40E2 /* Navigation.swift */; };
 		930E831C226DDF17000C40E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930E831B226DDF17000C40E2 /* Main.storyboard */; };
 		930E831E226DDF4E000C40E2 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930E831D226DDF4E000C40E2 /* DashboardViewController.swift */; };
+		932176D422FA8E2A0079F524 /* CodableHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932176D322FA8E2A0079F524 /* CodableHelpers.swift */; };
 		933DC4CF22F80C9A001F32D3 /* NowPlayingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933DC4CE22F80C9A001F32D3 /* NowPlayingResponse.swift */; };
 		9346E925227079E200BE2B08 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9346E924227079E200BE2B08 /* CustomNavigationBar.swift */; };
 		9346E92722707A0800BE2B08 /* CustomNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */; };
@@ -84,6 +85,7 @@
 		930E8319226DDCA2000C40E2 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		930E831B226DDF17000C40E2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		930E831D226DDF4E000C40E2 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		932176D322FA8E2A0079F524 /* CodableHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableHelpers.swift; sourceTree = "<group>"; };
 		933DC4CE22F80C9A001F32D3 /* NowPlayingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingResponse.swift; sourceTree = "<group>"; };
 		9346E924227079E200BE2B08 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNavigationBar.xib; sourceTree = "<group>"; };
@@ -235,6 +237,14 @@
 			path = ViewControllerTransitions;
 			sourceTree = "<group>";
 		};
+		932176D222FA8DFB0079F524 /* ModelHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				932176D322FA8E2A0079F524 /* CodableHelpers.swift */,
+			);
+			path = ModelHelpers;
+			sourceTree = "<group>";
+		};
 		933DC4CD22F80C7F001F32D3 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +335,7 @@
 		93F3D0E722784669001B41A2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				932176D222FA8DFB0079F524 /* ModelHelpers */,
 				933DC4CD22F80C7F001F32D3 /* Responses */,
 				93D3D337229525B6006871B4 /* Movie+CoreDataClass.swift */,
 				93D3D338229525B6006871B4 /* Movie+CoreDataProperties.swift */,
@@ -510,6 +521,7 @@
 				930E8303226DCCCB000C40E2 /* Font.swift in Sources */,
 				9346E925227079E200BE2B08 /* CustomNavigationBar.swift in Sources */,
 				930E8305226DCD4F000C40E2 /* Color.swift in Sources */,
+				932176D422FA8E2A0079F524 /* CodableHelpers.swift in Sources */,
 				930E831E226DDF4E000C40E2 /* DashboardViewController.swift in Sources */,
 				930E82BE226D8672000C40E2 /* SignInViewController.swift in Sources */,
 				930E8317226DD084000C40E2 /* RAMPointDownAnimation.swift in Sources */,
