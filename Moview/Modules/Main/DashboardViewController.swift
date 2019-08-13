@@ -84,7 +84,7 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
         
         let posterPath = nowPlayingMovies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w500/" + nowPlayingMovies[indexPath.row].poster_path! : ""
         
-        collectionCell?.imgV_poster.downloaded(from: URL.init(string: posterPath)!, contentMode: .top)
+        collectionCell?.imgV_poster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
         collectionCell?.lbl_name.text = nowPlayingMovies[indexPath.row].original_title
     }
 

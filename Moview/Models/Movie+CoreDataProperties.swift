@@ -50,14 +50,14 @@ extension Movie {
     @NSManaged public var title: String?
     @NSManaged public var popularity: Double
     @NSManaged public var poster_path: String?
-    @NSManaged public var original_language: String
+    @NSManaged public var original_language: String?
     @NSManaged public var original_title: String?
     @NSManaged public var genre_ids: [Int16]?
     @NSManaged public var backdrop_path: String?
     @NSManaged public var adult: Bool
     @NSManaged public var overview: String?
     @NSManaged public var release_date: String?
-    @NSManaged public var belongsToCollection: JSONNull?
+    @NSManaged public var belongsToCollection: BelongsToCollection?
     @NSManaged public var budget: Int64
     @NSManaged public var homepage: String?
     @NSManaged public var imdbID: String?
@@ -67,6 +67,25 @@ extension Movie {
     @NSManaged public var spokenLanguages: [SpokenLanguage]?
     @NSManaged public var status, tagline: String?
 
+}
+
+// MARK: - BelongsToCollection
+@objcMembers public class BelongsToCollection: NSObject, Codable {
+    let id: Int
+    let name, posterPath, backdropPath: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name
+        case posterPath = "poster_path"
+        case backdropPath = "backdrop_path"
+    }
+    
+    init(id: Int, name: String, posterPath: String, backdropPath: String) {
+        self.id = id
+        self.name = name
+        self.posterPath = posterPath
+        self.backdropPath = backdropPath
+    }
 }
 
 // MARK: - ProductionCompany

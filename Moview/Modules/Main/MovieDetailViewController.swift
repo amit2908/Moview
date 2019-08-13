@@ -16,6 +16,7 @@ class MovieDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("MOVIE ID: \(movieId!)")
 //        self.setupView()
         self.fetchMovieDetails()
     }
