@@ -12,6 +12,8 @@ def myPods
   pod 'SVProgressHUD'
   pod 'RAMAnimatedTabBarController', '4.0.2'
   pod 'SidebarOverlay'
+  pod 'RxSwift', '~> 5'
+  pod 'RxCocoa', '~> 5'
 end
 
 target 'Moview' do
