@@ -14,6 +14,8 @@ def myPods
   pod 'SidebarOverlay'
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
+  pod 'ReachabilitySwift'
+  pod 'Toast-Swift'
 end
 
 target 'Moview' do
