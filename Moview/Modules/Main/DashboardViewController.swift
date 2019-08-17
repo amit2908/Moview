@@ -65,6 +65,11 @@ class DashboardViewController: UIViewController {
             print("Error occured: \(errCode) \(errMsg)")
         }
     }
+    
+    @objc private func setAsFavourite(sender: UIButton) {
+        guard let cell = self.collection_recent.cellForItem(at: IndexPath(row: sender.tag, section: 0)) as? NowPlayingCollectionViewCell else {return}
+        cell.btn_favourite.setImage(UIImage.init(named: "favourite-selected"), for: .normal)
+    }
 
 }
 extension DashboardViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -74,8 +79,14 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recentCellIdentifier", for: indexPath)
-        cell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
-        return cell
+        guard  let nowPlayingCell = cell as? NowPlayingCollectionViewCell else {
+            let newCell = NowPlayingCollectionViewCell.init()
+            return newCell
+        }
+        nowPlayingCell.btn_favourite.tag = indexPath.row
+        nowPlayingCell.btn_favourite.addTarget(self, action: #selector(self.setAsFavourite(sender:)), for: .touchUpInside);
+        nowPlayingCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
+        return nowPlayingCell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -99,6 +110,6 @@ extension DashboardViewController: UICollectionViewDataSource, UICollectionViewD
 
 extension DashboardViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: SCREEN_WIDTH, height: SCREEN_WIDTH)
+        return CGSize(width: SCREEN_WIDTH, height: 300)
     }
 }

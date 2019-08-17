@@ -66,6 +66,7 @@ class APIClient {
                     
                     if let res = jsonObject {
                         print("Response:============: \(res)")
+                        AppDelegate.saveContext(context: bgContext)
                         completionHandler?(res)
                     }else {
                         print("Failed decoding response")
