@@ -59,8 +59,6 @@ enum MovieEndpoint : APIConfig {
     
     var parameters: Parameters? {
         switch self {
-        case .nowPlaying:
-            return nil
         default:
             return nil
         }

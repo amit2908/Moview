@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This class can provide a beautiful customized navigation bar.
 class CustomNavigationBar: UIView {
 
     private var position : UIBarPosition = .top

@@ -13,12 +13,19 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var navBar: CustomNavigationBar!
     @IBOutlet weak var collection_recent: UICollectionView!
     @IBOutlet weak var pageControl_recent: UIPageControl!
+    @IBOutlet weak var collection_other: UICollectionView!
     
     var nowPlayingMovies = [Movie]()
+    var otherMovies = [Movie]()
+    
+    var sections = ["Top Rated", "Latest", "Favourites", "Action", "Romantic"]
+    var otherMovieDataSource : OtherMoviesDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        otherMovieDataSource = OtherMoviesDataSource(movies: nowPlayingMovies ,sections: sections)
+        self.collection_other.dataSource = otherMovieDataSource
+        self.collection_other.delegate = otherMovieDataSource
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,20 +48,32 @@ class DashboardViewController: UIViewController {
     private func fetchPlayingNowMovies(){
         self.showProgress(status: "Please wait...")
         
-        APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: MovieEndpoint.nowPlaying.urlRequest! , completionHandler: { (nowPlayingResponse) -> (Void) in
+        var urlRequest = MovieEndpoint.nowPlaying.urlRequest!
+        urlRequest.timeoutInterval = 2000
+        APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponse) -> (Void) in
             
             DispatchQueue.main.async(execute: {
                 self.hideProgress()
             })
             let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
-            fetchRequest.fetchLimit = 5
-            fetchRequest.sortDescriptors?.append(NSSortDescriptor.init(key: "title", ascending: true))
+            fetchRequest.fetchLimit = 3
+//            fetchRequest.resultType = .dictionaryResultType
+//            let expressionDescription = NSExpressionDescription()
+//            expressionDescription.name = "count"
+//            expressionDescription.expression = NSExpression(forFunction: "count:", arguments: [NSExpression(forKeyPath: "title")])
+//            
+//            fetchRequest.propertiesToFetch = ["title", expressionDescription];
+//            fetchRequest.sortDescriptors?.append(NSSortDescriptor.init(key: "title", ascending: true))
             
             do {
                 let fetchResults = try AppDelegate.backgroundContext.fetch(fetchRequest)
                 self.nowPlayingMovies = fetchResults
+                self.otherMovieDataSource = OtherMoviesDataSource(movies: self.nowPlayingMovies ,sections: self.sections)
                 DispatchQueue.main.async(execute: {
+                    self.collection_other.delegate = self.otherMovieDataSource
+                    self.collection_other.dataSource = self.otherMovieDataSource
                     self.collection_recent.reloadData()
+                    self.collection_other.reloadData()
                 })
             }catch {
                 print(error)
