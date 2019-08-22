@@ -48,9 +48,14 @@ class APIClient {
     func GET<T:Decodable>(entity withEntityType: T.Type, urlRequest: URLRequest,
                           completionHandler: ((_ entity : T )->(Void))?,
                           failureHandler: ((_ errorCode: Int, _ errorMsg : String)->(Void))? ){
-        
-        let urlSession = URLSession(configuration: .default)
+        print("URLRequest URL ========> \(String(describing: urlRequest.httpMethod!)) ",  urlRequest.url!)
+        if let httpBody = urlRequest.httpBody {
+            try? print("URLRequest params ========> ", JSONSerialization.jsonObject(with: httpBody, options: .allowFragments))
+        }
+        print("URLRequest headers ========> ", urlRequest.allHTTPHeaderFields!)
+        let urlSession = URLSession(configuration: .ephemeral)
         urlSession.dataTask(with: urlRequest){ (data, response, error) in
+            print("HTTPData =============> ", data)
             if let httpResponse = response as? HTTPURLResponse,
                 let responseData = data {
                 if httpResponse.statusCode == 200 {
@@ -75,6 +80,7 @@ class APIClient {
                     failureHandler?(httpResponse.statusCode, error?.localizedDescription ?? "Unknown error")
                 }
             }else if let httpError = error {
+                print("HTTPError =============> ", httpError.localizedDescription, httpError)
                 failureHandler?(404, httpError.localizedDescription )
             }
         }.resume()

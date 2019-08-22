@@ -60,11 +60,7 @@ enum MovieEndpoint : APIConfig {
     var parameters: Parameters? {
         switch self {
         case .nowPlaying:
-            return [
-                "api_key": K.API_SECURITY_KEY,
-                "language": "en-US",
-                "page" : "1"
-            ]
+            return nil
         default:
             return nil
         }

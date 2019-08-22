@@ -9,7 +9,7 @@ PODS:
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
-  - SidebarOverlay (4.2.2)
+  - SidebarOverlay (4.3.1)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.2.0)
   - Toast-Swift (5.0.0)
@@ -21,7 +21,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
-  - SidebarOverlay
+  - SidebarOverlay (from `https://github.com/milosuzice/SidebarOverlay.git`, tag `4.3.1`)
   - SVProgressHUD
   - SwiftyJSON (= 4.2)
   - Toast-Swift
@@ -35,10 +35,19 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
-    - SidebarOverlay
     - SVProgressHUD
     - SwiftyJSON
     - Toast-Swift
+
+EXTERNAL SOURCES:
+  SidebarOverlay:
+    :git: https://github.com/milosuzice/SidebarOverlay.git
+    :tag: 4.3.1
+
+CHECKOUT OPTIONS:
+  SidebarOverlay:
+    :git: https://github.com/milosuzice/SidebarOverlay.git
+    :tag: 4.3.1
 
 SPEC CHECKSUMS:
   Alamofire: 6458d95477bc40adf10129f22c67cfb014162dc8
@@ -48,11 +57,11 @@ SPEC CHECKSUMS:
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
-  SidebarOverlay: a5365455a2f9d54f70d0765764ca1a2806b1b11d
+  SidebarOverlay: 3fe30428c903e9fdaeb78237b86ff0c2a242f4dd
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: 48688721abeb838ae6f2d6a2ff0d1326664919e5
+PODFILE CHECKSUM: 5be8f16ac8e024df62a7fb2c26c1d1950cc28b01
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.6.1
