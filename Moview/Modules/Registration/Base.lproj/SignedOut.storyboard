@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jdl-SA-aFb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jdl-SA-aFb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,25 +35,88 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfl-PQ-1lr">
                                 <rect key="frame" x="37.5" y="315" width="300" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.21174291829447334" blue="0.19800184626325834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="KY5-Q9-h3z"/>
                                 </constraints>
-                                <state key="normal" title="Login"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oVa-Ya-EGr"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xZ-Al-aZf" userLabel="Signup">
+                                <rect key="frame" x="37.5" y="370" width="300" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.21174291829447334" blue="0.19800184626325834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="Isx-K7-Oxx"/>
+                                </constraints>
+                                <state key="normal" title="Signup">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NjC-pB-MBN"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="DpI-py-FR9">
+                                <rect key="frame" x="92.5" y="78" width="190" height="48"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN8-8y-AqW">
+                                        <rect key="frame" x="0.0" y="0.0" width="36" height="48"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6a3-08-d81">
+                                        <rect key="frame" x="40" y="0.0" width="33.5" height="48"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtA-ok-qXp">
+                                        <rect key="frame" x="77.5" y="0.0" width="27" height="48"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YY5-7Y-q7N">
+                                        <rect key="frame" x="108.5" y="0.0" width="13.5" height="48"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUP-Uj-N1N">
+                                        <rect key="frame" x="126" y="0.0" width="20" height="48"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzt-1z-Mn1">
+                                        <rect key="frame" x="150" y="0.0" width="40" height="48"/>
+                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="oiZ-Qv-UY7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="155" id="18v-I1-gja"/>
+                            <constraint firstItem="2xZ-Al-aZf" firstAttribute="top" secondItem="bfl-PQ-1lr" secondAttribute="bottom" constant="20" id="5bi-fF-k6L"/>
+                            <constraint firstItem="2xZ-Al-aZf" firstAttribute="height" secondItem="bfl-PQ-1lr" secondAttribute="height" id="B8C-jO-IhU"/>
+                            <constraint firstItem="DpI-py-FR9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Bgz-aN-fF0"/>
                             <constraint firstItem="bfl-PQ-1lr" firstAttribute="width" secondItem="lt8-mp-zm5" secondAttribute="width" id="Bw0-zV-NwF"/>
                             <constraint firstItem="oiZ-Qv-UY7" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="PGW-aE-XBp"/>
+                            <constraint firstItem="DpI-py-FR9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="58" id="R5z-sM-Km7"/>
+                            <constraint firstItem="2xZ-Al-aZf" firstAttribute="width" secondItem="bfl-PQ-1lr" secondAttribute="width" id="VQO-L6-NFA"/>
                             <constraint firstItem="bfl-PQ-1lr" firstAttribute="centerX" secondItem="lt8-mp-zm5" secondAttribute="centerX" id="VkV-cK-uwk"/>
                             <constraint firstItem="lt8-mp-zm5" firstAttribute="top" secondItem="oiZ-Qv-UY7" secondAttribute="bottom" constant="26" id="a73-8A-QBj"/>
                             <constraint firstItem="lt8-mp-zm5" firstAttribute="width" secondItem="oiZ-Qv-UY7" secondAttribute="width" id="irI-Ux-WHs"/>
                             <constraint firstItem="bfl-PQ-1lr" firstAttribute="centerX" secondItem="oiZ-Qv-UY7" secondAttribute="centerX" id="lBb-8H-Ly9"/>
                             <constraint firstItem="bfl-PQ-1lr" firstAttribute="top" secondItem="lt8-mp-zm5" secondAttribute="bottom" constant="44" id="mK0-BM-V92"/>
+                            <constraint firstItem="2xZ-Al-aZf" firstAttribute="centerX" secondItem="bfl-PQ-1lr" secondAttribute="centerX" id="oBb-aj-Rh3"/>
                             <constraint firstItem="oiZ-Qv-UY7" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="tBz-bh-gwr"/>
                             <constraint firstItem="lt8-mp-zm5" firstAttribute="height" secondItem="oiZ-Qv-UY7" secondAttribute="height" id="vva-Pd-p9a"/>
                         </constraints>

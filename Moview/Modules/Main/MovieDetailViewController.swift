@@ -41,7 +41,7 @@ class MovieDetailViewController: UIViewController {
             fetchRequest.sortDescriptors?.append(NSSortDescriptor.init(key: "title", ascending: true))
             
             do {
-                let fetchResults = try AppDelegate.backgroundContext.fetch(fetchRequest)
+                let fetchResults = try DataLayer.backgroundContext.fetch(fetchRequest)
 //                self.nowPlayingMovies = fetchResults
                 DispatchQueue.main.async(execute: {
 //                    self.collection_recent.reloadData()

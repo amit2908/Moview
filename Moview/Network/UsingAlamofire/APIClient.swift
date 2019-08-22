@@ -7,11 +7,12 @@
 //
 
 import Foundation
-import Alamofire
+//import Alamofire
 
 class APIClient {
     static let shared = APIClient();
     
+    //MARK: This was for Alamofire
      /*func nowPlaying(completion:@escaping ([Movie])->Void) {
         print(MoviesEndpoint.nowPlaying.urlRequest?.url ?? "")
         AF.request(MoviesEndpoint.nowPlaying)
@@ -38,12 +39,8 @@ class APIClient {
  
         }
     }*/
-    
-//    func nowPlaying(completion:@escaping ([Movie])->Void) {
-//        print(MoviesEndpoint.nowPlaying.urlRequest?.url ?? "")
-//
-//    }
 
+    //MARK: but now using URLSESSION
     ///HANDLE GET API WITH GENERICS
     func GET<T:Decodable>(entity withEntityType: T.Type, urlRequest: URLRequest,
                           completionHandler: ((_ entity : T )->(Void))?,
@@ -55,12 +52,12 @@ class APIClient {
         print("URLRequest headers ========> ", urlRequest.allHTTPHeaderFields!)
         let urlSession = URLSession(configuration: .ephemeral)
         urlSession.dataTask(with: urlRequest){ (data, response, error) in
-            print("HTTPData =============> ", data)
+            print("HTTPData =============> ", data ?? "Data was nil.")
             if let httpResponse = response as? HTTPURLResponse,
                 let responseData = data {
                 if httpResponse.statusCode == 200 {
                     let jsonDecoder = JSONDecoder()
-                    let bgContext = AppDelegate.backgroundContext
+                    let bgContext = DataLayer.backgroundContext
                     jsonDecoder.userInfo.updateValue(bgContext, forKey: CodingUserInfoKey.managedObjectContext!)
                     var jsonObject : T?
                     do {
@@ -71,7 +68,7 @@ class APIClient {
                     
                     if let res = jsonObject {
                         print("Response:============: \(res)")
-                        AppDelegate.saveContext(context: bgContext)
+                        DataLayer.saveContext(context: bgContext)
                         completionHandler?(res)
                     }else {
                         print("Failed decoding response")

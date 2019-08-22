@@ -20,6 +20,7 @@ class DashboardViewController: UIViewController {
     
     var sections = ["Top Rated", "Latest", "Favourites", "Action", "Romantic"]
     var otherMovieDataSource : OtherMoviesDataSource?
+    var recentMovieDataSource : RecentMoviesDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +67,7 @@ class DashboardViewController: UIViewController {
 //            fetchRequest.sortDescriptors?.append(NSSortDescriptor.init(key: "title", ascending: true))
             
             do {
-                let fetchResults = try AppDelegate.backgroundContext.fetch(fetchRequest)
+                let fetchResults = try DataLayer.backgroundContext.fetch(fetchRequest)
                 self.nowPlayingMovies = fetchResults
                 self.otherMovieDataSource = OtherMoviesDataSource(movies: self.nowPlayingMovies ,sections: self.sections)
                 DispatchQueue.main.async(execute: {
@@ -86,7 +87,7 @@ class DashboardViewController: UIViewController {
     }
     
     @objc private func setAsFavourite(sender: UIButton) {
-        guard let cell = self.collection_recent.cellForItem(at: IndexPath(row: sender.tag, section: 0)) as? NowPlayingCollectionViewCell else {return}
+        guard let cell = self.collection_recent.cellForItem(at: IndexPath(row: sender.tag, section: 0)) as? NowPlayingCollectionViewCell else { return }
         cell.btn_favourite.setImage(UIImage.init(named: "favourite-selected"), for: .normal)
     }
 
