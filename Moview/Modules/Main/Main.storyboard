@@ -99,10 +99,6 @@
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
-                                        <connections>
-                                            <outlet property="dataSource" destination="vja-t6-3LX" id="yIE-0u-VRK"/>
-                                            <outlet property="delegate" destination="vja-t6-3LX" id="DqK-gR-1K3"/>
-                                        </connections>
                                     </collectionView>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="mGY-pF-vIL">
                                         <rect key="frame" x="163.66666666666666" y="321.66666666666669" width="48" height="37"/>

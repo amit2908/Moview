@@ -29,7 +29,7 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
             return newCell
         }
         nowPlayingCell.btn_favourite.tag = indexPath.row
-//        nowPlayingCell.btn_favourite.addTarget(self, action: #selector(self.setAsFavourite(sender:)), for: .touchUpInside);
+        nowPlayingCell.btn_favourite.addTarget(DashboardViewController.self, action: #selector(DashboardViewController.self.setAsFavourite(sender:)), for: .touchUpInside);
         nowPlayingCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
         return nowPlayingCell
     }
