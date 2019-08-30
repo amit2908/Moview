@@ -12,9 +12,11 @@ import CoreData
 class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var movies : [Movie]
+    let collectionView : UICollectionView
     
-    init(movies: [Movie]) {
+    init(movies: [Movie], collectionView: UICollectionView) {
         self.movies = movies
+        self.collectionView = collectionView
         super.init()
     }
     
@@ -29,7 +31,7 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
             return newCell
         }
         nowPlayingCell.btn_favourite.tag = indexPath.row
-        nowPlayingCell.btn_favourite.addTarget(DashboardViewController.self, action: #selector(DashboardViewController.self.setAsFavourite(sender:)), for: .touchUpInside);
+        nowPlayingCell.btn_favourite.addTarget(DashboardViewController.self, action: #selector(setAsFavourite(sender:)), for: .touchUpInside);
         nowPlayingCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
         return nowPlayingCell
     }
@@ -49,6 +51,11 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
         movieDetailVC?.movieId = Int(self.movies[indexPath.row].id)
 //        self.navigationController?.pushViewController(movieDetailVC!, animated: true)
+    }
+    
+    @objc func setAsFavourite(sender: UIButton) {
+        guard let cell = self.collectionView.cellForItem(at: IndexPath(row: sender.tag, section: 0)) as? NowPlayingCollectionViewCell else { return }
+        cell.btn_favourite.setImage(UIImage.init(named: "favourite-selected"), for: .normal)
     }
     
 }

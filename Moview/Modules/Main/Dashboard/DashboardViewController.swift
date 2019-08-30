@@ -37,7 +37,8 @@ class DashboardViewController: UIViewController {
     }
     
     private func setupView(){
-        self.navBar.titleLabel.text = "Home"
+        self.navBar.title = "Home"
+        self.navBar.titleLabel.layer.zPosition = 10.0
         pageControl_recent.currentPage = 0
         pageControl_recent.numberOfPages = 5
         pageControl_recent.hidesForSinglePage = true
@@ -67,7 +68,7 @@ class DashboardViewController: UIViewController {
                 let fetchResults = try DataLayer.backgroundContext.fetch(fetchRequest)
                 self.nowPlayingMovies = fetchResults
                 self.otherMovieDataSource = OtherMoviesDataSource(movies: self.nowPlayingMovies ,sections: self.sections)
-                self.recentMovieDataSource = RecentMoviesDataSource(movies: self.nowPlayingMovies)
+                self.recentMovieDataSource = RecentMoviesDataSource(movies: self.nowPlayingMovies, collectionView: self.collection_recent)
                 DispatchQueue.main.async(execute: {
                     self.collection_other.delegate = self.otherMovieDataSource
                     self.collection_other.dataSource = self.otherMovieDataSource
@@ -86,9 +87,6 @@ class DashboardViewController: UIViewController {
         }
     }
     
-    @objc func setAsFavourite(sender: UIButton) {
-        guard let cell = self.collection_recent.cellForItem(at: IndexPath(row: sender.tag, section: 0)) as? NowPlayingCollectionViewCell else { return }
-        cell.btn_favourite.setImage(UIImage.init(named: "favourite-selected"), for: .normal)
-    }
+    
 
 }

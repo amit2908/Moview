@@ -77,7 +77,7 @@ class CustomNavigationBar: UIView {
     }
     
     func addGradientBackground(){
-        self.contentView.setGradientBackground(array: [UIColor.red.cgColor, UIColor.salmon.cgColor, UIColor.white.cgColor], direction: .leftToRight)
+        self.setGradientBackground(array: [UIColor.red.cgColor, UIColor.softBlue.cgColor, UIColor.white.cgColor], direction: .leftToRight)
     }
     
     func removeGradient(){
