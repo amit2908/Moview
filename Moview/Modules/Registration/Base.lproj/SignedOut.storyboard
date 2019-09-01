@@ -60,48 +60,48 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="DpI-py-FR9">
-                                <rect key="frame" x="92.5" y="78" width="190" height="48"/>
+                                <rect key="frame" x="101.5" y="78" width="172.5" height="52"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN8-8y-AqW">
-                                        <rect key="frame" x="0.0" y="0.0" width="36" height="48"/>
-                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="38" height="52"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6a3-08-d81">
-                                        <rect key="frame" x="40" y="0.0" width="33.5" height="48"/>
-                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <rect key="frame" x="42" y="0.0" width="25.5" height="52"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TtA-ok-qXp">
-                                        <rect key="frame" x="77.5" y="0.0" width="27" height="48"/>
-                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <rect key="frame" x="71.5" y="0.0" width="24" height="52"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YY5-7Y-q7N">
-                                        <rect key="frame" x="108.5" y="0.0" width="13.5" height="48"/>
-                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <rect key="frame" x="99.5" y="0.0" width="10" height="52"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUP-Uj-N1N">
-                                        <rect key="frame" x="126" y="0.0" width="20" height="48"/>
-                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <rect key="frame" x="113.5" y="0.0" width="19.5" height="52"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzt-1z-Mn1">
-                                        <rect key="frame" x="150" y="0.0" width="40" height="48"/>
-                                        <fontDescription key="fontDescription" name="Optima-Bold" family="Optima" pointSize="40"/>
+                                        <rect key="frame" x="137" y="0.0" width="35.5" height="52"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="0.86321722023567649" blue="0.85348253316354405" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="oiZ-Qv-UY7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="155" id="18v-I1-gja"/>
                             <constraint firstItem="2xZ-Al-aZf" firstAttribute="top" secondItem="bfl-PQ-1lr" secondAttribute="bottom" constant="20" id="5bi-fF-k6L"/>
@@ -126,6 +126,12 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="const_topSpace" destination="18v-I1-gja" id="NFt-nn-51M"/>
+                        <outlet property="lbl_e" destination="RUP-Uj-N1N" id="7hx-oa-dwe"/>
+                        <outlet property="lbl_i" destination="YY5-7Y-q7N" id="HS7-pF-Nfm"/>
+                        <outlet property="lbl_m" destination="LN8-8y-AqW" id="TLS-G4-H3c"/>
+                        <outlet property="lbl_o" destination="6a3-08-d81" id="mX5-2e-EbY"/>
+                        <outlet property="lbl_v" destination="TtA-ok-qXp" id="9RQ-tc-YLU"/>
+                        <outlet property="lbl_w" destination="fzt-1z-Mn1" id="S0a-75-oXq"/>
                         <outlet property="tf_password" destination="lt8-mp-zm5" id="BJ6-PT-c2j"/>
                         <outlet property="tf_username" destination="oiZ-Qv-UY7" id="84h-J3-zV6"/>
                     </connections>
