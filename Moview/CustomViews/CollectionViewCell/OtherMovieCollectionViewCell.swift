@@ -19,5 +19,6 @@ class OtherMovieCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius  = 10
         self.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMinYCorner]
         self.layer.masksToBounds = true
+        lbl_title.font = UIFont.appFontRegular14
     }
 }

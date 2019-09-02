@@ -1,24 +1,23 @@
 //
-//  OtherMoviesDataSource.swift
+//  MovieListDataSource.swift
 //  Moview
 //
-//  Created by Empower on 22/08/19.
+//  Created by Shubham Ojha on 02/09/19.
 //  Copyright © 2019 Shubham. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class OtherMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+class MovieListDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-   final var movies : [Movie]
-   final var sections : [String]
-    final var vc : UIViewController
+    var movies : [Movie]
     
-    init(movies: [Movie], sections: [String], vc: UIViewController) {
+    var sections : [String]
+    
+    init(movies: [Movie], sections: [String]) {
         self.movies = movies
         self.sections = sections
-        self.vc = vc
         super.init()
     }
     
@@ -54,21 +53,21 @@ class OtherMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-       let collectionCell = cell as? OtherMovieCollectionViewCell
-       let posterPath = movies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w500/" + movies[indexPath.row].poster_path! : ""
-       collectionCell?.imgV_movie.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
-                        collectionCell?.lbl_title.text = movies[indexPath.row].original_title
+        let collectionCell = cell as? OtherMovieCollectionViewCell
+        let posterPath = movies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w500/" + movies[indexPath.row].poster_path! : ""
+        collectionCell?.imgV_movie.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+        collectionCell?.lbl_title.text = movies[indexPath.row].original_title
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
-        let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
-        movieDetailVC?.movieId = Int(self.movies[indexPath.row].id)
-        self.vc.navigationController?.pushViewController(movieDetailVC!, animated: true)
+        //        let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
+        //        let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
+        //        movieDetailVC?.movieId = Int(self.nowPlayingMovies[indexPath.row].id)
+        //        self.navigationController?.pushViewController(movieDetailVC!, animated: true)
     }
     
 }
-extension OtherMoviesDataSource: UICollectionViewDelegateFlowLayout {
+extension MovieListDataSource: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/5)
     }
@@ -82,3 +81,4 @@ extension OtherMoviesDataSource: UICollectionViewDelegateFlowLayout {
     }
     
 }
+

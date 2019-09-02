@@ -41,9 +41,17 @@ class SignInViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-//        if ApplicationManager.sharedInstance.isValidName(testStr: tf_username.text!) && ApplicationManager.sharedInstance.isValidPassword(strPassword: tf_password.text!) {
-            let token = UserDefaults.standard.value(forKey: Keys.shared.REQUEST_TOKEN) as? String ?? ""
-            self.showProgress(status: "Please wait...")
+        Navigation.shared.navigateToDashboard(navigationController:self.navigationController!)
+        if ApplicationManager.sharedInstance.isValidName(testStr: tf_username.text!) && ApplicationManager.sharedInstance.isValidPassword(strPassword: tf_password.text!) {
+            let token = UserDefaults.standard.value(forKey: Keys.shared.REQUEST_TOKEN) as? String
+//            self.showProgress(status: "Please wait...")
+            
+            if (token == nil) {
+                Navigation.shared.navigateToDashboard(navigationController: self.navigationController!)
+            }else {
+                
+            }
+            
            /* Service.shared.createSession(requestToken: token, username: tf_username.text!, password: tf_password.text!, completion: {
                 self.hideProgress()
                 Navigation.shared.navigateToDashboard(navigationController: self.navigationController!)
@@ -51,7 +59,7 @@ class SignInViewController: UIViewController {
                 self.hideProgress()
                 ApplicationManager.sharedInstance.showAlertPicker(vc: self, title: "alert", buttonTitle: "Ok".localized(), message: errorMessage, handler: {})
             }*/
-//        }
+        }
     }
     
     func animateMoviewTitle(){

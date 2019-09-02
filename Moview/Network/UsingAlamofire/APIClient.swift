@@ -63,7 +63,9 @@ class APIClient {
                     do {
                         jsonObject = try jsonDecoder.decode(T.self, from: responseData)
                     }catch {
+                        failureHandler?(400 ,error.localizedDescription)
                         print(error)
+                        return
                     }
                     
                     if let res = jsonObject {

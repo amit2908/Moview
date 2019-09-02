@@ -66,6 +66,19 @@ class DataLayer: NSObject {
 extension DataLayer {
     //MARK: FIND OR CREATE ALGORITHM
     
-    
+    func findObject<T: NSFetchRequestResult>(entity: T,
+                                                     entityName: String,
+                                                     with identifier: String,
+                                                     in context: NSManagedObjectContext) -> T? {
+        let fetchRequest : NSFetchRequest<T> = NSFetchRequest<T>(entityName: entityName)
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(format: "%K == %@","id", identifier)
+        
+        if let objects = try? context.fetch(fetchRequest) {
+            let object = objects.last
+            return object!
+        }
+        return nil
+    }
     
 }
