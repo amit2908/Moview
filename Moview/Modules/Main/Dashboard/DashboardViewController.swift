@@ -28,7 +28,7 @@ class DashboardViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setupView()
         self.fetchNowPlayingMoviesDB()
-        self.fetchPlayingNowMovies()
+//        self.fetchPlayingNowMovies()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

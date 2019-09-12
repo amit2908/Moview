@@ -43,8 +43,10 @@ class APIClient {
     //MARK: but now using URLSESSION
     ///HANDLE GET API WITH GENERICS
     func GET<T:Decodable>(entity withEntityType: T.Type, urlRequest: URLRequest,
-                          completionHandler: ((_ entity : T )->(Void))?,
-                          failureHandler: ((_ errorCode: Int, _ errorMsg : String)->(Void))? ){
+                          completionHandler: @escaping (_ entityData : Data)->(Void),
+                         failureHandler: ((Error)->(Void))? ){
+//                          completionHandler: ((_ entity : T )->(Void))?,
+//                          failureHandler: ((_ errorCode: Int, _ errorMsg : String)->(Void))? ){
         print("URLRequest URL ========> \(String(describing: urlRequest.httpMethod!)) ",  urlRequest.url!)
         if let httpBody = urlRequest.httpBody {
             try? print("URLRequest params ========> ", JSONSerialization.jsonObject(with: httpBody, options: .allowFragments))
@@ -56,7 +58,7 @@ class APIClient {
             if let httpResponse = response as? HTTPURLResponse,
                 let responseData = data {
                 if httpResponse.statusCode == 200 {
-                    let jsonDecoder = JSONDecoder()
+                    /*let jsonDecoder = JSONDecoder()
                     let bgContext = DataLayer.backgroundContext
                     jsonDecoder.userInfo.updateValue(bgContext, forKey: CodingUserInfoKey.managedObjectContext!)
                     var jsonObject : T?
@@ -74,13 +76,16 @@ class APIClient {
                         completionHandler?(res)
                     }else {
                         print("Failed decoding response")
-                    }
-                }else {
-                    failureHandler?(httpResponse.statusCode, error?.localizedDescription ?? "Unknown error")
+                    }*/
+                    
+                    completionHandler(responseData)
                 }
+//                else {
+//                    failureHandler?(httpResponse.statusCode, error?.localizedDescription ?? "Unknown error")
+//                }
             }else if let httpError = error {
                 print("HTTPError =============> ", httpError.localizedDescription, httpError)
-                failureHandler?(404, httpError.localizedDescription )
+                failureHandler?(httpError)
             }
         }.resume()
         

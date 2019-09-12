@@ -8,20 +8,23 @@
 
 import Foundation
 
-typealias FetchDataFromNetworkHandler = (Data)->(Void)
+typealias FetchDataFromNetworkSuccessHandler = (Data)->(Void)
+typealias FetchDataFromNetworkFailureHandler = (Error)->(Void)
+
 class NetworkLayer {
     
-    func fetchDataFromServer(handler: FetchDataFromNetworkHandler) {
+    func fetchNowPlayingDataFromServer(successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+                                       failureHandler: @escaping FetchDataFromNetworkFailureHandler) {
             
-            var urlRequest = MovieEndpoint.nowPlaying.urlRequest!
-            urlRequest.timeoutInterval = 2000
-            APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponse) -> (Void) in
+            let urlRequest = MovieEndpoint.nowPlaying.urlRequest!
+        
+            APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
                 
-                handler(nowPlayingResponse)
+                successHandler(nowPlayingResponseData)
                 
-            }) { (errCode, errMsg) -> (Void) in
-                self.hideProgress()
-                print("Error occured: \(errCode) \(errMsg)")
+            }) { (error) -> (Void) in
+//                print("Error occured: \(errCode) \(errMsg)")
+                failureHandler(error)
             }
         
     }

@@ -8,7 +8,11 @@
 
 import Foundation
 
-typealias MovieFetchHandler = ([Movie])->(Void)
+typealias MovieFetchHandlerWithSource = ([Movie], Source)->(Void)
+
+enum Source: Int {
+    case local = 1, network
+}
 
 class ModelLayer {
     let networkLayer : NetworkLayer
@@ -19,7 +23,7 @@ class ModelLayer {
         self.networkLayer   = networkLayer
     }
     
-    func loadMovies(handler : MovieFetchHandler){
+    func loadMovies(fromSource: Source,  handler : MovieFetchHandlerWithSource){
         
     }
 }

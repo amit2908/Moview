@@ -50,9 +50,9 @@ class MovieDetailViewController: UIViewController {
                 print(error)
             }
             
-        }) { (errCode, errMsg) -> (Void) in
+        }) { (error) -> (Void) in
             self.hideProgress()
-            print("Error occured: \(errCode) \(errMsg)")
+            print("Error occured: \(error.localizedDescription)")
         }
     }
 
