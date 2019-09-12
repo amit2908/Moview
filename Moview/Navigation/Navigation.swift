@@ -18,4 +18,16 @@ struct Navigation {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.window?.makeKeyAndVisible()
     }
+    
+    func navigateToSignUp(navigationController: UINavigationController){
+        let signUpVC = UIStoryboard(name: Storyboards.shared.signedOut, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.signUp)
+        navigationController.pushViewController(signUpVC, animated: true)
+    }
+    
+    func navigateToSignIn(navigationController: UINavigationController){
+        let signInVC = UIStoryboard(name: Storyboards.shared.signedOut, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.signIn)
+        navigationController.viewControllers = [signInVC]
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.window?.makeKeyAndVisible()
+    }
 }

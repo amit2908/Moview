@@ -22,18 +22,14 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.fetchNowPlayingMoviesDB()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupView()
-        self.fetchNowPlayingMoviesDB()
-//        self.fetchPlayingNowMovies()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
+    
     
     private func setupView(){
         self.navBar.title = "Home"

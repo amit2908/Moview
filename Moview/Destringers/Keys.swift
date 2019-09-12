@@ -19,10 +19,13 @@ struct Keys {
 struct Storyboards {
     static let shared = Storyboards()
     let main = "Main"
+    let signedOut = "SignedOut"
 }
 
 struct ViewControllers {
     static let shared = ViewControllers()
     let dashboard = "DashboardViewController"
     let movieDetail = "MovieDetailViewController"
+    let signUp = "SignUpViewController"
+    let signIn = "SignInViewController"
 }

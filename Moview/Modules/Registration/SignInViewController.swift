@@ -8,11 +8,15 @@
 
 import UIKit
 import JVFloatLabeledTextField
+import RxSwift
+import RxCocoa
 
 class SignInViewController: UIViewController {
 
     @IBOutlet weak var tf_username: JVFloatLabeledTextField!
     @IBOutlet weak var tf_password: JVFloatLabeledTextField!
+    @IBOutlet weak var btn_signin: UIButton!
+    @IBOutlet weak var btn_signup: UIButton!
     
     @IBOutlet weak var const_topSpace: NSLayoutConstraint!
     
@@ -23,9 +27,18 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var lbl_e: UILabel!
     @IBOutlet weak var lbl_w: UILabel!
     
+    var singInViewModel = SignInViewModel()
+    let disposeBag = DisposeBag()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        _ = tf_username.rx.text.map{ $0 ?? ""}.bind(to: singInViewModel.emailText)
+        _ = tf_password.rx.text.map{ $0 ?? ""}.bind(to: singInViewModel.passwordText)
+        _ = singInViewModel.isValid.bind(to: btn_signin.rx.isEnabled)
         
+        _ = singInViewModel.isValid.subscribe(onNext: { [unowned self] (isValid) in
+            self.btn_signin.alpha = isValid ? 1.0 : 0.4;
+        }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,6 +73,9 @@ class SignInViewController: UIViewController {
                 ApplicationManager.sharedInstance.showAlertPicker(vc: self, title: "alert", buttonTitle: "Ok".localized(), message: errorMessage, handler: {})
             }*/
         }
+    }
+    @IBAction func action_signUpButtonTapped(_ sender: Any) {
+            Navigation.shared.navigateToSignUp(navigationController: self.navigationController!)
     }
     
     func animateMoviewTitle(){

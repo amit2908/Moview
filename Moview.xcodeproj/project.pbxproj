@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -58,6 +58,8 @@
 		93E207AA2297B8C800261694 /* APIConfiguration_AF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E207A92297B8C800261694 /* APIConfiguration_AF.swift */; };
 		93E207AC2297BA8E00261694 /* MovieEndpoint_AF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E207AB2297BA8E00261694 /* MovieEndpoint_AF.swift */; };
 		93E207B22298026100261694 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E207B12298026100261694 /* APIClient.swift */; };
+		93E9C93E232A70AB00298A7B /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E9C93D232A70AB00298A7B /* SignInViewModel.swift */; };
+		93E9C940232A71D200298A7B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E9C93F232A71D200298A7B /* SignUpViewController.swift */; };
 		93F3D0E92278468C001B41A2 /* Configuration1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F3D0E82278468C001B41A2 /* Configuration1.swift */; };
 		93F79EAD229EB6B100999BB7 /* NowPlayingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F79EAC229EB6B100999BB7 /* NowPlayingCollectionViewCell.swift */; };
 		C87B25BA231ED093001A224C /* DashboardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B25B9231ED093001A224C /* DashboardPresenter.swift */; };
@@ -133,6 +135,8 @@
 		93E207A92297B8C800261694 /* APIConfiguration_AF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration_AF.swift; sourceTree = "<group>"; };
 		93E207AB2297BA8E00261694 /* MovieEndpoint_AF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndpoint_AF.swift; sourceTree = "<group>"; };
 		93E207B12298026100261694 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		93E9C93D232A70AB00298A7B /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		93E9C93F232A71D200298A7B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		93F3D0E82278468C001B41A2 /* Configuration1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration1.swift; sourceTree = "<group>"; };
 		93F79EAC229EB6B100999BB7 /* NowPlayingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCollectionViewCell.swift; sourceTree = "<group>"; };
 		C2FF0F64646ABA1FA7939809 /* Pods-Moview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.release.xcconfig"; path = "Target Support Files/Pods-Moview/Pods-Moview.release.xcconfig"; sourceTree = "<group>"; };
@@ -314,6 +318,8 @@
 			children = (
 				930E82BF226D8672000C40E2 /* SignedOut.storyboard */,
 				930E82BD226D8672000C40E2 /* SignInViewController.swift */,
+				93E9C93D232A70AB00298A7B /* SignInViewModel.swift */,
+				93E9C93F232A71D200298A7B /* SignUpViewController.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -606,36 +612,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Moview/Pods-Moview-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/JVFloatLabeledTextField/JVFloatLabeledTextField.framework",
-				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
-				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SidebarOverlay/SidebarOverlay.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Moview/Pods-Moview-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JVFloatLabeledTextField.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SidebarOverlay.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Moview/Pods-Moview-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -649,10 +630,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93E9C940232A71D200298A7B /* SignUpViewController.swift in Sources */,
 				93F79EAD229EB6B100999BB7 /* NowPlayingCollectionViewCell.swift in Sources */,
 				93F3D0E92278468C001B41A2 /* Configuration1.swift in Sources */,
 				93ABC95B2292D042000F3DC7 /* Model.xcdatamodeld in Sources */,
 				930E82E5226DA315000C40E2 /* Constants.swift in Sources */,
+				93E9C93E232A70AB00298A7B /* SignInViewModel.swift in Sources */,
 				930E8315226DD084000C40E2 /* RAMCameraAnimation.swift in Sources */,
 				930E8307226DCD97000C40E2 /* String.swift in Sources */,
 				930E8316226DD084000C40E2 /* RAMPointUpAnimation.swift in Sources */,
