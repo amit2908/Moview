@@ -19,6 +19,7 @@ class CustomNavigationBar: UIView {
     @IBOutlet weak var rightItem: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var btn_left: UIButton!
+    @IBOutlet weak var btn_right: UIButton!
     
     open var barPosition: UIBarPosition {
         get {

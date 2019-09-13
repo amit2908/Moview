@@ -8,8 +8,10 @@
 
 import Foundation
 
+typealias FetchMoviesFromSourceCompletionHandler = (Source)->(Void)
+
 class DashboardPresenter {
-    let nowPlayingMovies = [Movie]()
+    var nowPlayingMovies = [Movie]()
     let otherMovies      = [Movie]()
     let sections        : [String] = ["Top Rated", "Latest", "Favourites", "Action", "Romantic"]
     
@@ -17,5 +19,17 @@ class DashboardPresenter {
     
     init(modelLayer: ModelLayer) {
         self.modelLayer = modelLayer
+    }
+    
+    func loadNowPlayingMovies(handler: FetchMoviesFromSourceCompletionHandler) {
+        modelLayer.dataLayer.fetchNowPlayingMoviesFromLocalDB { (movies) -> (Void) in
+            self.nowPlayingMovies = movies
+            handler(.local)
+        }
+        modelLayer.networkLayer.fetchNowPlayingDataFromServer(successHandler: { (data) -> (Void) in
+            
+        }) { (error) -> (Void) in
+            
+        }
     }
 }

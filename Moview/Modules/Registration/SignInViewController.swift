@@ -27,16 +27,16 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var lbl_e: UILabel!
     @IBOutlet weak var lbl_w: UILabel!
     
-    var singInViewModel = SignInViewModel()
+    var singInPresenter = SignInPresenter()
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        _ = tf_username.rx.text.map{ $0 ?? ""}.bind(to: singInViewModel.emailText)
-        _ = tf_password.rx.text.map{ $0 ?? ""}.bind(to: singInViewModel.passwordText)
-        _ = singInViewModel.isValid.bind(to: btn_signin.rx.isEnabled)
+        _ = tf_username.rx.text.map{ $0 ?? ""}.bind(to: singInPresenter.emailText)
+        _ = tf_password.rx.text.map{ $0 ?? ""}.bind(to: singInPresenter.passwordText)
+        _ = singInPresenter.isValid.bind(to: btn_signin.rx.isEnabled)
         
-        _ = singInViewModel.isValid.subscribe(onNext: { [unowned self] (isValid) in
+        _ = singInPresenter.isValid.subscribe(onNext: { [unowned self] (isValid) in
             self.btn_signin.alpha = isValid ? 1.0 : 0.4;
         }).disposed(by: disposeBag)
     }
@@ -54,7 +54,6 @@ class SignInViewController: UIViewController {
     
     //MARK: Actions
     @IBAction func loginButtonTapped(_ sender: UIButton) {
-        Navigation.shared.navigateToDashboard(navigationController:self.navigationController!)
         if ApplicationManager.sharedInstance.isValidName(testStr: tf_username.text!) && ApplicationManager.sharedInstance.isValidPassword(strPassword: tf_password.text!) {
             let token = UserDefaults.standard.value(forKey: Keys.shared.REQUEST_TOKEN) as? String
 //            self.showProgress(status: "Please wait...")

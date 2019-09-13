@@ -88,12 +88,13 @@ typealias fetchMovieHandler = ([Movie]) -> (Void)
 extension DataLayer {
     
     
-    private func fetchNowPlayingMoviesFromLocalDB(handler: fetchMovieHandler){
+     func fetchNowPlayingMoviesFromLocalDB(handler: fetchMovieHandler){
         let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
-        fetchRequest.fetchLimit = 3
+        fetchRequest.fetchLimit = 10
         do {
             let fetchResults = try DataLayer.backgroundContext.fetch(fetchRequest)
             handler(fetchResults)
+            
 //            self.nowPlayingMovies = fetchResults
 //            self.otherMovieDataSource = OtherMoviesDataSource(movies: self.nowPlayingMovies ,sections: self.sections, vc: self)
 //            self.recentMovieDataSource = RecentMoviesDataSource(movies: self.nowPlayingMovies, collectionView: self.collection_recent)
@@ -107,6 +108,7 @@ extension DataLayer {
 //            })
         }catch {
             print(error)
+            handler([Movie]())
         }
         
     }

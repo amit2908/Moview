@@ -10,7 +10,7 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class SignInViewModel{
+class SignInPresenter{
     var emailText    = BehaviorSubject<String>(value: "")
     var passwordText = BehaviorSubject<String>(value: "")
     

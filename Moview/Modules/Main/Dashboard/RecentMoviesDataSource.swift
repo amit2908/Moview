@@ -11,17 +11,17 @@ import CoreData
 
 class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var movies : [Movie]
+    let presenter : DashboardPresenter
     let collectionView : UICollectionView
     
-    init(movies: [Movie], collectionView: UICollectionView) {
-        self.movies = movies
+    init(presenter: DashboardPresenter, collectionView: UICollectionView) {
+        self.presenter = presenter
         self.collectionView = collectionView
         super.init()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return presenter.nowPlayingMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -40,16 +40,16 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
 //        self.pageControl_recent.currentPage = indexPath.row
         let collectionCell = cell as? NowPlayingCollectionViewCell
         
-        let posterPath = movies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w500/" + movies[indexPath.row].poster_path! : ""
+        let posterPath = presenter.nowPlayingMovies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w500/" +    presenter.nowPlayingMovies[indexPath.row].poster_path! : ""
         
         collectionCell?.imgV_poster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
-        collectionCell?.lbl_name.text = movies[indexPath.row].original_title
+        collectionCell?.lbl_name.text = presenter.nowPlayingMovies[indexPath.row].original_title
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
-        movieDetailVC?.movieId = Int(self.movies[indexPath.row].id)
+        movieDetailVC?.movieId = Int(self.presenter.nowPlayingMovies[indexPath.row].id)
 //        self.navigationController?.pushViewController(movieDetailVC!, animated: true)
     }
     
