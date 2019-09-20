@@ -18,14 +18,14 @@ class DashboardViewController: UIViewController {
     var otherMovieDataSource : OtherMoviesDataSource?
     var recentMovieDataSource : RecentMoviesDataSource?
     
-    let presenter : DashboardPresenter
+    let presenter : RecentMoviesCollectionPresenter
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let networkLayer     = NetworkLayer()
         let dataLayer        = DataLayer()
         let translationLayer = TranslationLayer()
         let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
-        self.presenter       = DashboardPresenter(modelLayer: modelLayer)
+        self.presenter       = RecentMoviesCollectionPresenter(modelLayer: modelLayer)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -35,7 +35,7 @@ class DashboardViewController: UIViewController {
         let dataLayer        = DataLayer()
         let translationLayer = TranslationLayer()
         let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
-        self.presenter       = DashboardPresenter(modelLayer: modelLayer)
+        self.presenter       = RecentMoviesCollectionPresenter(modelLayer: modelLayer)
         super.init(coder: aDecoder)
     }
     
@@ -46,6 +46,8 @@ class DashboardViewController: UIViewController {
         self.collection_recent.dataSource = recentMovieDataSource
         self.collection_recent.delegate = recentMovieDataSource
         
+        
+
         self.loadData()
     }
     

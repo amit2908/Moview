@@ -10,7 +10,7 @@ import Foundation
 
 typealias FetchMoviesFromSourceCompletionHandler = (Source)->(Void)
 
-class DashboardPresenter {
+class RecentMoviesCollectionPresenter {
     var nowPlayingMovies = [Movie]()
     let otherMovies      = [Movie]()
     let sections        : [String] = ["Top Rated", "Latest", "Favourites", "Action", "Romantic"]

@@ -11,10 +11,10 @@ import CoreData
 
 class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    let presenter : DashboardPresenter
+    let presenter : RecentMoviesCollectionPresenter
     let collectionView : UICollectionView
     
-    init(presenter: DashboardPresenter, collectionView: UICollectionView) {
+    init(presenter: RecentMoviesCollectionPresenter, collectionView: UICollectionView) {
         self.presenter = presenter
         self.collectionView = collectionView
         super.init()
