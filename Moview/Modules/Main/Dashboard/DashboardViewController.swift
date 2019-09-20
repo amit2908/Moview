@@ -21,19 +21,21 @@ class DashboardViewController: UIViewController {
     let presenter : DashboardPresenter
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let networkLayer = NetworkLayer()
-        let dataLayer    = DataLayer()
-        let modelLayer   = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer)
-        self.presenter   = DashboardPresenter(modelLayer: modelLayer)
+        let networkLayer     = NetworkLayer()
+        let dataLayer        = DataLayer()
+        let translationLayer = TranslationLayer()
+        let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
+        self.presenter       = DashboardPresenter(modelLayer: modelLayer)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     
     required init?(coder aDecoder: NSCoder) {
-        let networkLayer = NetworkLayer()
-        let dataLayer    = DataLayer()
-        let modelLayer   = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer)
-        self.presenter   = DashboardPresenter(modelLayer: modelLayer)
+        let networkLayer     = NetworkLayer()
+        let dataLayer        = DataLayer()
+        let translationLayer = TranslationLayer()
+        let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
+        self.presenter       = DashboardPresenter(modelLayer: modelLayer)
         super.init(coder: aDecoder)
     }
     
@@ -66,7 +68,10 @@ class DashboardViewController: UIViewController {
     
     @objc func loadData(){
         self.presenter.loadNowPlayingMovies { [unowned self] (_) -> (Void) in
-            self.collection_recent.reloadData()
+            DispatchQueue.main.async {
+                self.collection_recent.reloadData()
+                self.collection_other.reloadData()
+            }
         }
     }
 

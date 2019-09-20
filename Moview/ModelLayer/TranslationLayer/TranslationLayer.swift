@@ -7,31 +7,27 @@
 //
 
 import Foundation
+import CoreData
 
 class TranslationLayer{
 
-//    func getMoviesUnsavedCoreDataObjects(from: Data) -> [Movie]{
-//         let jsonDecoder = JSONDecoder()
-//         let bgContext = DataLayer.backgroundContext
-//         jsonDecoder.userInfo.updateValue(bgContext, forKey: CodingUserInfoKey.managedObjectContext!)
-//         var jsonObject : T?
-//         do {
-//         jsonObject = try jsonDecoder.decode(T.self, from: responseData)
-//         }catch {
-//         failureHandler?(400 ,error.localizedDescription)
-//         print(error)
-//         return
-//         }
-//
-//         if let res = jsonObject {
-//         print("Response:============: \(res)")
-////         DataLayer.saveContext(context: bgContext)
-//         completionHandler?(res)
-//         }else {
-//         print("Failed decoding response")
-//         }
+    func getUnsavedCoreDataObject<T: Decodable>(type: T.Type, data: Data, context: NSManagedObjectContext) -> T? {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.userInfo.updateValue(context, forKey: CodingUserInfoKey.managedObjectContext!)
+        var jsonObject : T?
+        do {
+            jsonObject = try jsonDecoder.decode(T.self, from: data)
+        }catch {
+            print(error)
+        }
         
-//        completionHandler(responseData)
-//    }
+        if let res = jsonObject {
+            print("Response:============: \(res)")
+            return res
+        }else {
+            print("Failed decoding response")
+        }
+        return nil
+    }
 
 }

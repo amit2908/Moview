@@ -21,15 +21,20 @@ class DashboardPresenter {
         self.modelLayer = modelLayer
     }
     
-    func loadNowPlayingMovies(handler: FetchMoviesFromSourceCompletionHandler) {
-        modelLayer.dataLayer.fetchNowPlayingMoviesFromLocalDB { (movies) -> (Void) in
-            self.nowPlayingMovies = movies
-            handler(.local)
+    func loadNowPlayingMovies(handler: @escaping FetchMoviesFromSourceCompletionHandler) {
+        modelLayer.loadNowPlayingMovies(from: .local) { (movies, source, error) -> (Void) in
+            if (error == nil) {
+                self.nowPlayingMovies = movies
+                handler(.local)
+            }
         }
-        modelLayer.networkLayer.fetchNowPlayingDataFromServer(successHandler: { (data) -> (Void) in
-            
-        }) { (error) -> (Void) in
-            
+        
+        modelLayer.loadNowPlayingMovies(from: .network) { (movies, source, error) -> (Void) in
+            if (error == nil) {
+                self.nowPlayingMovies = movies
+                handler(.network)
+            }
         }
+        
     }
 }
