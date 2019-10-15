@@ -12,7 +12,8 @@ enum MovieEndpoint : APIConfig {
     
     case nowPlaying
     
-    case upcomingMovies(fromDate: String, toDate: String)
+//    case upcomingMovies(fromDate: String, toDate: String)
+    case upcomingMovies(page: Int)
     
     case latest
     
@@ -30,8 +31,10 @@ enum MovieEndpoint : APIConfig {
         switch self {
         case .nowPlaying:
             return K.Server.API_VERSION + K.APIEndpoint.GET_MOVIES_IN_THEATRES_END_URL
-        case .upcomingMovies(let fromDate, let toDate):
-            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL, fromDate, toDate);
+//        case .upcomingMovies(let fromDate, let toDate):
+//            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL, fromDate, toDate);
+        case .upcomingMovies:
+            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL);
         case .latest:
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_LATEST_MOVIES, "en-US");
         case .movieDetails(let id):
@@ -52,6 +55,14 @@ enum MovieEndpoint : APIConfig {
             return [
                 URLQueryItem(name: "api_key", value: K.API_SECURITY_KEY)
             ]
+            
+        case .upcomingMovies(let page):
+            return [
+                URLQueryItem(name: "api_key", value: K.API_SECURITY_KEY),
+                URLQueryItem(name: "language", value: "en-US"),
+                URLQueryItem(name: "page", value: String(page))
+            ]
+            
         default:
             return nil
         }

@@ -112,4 +112,18 @@ extension DataLayer {
             handler([Movie]())
         }
     }
+    
+    
+    func fetchUpcomingMoviesFromLocalDB(handler: fetchMovieHandler){
+        let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
+        fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
+        fetchRequest.fetchLimit = 10
+        do {
+            let fetchResults = try DataLayer.backgroundContext.fetch(fetchRequest)
+            handler(fetchResults)
+        }catch {
+            print(error)
+            handler([Movie]())
+        }
+    }
 }

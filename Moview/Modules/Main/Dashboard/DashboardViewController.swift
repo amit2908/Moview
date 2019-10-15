@@ -18,14 +18,16 @@ class DashboardViewController: UIViewController {
     var otherMovieDataSource : OtherMoviesDataSource?
     var recentMovieDataSource : RecentMoviesDataSource?
     
-    let presenter : RecentMoviesCollectionPresenter
+    let recentMoviesPresenter : RecentMoviesCollectionPresenter
+    let otherMoviesPresenter  : OtherMoviesCollectionPresenter
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         let networkLayer     = NetworkLayer()
         let dataLayer        = DataLayer()
         let translationLayer = TranslationLayer()
         let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
-        self.presenter       = RecentMoviesCollectionPresenter(modelLayer: modelLayer)
+        self.recentMoviesPresenter       = RecentMoviesCollectionPresenter(modelLayer: modelLayer)
+        self.otherMoviesPresenter        = OtherMoviesCollectionPresenter(modelLayer: modelLayer)
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -35,18 +37,21 @@ class DashboardViewController: UIViewController {
         let dataLayer        = DataLayer()
         let translationLayer = TranslationLayer()
         let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
-        self.presenter       = RecentMoviesCollectionPresenter(modelLayer: modelLayer)
+        self.recentMoviesPresenter       = RecentMoviesCollectionPresenter(modelLayer: modelLayer)
+        self.otherMoviesPresenter        = OtherMoviesCollectionPresenter(modelLayer: modelLayer)
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recentMovieDataSource = RecentMoviesDataSource(presenter: presenter, collectionView: collection_recent)
+        recentMovieDataSource = RecentMoviesDataSource(presenter: recentMoviesPresenter, collectionView: collection_recent)
         self.collection_recent.dataSource = recentMovieDataSource
         self.collection_recent.delegate = recentMovieDataSource
         
-        
+        otherMovieDataSource = OtherMoviesDataSource(presenter: otherMoviesPresenter, sections: ["Upcoming Movies", "Latest"], vc: self)
+        self.collection_other.dataSource = otherMovieDataSource
+        self.collection_other.delegate = otherMovieDataSource
 
         self.loadData()
     }
@@ -69,9 +74,13 @@ class DashboardViewController: UIViewController {
     
     
     @objc func loadData(){
-        self.presenter.loadNowPlayingMovies { [unowned self] (_) -> (Void) in
+        self.recentMoviesPresenter.loadNowPlayingMovies { [unowned self] (_) -> (Void) in
             DispatchQueue.main.async {
                 self.collection_recent.reloadData()
+            }
+        }
+        self.otherMoviesPresenter.loadUpcomingMovies(page: 1) { (_) -> (Void) in
+            DispatchQueue.main.async {
                 self.collection_other.reloadData()
             }
         }

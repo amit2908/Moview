@@ -1,23 +1,24 @@
 //
-//  MovieListDataSource.swift
+//  MovieCollectionDataSource.swift
 //  Moview
 //
-//  Created by Shubham Ojha on 02/09/19.
+//  Created by Shubham Ojha on 15/10/19.
 //  Copyright © 2019 Shubham. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class MovieListDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var movies : [Movie]
+   final var movies : [Movie]
+   final var sections : [String]
+    final var vc : UIViewController
     
-    var sections : [String]
-    
-    init(movies: [Movie], sections: [String]) {
+    init(movies: [Movie], sections: [String], vc: UIViewController) {
         self.movies = movies
         self.sections = sections
+        self.vc = vc
         super.init()
     }
     
@@ -43,8 +44,8 @@ class MovieListDataSource: NSObject, UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "otherCellIdentifier", for: indexPath)
-        guard let otherMovieCell = cell as? MovieCollectionViewCell else {
-            let newCell = MovieCollectionViewCell.init()
+        guard let otherMovieCell = cell as? OtherMovieCollectionViewCell else {
+            let newCell = OtherMovieCollectionViewCell.init()
             return newCell
         }
         otherMovieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
@@ -53,21 +54,21 @@ class MovieListDataSource: NSObject, UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let collectionCell = cell as? MovieCollectionViewCell
-        let posterPath = movies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w500/" + movies[indexPath.row].poster_path! : ""
-        collectionCell?.imgV_movie.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
-        collectionCell?.lbl_title.text = movies[indexPath.row].original_title
+       let collectionCell = cell as? MovieCollectionViewCell
+       let posterPath = movies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w500/" + movies[indexPath.row].poster_path! : ""
+       collectionCell?.imgV_movie.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+                        collectionCell?.lbl_title.text = movies[indexPath.row].original_title
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
-        //        let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
-        //        movieDetailVC?.movieId = Int(self.nowPlayingMovies[indexPath.row].id)
-        //        self.navigationController?.pushViewController(movieDetailVC!, animated: true)
+        let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
+        let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
+        movieDetailVC?.movieId = Int(self.movies[indexPath.row].id)
+        self.vc.navigationController?.pushViewController(movieDetailVC!, animated: true)
     }
     
 }
-extension MovieListDataSource: UICollectionViewDelegateFlowLayout {
+extension MovieCollectionDataSource: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/5)
     }
@@ -81,4 +82,5 @@ extension MovieListDataSource: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
 

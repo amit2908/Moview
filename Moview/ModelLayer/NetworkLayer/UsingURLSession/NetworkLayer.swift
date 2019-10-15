@@ -29,4 +29,22 @@ class NetworkLayer {
         
     }
     
+    
+    func fetchUpcomingMoviesFromServer(page: Int,
+                                           successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+                                           failureHandler: @escaping FetchDataFromNetworkFailureHandler) {
+                
+                let urlRequest = MovieEndpoint.upcomingMovies(page: page).urlRequest!
+            
+                APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
+                    
+                    successHandler(nowPlayingResponseData)
+                    
+                }) { (error) -> (Void) in
+    //                print("Error occured: \(errCode) \(errMsg)")
+                    failureHandler(error)
+                }
+            
+        }
+    
 }
