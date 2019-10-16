@@ -23,34 +23,25 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionHeader", for: indexPath) as? SectionHeader{
-            sectionHeader.sectionHeaderLabel.text = self.sections[indexPath.section]
-            return sectionHeader
-        }
-        return SectionHeader()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: SCREEN_WIDTH, height: 60)
-    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "otherCellIdentifier", for: indexPath)
-        guard let otherMovieCell = cell as? OtherMovieCollectionViewCell else {
-            let newCell = OtherMovieCollectionViewCell.init()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCellIdentifier", for: indexPath)
+        guard let movieCell = cell as? MovieCollectionViewCell else {
+            let newCell = MovieCollectionViewCell.init()
+            newCell.lbl_title.text = self.movies[indexPath.row].title
+            newCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
             return newCell
         }
-        otherMovieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
-        return otherMovieCell
-        
+        movieCell.lbl_title.text = self.movies[indexPath.row].title
+        movieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
+        return movieCell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -69,9 +60,9 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
     
 }
 extension MovieCollectionDataSource: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/5)
-    }
+////    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/5)
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 30

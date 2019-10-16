@@ -15,36 +15,53 @@ class NetworkLayer {
     
     func fetchNowPlayingDataFromServer(successHandler: @escaping FetchDataFromNetworkSuccessHandler,
                                        failureHandler: @escaping FetchDataFromNetworkFailureHandler) {
-            
-            let urlRequest = MovieEndpoint.nowPlaying.urlRequest!
         
-            APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
-                
-                successHandler(nowPlayingResponseData)
-                
-            }) { (error) -> (Void) in
-//                print("Error occured: \(errCode) \(errMsg)")
-                failureHandler(error)
-            }
+        let urlRequest = MovieEndpoint.nowPlaying.urlRequest!
+        
+        APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
+            
+            successHandler(nowPlayingResponseData)
+            
+        }) { (error) -> (Void) in
+            //                print("Error occured: \(errCode) \(errMsg)")
+            failureHandler(error)
+        }
         
     }
     
     
     func fetchUpcomingMoviesFromServer(page: Int,
-                                           successHandler: @escaping FetchDataFromNetworkSuccessHandler,
-                                           failureHandler: @escaping FetchDataFromNetworkFailureHandler) {
-                
-                let urlRequest = MovieEndpoint.upcomingMovies(page: page).urlRequest!
+                                       successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+                                       failureHandler: @escaping FetchDataFromNetworkFailureHandler) {
+        
+        let urlRequest = MovieEndpoint.upcomingMovies(page: page).urlRequest!
+        
+        APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
             
-                APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
-                    
-                    successHandler(nowPlayingResponseData)
-                    
-                }) { (error) -> (Void) in
-    //                print("Error occured: \(errCode) \(errMsg)")
-                    failureHandler(error)
-                }
+            successHandler(nowPlayingResponseData)
             
+        }) { (error) -> (Void) in
+            //                print("Error occured: \(errCode) \(errMsg)")
+            failureHandler(error)
         }
+        
+    }
+    
+    func fetchMovieDetailsFromServer(movieId: Int,
+                                       successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+                                       failureHandler: @escaping FetchDataFromNetworkFailureHandler) {
+        
+        let urlRequest = MovieEndpoint.movieDetails(movieId: String(movieId)).urlRequest!
+        
+        APIClient.shared.GET(entity: Movie.self, urlRequest: urlRequest, completionHandler: { (movieData) -> (Void) in
+            
+            successHandler(movieData)
+            
+        }) { (error) -> (Void) in
+            //                print("Error occured: \(errCode) \(errMsg)")
+            failureHandler(error)
+        }
+        
+    }
     
 }

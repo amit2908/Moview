@@ -14,15 +14,56 @@ class MovieDetailViewController: UIViewController {
     
     var movieId : Int?
 
+    var presenter : MovieDetailViewPresenter?
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        let networkLayer     = NetworkLayer()
+        let dataLayer        = DataLayer()
+        let translationLayer = TranslationLayer()
+        let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
+        self.presenter       = MovieDetailViewPresenter(modelLayer: modelLayer)
+        
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+        let networkLayer     = NetworkLayer()
+        let dataLayer        = DataLayer()
+        let translationLayer = TranslationLayer()
+        let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
+        self.presenter       = MovieDetailViewPresenter(modelLayer: modelLayer)
+        
+        super.init(coder: aDecoder)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        
         print("MOVIE ID: \(movieId!)")
 //        self.setupView()
-        self.fetchMovieDetails()
+//        self.fetchMovieDetails()
+        self.loadData()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+    }
+    
+    func loadData(){
+        self.presenter?.loadMovieDetails(movieId: self.movieId!) { [unowned self] (movie) -> (Void) in
+            print(movie)
+            DispatchQueue.main.async {
+                
+            }
+        }
+        self.presenter?.loadMovieDetails(movieId: self.movieId!) { [unowned self] (movie) -> (Void) in
+            print(movie)
+            DispatchQueue.main.async {
+                
+            }
+        }
     }
     
     private func fetchMovieDetails(){

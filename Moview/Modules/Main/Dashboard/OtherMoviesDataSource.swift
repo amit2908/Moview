@@ -11,10 +11,14 @@ import CoreData
 
 class OtherMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    //MARK: Public Properties
     let presenter : OtherMoviesCollectionPresenter
 //    final var collectionOfCollectionOfMovies : [[Movie]]
     final var sections : [String]
     final var vc : UIViewController
+    
+    //MARK: Private Properties
+    private var arrayOfMovieDataSources: [MovieCollectionDataSource] = [MovieCollectionDataSource]()
     
     init(presenter: OtherMoviesCollectionPresenter, sections: [String], vc: UIViewController) {
         self.presenter = presenter
@@ -46,13 +50,24 @@ class OtherMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "otherCellIdentifier", for: indexPath)
+        
         guard let otherMovieCell = cell as? OtherMovieCollectionViewCell else {
             let newCell = OtherMovieCollectionViewCell.init()
             return newCell
         }
+        
         otherMovieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
         return otherMovieCell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let otherMovieCell = cell as? OtherMovieCollectionViewCell  {
+            let movieDataSource = MovieCollectionDataSource(movies: self.presenter.otherMoviesCollections[indexPath.row], sections: self.presenter.sections, vc: self.vc)
+            self.arrayOfMovieDataSources.append(movieDataSource)
+            otherMovieCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: movieDataSource, forRow: indexPath.row)
+            otherMovieCell.collectionView_movie.reloadData()
+        }
     }
     
     

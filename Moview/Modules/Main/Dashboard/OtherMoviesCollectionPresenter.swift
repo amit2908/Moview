@@ -10,7 +10,6 @@ import Foundation
 
 class OtherMoviesCollectionPresenter {
     var otherMoviesCollections = [[Movie]]()
-    let otherMovies      = [Movie]()
     let sections        : [String] = ["Upcoming Movies", "Latest"]
     
     fileprivate var modelLayer : ModelLayer

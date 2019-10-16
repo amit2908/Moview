@@ -9,6 +9,7 @@
 import Foundation
 
 typealias MovieFetchHandlerWithSource = ([Movie], Source, Error?)->(Void)
+typealias MovieFetchDetailHandlerWithSource = (Movie?, Source, Error?)->(Void)
 
 enum Source: Int {
     case local = 1, network
@@ -86,6 +87,38 @@ class ModelLayer {
                 
             }) { (error) -> (Void) in
                 handler([], .network, error)
+            }
+        }
+    }
+    
+    
+    /// Loads movie details
+    /// - Parameter source: The source from where the movies are being fetched, i.e from Network or Local DB
+    /// - Parameter movieId: Unique id of movie at server side
+    /// - Parameter handler: The handler method called after the movies have been fetched.
+    func loadMovieDetails(from source: Source, movieId: Int, handler : @escaping MovieFetchDetailHandlerWithSource){
+        if (source == .local) {
+            self.dataLayer.fetchMovieDetailFromLocalDB(movieId: movieId) { (movie) -> (Void) in
+                handler(movie, .local, nil)
+            }
+        }else {//network
+            
+            self.networkLayer.fetchMovieDetailsFromServer(movieId: movieId, successHandler: {[unowned self] (data) -> (Void) in
+                
+                //clear old results
+                DataLayer.clearOldResults(entityName: "Movie")
+                let _ = self.translationLayer.getUnsavedCoreDataObject(type: Movie.self, data: data, context: DataLayer.backgroundContext)
+                
+                //save data to local
+                DataLayer.saveContext(context: DataLayer.backgroundContext)
+                
+                //fetch again
+                self.dataLayer.fetchMovieDetailFromLocalDB(movieId: movieId, handler: { (movie) -> (Void) in
+                    handler(movie, .network , nil)
+                })
+                
+            }) { (error) -> (Void) in
+                handler(nil, .network, error)
             }
         }
     }

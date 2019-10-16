@@ -97,6 +97,7 @@ extension DataLayer {
 }
 
 typealias fetchMovieHandler = ([Movie]) -> (Void)
+typealias fetchMovieDetailHandler = (Movie?) -> (Void)
 
 extension DataLayer {
     
@@ -124,6 +125,21 @@ extension DataLayer {
         }catch {
             print(error)
             handler([Movie]())
+        }
+    }
+    
+    
+    func fetchMovieDetailFromLocalDB(movieId: Int, handler: fetchMovieDetailHandler){
+        let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
+        fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate.init(format: "id == %d", movieId)
+        do {
+            let fetchResults = try DataLayer.backgroundContext.fetch(fetchRequest)
+            handler(fetchResults.count > 0 ? fetchResults[0] : nil)
+        }catch {
+            print(error)
+            handler(nil)
         }
     }
 }
