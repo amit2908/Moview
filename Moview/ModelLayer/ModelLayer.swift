@@ -48,7 +48,7 @@ class ModelLayer {
                 let _ = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.backgroundContext)
                 
                 //save data to local
-                DataLayer.saveContext(context: DataLayer.backgroundContext)
+                DataLayer.saveContext(context: DataLayer.viewContext)
                 
                 //fetch again
                 self.dataLayer.fetchNowPlayingMoviesFromLocalDB(handler: { (movies) -> (Void) in
@@ -78,7 +78,37 @@ class ModelLayer {
                 let _ = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.backgroundContext)
                 
                 //save data to local
-                DataLayer.saveContext(context: DataLayer.backgroundContext)
+                DataLayer.saveContext(context: DataLayer.viewContext)
+                
+                //fetch again
+                self.dataLayer.fetchUpcomingMoviesFromLocalDB(handler: { (movies) -> (Void) in
+                    handler(movies, .network , nil)
+                })
+                
+            }) { (error) -> (Void) in
+                handler([], .network, error)
+            }
+        }
+    }
+    
+    /// Loads all the latest movies
+    /// - Parameter source: The source from where the movies are being fetched, i.e from Network or Local DB
+    /// - Parameter handler: The handler method called after the movies have been fetched.
+    func loadLatestMovies(from source: Source, page: Int,  handler : @escaping MovieFetchHandlerWithSource){
+        if (source == .local) {
+            self.dataLayer.fetchLatestMoviesFromLocalDB { (movies) -> (Void) in
+                handler(movies, .local, nil)
+            }
+        }else {//network
+            
+            self.networkLayer.fetchLatestMoviesFromServer(page: page, successHandler: {[unowned self] (data) -> (Void) in
+                
+                //clear old results
+                DataLayer.clearOldResults(entityName: "Movie")
+                let _ = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.backgroundContext)
+                
+                //save data to local
+                DataLayer.saveContext(context: DataLayer.viewContext)
                 
                 //fetch again
                 self.dataLayer.fetchUpcomingMoviesFromLocalDB(handler: { (movies) -> (Void) in
@@ -110,7 +140,7 @@ class ModelLayer {
                 let _ = self.translationLayer.getUnsavedCoreDataObject(type: Movie.self, data: data, context: DataLayer.backgroundContext)
                 
                 //save data to local
-                DataLayer.saveContext(context: DataLayer.backgroundContext)
+                DataLayer.saveContext(context: DataLayer.viewContext)
                 
                 //fetch again
                 self.dataLayer.fetchMovieDetailFromLocalDB(movieId: movieId, handler: { (movie) -> (Void) in

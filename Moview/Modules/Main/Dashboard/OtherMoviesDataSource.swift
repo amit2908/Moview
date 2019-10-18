@@ -14,39 +14,37 @@ class OtherMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionV
     //MARK: Public Properties
     let presenter : OtherMoviesCollectionPresenter
 //    final var collectionOfCollectionOfMovies : [[Movie]]
-    final var sections : [String]
     final var vc : UIViewController
     
     //MARK: Private Properties
     private var arrayOfMovieDataSources: [MovieCollectionDataSource] = [MovieCollectionDataSource]()
     
-    init(presenter: OtherMoviesCollectionPresenter, sections: [String], vc: UIViewController) {
+    init(presenter: OtherMoviesCollectionPresenter, vc: UIViewController) {
         self.presenter = presenter
 //        self.collectionOfCollectionOfMovies = collectionOfCollectionOfMovies
-        self.sections = sections
         self.vc = vc
         super.init()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count
+        return presenter.otherMoviesCollections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.otherMoviesCollections.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionHeader", for: indexPath) as? SectionHeader{
-            sectionHeader.sectionHeaderLabel.text = self.sections[indexPath.section]
+            sectionHeader.sectionHeaderLabel.text = presenter.sections[indexPath.section]
             return sectionHeader
         }
         return SectionHeader()
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: SCREEN_WIDTH, height: 60)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        return CGSize(width: SCREEN_WIDTH, height: 60)
+//    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "otherCellIdentifier", for: indexPath)

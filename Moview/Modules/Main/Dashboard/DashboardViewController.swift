@@ -49,7 +49,7 @@ class DashboardViewController: UIViewController {
         self.collection_recent.dataSource = recentMovieDataSource
         self.collection_recent.delegate = recentMovieDataSource
         
-        otherMovieDataSource = OtherMoviesDataSource(presenter: otherMoviesPresenter, sections: ["Upcoming Movies", "Latest"], vc: self)
+        otherMovieDataSource = OtherMoviesDataSource(presenter: otherMoviesPresenter, vc: self)
         self.collection_other.dataSource = otherMovieDataSource
         self.collection_other.delegate = otherMovieDataSource
 
@@ -80,6 +80,12 @@ class DashboardViewController: UIViewController {
             }
         }
         self.otherMoviesPresenter.loadUpcomingMovies(page: 1) { (_) -> (Void) in
+            DispatchQueue.main.async {
+                self.collection_other.reloadData()
+            }
+        }
+        
+        self.otherMoviesPresenter.loadLatestMovies(page: 1) { (_) -> (Void) in
             DispatchQueue.main.async {
                 self.collection_other.reloadData()
             }

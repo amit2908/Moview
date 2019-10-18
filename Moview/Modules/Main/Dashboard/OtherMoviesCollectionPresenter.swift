@@ -9,7 +9,7 @@
 import Foundation
 
 class OtherMoviesCollectionPresenter {
-    var otherMoviesCollections = [[Movie]]()
+    var otherMoviesCollections : [[Movie]] = [[], []]
     let sections        : [String] = ["Upcoming Movies", "Latest"]
     
     fileprivate var modelLayer : ModelLayer
@@ -21,14 +21,40 @@ class OtherMoviesCollectionPresenter {
     func loadUpcomingMovies(page: Int, handler: @escaping FetchMoviesFromSourceCompletionHandler) {
         modelLayer.loadUpcomingMovies(from: .local, page: page) { (movies, source, error) -> (Void) in
             if (error == nil) {
-                self.otherMoviesCollections.append(movies)
+                if movies.count != 0 {
+                    self.otherMoviesCollections[0] = movies
+                }
                 handler(.local)
             }
         }
         
         modelLayer.loadUpcomingMovies(from: .network, page: 1) { (movies, source, error) -> (Void) in
             if (error == nil) {
-                self.otherMoviesCollections.append(movies)
+                if movies.count != 0 {
+                    self.otherMoviesCollections[0] = movies
+                }
+                handler(.network)
+            }
+        }
+        
+    }
+    
+    
+    func loadLatestMovies(page: Int, handler: @escaping FetchMoviesFromSourceCompletionHandler) {
+        modelLayer.loadLatestMovies(from: .local, page: page) { (movies, source, error) -> (Void) in
+            if (error == nil) {
+                if movies.count != 0 {
+                    self.otherMoviesCollections[1] = movies
+                }
+                handler(.local)
+            }
+        }
+        
+        modelLayer.loadLatestMovies(from: .network, page: 1) { (movies, source, error) -> (Void) in
+            if (error == nil) {
+                if movies.count != 0 {
+                    self.otherMoviesCollections[1] = movies
+                }
                 handler(.network)
             }
         }
