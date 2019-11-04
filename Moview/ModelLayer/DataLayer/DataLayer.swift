@@ -105,8 +105,9 @@ extension DataLayer {
         let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
         fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
         fetchRequest.fetchLimit = 10
+        fetchRequest.predicate = NSPredicate(format: "isNowPlaying == true")
         do {
-            let fetchResults = try DataLayer.backgroundContext.fetch(fetchRequest)
+            let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
             handler(fetchResults)
         }catch {
             print(error)
@@ -119,8 +120,9 @@ extension DataLayer {
         let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
         fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
         fetchRequest.fetchLimit = 10
+        fetchRequest.predicate = NSPredicate(format: "isUpcoming == true")
         do {
-            let fetchResults = try DataLayer.backgroundContext.fetch(fetchRequest)
+            let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
             handler(fetchResults)
         }catch {
             print(error)
@@ -132,9 +134,9 @@ extension DataLayer {
         let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
         fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
         fetchRequest.fetchLimit = 10
-//        fetchRequest.predicate = NSPredicate(format: "", argumentArray: <#T##[Any]?#>)
+        fetchRequest.predicate = NSPredicate(format: "isLatest == true")
         do {
-            let fetchResults = try DataLayer.backgroundContext.fetch(fetchRequest)
+            let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
             handler(fetchResults)
         }catch {
             print(error)
@@ -149,7 +151,7 @@ extension DataLayer {
         fetchRequest.fetchLimit = 1
         fetchRequest.predicate = NSPredicate.init(format: "id == %d", movieId)
         do {
-            let fetchResults = try DataLayer.backgroundContext.fetch(fetchRequest)
+            let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
             handler(fetchResults.count > 0 ? fetchResults[0] : nil)
         }catch {
             print(error)

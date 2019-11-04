@@ -45,8 +45,11 @@ class ModelLayer {
                 
                 //clear old results
                 DataLayer.clearOldResults(entityName: "Movie")
-                let _ = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.backgroundContext)
+                let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.viewContext)
                 
+                for movie in coreDataObjects?.results ?? [] {
+                    movie.isNowPlaying = true
+                }
                 //save data to local
                 DataLayer.saveContext(context: DataLayer.viewContext)
                 
@@ -75,7 +78,11 @@ class ModelLayer {
                 
                 //clear old results
                 DataLayer.clearOldResults(entityName: "Movie")
-                let _ = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.backgroundContext)
+                let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.viewContext)
+                
+                for movie in coreDataObjects?.results ?? [] {
+                    movie.isUpcoming = true
+                }
                 
                 //save data to local
                 DataLayer.saveContext(context: DataLayer.viewContext)
@@ -105,7 +112,11 @@ class ModelLayer {
                 
                 //clear old results
                 DataLayer.clearOldResults(entityName: "Movie")
-                let _ = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.backgroundContext)
+                let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.viewContext)
+                
+                for movie in coreDataObjects?.results ?? [] {
+                    movie.isLatest = true
+                }
                 
                 //save data to local
                 DataLayer.saveContext(context: DataLayer.viewContext)
@@ -137,7 +148,7 @@ class ModelLayer {
                 
                 //clear old results
                 DataLayer.clearOldResults(entityName: "Movie")
-                let _ = self.translationLayer.getUnsavedCoreDataObject(type: Movie.self, data: data, context: DataLayer.backgroundContext)
+                let _ = self.translationLayer.getUnsavedCoreDataObject(type: Movie.self, data: data, context: DataLayer.viewContext)
                 
                 //save data to local
                 DataLayer.saveContext(context: DataLayer.viewContext)

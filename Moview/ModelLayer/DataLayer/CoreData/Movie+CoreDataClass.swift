@@ -47,6 +47,10 @@ public class Movie: NSManagedObject, Codable {
         self.spokenLanguages        = try container.decodeIfPresent([SpokenLanguage].self, forKey: .spokenLanguages)
         self.status                 = try container.decodeIfPresent(String.self, forKey: .status)
         self.tagline                = try container.decodeIfPresent(String.self, forKey: .tagline)
+        
+        self.isLatest               = false
+        self.isNowPlaying           = false
+        self.isUpcoming             = false
     }
     
     public func encode(to encoder: Encoder) throws {

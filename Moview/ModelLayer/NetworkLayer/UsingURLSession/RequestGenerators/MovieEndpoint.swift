@@ -36,7 +36,7 @@ enum MovieEndpoint : APIConfig {
         case .upcomingMovies:
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL);
         case .latest:
-            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_LATEST_MOVIES, "en-US");
+            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_LATEST_MOVIES);
         case .movieDetails(let id):
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_MOVIE_DETAILS, id);
         }
@@ -63,8 +63,12 @@ enum MovieEndpoint : APIConfig {
                 URLQueryItem(name: "page", value: String(page))
             ]
             
+            
         default:
-            return nil
+            return [
+                URLQueryItem(name: "api_key", value: K.API_SECURITY_KEY),
+                URLQueryItem(name: "language", value: "en-US"),
+            ]
         }
     }
     

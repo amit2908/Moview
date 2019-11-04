@@ -27,7 +27,7 @@ class MovieDetailViewPresenter {
     func loadMovieDetails(movieId: Int, handler: @escaping FetchMovieDetailFromSourceCompletionHandler) {
         modelLayer.loadMovieDetails(from: .local, movieId: movieId) { (movie, source, error) -> (Void) in
             if (error == nil) {
-                self.posterImage = UIImage(contentsOfFile: movie!.poster_path!) ?? UIImage()
+                self.posterImage = UIImage(contentsOfFile: movie?.poster_path ?? "") ?? UIImage()
                 self.title  = movie?.title ?? ""
                 handler(.local)
             }
@@ -35,7 +35,7 @@ class MovieDetailViewPresenter {
         
         modelLayer.loadMovieDetails(from: .network, movieId: movieId) { (movie, source, error) -> (Void) in
             if (error == nil) {
-                self.posterImage = UIImage(contentsOfFile: movie!.poster_path!) ?? UIImage()
+                self.posterImage = UIImage(contentsOfFile: movie?.poster_path ?? "") ?? UIImage()
                 self.title  = movie?.title ?? ""
                 handler(.network)
             }
