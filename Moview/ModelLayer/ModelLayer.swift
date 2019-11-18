@@ -51,7 +51,11 @@ class ModelLayer {
                     movie.isNowPlaying = true
                 }
                 //save data to local
-                DataLayer.saveContext(context: DataLayer.viewContext)
+                if coreDataObjects?.results.count ?? 0 > 0 {
+                    DataLayer.viewContext.perform {
+                        DataLayer.saveContext(context: DataLayer.viewContext)
+                    }
+                }
                 
                 //fetch again
                 self.dataLayer.fetchNowPlayingMoviesFromLocalDB(handler: { (movies) -> (Void) in
@@ -85,7 +89,11 @@ class ModelLayer {
                 }
                 
                 //save data to local
-                DataLayer.saveContext(context: DataLayer.viewContext)
+                if coreDataObjects?.results.count ?? 0 > 0 {
+                    DataLayer.viewContext.perform {
+                        DataLayer.saveContext(context: DataLayer.viewContext)
+                    }
+                }
                 
                 //fetch again
                 self.dataLayer.fetchUpcomingMoviesFromLocalDB(handler: { (movies) -> (Void) in
@@ -119,7 +127,11 @@ class ModelLayer {
                 }
                 
                 //save data to local
-                DataLayer.saveContext(context: DataLayer.viewContext)
+                if coreDataObjects?.results.count ?? 0 > 0 {
+                    DataLayer.viewContext.perform {
+                        DataLayer.saveContext(context: DataLayer.viewContext)
+                    }
+                }
                 
                 //fetch again
                 self.dataLayer.fetchUpcomingMoviesFromLocalDB(handler: { (movies) -> (Void) in
