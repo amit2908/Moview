@@ -27,7 +27,7 @@ DEPENDENCIES:
   - Toast-Swift
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - JVFloatLabeledTextField
     - RAMAnimatedTabBarController
@@ -64,4 +64,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 5be8f16ac8e024df62a7fb2c26c1d1950cc28b01
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.3
