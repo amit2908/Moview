@@ -90,6 +90,14 @@ extension Movie {
         self.posterPath = posterPath
         self.backdropPath = backdropPath
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id                    , forKey: .id)
+        try container.encode(self.posterPath              , forKey: .posterPath)
+        try container.encode(self.name                  , forKey: .name)
+        try container.encode(self.backdropPath         , forKey: .backdropPath)
+    }
 }
 
 // MARK: - ProductionCompany
@@ -104,12 +112,61 @@ extension Movie {
         case name
         case originCountry = "origin_country"
     }
+    /*
+    required convenience public init(from decoder: Decoder) throws {
+        guard let codingUserInfoKeyManagedObjectContext = CodingUserInfoKey.managedObjectContext,
+            let managedObjectContext = decoder.userInfo[codingUserInfoKeyManagedObjectContext] as? NSManagedObjectContext,
+            let entity = NSEntityDescription.entity(forEntityName: "Movie", in: managedObjectContext) else {
+                fatalError("Failed to decode Configuration")
+        }
+        
+        self.init(entity: entity, insertInto: managedObjectContext)
+        
+        let container               = try decoder.container(keyedBy: CodingKeys.self)
+        self.genre_ids              = try container.decodeIfPresent([Int16].self, forKey: .genre_ids)
+        self.vote_count             = try container.decodeIfPresent(Int64.self,   forKey: .vote_count) ?? -1
+        self.id                     = try container.decodeIfPresent(Int32.self,   forKey: .id) ?? -1
+        self.video                  = try container.decodeIfPresent(Bool.self,    forKey: .video) ?? false
+        self.vote_average           = try container.decodeIfPresent(Float.self,   forKey: .vote_average) ?? -1.0
+        self.popularity             = try container.decodeIfPresent(Double.self,  forKey: .popularity) ?? -1.0
+        self.poster_path            = try container.decodeIfPresent(String.self,  forKey: .poster_path)
+        self.original_language      = try container.decodeIfPresent(String.self,  forKey: .original_language)
+        self.original_title         = try container.decodeIfPresent(String.self,  forKey: .original_title)
+        self.backdrop_path          = try container.decodeIfPresent(String.self,  forKey: .backdrop_path)
+        self.overview               = try container.decodeIfPresent(String.self,  forKey: .overview)
+        self.release_date           = try container.decodeIfPresent(String.self,  forKey: .overview)
+        self.adult                  = try container.decodeIfPresent(Bool.self, forKey: .adult) ?? false
+        self.belongsToCollection    = try container.decodeIfPresent(BelongsToCollection.self , forKey: .belongsToCollection)
+        self.budget                 = try container.decodeIfPresent(Int64.self , forKey: .budget) ?? -1
+        self.homepage               = try container.decodeIfPresent(String.self , forKey: .homepage)
+        self.imdbID                 = try container.decodeIfPresent(String.self , forKey: .imdbID)
+        self.productionCompanies    = try container.decodeIfPresent([ProductionCompany].self , forKey: .productionCompanies)
+        self.productionCountries    = try container.decodeIfPresent([ProductionCountry].self , forKey: .productionCountries)
+        self.revenue                = try container.decodeIfPresent(Int64.self, forKey: .revenue) ?? -1
+        self.runtime                = try container.decodeIfPresent(Int64.self, forKey: .runtime) ?? -1
+        self.spokenLanguages        = try container.decodeIfPresent([SpokenLanguage].self, forKey: .spokenLanguages)
+        self.status                 = try container.decodeIfPresent(String.self, forKey: .status)
+        self.tagline                = try container.decodeIfPresent(String.self, forKey: .tagline)
+        
+        self.isLatest               = false
+        self.isNowPlaying           = false
+        self.isUpcoming             = false
+    }
+    */
     
     init(id: Int, logoPath: String?, name: String, originCountry: String) {
         self.id = id
         self.logoPath = logoPath
         self.name = name
         self.originCountry = originCountry
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.id                    , forKey: .id)
+        try container.encode(self.logoPath              , forKey: .logoPath)
+        try container.encode(self.name                  , forKey: .name)
+        try container.encode(self.originCountry         , forKey: .originCountry)
     }
 }
 
@@ -127,6 +184,13 @@ extension Movie {
         self.iso3166_1 = iso3166_1
         self.name = name
     }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.iso3166_1             , forKey: .iso3166_1)
+        try container.encode(self.name                  , forKey: .name)
+    }
+    
 }
 
 // MARK: - SpokenLanguage
@@ -141,5 +205,11 @@ extension Movie {
     init(iso639_1: String, name: String) {
         self.iso639_1 = iso639_1
         self.name = name
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.iso639_1             , forKey: .iso639_1)
+        try container.encode(self.name                  , forKey: .name)
     }
 }
