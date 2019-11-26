@@ -36,7 +36,7 @@ public class Movie: NSManagedObject, Codable {
         self.overview               = try container.decodeIfPresent(String.self,  forKey: .overview)
         self.release_date           = try container.decodeIfPresent(String.self,  forKey: .overview)
         self.adult                  = try container.decodeIfPresent(Bool.self, forKey: .adult) ?? false
-        self.belongsToCollection    = try container.decodeIfPresent(BelongsToCollection.self , forKey: .belongsToCollection)
+        self.belongsToCollection    = try container.decodeIfPresent(Collection.self , forKey: .belongsToCollection)
         self.budget                 = try container.decodeIfPresent(Int64.self , forKey: .budget) ?? -1
         self.homepage               = try container.decodeIfPresent(String.self , forKey: .homepage)
         self.imdbID                 = try container.decodeIfPresent(String.self , forKey: .imdbID)

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19A526h" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15400" systemVersion="19A583" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Collection" representedClassName="Collection" syncable="YES">
+        <attribute name="backdrop_path" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="poster_path" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Movie" representedClassName="Movie" syncable="YES">
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="backdrop_path" optional="YES" attributeType="String"/>
@@ -30,7 +36,25 @@
         <attribute name="vote_average" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="vote_count" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="ProductionCompany" representedClassName="ProductionCompany" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="logoPath" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="originCountry" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="ProductionCountry" representedClassName="ProductionCountry" syncable="YES">
+        <attribute name="iso3166_1" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="SpokenLanguage" representedClassName="SpokenLanguage" syncable="YES">
+        <attribute name="iso639_1" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+    </entity>
     <elements>
         <element name="Movie" positionX="-5805.09375" positionY="-819.21875" width="128" height="463"/>
+        <element name="ProductionCompany" positionX="-5805" positionY="-666" width="128" height="103"/>
+        <element name="ProductionCountry" positionX="-5796" positionY="-657" width="128" height="73"/>
+        <element name="Collection" positionX="-5778" positionY="-648" width="128" height="103"/>
+        <element name="SpokenLanguage" positionX="-5760" positionY="-639" width="128" height="73"/>
     </elements>
 </model>
