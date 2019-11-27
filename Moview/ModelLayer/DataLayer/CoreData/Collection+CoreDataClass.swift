@@ -15,7 +15,9 @@ import CoreData
 
 public class Collection: NSManagedObject, Codable {
     @NSManaged var id: Int64
-    @NSManaged var name, posterPath, backdropPath: String
+    @NSManaged var name: String?
+    @NSManaged var posterPath: String?
+    @NSManaged var backdropPath: String?
     
     required convenience public init(from decoder: Decoder) throws {
         guard let codingUserInfoKeyManagedObjectContext = CodingUserInfoKey.managedObjectContext,

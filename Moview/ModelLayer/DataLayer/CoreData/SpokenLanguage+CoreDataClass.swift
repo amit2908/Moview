@@ -25,8 +25,9 @@ public class SpokenLanguage: NSManagedObject, Codable {
         
         self.init(entity: entity, insertInto: managedObjectContext)
         let container               = try decoder.container(keyedBy: CodingKeys.self)
-        self.iso639_1              = try (container.decodeIfPresent(String.self, forKey: .iso639_1) ?? "")
-        self.name                   = try container.decodeIfPresent(String.self,   forKey: .name) ?? ""
+        self.iso639_1               = (try? (container.decodeIfPresent(String.self, forKey: .iso639_1) ?? "")) ??
+            ""
+        self.name                   = (try? container.decodeIfPresent(String.self,   forKey: .name) ?? "") ?? ""
     }
     
     public func encode(to encoder: Encoder) throws {

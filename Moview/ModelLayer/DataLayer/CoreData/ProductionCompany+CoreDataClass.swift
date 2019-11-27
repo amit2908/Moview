@@ -14,8 +14,8 @@ import CoreData
 public class ProductionCompany: NSManagedObject, Codable {
     @NSManaged var id: Int64
     @NSManaged var logoPath: String?
-    @NSManaged var name, originCountry: String
-    
+    @NSManaged var name: String?
+    @NSManaged var originCountry: String?
     
     
     required convenience public init(from decoder: Decoder) throws {

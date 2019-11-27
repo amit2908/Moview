@@ -12,6 +12,8 @@ import CoreData
 
 class MovieDetailViewController: UIViewController {
     
+    @IBOutlet weak var navBar: CustomNavigationBar!
+
     var movieId : Int?
 
     var presenter : MovieDetailViewPresenter?
@@ -45,10 +47,18 @@ class MovieDetailViewController: UIViewController {
 //        self.setupView()
 //        self.fetchMovieDetails()
         self.loadData()
+        self.customizeNavigationBar()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+    }
+    
+    func customizeNavigationBar() {
+        self.navBar.leftItem.isHidden = false
+        self.navBar.btn_left.isHidden = false
+        self.navBar.btn_left.addTarget(self, action: #selector(self.backButtonAction(sender:)), for: .touchUpInside)
+        self.navBar.btn_left.setImage(UIImage(named: "back-button"), for: .normal);
     }
     
     func loadData(){

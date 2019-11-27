@@ -340,6 +340,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="06I-rR-oOp"/>
                     </view>
+                    <connections>
+                        <outlet property="navBar" destination="XrZ-42-D5Y" id="l9G-jb-3Z4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaY-WN-76o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

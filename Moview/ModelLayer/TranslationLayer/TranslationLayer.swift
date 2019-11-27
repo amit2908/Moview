@@ -18,14 +18,14 @@ class TranslationLayer{
         do {
             jsonObject = try jsonDecoder.decode(T.self, from: data)
         }catch {
-            print(error)
+            print("Failed Decoding with error: ================",error)
         }
         
         if let res = jsonObject {
             print("Response:============: \(res)")
             return res
         }else {
-            print("Failed decoding response")
+            print("================Failed decoding response================")
         }
         return nil
     }
