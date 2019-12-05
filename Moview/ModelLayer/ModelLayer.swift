@@ -44,7 +44,7 @@ class ModelLayer {
                 self.networkLayer.fetchNowPlayingDataFromServer(successHandler: {[unowned self] (data) -> (Void) in
                 
                 //clear old results
-                DataLayer.clearOldResults(entityName: "Movie")
+//                DataLayer.clearOldResults(entityName: "Movie")
                 let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.viewContext)
                 
                 for movie in coreDataObjects?.results ?? [] {
@@ -81,7 +81,7 @@ class ModelLayer {
             self.networkLayer.fetchUpcomingMoviesFromServer(page: page, successHandler: {[unowned self] (data) -> (Void) in
                 
                 //clear old results
-                DataLayer.clearOldResults(entityName: "Movie")
+//                DataLayer.clearOldResults(entityName: "Movie")
                 let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.viewContext)
                 
                 for movie in coreDataObjects?.results ?? [] {
@@ -116,22 +116,22 @@ class ModelLayer {
             }
         }else {//network
             
-            self.networkLayer.fetchLatestMoviesFromServer(page: page, successHandler: {[unowned self] (data) -> (Void) in
+            self.networkLayer.fetchLatestMovieFromServer(successHandler: {[unowned self] (data) -> (Void) in
                 
                 //clear old results
-                DataLayer.clearOldResults(entityName: "Movie")
-                let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.viewContext)
+//                DataLayer.clearOldResults(entityName: "Movie")
+                let latestMovie = self.translationLayer.getUnsavedCoreDataObject(type: Movie.self, data: data, context: DataLayer.viewContext)
                 
-                for movie in coreDataObjects?.results ?? [] {
-                    movie.isLatest = true
-                }
+//                for movie in coreDataObjects?.results ?? [] {
+                latestMovie?.isLatest = true
+//                }
                 
                 //save data to local
-                if coreDataObjects?.results.count ?? 0 > 0 {
+//                if coreDataObjects?.results.count ?? 0 > 0 {
                     DataLayer.viewContext.perform {
                         DataLayer.saveContext(context: DataLayer.viewContext)
                     }
-                }
+//                }
                 
                 //fetch again
                 self.dataLayer.fetchUpcomingMoviesFromLocalDB(handler: { (movies) -> (Void) in

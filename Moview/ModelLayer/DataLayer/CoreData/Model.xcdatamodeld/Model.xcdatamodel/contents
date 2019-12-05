@@ -51,10 +51,10 @@
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <elements>
+        <element name="Collection" positionX="-5778" positionY="-648" width="128" height="103"/>
         <element name="Movie" positionX="-5805.09375" positionY="-819.21875" width="128" height="463"/>
         <element name="ProductionCompany" positionX="-5805" positionY="-666" width="128" height="103"/>
         <element name="ProductionCountry" positionX="-5796" positionY="-657" width="128" height="73"/>
-        <element name="Collection" positionX="-5778" positionY="-648" width="128" height="103"/>
         <element name="SpokenLanguage" positionX="-5760" positionY="-639" width="128" height="73"/>
     </elements>
 </model>

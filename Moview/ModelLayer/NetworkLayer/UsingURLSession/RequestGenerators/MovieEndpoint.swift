@@ -36,7 +36,7 @@ enum MovieEndpoint : APIConfig {
         case .upcomingMovies:
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL);
         case .latest:
-            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_LATEST_MOVIES);
+            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_LATEST_MOVIE);
         case .movieDetails(let id):
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_MOVIE_DETAILS, id);
         }

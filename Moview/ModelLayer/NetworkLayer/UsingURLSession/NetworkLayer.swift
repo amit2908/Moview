@@ -48,13 +48,12 @@ class NetworkLayer {
     }
     
     
-    func fetchLatestMoviesFromServer(page: Int,
-                                       successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+    func fetchLatestMovieFromServer(successHandler: @escaping FetchDataFromNetworkSuccessHandler,
                                        failureHandler: @escaping FetchDataFromNetworkFailureHandler) {
         
         let urlRequest = MovieEndpoint.latest.urlRequest!
         
-        APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
+        APIClient.shared.GET(entity: Movie.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
             
             successHandler(nowPlayingResponseData)
             

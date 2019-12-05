@@ -42,13 +42,4 @@ public class ProductionCompany: NSManagedObject, Codable {
         try container.encode(self.originCountry         , forKey: .originCountry)
     }
     
-    
-//    init(id: Int, logoPath: String?, name: String, originCountry: String) {
-//        self.id = id
-//        self.logoPath = logoPath
-//        self.name = name
-//        self.originCountry = originCountry
-//    }
-    
-    
 }
