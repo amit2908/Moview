@@ -130,6 +130,20 @@ extension DataLayer {
         }
     }
     
+    func fetchTopRatedMoviesFromLocalDB(handler: fetchMovieHandler){
+        let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
+        fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
+        fetchRequest.fetchLimit = 10
+        fetchRequest.predicate = NSPredicate(format: "isTopRated == true")
+        do {
+            let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
+            handler(fetchResults)
+        }catch {
+            print(error)
+            handler([Movie]())
+        }
+    }
+    
     func fetchLatestMoviesFromLocalDB(handler: fetchMovieHandler){
         let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
         fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];

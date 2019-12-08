@@ -15,6 +15,5 @@ class OtherMovieCollectionViewCell: UICollectionViewCell {
         collectionView_movie.delegate = dataSourceDelegate
         collectionView_movie.dataSource = dataSourceDelegate
         collectionView_movie.tag = row
-        collectionView_movie.reloadData()
     }
 }

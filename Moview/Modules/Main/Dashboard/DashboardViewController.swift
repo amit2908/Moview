@@ -85,11 +85,17 @@ class DashboardViewController: UIViewController {
             }
         }
         
-        self.otherMoviesPresenter.loadLatestMovies(page: 1) { (_) -> (Void) in
+        self.otherMoviesPresenter.loadTopRatedMovies(page: 1) { (_) -> (Void) in
             DispatchQueue.main.async {
                 self.collection_other.reloadData()
             }
         }
+        
+//        self.otherMoviesPresenter.loadLatestMovie() { (_) -> (Void) in
+//            DispatchQueue.main.async {
+//                self.collection_other.reloadData()
+//            }
+//        }
     }
 
 }

@@ -39,14 +39,14 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
             newCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
             return newCell
         }
-        movieCell.lbl_title.text = self.movies[indexPath.row].title
+        movieCell.lbl_title.text = self.movies[indexPath.row].original_title
         movieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
         return movieCell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
        let collectionCell = cell as? MovieCollectionViewCell
-       let posterPath = movies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w500/" + movies[indexPath.row].poster_path! : ""
+       let posterPath = movies[indexPath.row].poster_path != nil ? K.Server.imageBaseURL + "/w154/" + movies[indexPath.row].poster_path! : ""
        collectionCell?.imgV_movie.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
                         collectionCell?.lbl_title.text = movies[indexPath.row].original_title
     }

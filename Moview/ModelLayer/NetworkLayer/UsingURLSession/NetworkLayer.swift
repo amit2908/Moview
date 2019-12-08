@@ -47,6 +47,23 @@ class NetworkLayer {
         
     }
     
+    func fetchTopRatedMoviesFromServer(page: Int,
+                                       successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+                                       failureHandler: @escaping FetchDataFromNetworkFailureHandler) {
+        
+        let urlRequest = MovieEndpoint.topRated(page: page).urlRequest!
+        
+        APIClient.shared.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
+            
+            successHandler(nowPlayingResponseData)
+            
+        }) { (error) -> (Void) in
+            //                print("Error occured: \(errCode) \(errMsg)")
+            failureHandler(error)
+        }
+        
+    }
+    
     
     func fetchLatestMovieFromServer(successHandler: @escaping FetchDataFromNetworkSuccessHandler,
                                        failureHandler: @escaping FetchDataFromNetworkFailureHandler) {

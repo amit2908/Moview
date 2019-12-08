@@ -13,7 +13,9 @@ import CoreData
 class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var navBar: CustomNavigationBar!
-
+    @IBOutlet weak var imgV_moviePoster: UIImageView!
+    @IBOutlet weak var tv_movieDetails: UITableView!
+    
     var movieId : Int?
 
     var presenter : MovieDetailViewPresenter?
@@ -65,13 +67,11 @@ class MovieDetailViewController: UIViewController {
         self.presenter?.loadMovieDetails(movieId: self.movieId!) { [unowned self] (movie) -> (Void) in
             print(movie)
             DispatchQueue.main.async {
-                
-            }
-        }
-        self.presenter?.loadMovieDetails(movieId: self.movieId!) { [unowned self] (movie) -> (Void) in
-            print(movie)
-            DispatchQueue.main.async {
-                
+                self.navBar.title = self.presenter?.title ?? ""
+                if let posterImgPath = self.presenter?.posterImagePath {
+                    let posterPath =  K.Server.imageBaseURL + "/w342/" + posterImgPath
+                    self.imgV_moviePoster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+                }
             }
         }
     }

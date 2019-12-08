@@ -106,10 +106,49 @@ class ModelLayer {
         }
     }
     
+    
+        /// Loads all the TOP RATED movies
+        /// - Parameter source: The source from where the movies are being fetched, i.e from Network or Local DB
+        /// - Parameter handler: The handler method called after the movies have been fetched.
+        func loadTopRatedMovies(from source: Source, page: Int,  handler : @escaping MovieFetchHandlerWithSource){
+            if (source == .local) {
+                self.dataLayer.fetchTopRatedMoviesFromLocalDB { (movies) -> (Void) in
+                    handler(movies, .local, nil)
+                }
+            }else {//network
+                
+                self.networkLayer.fetchTopRatedMoviesFromServer(page: page, successHandler: {[unowned self] (data) -> (Void) in
+                    
+                    //clear old results
+    //                DataLayer.clearOldResults(entityName: "Movie")
+                    let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.viewContext)
+                    
+                    for movie in coreDataObjects?.results ?? [] {
+                        movie.isTopRated = true
+                    }
+                    
+                    //save data to local
+                    if coreDataObjects?.results.count ?? 0 > 0 {
+                        DataLayer.viewContext.perform {
+                            DataLayer.saveContext(context: DataLayer.viewContext)
+                        }
+                    }
+                    
+                    //fetch again
+                    self.dataLayer.fetchTopRatedMoviesFromLocalDB(handler: { (movies) -> (Void) in
+                        handler(movies, .network , nil)
+                    })
+                    
+                }) { (error) -> (Void) in
+                    handler([], .network, error)
+                }
+            }
+        }
+    
     /// Loads all the latest movies
     /// - Parameter source: The source from where the movies are being fetched, i.e from Network or Local DB
     /// - Parameter handler: The handler method called after the movies have been fetched.
-    func loadLatestMovies(from source: Source, page: Int,  handler : @escaping MovieFetchHandlerWithSource){
+    func loadLatestMovies(from source: Source, handler : @escaping MovieFetchHandlerWithSource){
         if (source == .local) {
             self.dataLayer.fetchLatestMoviesFromLocalDB { (movies) -> (Void) in
                 handler(movies, .local, nil)
@@ -159,11 +198,15 @@ class ModelLayer {
             self.networkLayer.fetchMovieDetailsFromServer(movieId: movieId, successHandler: {[unowned self] (data) -> (Void) in
                 
                 //clear old results
-                DataLayer.clearOldResults(entityName: "Movie")
-                let _ = self.translationLayer.getUnsavedCoreDataObject(type: Movie.self, data: data, context: DataLayer.viewContext)
+//                DataLayer.clearOldResults(entityName: "Movie")
+                let coreDataObject = self.translationLayer.getUnsavedCoreDataObject(type: Movie.self, data: data, context: DataLayer.viewContext)
                 
                 //save data to local
-                DataLayer.saveContext(context: DataLayer.viewContext)
+                if coreDataObject != nil {
+                    DataLayer.viewContext.perform {
+                        DataLayer.saveContext(context: DataLayer.viewContext)
+                    }
+                }
                 
                 //fetch again
                 self.dataLayer.fetchMovieDetailFromLocalDB(movieId: movieId, handler: { (movie) -> (Void) in

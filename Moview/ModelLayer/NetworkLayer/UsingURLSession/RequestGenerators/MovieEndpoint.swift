@@ -15,6 +15,8 @@ enum MovieEndpoint : APIConfig {
 //    case upcomingMovies(fromDate: String, toDate: String)
     case upcomingMovies(page: Int)
     
+    case topRated(page: Int)
+    
     case latest
     
     case movieDetails(movieId: String)
@@ -35,8 +37,13 @@ enum MovieEndpoint : APIConfig {
 //            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL, fromDate, toDate);
         case .upcomingMovies:
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL);
+            
+        case .topRated:
+        return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_TOP_RATED_MOVIES_END_URL);
+            
         case .latest:
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_LATEST_MOVIE);
+            
         case .movieDetails(let id):
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_MOVIE_DETAILS, id);
         }
@@ -63,6 +70,12 @@ enum MovieEndpoint : APIConfig {
                 URLQueryItem(name: "page", value: String(page))
             ]
             
+         case .topRated(let page):
+            return [
+                URLQueryItem(name: "api_key", value: K.API_SECURITY_KEY),
+                URLQueryItem(name: "language", value: "en-US"),
+                URLQueryItem(name: "page", value: String(page))
+            ]
             
         default:
             return [

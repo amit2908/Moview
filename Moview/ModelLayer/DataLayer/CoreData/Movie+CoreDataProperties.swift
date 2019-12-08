@@ -70,4 +70,5 @@ extension Movie {
     @NSManaged public var isLatest : Bool
     @NSManaged public var isNowPlaying : Bool
     @NSManaged public var isUpcoming : Bool
+    @NSManaged public var isTopRated : Bool
 }

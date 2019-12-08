@@ -51,6 +51,7 @@ public class Movie: NSManagedObject, Codable {
         self.isLatest               = false
         self.isNowPlaying           = false
         self.isUpcoming             = false
+        self.isTopRated             = false
     }
     
     public func encode(to encoder: Encoder) throws {

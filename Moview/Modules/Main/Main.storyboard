@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -296,16 +296,6 @@
                                     <constraint firstAttribute="height" constant="300" id="pJY-ol-y1N"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4j-1L-37F" userLabel="Name">
-                                <rect key="frame" x="0.0" y="360" width="375" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="d9K-7A-qzZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gN8-j4-EgJ">
                                 <rect key="frame" x="0.0" y="410" width="375" height="402"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -327,21 +317,20 @@
                             <constraint firstAttribute="trailing" secondItem="8o0-a7-0f7" secondAttribute="trailing" id="5nS-AD-BSj"/>
                             <constraint firstItem="gN8-j4-EgJ" firstAttribute="leading" secondItem="06I-rR-oOp" secondAttribute="leading" id="8op-3L-xOK"/>
                             <constraint firstItem="8o0-a7-0f7" firstAttribute="leading" secondItem="aIh-iD-nNj" secondAttribute="leading" id="8pO-bA-c08"/>
-                            <constraint firstItem="B4j-1L-37F" firstAttribute="bottom" secondItem="8o0-a7-0f7" secondAttribute="bottom" id="Gxc-JI-OYg"/>
                             <constraint firstAttribute="bottom" secondItem="gN8-j4-EgJ" secondAttribute="bottom" id="U37-Si-3db"/>
                             <constraint firstItem="XrZ-42-D5Y" firstAttribute="height" secondItem="06I-rR-oOp" secondAttribute="height" multiplier="0.15" id="UFi-mC-5yY"/>
                             <constraint firstItem="gN8-j4-EgJ" firstAttribute="top" secondItem="8o0-a7-0f7" secondAttribute="bottom" id="XWA-1z-xt5"/>
                             <constraint firstItem="gN8-j4-EgJ" firstAttribute="trailing" secondItem="06I-rR-oOp" secondAttribute="trailing" id="ZyZ-be-2DY"/>
-                            <constraint firstItem="B4j-1L-37F" firstAttribute="trailing" secondItem="8o0-a7-0f7" secondAttribute="trailing" id="bAV-Tl-9ao"/>
                             <constraint firstItem="XrZ-42-D5Y" firstAttribute="top" secondItem="aIh-iD-nNj" secondAttribute="top" id="hek-PH-J5S"/>
                             <constraint firstItem="XrZ-42-D5Y" firstAttribute="leading" secondItem="aIh-iD-nNj" secondAttribute="leading" id="tKP-Z4-ysC"/>
-                            <constraint firstItem="B4j-1L-37F" firstAttribute="leading" secondItem="8o0-a7-0f7" secondAttribute="leading" id="uRT-Tx-WR2"/>
                             <constraint firstAttribute="trailing" secondItem="XrZ-42-D5Y" secondAttribute="trailing" id="vM6-3z-Scv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="06I-rR-oOp"/>
                     </view>
                     <connections>
+                        <outlet property="imgV_moviePoster" destination="8o0-a7-0f7" id="Xv3-gt-wq8"/>
                         <outlet property="navBar" destination="XrZ-42-D5Y" id="l9G-jb-3Z4"/>
+                        <outlet property="tv_movieDetails" destination="gN8-j4-EgJ" id="HV1-cc-MwK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BaY-WN-76o" userLabel="First Responder" sceneMemberID="firstResponder"/>

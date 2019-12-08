@@ -13,33 +13,33 @@ typealias FetchMovieDetailFromSourceCompletionHandler = (Source)->(Void)
 class MovieDetailViewPresenter {
     
     //MARK: Public Properties
-    var posterImage : UIImage
+    var posterImagePath : String
     var title       : String
     
     fileprivate var modelLayer : ModelLayer
     
     init(modelLayer: ModelLayer) {
         self.modelLayer  = modelLayer
-        self.posterImage = UIImage(named: "picture") ?? UIImage()
+        self.posterImagePath = ""
         self.title       = ""
     }
     
     func loadMovieDetails(movieId: Int, handler: @escaping FetchMovieDetailFromSourceCompletionHandler) {
         modelLayer.loadMovieDetails(from: .local, movieId: movieId) { (movie, source, error) -> (Void) in
             if (error == nil) {
-                self.posterImage = UIImage(contentsOfFile: movie?.poster_path ?? "") ?? UIImage()
+                self.posterImagePath = movie?.poster_path ?? ""
                 self.title  = movie?.title ?? ""
                 handler(.local)
             }
         }
         
-        modelLayer.loadMovieDetails(from: .network, movieId: movieId) { (movie, source, error) -> (Void) in
-            if (error == nil) {
-                self.posterImage = UIImage(contentsOfFile: movie?.poster_path ?? "") ?? UIImage()
-                self.title  = movie?.title ?? ""
-                handler(.network)
-            }
-        }
+//        modelLayer.loadMovieDetails(from: .network, movieId: movieId) { (movie, source, error) -> (Void) in
+//            if (error == nil) {
+//                self.posterImage = UIImage(contentsOfFile: movie?.poster_path ?? "") ?? UIImage()
+//                self.title  = movie?.title ?? ""
+//                handler(.network)
+//            }
+//        }
         
     }
 }

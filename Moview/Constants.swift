@@ -27,7 +27,7 @@ struct K {
     struct Server {
         static let baseURL = "https://api.themoviedb.org"
         static let API_VERSION = "/3"
-        static let imageBaseURL = "https://image.tmdb.org/t/p/"
+        static let imageBaseURL = "https://image.tmdb.org/t/p"
     }
     
     struct APIEndpoint {
@@ -36,6 +36,7 @@ struct K {
         static let CONFIGURATION = "/configuration?api_key=\(K.API_SECURITY_KEY)"
         static let GET_MOVIES_USING_DATE_END_URL = "/discover/movie?primary_release_date.gte=%@&primary_release_date.lte=%@&api_key=\(K.API_SECURITY_KEY)" //2019-05-05
         static let GET_UPCOMING_MOVIES_END_URL = "/movie/upcoming" //2019-05-05
+        static let GET_TOP_RATED_MOVIES_END_URL = "/movie/top_rated" //2019-05-05
         static let GET_MOVIES_IN_THEATRES_END_URL = "/movie/now_playing"
         static let GET_LATEST_MOVIE = "/movie/latest"
         static let GET_MOVIE_DETAILS = "/movie/%@"

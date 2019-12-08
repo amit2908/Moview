@@ -10,7 +10,7 @@ import Foundation
 
 class OtherMoviesCollectionPresenter {
     var otherMoviesCollections : [[Movie]] = [[], []]
-    let sections        : [String] = ["Upcoming Movies", "Latest"]
+    let sections        : [String] = ["Upcoming Movies", "Top Rated"]
     
     fileprivate var modelLayer : ModelLayer
     
@@ -39,9 +39,8 @@ class OtherMoviesCollectionPresenter {
         
     }
     
-    
-    func loadLatestMovies(page: Int, handler: @escaping FetchMoviesFromSourceCompletionHandler) {
-        modelLayer.loadLatestMovies(from: .local, page: page) { (movies, source, error) -> (Void) in
+    func loadTopRatedMovies(page: Int, handler: @escaping FetchMoviesFromSourceCompletionHandler) {
+        modelLayer.loadTopRatedMovies(from: .local, page: page) { (movies, source, error) -> (Void) in
             if (error == nil) {
                 if movies.count != 0 {
                     self.otherMoviesCollections[1] = movies
@@ -50,7 +49,29 @@ class OtherMoviesCollectionPresenter {
             }
         }
         
-        modelLayer.loadLatestMovies(from: .network, page: 1) { (movies, source, error) -> (Void) in
+        modelLayer.loadTopRatedMovies(from: .network, page: 1) { (movies, source, error) -> (Void) in
+            if (error == nil) {
+                if movies.count != 0 {
+                    self.otherMoviesCollections[1] = movies
+                }
+                handler(.network)
+            }
+        }
+        
+    }
+    
+    
+    func loadLatestMovie( handler: @escaping FetchMoviesFromSourceCompletionHandler) {
+        modelLayer.loadLatestMovies(from: .local) { (movies, source, error) -> (Void) in
+            if (error == nil) {
+                if movies.count != 0 {
+                    self.otherMoviesCollections[1] = movies
+                }
+                handler(.local)
+            }
+        }
+        
+        modelLayer.loadLatestMovies(from: .network) { (movies, source, error) -> (Void) in
             if (error == nil) {
                 if movies.count != 0 {
                     self.otherMoviesCollections[1] = movies

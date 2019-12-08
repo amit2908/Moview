@@ -13,7 +13,7 @@ import Foundation
 @objcMembers class NowPlayingResponse: NSObject, Codable {
     let results: [Movie]
     let page, totalResults: Int
-    let dates: Dates
+    let dates: Dates?
     let totalPages: Int
     
     enum CodingKeys: String, CodingKey {
