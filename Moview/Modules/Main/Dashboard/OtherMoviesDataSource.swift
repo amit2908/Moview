@@ -55,17 +55,17 @@ class OtherMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionV
         }
         
         otherMovieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
+        let movies = self.presenter.otherMoviesCollections[indexPath.row]
+        let movieDataSource = MovieCollectionDataSource(movies: movies, vc: self.vc)
+        self.arrayOfMovieDataSources.append(movieDataSource)
+        otherMovieCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: movieDataSource, forRow: indexPath.row)
+        otherMovieCell.collectionView_movie.reloadData()
         return otherMovieCell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let otherMovieCell = cell as? OtherMovieCollectionViewCell  {
-            let movieDataSource = MovieCollectionDataSource(movies: self.presenter.otherMoviesCollections[indexPath.row], sections: self.presenter.sections, vc: self.vc)
-            self.arrayOfMovieDataSources.append(movieDataSource)
-            otherMovieCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: movieDataSource, forRow: indexPath.row)
-            otherMovieCell.collectionView_movie.reloadData()
-        }
+        
     }
     
     

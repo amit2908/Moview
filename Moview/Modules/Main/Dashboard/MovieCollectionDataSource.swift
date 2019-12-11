@@ -12,12 +12,10 @@ import CoreData
 class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
    final var movies : [Movie]
-   final var sections : [String]
     final var vc : UIViewController
     
-    init(movies: [Movie], sections: [String], vc: UIViewController) {
+    init(movies: [Movie],  vc: UIViewController) {
         self.movies = movies
-        self.sections = sections
         self.vc = vc
         super.init()
     }

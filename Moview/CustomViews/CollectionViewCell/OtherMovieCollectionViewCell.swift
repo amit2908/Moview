@@ -11,6 +11,14 @@ import UIKit
 class OtherMovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var collectionView_movie: UICollectionView!
     
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        collectionView_movie.delegate = nil
+        collectionView_movie.dataSource = nil
+        collectionView_movie.tag = 0
+    }
+    
     func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
         collectionView_movie.delegate = dataSourceDelegate
         collectionView_movie.dataSource = dataSourceDelegate
