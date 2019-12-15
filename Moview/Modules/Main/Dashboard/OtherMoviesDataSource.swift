@@ -27,7 +27,7 @@ class OtherMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionV
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return presenter.otherMoviesCollections.count
+        return presenter.sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -55,11 +55,10 @@ class OtherMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionV
         }
         
         otherMovieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
-        let movies = self.presenter.otherMoviesCollections[indexPath.row]
-        let movieDataSource = MovieCollectionDataSource(movies: movies, vc: self.vc)
-        self.arrayOfMovieDataSources.append(movieDataSource)
-        otherMovieCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: movieDataSource, forRow: indexPath.row)
-        otherMovieCell.collectionView_movie.reloadData()
+//        let movies = self.presenter.otherMoviesCollections[indexPath.row]
+//        let movieDataSource = MovieCollectionDataSource(movies: movies, vc: self.vc)
+//        self.arrayOfMovieDataSources.insert(movieDataSource, at: indexPath.row)
+        otherMovieCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self.presenter.movieDataSources[indexPath.row], forRow: indexPath.row)
         return otherMovieCell
         
     }

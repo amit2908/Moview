@@ -12,12 +12,16 @@ import CoreData
 class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
    final var movies : [Movie]
-    final var vc : UIViewController
+//    final var vc : UIViewController
     
-    init(movies: [Movie],  vc: UIViewController) {
+    init(movies: [Movie]) {
         self.movies = movies
-        self.vc = vc
+//        self.vc = vc
         super.init()
+    }
+    
+    convenience override init() {
+        self.init(movies: [Movie]())
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -53,7 +57,7 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
         let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
         movieDetailVC?.movieId = Int(self.movies[indexPath.row].id)
-        self.vc.navigationController?.pushViewController(movieDetailVC!, animated: true)
+//        self.vc.navigationController?.pushViewController(movieDetailVC!, animated: true)
     }
     
 }
