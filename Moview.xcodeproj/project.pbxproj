@@ -905,6 +905,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = pey.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Pey App Developer Profile 14 March 2019";
@@ -927,6 +928,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = pey.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Pey App Developer Profile 14 March 2019";
