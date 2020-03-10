@@ -50,17 +50,19 @@ class ModelLayer {
                 for movie in coreDataObjects?.results ?? [] {
                     movie.isNowPlaying = true
                 }
-                //save data to local
-                if coreDataObjects?.results.count ?? 0 > 0 {
-                    DataLayer.viewContext.perform {
-                        DataLayer.saveContext(context: DataLayer.viewContext)
-                    }
-                }
-                
-                //fetch again
-                self.dataLayer.fetchNowPlayingMoviesFromLocalDB(handler: { (movies) -> (Void) in
-                    handler(movies, .network , nil)
-                })
+//                //save data to local
+//                if coreDataObjects?.results.count ?? 0 > 0 {
+//                    DataLayer.viewContext.perform {
+//                        DataLayer.saveContext(context: DataLayer.viewContext)
+//                    }
+//                }
+//
+//                //fetch again
+//                self.dataLayer.fetchNowPlayingMoviesFromLocalDB(handler: { (movies) -> (Void) in
+//                    handler(movies, .network , nil)
+//                })
+                    
+                    handler(coreDataObjects?.results ?? [], .network, nil)
                 
             }) { (error) -> (Void) in
                 handler([], .network, error)
@@ -88,17 +90,7 @@ class ModelLayer {
                     movie.isUpcoming = true
                 }
                 
-                //save data to local
-                if coreDataObjects?.results.count ?? 0 > 0 {
-                    DataLayer.viewContext.perform {
-                        DataLayer.saveContext(context: DataLayer.viewContext)
-                    }
-                }
-                
-                //fetch again
-                self.dataLayer.fetchUpcomingMoviesFromLocalDB(handler: { (movies) -> (Void) in
-                    handler(movies, .network , nil)
-                })
+                handler(coreDataObjects?.results ?? [], .network, nil)
                 
             }) { (error) -> (Void) in
                 handler([], .network, error)
@@ -127,17 +119,7 @@ class ModelLayer {
                         movie.isTopRated = true
                     }
                     
-                    //save data to local
-                    if coreDataObjects?.results.count ?? 0 > 0 {
-                        DataLayer.viewContext.perform {
-                            DataLayer.saveContext(context: DataLayer.viewContext)
-                        }
-                    }
-                    
-                    //fetch again
-                    self.dataLayer.fetchTopRatedMoviesFromLocalDB(handler: { (movies) -> (Void) in
-                        handler(movies, .network , nil)
-                    })
+                    handler(coreDataObjects?.results ?? [], .network, nil)
                     
                 }) { (error) -> (Void) in
                     handler([], .network, error)

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class DashboardViewController: UIViewController {
     @IBOutlet weak var navBar: CustomNavigationBar!

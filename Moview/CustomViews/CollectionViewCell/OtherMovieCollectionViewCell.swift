@@ -19,9 +19,15 @@ class OtherMovieCollectionViewCell: UICollectionViewCell {
         collectionView_movie.tag = 0
     }
     
+}
+extension OtherMovieCollectionViewCell {
     func setCollectionViewDataSourceDelegate(dataSourceDelegate: UICollectionViewDataSource & UICollectionViewDelegate, forRow row: Int) {
         collectionView_movie.delegate = dataSourceDelegate
         collectionView_movie.dataSource = dataSourceDelegate
         collectionView_movie.tag = row
+    }
+    
+    func reloadMoviesCollection() {
+        self.collectionView_movie.reloadData()
     }
 }

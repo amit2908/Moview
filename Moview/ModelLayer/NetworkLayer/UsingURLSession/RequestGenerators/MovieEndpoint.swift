@@ -49,7 +49,7 @@ enum MovieEndpoint : APIConfig {
         }
     }
     
-    var queryParams : [URLQueryItem]? {
+    private var queryParams : [URLQueryItem]? {
         switch self {
         case .nowPlaying:
             return [

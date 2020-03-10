@@ -17,11 +17,9 @@ class OtherMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionV
     final var vc : UIViewController
     
     //MARK: Private Properties
-    private var arrayOfMovieDataSources: [MovieCollectionDataSource] = [MovieCollectionDataSource]()
     
     init(presenter: OtherMoviesCollectionPresenter, vc: UIViewController) {
         self.presenter = presenter
-//        self.collectionOfCollectionOfMovies = collectionOfCollectionOfMovies
         self.vc = vc
         super.init()
     }
@@ -55,10 +53,9 @@ class OtherMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionV
         }
         
         otherMovieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
-//        let movies = self.presenter.otherMoviesCollections[indexPath.row]
-//        let movieDataSource = MovieCollectionDataSource(movies: movies, vc: self.vc)
-//        self.arrayOfMovieDataSources.insert(movieDataSource, at: indexPath.row)
-        otherMovieCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self.presenter.movieDataSources[indexPath.row], forRow: indexPath.row)
+        
+        otherMovieCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self.presenter.movieDataSources[indexPath.section], forRow: indexPath.section)
+        
         return otherMovieCell
         
     }
