@@ -92,14 +92,15 @@ class MovieDetailViewController: UIViewController {
             fetchRequest.sortDescriptors?.append(NSSortDescriptor.init(key: "title", ascending: true))
             
             do {
-                let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
+//                let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
 //                self.nowPlayingMovies = fetchResults
                 DispatchQueue.main.async(execute: {
 //                    self.collection_recent.reloadData()
                 })
-            }catch {
-                print(error)
             }
+//            catch {
+//                print(error)
+//            }
             
         }) { (error) -> (Void) in
             self.hideProgress()

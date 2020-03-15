@@ -27,16 +27,16 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var lbl_e: UILabel!
     @IBOutlet weak var lbl_w: UILabel!
     
-    var singInPresenter = SignInPresenter()
+    var signInPresenter = SignInPresenter()
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        _ = tf_username.rx.text.map{ $0 ?? ""}.bind(to: singInPresenter.emailText)
-        _ = tf_password.rx.text.map{ $0 ?? ""}.bind(to: singInPresenter.passwordText)
-        _ = singInPresenter.isValid.bind(to: btn_signin.rx.isEnabled)
+        _ = tf_username.rx.text.map{ $0 ?? ""}.bind(to: signInPresenter.emailText)
+        _ = tf_password.rx.text.map{ $0 ?? ""}.bind(to: signInPresenter.passwordText)
+        _ = signInPresenter.isValid.bind(to: btn_signin.rx.isEnabled)
         
-        _ = singInPresenter.isValid.subscribe(onNext: { [unowned self] (isValid) in
+        _ = signInPresenter.isValid.subscribe(onNext: { [unowned self] (isValid) in
             self.btn_signin.alpha = isValid ? 1.0 : 0.4;
         }).disposed(by: disposeBag)
     }
@@ -60,7 +60,7 @@ class SignInViewController: UIViewController {
             
             if (token == nil) {
                 Navigation.shared.navigateToDashboard(navigationController: self.navigationController!)
-            }else {
+            } else {
                 
             }
             

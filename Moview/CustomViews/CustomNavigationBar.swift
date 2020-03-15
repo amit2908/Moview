@@ -26,7 +26,7 @@ class CustomNavigationBar: UIView {
             return self.position
         }
         set {
-            self.position = barPosition
+            self.position = newValue
         }
     }
     
