@@ -6,6 +6,7 @@
 platform :ios, '10.0'
 use_frameworks!
 def myPods
+  pod 'ReachabilitySwift'
   pod 'Alamofire', '5.0.0-beta.4'
   pod 'SwiftyJSON', '4.2'
   pod 'JVFloatLabeledTextField'
