@@ -14,16 +14,15 @@ class OtherMoviesDataSource: NSObject {
     //MARK: Public Properties
     let presenter : OtherMoviesCollectionPresenter
 //    final var collectionOfCollectionOfMovies : [[Movie]]
-    final var vc : UIViewController
+    final weak var vc : DashboardViewController?
     
     //MARK: Private Properties
     
-    init(presenter: OtherMoviesCollectionPresenter, vc: UIViewController) {
+    init(presenter: OtherMoviesCollectionPresenter, vc: DashboardViewController) {
         self.presenter = presenter
         self.vc = vc
         super.init()
     }
-    
     
 }
 
@@ -39,6 +38,8 @@ extension OtherMoviesDataSource: UICollectionViewDataSource {
         func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
             if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionHeader", for: indexPath) as? SectionHeader{
                 sectionHeader.sectionHeaderLabel.text = presenter.sections[indexPath.section]
+                sectionHeader.btn_showMore.addTarget(vc, action: #selector(vc?.showMoreBtnClicked(button:)), for: .touchDown)
+                sectionHeader.btn_showMore.tag = indexPath.section
                 return sectionHeader
             }
             return SectionHeader()

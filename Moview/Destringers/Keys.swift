@@ -28,4 +28,5 @@ struct ViewControllers {
     let movieDetail = "MovieDetailViewController"
     let signUp = "SignUpViewController"
     let signIn = "SignInViewController"
+    let movieList = "MovieListViewController"
 }

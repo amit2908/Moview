@@ -63,9 +63,20 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
     
 }
 extension MovieCollectionDataSource: UICollectionViewDelegateFlowLayout {
-////    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/5)
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let cell = collectionView.cellForItem(at: indexPath)
+        
+        guard let size: CGSize = cell?.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize) else
+        {
+            
+            return CGSize(width:  SCREEN_WIDTH/4, height: collectionView.frame.size.height - 20.0)
+            
+        }
+        return size;
+        
+//        return CGSize(width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/3)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 30

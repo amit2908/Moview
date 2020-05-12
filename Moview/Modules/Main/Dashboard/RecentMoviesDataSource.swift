@@ -33,6 +33,7 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
         nowPlayingCell.btn_favourite.tag = indexPath.row
         nowPlayingCell.btn_favourite.addTarget(self, action: #selector(setAsFavourite(sender:)), for: .touchUpInside);
         nowPlayingCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
+        
         return nowPlayingCell
     }
     
@@ -44,6 +45,7 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
         
         collectionCell?.imgV_poster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
         collectionCell?.lbl_name.text = presenter.nowPlayingMovies[indexPath.row].original_title
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -15,8 +15,7 @@ struct Navigation {
     func navigateToDashboard(navigationController: UINavigationController){
         let dashboardVC = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.dashboard)
         navigationController.viewControllers = [dashboardVC]
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.window?.makeKeyAndVisible()
+        self.makeWindowKeyAndVisible()
     }
     
     func navigateToSignUp(navigationController: UINavigationController){
@@ -27,6 +26,27 @@ struct Navigation {
     func navigateToSignIn(navigationController: UINavigationController){
         let signInVC = UIStoryboard(name: Storyboards.shared.signedOut, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.signIn)
         navigationController.viewControllers = [signInVC]
+        self.makeWindowKeyAndVisible()
+    }
+    
+    func navigateToMovieDetail(navigationController: UINavigationController, movieId: Int){
+        let movieDetail = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as! MovieDetailViewController
+        movieDetail.movieId = movieId
+        navigationController.viewControllers = [movieDetail]
+        self.makeWindowKeyAndVisible()
+    }
+    
+    func navigateToMovieList(navigationController: UINavigationController, movieTypes: MovieTypes, movies: [Movie]? = [Movie]()){
+        let movieListVC = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.movieList) as! MovieListViewController
+        movieListVC.typeOfMovies             = movieTypes
+        movieListVC.movies                   = movies ?? [Movie]()
+        navigationController.show(movieListVC, sender: nil)
+        self.makeWindowKeyAndVisible()
+    }
+    
+}
+extension Navigation {
+    private func makeWindowKeyAndVisible() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.window?.makeKeyAndVisible()
     }

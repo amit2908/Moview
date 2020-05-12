@@ -75,7 +75,15 @@ class DashboardViewController: UIViewController {
     @objc func loadData(){
         self.recentMoviesPresenter.loadNowPlayingMovies { [unowned self] (_) -> (Void) in
             DispatchQueue.main.async {
-                self.collection_recent.reloadData()
+                self.collection_recent.performBatchUpdates({
+                     self.collection_recent.reloadData()
+//                    UIView.animate(withDuration: 1.5) {
+//                        cell.frame.origin = CGPoint(x: cell.frame.origin.x + CGFloat(indexPath.item * 10) , y: cell.frame.origin.y)
+//                    }
+                }) { (success) in
+                    
+                }
+               
             }
         }
         self.otherMoviesPresenter.loadUpcomingMovies(page: 1) { (_) -> (Void) in
@@ -96,5 +104,32 @@ class DashboardViewController: UIViewController {
 //            }
 //        }
     }
+    
+    
 
+}
+//MARK: Actions
+extension DashboardViewController {
+    @objc func showMoreBtnClicked(button: UIButton) {
+        
+        var movies = [Movie]()
+        movies = self.otherMoviesPresenter.movieDataSources[button.tag].movies
+        
+        Navigation.shared.navigateToMovieList(navigationController: self.navigationController!, movieTypes: MovieTypes(rawValue: button.tag), movies: movies)
+    }
+
+}
+
+extension UICollectionViewCell {
+    func startWiggling() {
+        UIView.animate(withDuration: TimeInterval.infinity, delay: 0.0, options: .repeat, animations: {
+            self.transform = CGAffineTransform(rotationAngle: 3.14/6)
+        }, completion: { (_) in
+            
+        })
+    }
+    
+    func stopWiggling() {
+        self.layer.removeAllAnimations()
+    }
 }
