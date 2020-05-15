@@ -17,6 +17,7 @@ def myPods
   pod 'RxCocoa', '~> 5'
   pod 'ReachabilitySwift'
   pod 'Toast-Swift'
+  pod 'lottie-ios'
 end
 
 target 'Moview' do

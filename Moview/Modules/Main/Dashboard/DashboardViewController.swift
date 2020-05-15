@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import RAMAnimatedTabBarController
 
 class DashboardViewController: UIViewController {
     @IBOutlet weak var navBar: CustomNavigationBar!
     @IBOutlet weak var collection_recent: UICollectionView!
     @IBOutlet weak var pageControl_recent: UIPageControl!
     @IBOutlet weak var collection_other: UICollectionView!
+    @IBOutlet var barItem: RAMAnimatedTabBarItem!
     
     var otherMovieDataSource : OtherMoviesDataSource?
     var recentMovieDataSource : RecentMoviesDataSource?
@@ -64,11 +66,19 @@ class DashboardViewController: UIViewController {
     private func setupView(){
         self.navBar.title = "Home"
         self.navBar.titleLabel.layer.zPosition = 10.0
+        
         pageControl_recent.currentPage = 0
         pageControl_recent.numberOfPages = 5
         pageControl_recent.hidesForSinglePage = true
+        
         self.navBar.btn_right.setImage(UIImage(named: "refresh"), for: .normal)
         self.navBar.btn_right.addTarget(self, action: #selector(self.loadData), for: .touchUpInside)
+        
+        
+        self.navBar.btn_left.isHidden = false
+        self.navBar.btn_left.setImage(UIImage(named: "menu"), for: .normal)
+        self.navBar.btn_left.addTarget(self, action: #selector(showSidebar), for: .touchDown)
+        
     }
     
     
@@ -105,6 +115,14 @@ class DashboardViewController: UIViewController {
 //        }
     }
     
+    
+    //MARK: NAVBAR ACTIONS
+    
+    @objc func showSidebar() {
+        if let container = self.so_containerViewController {
+            container.isSideViewControllerPresented = true
+        }
+    }
     
 
 }

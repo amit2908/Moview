@@ -175,6 +175,21 @@
             </objects>
             <point key="canvasLocation" x="1071.2" y="133.5832083958021"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="SrK-vZ-IQE">
+            <objects>
+                <viewController id="JVT-cw-PNv" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BrG-io-5X2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="rGc-8W-wNo"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wxK-L8-OGg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-846" y="91"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="jxM-fh-oRv">
             <objects>
@@ -202,7 +217,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Rk7-U3-nvl">
-                                <rect key="frame" x="28" y="137.5" width="319" height="392"/>
+                                <rect key="frame" x="28" y="149" width="319" height="369"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I8V-M7-vVa" customClass="JVFloatLabeledTextField">
                                         <rect key="frame" x="0.0" y="0.0" width="319" height="44"/>
@@ -218,17 +233,17 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDg-ym-Ovk" customClass="JVFloatLabeledTextField">
-                                        <rect key="frame" x="0.0" y="138" width="319" height="45.5"/>
+                                        <rect key="frame" x="0.0" y="138" width="319" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email/Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PdQ-Hh-pe3" customClass="JVFloatLabeledTextField">
-                                        <rect key="frame" x="0.0" y="208.5" width="319" height="45.5"/>
+                                        <rect key="frame" x="0.0" y="197" width="319" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRp-Cs-PsJ">
-                                        <rect key="frame" x="0.0" y="279" width="319" height="44"/>
+                                        <rect key="frame" x="0.0" y="256" width="319" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.2117429183" blue="0.19800184630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="hO0-rB-BgC"/>
@@ -241,7 +256,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mff-eP-04b" userLabel="Signup">
-                                        <rect key="frame" x="0.0" y="348" width="319" height="44"/>
+                                        <rect key="frame" x="0.0" y="325" width="319" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.2117429183" blue="0.19800184630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="ufi-yi-lGE"/>

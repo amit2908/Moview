@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (5.0.0-beta.4)
   - JVFloatLabeledTextField (1.2.1)
+  - lottie-ios (3.1.8)
   - RAMAnimatedTabBarController (4.0.2)
   - ReachabilitySwift (4.3.1)
   - RxCocoa (5.0.0):
@@ -17,6 +18,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 5.0.0-beta.4)
   - JVFloatLabeledTextField
+  - lottie-ios
   - RAMAnimatedTabBarController (= 4.0.2)
   - ReachabilitySwift
   - RxCocoa (~> 5)
@@ -38,6 +40,8 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftyJSON
     - Toast-Swift
+  trunk:
+    - lottie-ios
 
 EXTERNAL SOURCES:
   SidebarOverlay:
@@ -52,6 +56,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 6458d95477bc40adf10129f22c67cfb014162dc8
   JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   RAMAnimatedTabBarController: 5c91e16a9c4be56a7e022182b64b192bc6865f20
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
@@ -62,6 +67,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: 5be8f16ac8e024df62a7fb2c26c1d1950cc28b01
+PODFILE CHECKSUM: ce7c94bfb34ea133733165cf21bae9e59bb782ad
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

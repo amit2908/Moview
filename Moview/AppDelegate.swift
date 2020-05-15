@@ -26,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.observeInternetConnection()
         
+        let animatedLaunchVC = AnimatedLaunchScreenViewController(nibName: nil, bundle: nil)
+        
+        let navigationController = UINavigationController(rootViewController: animatedLaunchVC)
+        
+        self.window?.rootViewController = navigationController
+        
         return true
     }
     

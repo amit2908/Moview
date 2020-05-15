@@ -24,9 +24,12 @@ struct Storyboards {
 
 struct ViewControllers {
     static let shared = ViewControllers()
-    let dashboard = "DashboardViewController"
+    
+    let dashboard   = "DashboardViewController"
     let movieDetail = "MovieDetailViewController"
-    let signUp = "SignUpViewController"
-    let signIn = "SignInViewController"
-    let movieList = "MovieListViewController"
+    let signUp      = "SignUpViewController"
+    let signIn      = "SignInViewController"
+    let movieList   = "MovieListViewController"
+    let sidebar     = "SidebarViewController"
+    let favourites  = "FavouriteMoviesViewController"
 }

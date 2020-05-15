@@ -11,6 +11,11 @@ import UIKit
 struct Navigation {
     static let shared = Navigation()
     
+    func navigateToMainContainer(navigationController: UINavigationController){
+        let mainContainer = MainContainerViewController(nibName: nil, bundle: nil)
+        navigationController.viewControllers = [mainContainer]
+        self.makeWindowKeyAndVisible()
+    }
     
     func navigateToDashboard(navigationController: UINavigationController){
         let dashboardVC = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.dashboard)

@@ -27,6 +27,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var lbl_e: UILabel!
     @IBOutlet weak var lbl_w: UILabel!
     
+    var liquidView : FluidAnimationView!
+    
     var signInPresenter = SignInPresenter()
     let disposeBag = DisposeBag()
     
@@ -39,6 +41,8 @@ class SignInViewController: UIViewController {
         _ = signInPresenter.isValid.subscribe(onNext: { [unowned self] (isValid) in
             self.btn_signin.alpha = isValid ? 1.0 : 0.4;
         }).disposed(by: disposeBag)
+        
+        self.addLiquidView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,9 +63,7 @@ class SignInViewController: UIViewController {
 //            self.showProgress(status: "Please wait...")
             
             if (token == nil) {
-                Navigation.shared.navigateToDashboard(navigationController: self.navigationController!)
-            } else {
-                
+                self.liquidView.fillFull()
             }
             
            /* Service.shared.createSession(requestToken: token, username: tf_username.text!, password: tf_password.text!, completion: {
@@ -119,5 +121,29 @@ class SignInViewController: UIViewController {
         
     }
     
+
+    
+    func addLiquidView(){
+        liquidView = FluidAnimationView(animationType: .glassOfWater, frame: UIDevice.current.orientation.isPortrait ? CGRect(x: 0, y: self.view.frame.size.height * 0.7 , width: self.view.frame.size.width, height: self.view.frame.size.height * 0.3)
+            : CGRect(x: 0, y: self.view.frame.size.width * 0.7 , width: self.view.frame.size.height, height: self.view.frame.size.width * 0.3)
+        )
+        liquidView.backgroundColor = .clear
+        liquidView.delegate = self
+        
+        self.view.addSubview(liquidView)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+         super.viewWillTransition(to: size, with: coordinator)
+         liquidView?.removeFromSuperview()
+         self.addLiquidView()
+    }
+    
+    
 }
 
+extension SignInViewController: FluidAnimationDelegate {
+    func didFinishFilling() {
+        Navigation.shared.navigateToMainContainer(navigationController: self.navigationController!)
+    }
+}
