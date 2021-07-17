@@ -11,52 +11,41 @@ import CoreData
 
 class MovieListDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    var movies : [Movie]
+    let movieListViewModel : MovieListViewModel
     
-    var sections : [String]
+    final weak var vc: UIViewController?
     
-    init(movies: [Movie], sections: [String]) {
-        self.movies = movies
-        self.sections = sections
+    init(movieListViewModel: MovieListViewModel, vc: MovieListViewController) {
+        self.movieListViewModel = movieListViewModel
+        self.vc = vc
         super.init()
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return movieListViewModel.movies.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionHeader", for: indexPath) as? SectionHeader{
-            sectionHeader.sectionHeaderLabel.text = self.sections[indexPath.section]
-            return sectionHeader
-        }
-        return SectionHeader()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: SCREEN_WIDTH, height: 60)
-    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "otherCellIdentifier", for: indexPath)
-        guard let otherMovieCell = cell as? MovieCollectionViewCell else {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieListCellIdentifier", for: indexPath)
+        guard let otherMovieCell = cell as? MovieListCollectionViewCell else {
             let newCell = MovieCollectionViewCell.init()
             return newCell
         }
-        otherMovieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
+        
         return otherMovieCell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        let collectionCell = cell as? MovieCollectionViewCell
-        let posterPath = movies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w500/" + movies[indexPath.row].poster_path! : ""
+        let collectionCell = cell as? MovieListCollectionViewCell
+        let posterPath = movieListViewModel.movies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w200/" + movieListViewModel.movies[indexPath.row].poster_path! : ""
         collectionCell?.imgV_movie.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
-        collectionCell?.lbl_title.text = movies[indexPath.row].original_title
+        collectionCell?.lbl_title.text = movieListViewModel.movies[indexPath.row].original_title
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -66,19 +55,32 @@ class MovieListDataSource: NSObject, UICollectionViewDataSource, UICollectionVie
         //        self.navigationController?.pushViewController(movieDetailVC!, animated: true)
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        let movie = movieListViewModel.movies.remove(at: sourceIndexPath.item)
+        movieListViewModel.movies.insert(movie, at: destinationIndexPath.item)
+    }
+    
 }
 extension MovieListDataSource: UICollectionViewDelegateFlowLayout {
+    /*
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: SCREEN_WIDTH/4, height: SCREEN_WIDTH/5)
+        return CGSize(width: SCREEN_WIDTH * 0.6, height: SCREEN_HEIGHT/5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 30
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
-    }
-    
+    }*/
+
+
 }
 

@@ -20,20 +20,72 @@ struct MovieTypes: OptionSet {
     static let ALL              = [MovieTypes.TOP_RATED, .LATEST, .FAVOURITES, .ACTION, .ROMANTIC]
 }
 
-class MovieListViewController: UIViewController {
-
-    final var dataSource : MovieListDataSource?
-    final var typeOfMovies : MovieTypes?
+final class MovieListViewController: UICollectionViewController {
+    
+    
+    var dataSource : MovieListDataSource?
+    var typeOfMovies : MovieTypes?
+    var movies = [Movie]()
+    var movieListViewModel : MovieListViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        movieListViewModel = MovieListViewModel(movies: movies)
+        
+        self.dataSource = MovieListDataSource(movieListViewModel: movieListViewModel, vc: self)
+        
+        self.collectionView.dataSource = dataSource
+        self.collectionView.delegate   = dataSource
+        
     }
+    
     
     private func fetchMovies(of types: MovieTypes) {
         
+    }
+    
+    @objc func refresh() {
         
     }
     
+    var movingIndexPath : IndexPath!
+        
+        func pickedUpCell () -> UICollectionViewCell? {
+            let pickedUpCell = self.collectionView.cellForItem(at: movingIndexPath)
+            return pickedUpCell
+        }
+        
+        func longPressed(gesture: UILongPressGestureRecognizer) {
+            let location = gesture.location(in: self.collectionView)
+            movingIndexPath = self.collectionView.indexPathForItem(at: location)
+            
+          switch(gesture.state) {
+          case .began:
+            guard let indexPath = movingIndexPath else { break }
+            setEditing(true, animated: true)
+            self.collectionView.beginInteractiveMovementForItem(at: indexPath)
+            pickedUpCell()?.stopWiggling()
+    //        animatePickingUpCell(pickedUpCell())
+          case .changed:
+            self.collectionView.updateInteractiveMovementTargetPosition(location)
+          case .ended:
+            self.collectionView.endInteractiveMovement()
+    //        animatePuttingDownCell(pickedUpCell())
+            movingIndexPath = nil
+          default:
+            self.collectionView.cancelInteractiveMovement()
+    //        animatePuttingDownCell(pickedUpCell())
+            movingIndexPath = nil
+          }
+        }
 
+        override func setEditing(_ editing: Bool, animated: Bool) {
+          super.setEditing(editing, animated: true)
+          startWigglingAllVisibleCells()
+        }
+        
+        func startWigglingAllVisibleCells(){
+           _ = self.collectionView.visibleCells.map{ $0.startWiggling() }
+        }
 }

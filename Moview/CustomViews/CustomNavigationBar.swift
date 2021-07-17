@@ -9,19 +9,19 @@
 import UIKit
 
 /// This class can provide a beautiful customized navigation bar.
-class CustomNavigationBar: UIView {
+class CustomNavigationBar: UINavigationBar {
 
     private var position : UIBarPosition = .top
     
     @IBOutlet open var contentView : UIView!
-    @IBOutlet weak var topItem: UIView!
+    @IBOutlet weak var top_Item: UIView!
     @IBOutlet weak var leftItem: UIView!
     @IBOutlet weak var rightItem: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var btn_left: UIButton!
     @IBOutlet weak var btn_right: UIButton!
     
-    open var barPosition: UIBarPosition {
+    override open var barPosition: UIBarPosition {
         get {
             return self.position
         }
@@ -39,6 +39,7 @@ class CustomNavigationBar: UIView {
     open var hasGradient: Bool = true {
         didSet {
             if hasGradient == true {
+                self.removeGradient()
                 self.setBackground()
             }else {
                 self.removeGradient()
@@ -46,30 +47,25 @@ class CustomNavigationBar: UIView {
         }
     }
     
-    weak var delegate : UINavigationBarDelegate?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func awakeFromNib() {
         setupView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setupView()
+    override func layoutSublayers(of layer: CALayer) {
+        super.layoutSublayers(of: layer)
+        
+        let _ = self.layer.sublayers?.map{ $0.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: self.bounds.size.height) }
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setBackground()
-        let gradientLayer = self.layer.sublayers?[0]
-        gradientLayer?.frame = self.bounds
-        self.titleLabel.font = UIFont.appFontBold25
-    }
+
     
     private func setupView(){
         Bundle.main.loadNibNamed("CustomNavigationBar", owner: self, options: nil)
         contentView.tintColor = UIColor.blue
         contentView.fixInView(self)
+        setBackground()
+        
+        self.titleLabel.font = UIFont.appFontBold25
     }
     
     func setBackground(){
