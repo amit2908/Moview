@@ -37,7 +37,6 @@ final class MovieListViewController: UICollectionViewController {
         
         self.collectionView.dataSource = dataSource
         self.collectionView.delegate   = dataSource
-        
     }
     
     

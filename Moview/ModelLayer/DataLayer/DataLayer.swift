@@ -9,7 +9,15 @@
 import Foundation
 import CoreData
 
-class DataLayer: NSObject {
+protocol IDataLayer {
+    static var persistentContainer: NSPersistentContainer { get }
+    static var viewContext: NSManagedObjectContext { get }
+    static var backgroundContext: NSManagedObjectContext { get }
+    static func saveContext(context: NSManagedObjectContext)
+    static func clearOldResults(entityName: String)
+}
+
+class DataLayer: NSObject, IDataLayer {
     static var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation
@@ -96,8 +104,6 @@ extension DataLayer {
     
 }
 
-typealias fetchMovieHandler = ([Movie]) -> (Void)
-typealias fetchMovieDetailHandler = (Movie?) -> (Void)
 
 extension DataLayer {
     

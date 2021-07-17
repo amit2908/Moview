@@ -65,7 +65,7 @@ class MovieDetailViewController: UIViewController {
     
     func loadData(){
         self.presenter?.loadMovieDetails(movieId: self.movieId!) { [unowned self] (movie) -> (Void) in
-            print(movie)
+            
             DispatchQueue.main.async {
                 self.navBar.title = self.presenter?.title ?? ""
                 if let posterImgPath = self.presenter?.posterImagePath {

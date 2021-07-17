@@ -49,6 +49,13 @@ struct Navigation {
         self.makeWindowKeyAndVisible()
     }
     
+    func navigateToFavouritesList(navigationController: UINavigationController, movieTypes: MovieTypes, movies: [Movie]? = [Movie]()){
+        let movieListVC = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.favourites) as! FavouriteMoviesViewController
+//        movieListVC.movies                   = movies ?? [Movie]()
+        navigationController.show(movieListVC, sender: nil)
+//        self.makeWindowKeyAndVisible()
+    }
+    
 }
 extension Navigation {
     private func makeWindowKeyAndVisible() {

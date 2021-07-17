@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -361,7 +361,7 @@
         <scene sceneID="05n-Hp-V2P">
             <objects>
                 <collectionViewController storyboardIdentifier="MovieListViewController" id="dq4-us-72l" customClass="MovieListViewController" customModule="Moview" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2If-qf-uJg">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" indicatorStyle="black" dataMode="prototypes" id="2If-qf-uJg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -447,7 +447,19 @@
                     <view key="view" contentMode="scaleToFill" id="y5Y-63-EId">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G3u-WP-mBC">
+                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3RZ-bN-cNm" firstAttribute="trailing" secondItem="G3u-WP-mBC" secondAttribute="trailing" id="Si6-Aw-lsV"/>
+                            <constraint firstItem="3RZ-bN-cNm" firstAttribute="bottom" secondItem="G3u-WP-mBC" secondAttribute="bottom" id="k8P-3z-QwU"/>
+                            <constraint firstItem="G3u-WP-mBC" firstAttribute="leading" secondItem="3RZ-bN-cNm" secondAttribute="leading" id="nqA-oK-uT8"/>
+                            <constraint firstItem="G3u-WP-mBC" firstAttribute="top" secondItem="3RZ-bN-cNm" secondAttribute="top" id="wBn-de-eLS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="3RZ-bN-cNm"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Lmd-Mk-9o2" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
@@ -458,6 +470,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="barItem" destination="Lmd-Mk-9o2" id="Kjw-1Q-TM3"/>
+                        <outlet property="tableView" destination="G3u-WP-mBC" id="xjL-aR-VjI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Res-RR-lTr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

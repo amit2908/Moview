@@ -9,6 +9,8 @@
 import Foundation
 
 typealias FetchMoviesFromSourceCompletionHandler = (Source)->(Void)
+typealias FetchMoviesFromNetworkCompletionHandler = (Data)->(Void)
+typealias FetchMoviesFromLocalDBCompletionHandler = ([Movie])->(Void)
 
 class RecentMoviesCollectionPresenter {
     var nowPlayingMovies = [Movie]()

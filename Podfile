@@ -15,7 +15,6 @@ def myPods
   pod 'SidebarOverlay', :git => 'https://github.com/milosuzice/SidebarOverlay.git', :tag => '4.3.1'
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
-  pod 'ReachabilitySwift'
   pod 'Toast-Swift'
   pod 'lottie-ios'
 end
