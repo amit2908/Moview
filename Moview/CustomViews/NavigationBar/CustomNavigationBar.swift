@@ -30,11 +30,8 @@ class CustomNavigationBar: UINavigationBar {
         }
     }
     
-    open var title: String? {
-        didSet{
-            self.titleLabel.text = title
-        }
-    }
+    @IBInspectable
+    open var title: String?
     
     open var hasGradient: Bool = true {
         didSet {
@@ -50,6 +47,7 @@ class CustomNavigationBar: UINavigationBar {
     
     override func awakeFromNib() {
         setupView()
+        self.titleLabel.text = title
     }
     
     override func layoutSublayers(of layer: CALayer) {

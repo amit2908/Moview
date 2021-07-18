@@ -33,7 +33,6 @@ class FavouriteMoviesViewController: UIViewController {
             
             self?.tableView.dataSource = self?.delegate
             self?.tableView.delegate = self?.delegate
-//            self?.tableView.reloadData()
         })
     }
 

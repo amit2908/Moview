@@ -44,7 +44,7 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
         movieCell.lbl_title.text = self.movies[indexPath.row].original_title
         movieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
         
-        let posterPath = movies[indexPath.row].poster_path != nil ? K.Server.imageBaseURL + "/w154/" + movies[indexPath.row].poster_path! : ""
+        let posterPath = movies[indexPath.row].poster_path != nil ? K.Server.imageBaseURL + "/\(ImageSize.small)/" + movies[indexPath.row].poster_path! : ""
         movieCell.imgV_movie.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
         
         return movieCell

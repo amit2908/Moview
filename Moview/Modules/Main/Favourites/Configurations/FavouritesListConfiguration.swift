@@ -51,9 +51,11 @@ class FavouritesListCellConfiguration: ITableCellConfiguration {
     init(data: Any?){
         self.data = data
         self.cellIdentifier = FavouriteMovieTableCell.reuseID
-        self.cellHeight = UITableView.automaticDimension
+        self.cellHeight = 100.0
         self.cellDidSelectCallback = { indexPath in
-            
+            if let movie = data as? Movie {
+                Navigation.shared.navigateToMovieDetail(movieId: Int(movie.id))
+            }
         }
     }
     

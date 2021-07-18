@@ -84,6 +84,7 @@
 		C898F775238DA9DB003004B8 /* SpokenLanguage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C898F774238DA9DB003004B8 /* SpokenLanguage+CoreDataProperties.swift */; };
 		C89EE2E622F67FFF00CBF839 /* MovieEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89EE2E522F67FFF00CBF839 /* MovieEndpoint.swift */; };
 		C89EE2E822F6802500CBF839 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89EE2E722F6802500CBF839 /* APIConfiguration.swift */; };
+		C8AC4E5626A3499100D168C9 /* UIViewController+Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC4E5526A3499100D168C9 /* UIViewController+Top.swift */; };
 		C8B1C847243219E500198FB7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C8B1C846243219E500198FB7 /* Settings.bundle */; };
 		C8B1C84A243240F800198FB7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8B1C849243240F800198FB7 /* HealthKit.framework */; };
 		C8B2140726A2B56600162C67 /* FavouriteMovieTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B2140526A2B56600162C67 /* FavouriteMovieTableCell.swift */; };
@@ -193,6 +194,7 @@
 		C898F774238DA9DB003004B8 /* SpokenLanguage+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpokenLanguage+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C89EE2E522F67FFF00CBF839 /* MovieEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndpoint.swift; sourceTree = "<group>"; };
 		C89EE2E722F6802500CBF839 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		C8AC4E5526A3499100D168C9 /* UIViewController+Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Top.swift"; sourceTree = "<group>"; };
 		C8B1C846243219E500198FB7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C8B1C848243240F700198FB7 /* Moview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moview.entitlements; sourceTree = "<group>"; };
 		C8B1C849243240F800198FB7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -290,6 +292,7 @@
 				930E8306226DCD97000C40E2 /* String+Subscripts.swift */,
 				930E8308226DCE35000C40E2 /* UIButton+Customization.swift */,
 				C8B2140A26A2B61400162C67 /* UIView+Custom.swift */,
+				C8AC4E5526A3499100D168C9 /* UIViewController+Top.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -410,9 +413,8 @@
 		9346E9232270799100BE2B08 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				C8AC4E5726A34DA100D168C9 /* NavigationBar */,
 				93F79EAB229EB65A00999BB7 /* CollectionViewCell */,
-				9346E924227079E200BE2B08 /* CustomNavigationBar.swift */,
-				9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */,
 				C8D85CCF246AD56900ABE380 /* FluidAnimationView.swift */,
 			);
 			path = CustomViews;
@@ -586,6 +588,15 @@
 				93E207B12298026100261694 /* APIClient.swift */,
 			);
 			path = UsingAlamofire;
+			sourceTree = "<group>";
+		};
+		C8AC4E5726A34DA100D168C9 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				9346E924227079E200BE2B08 /* CustomNavigationBar.swift */,
+				9346E92622707A0800BE2B08 /* CustomNavigationBar.xib */,
+			);
+			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 		C8B2140426A2B54300162C67 /* TableCell */ = {
@@ -820,6 +831,7 @@
 				C87B25BA231ED093001A224C /* RecentMoviesCollectionPresenter.swift in Sources */,
 				C87B25BE231ED19C001A224C /* ModelLayer.swift in Sources */,
 				930E8303226DCCCB000C40E2 /* UIFont+AppFont.swift in Sources */,
+				C8AC4E5626A3499100D168C9 /* UIViewController+Top.swift in Sources */,
 				C825196426A2B0DC001B29A0 /* FavouritesListConfiguration.swift in Sources */,
 				9346E925227079E200BE2B08 /* CustomNavigationBar.swift in Sources */,
 				C8511D46246EAC5F007C4A4E /* MainContainerViewController.swift in Sources */,

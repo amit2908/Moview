@@ -33,14 +33,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBQ-qL-XWi" customClass="CustomNavigationBar" customModule="Moview" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="LRJ-hh-f6g"/>
+                                    <constraint firstAttribute="height" constant="50" id="LRJ-hh-f6g"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Home"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVc-7E-BQN">
-                                <rect key="frame" x="0.0" y="120" width="375" height="609"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="635"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="la3-Iu-OJj">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
@@ -121,7 +124,7 @@
                                         <color key="currentPageIndicatorTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </pageControl>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bnV-7m-3ga" userLabel="OtherCollection">
-                                        <rect key="frame" x="0.0" y="321.66666666666663" width="375" height="298.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="321.66666666666663" width="375" height="324.66666666666663"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cTM-HV-Pkm">
                                             <size key="itemSize" width="375" height="134"/>
@@ -272,12 +275,12 @@
                             <constraint firstItem="XVc-7E-BQN" firstAttribute="leading" secondItem="KiZ-zP-5b0" secondAttribute="leading" id="VoK-nI-qVM"/>
                             <constraint firstItem="KiZ-zP-5b0" firstAttribute="bottom" secondItem="XVc-7E-BQN" secondAttribute="bottom" id="gkz-cx-qZe"/>
                             <constraint firstItem="mBQ-qL-XWi" firstAttribute="trailing" secondItem="KiZ-zP-5b0" secondAttribute="trailing" id="t2F-8O-6p9"/>
-                            <constraint firstItem="mBQ-qL-XWi" firstAttribute="top" secondItem="yyh-dz-t9R" secondAttribute="top" id="y2J-bH-Bjn"/>
+                            <constraint firstItem="mBQ-qL-XWi" firstAttribute="top" secondItem="KiZ-zP-5b0" secondAttribute="top" id="y2J-bH-Bjn"/>
                             <constraint firstItem="KiZ-zP-5b0" firstAttribute="trailing" secondItem="XVc-7E-BQN" secondAttribute="trailing" id="ywD-fI-hhj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KiZ-zP-5b0"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="qPD-Qj-oBR" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" selectedImage="house.fill" id="qPD-Qj-oBR" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <connections>
                             <outlet property="animation" destination="Mbe-UN-JBF" id="6gD-WN-GZF"/>
                         </connections>
@@ -449,16 +452,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G3u-WP-mBC">
-                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
+                                <rect key="frame" x="0.0" y="94" width="375" height="635"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVr-68-4UL" customClass="CustomNavigationBar" customModule="Moview" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="80K-QO-TdB"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Favourites"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="gVr-68-4UL" firstAttribute="leading" secondItem="3RZ-bN-cNm" secondAttribute="leading" id="1Ua-zt-akg"/>
+                            <constraint firstItem="G3u-WP-mBC" firstAttribute="top" secondItem="gVr-68-4UL" secondAttribute="bottom" id="Pf3-dA-v9x"/>
                             <constraint firstItem="3RZ-bN-cNm" firstAttribute="trailing" secondItem="G3u-WP-mBC" secondAttribute="trailing" id="Si6-Aw-lsV"/>
+                            <constraint firstItem="gVr-68-4UL" firstAttribute="top" secondItem="3RZ-bN-cNm" secondAttribute="top" id="Z7v-qP-f7E"/>
                             <constraint firstItem="3RZ-bN-cNm" firstAttribute="bottom" secondItem="G3u-WP-mBC" secondAttribute="bottom" id="k8P-3z-QwU"/>
                             <constraint firstItem="G3u-WP-mBC" firstAttribute="leading" secondItem="3RZ-bN-cNm" secondAttribute="leading" id="nqA-oK-uT8"/>
-                            <constraint firstItem="G3u-WP-mBC" firstAttribute="top" secondItem="3RZ-bN-cNm" secondAttribute="top" id="wBn-de-eLS"/>
+                            <constraint firstItem="gVr-68-4UL" firstAttribute="trailing" secondItem="3RZ-bN-cNm" secondAttribute="trailing" id="s2p-eG-Ecm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3RZ-bN-cNm"/>
                     </view>
@@ -476,10 +492,11 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Res-RR-lTr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <customObject id="5lA-F6-aPY" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController"/>
             </objects>
-            <point key="canvasLocation" x="1731" y="156"/>
+            <point key="canvasLocation" x="1730.4000000000001" y="155.9113300492611"/>
         </scene>
     </scenes>
     <resources>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="picture" width="64" height="64"/>
     </resources>
 </document>

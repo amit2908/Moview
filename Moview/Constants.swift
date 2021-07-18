@@ -59,3 +59,13 @@ enum HTTPHeaderField: String {
 enum ContentType: String {
     case json = "application/json"
 }
+
+struct ImageSize {
+    static let verySmall = "w92"
+    static let small = "w154"
+    static let medium = "w185"
+    static let large = "w342"
+    static let xLarge = "w500"
+    static let xxLarge = "w780"
+    static let xxxLarge = "original"
+}

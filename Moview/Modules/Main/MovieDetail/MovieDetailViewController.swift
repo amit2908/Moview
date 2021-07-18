@@ -44,16 +44,10 @@ class MovieDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        print("MOVIE ID: \(movieId!)")
 //        self.setupView()
 //        self.fetchMovieDetails()
         self.loadData()
         self.customizeNavigationBar()
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
     }
     
     func customizeNavigationBar() {
@@ -69,7 +63,7 @@ class MovieDetailViewController: UIViewController {
             DispatchQueue.main.async {
                 self.navBar.title = self.presenter?.title ?? ""
                 if let posterImgPath = self.presenter?.posterImagePath {
-                    let posterPath =  K.Server.imageBaseURL + "/w342/" + posterImgPath
+                    let posterPath =  K.Server.imageBaseURL + "/\(ImageSize.xLarge)/" + posterImgPath
                     self.imgV_moviePoster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
                 }
             }

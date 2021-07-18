@@ -9,10 +9,22 @@
 import UIKit
 
 class FavouriteMovieTableCell: UITableViewCell, GenericTableCell {
+    @IBOutlet var imgV_poster: UIImageView!
+    @IBOutlet var lblTitle: UILabel!
+    @IBOutlet var lblSubTitle: UILabel!
+    @IBOutlet var lblDescription: UILabel!
     
     func configure(withData data: Any?) {
         if let movie = data as? Movie {
-            self.textLabel?.text = movie.original_title
+            self.lblTitle?.text = movie.original_title
+            self.lblSubTitle?.text = movie.status
+            self.imgV_poster.image = UIImage(contentsOfFile: movie.poster_path ?? "")
+            self.lblDescription.text = movie.overview
+            
+            if var posterPath = movie.poster_path  {
+                posterPath = "https://image.tmdb.org/t/p/w92" + posterPath
+                imgV_poster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+            }
         }
     }
     
