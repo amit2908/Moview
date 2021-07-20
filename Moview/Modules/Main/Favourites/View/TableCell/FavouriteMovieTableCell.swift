@@ -18,12 +18,11 @@ class FavouriteMovieTableCell: UITableViewCell, GenericTableCell {
         if let movie = data as? Movie {
             self.lblTitle?.text = movie.original_title
             self.lblSubTitle?.text = movie.status
-            self.imgV_poster.image = UIImage(contentsOfFile: movie.poster_path ?? "")
             self.lblDescription.text = movie.overview
             
             if var posterPath = movie.poster_path  {
                 posterPath = "https://image.tmdb.org/t/p/w92" + posterPath
-                imgV_poster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+                imgV_poster.sd_setImage(with: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png"))
             }
         }
     }

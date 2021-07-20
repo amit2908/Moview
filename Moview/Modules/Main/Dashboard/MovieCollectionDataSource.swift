@@ -45,7 +45,7 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
         movieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
         
         let posterPath = movies[indexPath.row].poster_path != nil ? K.Server.imageBaseURL + "/\(ImageSize.small)/" + movies[indexPath.row].poster_path! : ""
-        movieCell.imgV_movie.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+        movieCell.imgV_movie.sd_setImage(with: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), completed: nil)
         
         return movieCell
     }
@@ -58,7 +58,7 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
         let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
         movieDetailVC?.movieId = Int(self.movies[indexPath.row].id)
-//        self.vc.navigationController?.pushViewController(movieDetailVC!, animated: true)
+        UIApplication.currentViewController()?.navigationController?.pushViewController(movieDetailVC!, animated: true)
     }
     
 }

@@ -17,6 +17,7 @@ def myPods
   pod 'RxCocoa', '~> 5'
   pod 'Toast-Swift'
   pod 'lottie-ios'
+  pod 'SDWebImage'
 end
 
 target 'Moview' do
