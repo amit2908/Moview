@@ -11,7 +11,28 @@ import Foundation
 typealias FetchDataFromNetworkSuccessHandler = (Data)->(Void)
 typealias FetchDataFromNetworkFailureHandler = (Error)->(Void)
 
-class NetworkLayer {
+
+protocol INetworkLayer {
+    func fetchNowPlayingDataFromServer(successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+    failureHandler: @escaping FetchDataFromNetworkFailureHandler)
+    
+    
+    func fetchUpcomingMoviesFromServer(page: Int,
+    successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+    failureHandler: @escaping FetchDataFromNetworkFailureHandler)
+    
+    
+    func fetchTopRatedMoviesFromServer(page: Int,
+    successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+    failureHandler: @escaping FetchDataFromNetworkFailureHandler)
+    
+    
+    func fetchMovieDetailsFromServer(movieId: Int,
+    successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+    failureHandler: @escaping FetchDataFromNetworkFailureHandler)
+}
+
+class NetworkLayer: INetworkLayer {
     
     func fetchNowPlayingDataFromServer(successHandler: @escaping FetchDataFromNetworkSuccessHandler,
                                        failureHandler: @escaping FetchDataFromNetworkFailureHandler) {

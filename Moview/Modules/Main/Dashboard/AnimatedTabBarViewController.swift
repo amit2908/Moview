@@ -1,5 +1,5 @@
 //
-//  FavouriteMoviesViewController.swift
+//  AnimatedTabBarViewController.swift
 //  Moview
 //
 //  Created by Shubham Ojha on 15/05/20.
@@ -7,15 +7,13 @@
 //
 
 import UIKit
-import RAMAnimatedTabBarController
 
-class FavouriteMoviesViewController: UIViewController {
-    @IBOutlet var barItem: RAMAnimatedTabBarItem!
-    
+class AnimatedTabBarViewController: UITabBarController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "My Favourites"
+        // Do any additional setup after loading the view.
     }
     
 

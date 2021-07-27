@@ -8,7 +8,12 @@
 
 import UIKit
 
-typealias FetchMovieDetailFromSourceCompletionHandler = (Source)->(Void)
+typealias FetchMovieDetailFromSourceCompletionHandler = (Source, Movie?)->(Void)
+
+protocol IMovieDetailViewPresenter {
+    func setFavourite(movieId: Int, isFavourite: Bool)
+    func loadMovieDetails(movieId: Int, handler: @escaping FetchMovieDetailFromSourceCompletionHandler)
+}
 
 class MovieDetailViewPresenter {
     
@@ -24,22 +29,37 @@ class MovieDetailViewPresenter {
         self.title       = ""
     }
     
-    func loadMovieDetails(movieId: Int, handler: @escaping FetchMovieDetailFromSourceCompletionHandler) {
-        modelLayer.loadMovieDetails(from: .local, movieId: movieId) { (movie, source, error) -> (Void) in
-            if (error == nil) {
-                self.posterImagePath = movie?.poster_path ?? ""
-                self.title  = movie?.title ?? ""
-                handler(.local)
+    
+}
+
+extension MovieDetailViewPresenter: IMovieDetailViewPresenter{
+    func setFavourite(movieId: Int, isFavourite: Bool) {
+        self.modelLayer.loadMovieDetails(from: .local, movieId: movieId) { (movie, source, error) -> (Void) in
+            if let mov = movie {
+                mov.isFavourite = isFavourite
+                try? mov.managedObjectContext?.save()
             }
         }
-        
-//        modelLayer.loadMovieDetails(from: .network, movieId: movieId) { (movie, source, error) -> (Void) in
-//            if (error == nil) {
-//                self.posterImage = UIImage(contentsOfFile: movie?.poster_path ?? "") ?? UIImage()
-//                self.title  = movie?.title ?? ""
-//                handler(.network)
-//            }
-//        }
-        
     }
+    
+    
+    
+    func loadMovieDetails(movieId: Int, handler: @escaping FetchMovieDetailFromSourceCompletionHandler) {
+            modelLayer.loadMovieDetails(from: .local, movieId: movieId) { (movie, source, error) -> (Void) in
+                if (error == nil) {
+                    self.posterImagePath = movie?.poster_path ?? ""
+                    self.title  = movie?.title ?? ""
+                    handler(.local, movie)
+                }
+            }
+            
+    //        modelLayer.loadMovieDetails(from: .network, movieId: movieId) { (movie, source, error) -> (Void) in
+    //            if (error == nil) {
+    //                self.posterImage = UIImage(contentsOfFile: movie?.poster_path ?? "") ?? UIImage()
+    //                self.title  = movie?.title ?? ""
+    //                handler(.network)
+    //            }
+    //        }
+            
+        }
 }

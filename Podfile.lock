@@ -10,6 +10,9 @@ PODS:
   - RxRelay (5.0.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.0)
+  - SDWebImage (5.8.3):
+    - SDWebImage/Core (= 5.8.3)
+  - SDWebImage/Core (5.8.3)
   - SidebarOverlay (4.3.1)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.2.0)
@@ -23,6 +26,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
+  - SDWebImage
   - SidebarOverlay (from `https://github.com/milosuzice/SidebarOverlay.git`, tag `4.3.1`)
   - SVProgressHUD
   - SwiftyJSON (= 4.2)
@@ -42,6 +46,7 @@ SPEC REPOS:
     - Toast-Swift
   trunk:
     - lottie-ios
+    - SDWebImage
 
 EXTERNAL SOURCES:
   SidebarOverlay:
@@ -62,11 +67,12 @@ SPEC CHECKSUMS:
   RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   SidebarOverlay: 3fe30428c903e9fdaeb78237b86ff0c2a242f4dd
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: ce7c94bfb34ea133733165cf21bae9e59bb782ad
+PODFILE CHECKSUM: bfebcd2f3559f5914072af5855fdb3b226492b4b
 
 COCOAPODS: 1.9.1

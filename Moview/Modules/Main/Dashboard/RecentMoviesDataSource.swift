@@ -41,11 +41,9 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
 //        self.pageControl_recent.currentPage = indexPath.row
         let collectionCell = cell as? NowPlayingCollectionViewCell
         
-        let posterPath = presenter.nowPlayingMovies[indexPath.row].poster_path != nil ? K.Server.imageBaseURL + "/w342/" +    presenter.nowPlayingMovies[indexPath.row].poster_path! : ""
-        
-        collectionCell?.imgV_poster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+        let posterPath = presenter.nowPlayingMovies[indexPath.row].poster_path != nil ? K.Server.imageBaseURL + "/\(ImageSize.xLarge)" +    presenter.nowPlayingMovies[indexPath.row].poster_path! : ""
+        collectionCell?.imgV_poster.sd_setImage(with: URL.init(string: posterPath), completed: nil)
         collectionCell?.lbl_name.text = presenter.nowPlayingMovies[indexPath.row].original_title
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

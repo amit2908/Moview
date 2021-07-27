@@ -34,11 +34,10 @@ struct Navigation {
         self.makeWindowKeyAndVisible()
     }
     
-    func navigateToMovieDetail(navigationController: UINavigationController, movieId: Int){
+    func navigateToMovieDetail(movieId: Int){
         let movieDetail = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as! MovieDetailViewController
         movieDetail.movieId = movieId
-        navigationController.viewControllers = [movieDetail]
-        self.makeWindowKeyAndVisible()
+        UIApplication.currentViewController()?.navigationController?.pushViewController(movieDetail, animated: true)
     }
     
     func navigateToMovieList(navigationController: UINavigationController, movieTypes: MovieTypes, movies: [Movie]? = [Movie]()){
@@ -47,6 +46,13 @@ struct Navigation {
         movieListVC.movies                   = movies ?? [Movie]()
         navigationController.show(movieListVC, sender: nil)
         self.makeWindowKeyAndVisible()
+    }
+    
+    func navigateToFavouritesList(navigationController: UINavigationController, movieTypes: MovieTypes, movies: [Movie]? = [Movie]()){
+        let movieListVC = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.favourites) as! FavouriteMoviesViewController
+//        movieListVC.movies                   = movies ?? [Movie]()
+        navigationController.show(movieListVC, sender: nil)
+//        self.makeWindowKeyAndVisible()
     }
     
 }
