@@ -9,7 +9,13 @@
 import Foundation
 import CoreData
 
-class TranslationLayer{
+protocol ITranslationLayer {
+    func getUnsavedCoreDataObject<T: Decodable>(type: T.Type, data: Data, context: NSManagedObjectContext) -> T?
+}
+
+
+
+class TranslationLayer: ITranslationLayer{
 
     func getUnsavedCoreDataObject<T: Decodable>(type: T.Type, data: Data, context: NSManagedObjectContext) -> T? {
         let jsonDecoder = JSONDecoder()
