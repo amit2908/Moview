@@ -51,7 +51,7 @@ class MovieDetailViewController: UIViewController {
         self.customizeNavigationBar()
     }
     
-    func customizeNavigationBar() {
+    private func customizeNavigationBar() {
         self.navBar.leftItem.isHidden = false
         self.navBar.btn_left.isHidden = false
         self.navBar.rightItem.isHidden = false
