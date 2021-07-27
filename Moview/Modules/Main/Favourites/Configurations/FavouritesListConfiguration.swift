@@ -21,7 +21,16 @@ class FavouritesListConfiguration: ITableConfiguration {
 }
 
 class FavouritesListSectionConfiguration: ISectionConfiguration {
+    var headerViewConfig: (UIView?, CGFloat)?
+    
+    var footerViewConfig: (UIView?, CGFloat)?
+    
+    var headerView: UIView?
+    
+    var footerView: UIView?
+    
     var numberOfRows: Int
+    
     var cellConfigurations: [ITableCellConfiguration]
     
     init(movies: [Movie]) {

@@ -19,15 +19,15 @@ protocol ITableViewConfigurator {
 
 
 protocol ISectionConfiguration {
-    var numberOfRows:Int { get set }
-    var cellConfigurations: [ITableCellConfiguration] { get set }
+    var numberOfRows      : Int { get set }
+    var headerViewConfig  : (UIView?, CGFloat)?        { get set }
+    var footerViewConfig  : (UIView?, CGFloat)?        { get set }
+    var cellConfigurations: [ITableCellConfiguration]  { get set }
 }
 
 protocol ITableCellConfiguration {
     var cellIdentifier          : String            { get set }
     var cellHeight              : CGFloat           { get set }
-    var headerView              : UIView?           { get set }
-    var footerView              : UIView?           { get set }
     var headerHeight            : CGFloat?          { get set }
     var footerHeight            : CGFloat?          { get set }
     var data                    : Any?              { get set }
@@ -43,24 +43,25 @@ protocol GenericTableCell: UITableViewCell {
 class TableViewConfigurator: NSObject, ITableViewConfigurator, UITableViewDataSource, UITableViewDelegate {
     
     var tableConfiguration: ITableConfiguration
-    
+    fileprivate var sectionConfigs : [ISectionConfiguration]
     
     init(tableConfiguration: ITableConfiguration) {
         self.tableConfiguration = tableConfiguration
+        self.sectionConfigs = self.tableConfiguration.sectionConfigurations
     }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.tableConfiguration.sectionConfigurations.count
+        self.sectionConfigs.count
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tableConfiguration.sectionConfigurations[section].cellConfigurations.count
+        return self.sectionConfigs[section].cellConfigurations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellConfig = self.tableConfiguration.sectionConfigurations[indexPath.section].cellConfigurations[indexPath.row]
+        let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellConfig.cellIdentifier, for: indexPath) as? GenericTableCell else {
             return UITableViewCell()
@@ -72,14 +73,33 @@ class TableViewConfigurator: NSObject, ITableViewConfigurator, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cellConfig = self.tableConfiguration.sectionConfigurations[indexPath.section].cellConfigurations[indexPath.row]
+        let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
         cellConfig.cellDidSelectCallback(indexPath)
     }
     
-    
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cellConfig = self.tableConfiguration.sectionConfigurations[indexPath.section].cellConfigurations[indexPath.row]
+        let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
         return cellConfig.cellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let sectionConfig = self.sectionConfigs[section]
+        return sectionConfig.headerViewConfig?.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let sectionConfig = self.sectionConfigs[section]
+        return sectionConfig.footerViewConfig?.0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let sectionConfig = self.sectionConfigs[section]
+        return sectionConfig.headerViewConfig?.1 ?? 0.0
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let sectionConfig = self.sectionConfigs[section]
+        return sectionConfig.footerViewConfig?.1 ?? 0.0
     }
 }
