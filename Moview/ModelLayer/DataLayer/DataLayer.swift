@@ -53,6 +53,7 @@ class DataLayer: NSObject, IDataLayer {
     
     static var backgroundContext = { () -> NSManagedObjectContext in
         let bgContext = DataLayer.persistentContainer.newBackgroundContext()
+        bgContext.mergePolicy = NSMergePolicy(merge: .mergeByPropertyObjectTrumpMergePolicyType)
         return bgContext
     }()
     

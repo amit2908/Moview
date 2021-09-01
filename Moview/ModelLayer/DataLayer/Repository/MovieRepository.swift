@@ -79,15 +79,14 @@ struct MovieRepository: IMovieRepository {
     }
     
     func bookmarkMovie(with id: Int32, bookmark: Bool) {
-        let viewContext = DataLayer.viewContext
-        
-        let cdMovie: Movie? = DataLayer.fetchMovie(with: id, entityName: "Movie", in: viewContext)
+        let bgContext = DataLayer.backgroundContext
+        let cdMovie: Movie? = DataLayer.fetchMovie(with: id, entityName: "Movie", in: bgContext)
         
         if let cdMovie = cdMovie {
             cdMovie.isFavourite = bookmark
         }
         
-        DataLayer.saveContext(context: viewContext)
+        DataLayer.saveContext(context: bgContext)
     }
 }
 
