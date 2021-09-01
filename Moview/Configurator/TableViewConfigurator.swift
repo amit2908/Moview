@@ -19,7 +19,7 @@ protocol ITableViewConfigurator {
 
 
 protocol ISectionConfiguration {
-    var numberOfRows      : Int { get set }
+    var numberOfRows      : Int { get }
     var headerViewConfig  : (UIView?, CGFloat)?        { get set }
     var footerViewConfig  : (UIView?, CGFloat)?        { get set }
     var cellConfigurations: [ITableCellConfiguration]  { get set }

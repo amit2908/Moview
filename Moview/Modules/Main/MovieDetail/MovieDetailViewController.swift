@@ -22,7 +22,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-    var movieId : Int?
+    var movieId : Int32?
 
     var presenter : IMovieDetailViewPresenter!
     
@@ -38,11 +38,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     func setupArchitecture(){
-        let networkLayer     = NetworkLayer()
-        let dataLayer        = DataLayer()
-        let translationLayer = TranslationLayer()
-        let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
-        self.presenter       = MovieDetailViewPresenter(modelLayer: modelLayer)
+        self.presenter       = MovieDetailViewPresenter(movieRepository: MovieRepository.shared, movieDetailService: MovieDetailsService(), translator: TranslationLayer())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,45 +61,14 @@ class MovieDetailViewController: UIViewController {
     }
     
     func loadData(){
-        self.presenter.loadMovieDetails(movieId: self.movieId!) { [unowned self] (source , movie) -> (Void) in
-            
-            DispatchQueue.main.async {
-                let posterPath =  K.Server.imageBaseURL + "/\(ImageSize.xLarge)/" + (movie?.poster_path ?? "")
-                self.imgV_moviePoster.sd_setImage(with: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), completed: nil)
-                    self.imgV_moviePoster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+        self.presenter.loadMovieDetails(movieId: self.movieId!) { [unowned self] (movie) -> (Void) in
+            if let movie = movie {
+                DispatchQueue.main.async {
+                    let posterPath =  K.Server.imageBaseURL + "/\(ImageSize.xLarge)/" + (movie.imageLink)
+                    self.imgV_moviePoster.sd_setImage(with: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), completed: nil)
+                        self.imgV_moviePoster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+                }
             }
-        }
-    }
-    
-    private func fetchMovieDetails(){
-        
-        guard let movieId = self.movieId else { return }
-        
-        self.showProgress(status: "Please wait...")
-        
-        APIClient.shared.GET(entity: Movie.self, urlRequest: MovieEndpoint.movieDetails(movieId: String(movieId) ).urlRequest! , completionHandler: { (movieDetails) -> (Void) in
-            
-            DispatchQueue.main.async(execute: {
-                self.hideProgress()
-            })
-            let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
-            fetchRequest.fetchLimit = 5
-            fetchRequest.sortDescriptors?.append(NSSortDescriptor.init(key: "title", ascending: true))
-            
-            do {
-//                let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
-//                self.nowPlayingMovies = fetchResults
-                DispatchQueue.main.async(execute: {
-//                    self.collection_recent.reloadData()
-                })
-            }
-//            catch {
-//                print(error)
-//            }
-            
-        }) { (error) -> (Void) in
-            self.hideProgress()
-            print("Error occured: \(error.localizedDescription)")
         }
     }
 

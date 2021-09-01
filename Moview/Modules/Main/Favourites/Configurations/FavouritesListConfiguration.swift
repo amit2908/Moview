@@ -12,15 +12,15 @@ class FavouritesListConfiguration: ITableConfiguration {
     var numberOfSections: Int
     var sectionConfigurations: [ISectionConfiguration]
     
-    let movies : [Movie]
-    init(movies: [Movie]) {
+    let movies : [IMovie]
+    init(movies: [IMovie]) {
         self.movies = movies
         self.numberOfSections = 1
-        self.sectionConfigurations = [FavouritesListSectionConfiguration(movies: movies)]
+        self.sectionConfigurations = [GenericTableSectionConfiguration(itemData: movies)]
     }
 }
 
-class FavouritesListSectionConfiguration: ISectionConfiguration {
+class GenericTableSectionConfiguration<ItemData>: ISectionConfiguration {
     var headerViewConfig: (UIView?, CGFloat)?
     
     var footerViewConfig: (UIView?, CGFloat)?
@@ -29,18 +29,19 @@ class FavouritesListSectionConfiguration: ISectionConfiguration {
     
     var footerView: UIView?
     
-    var numberOfRows: Int
+    var numberOfRows: Int {
+        return cellConfigurations.count
+    }
     
     var cellConfigurations: [ITableCellConfiguration]
     
-    init(movies: [Movie]) {
-        self.numberOfRows = movies.count
+    init(itemData: [ItemData]) {
         self.cellConfigurations =
-            movies.map{ FavouritesListCellConfiguration(data: $0) }
+            itemData.map{ GenericListCellConfiguration(data: $0) }
     }
 }
 
-class FavouritesListCellConfiguration: ITableCellConfiguration {
+class GenericListCellConfiguration<CellData>: ITableCellConfiguration {
     var data: Any?
     
     var cellIdentifier: String
@@ -57,13 +58,13 @@ class FavouritesListCellConfiguration: ITableCellConfiguration {
     
     var cellDidSelectCallback: (IndexPath) -> Void
     
-    init(data: Any?){
+    init(data: CellData){
         self.data = data
         self.cellIdentifier = FavouriteMovieTableCell.reuseID
         self.cellHeight = 100.0
         self.cellDidSelectCallback = { indexPath in
             if let movie = data as? Movie {
-                Navigation.shared.navigateToMovieDetail(movieId: Int(movie.id))
+                Navigation.shared.navigateToMovieDetail(movieId: movie.id)
             }
         }
     }

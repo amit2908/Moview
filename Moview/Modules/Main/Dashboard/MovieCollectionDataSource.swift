@@ -57,7 +57,7 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
-        movieDetailVC?.movieId = Int(self.movies[indexPath.row].id)
+        movieDetailVC?.movieId = self.movies[indexPath.row].id
         UIApplication.currentViewController()?.navigationController?.pushViewController(movieDetailVC!, animated: true)
     }
     

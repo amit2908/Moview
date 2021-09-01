@@ -11,8 +11,8 @@ import UIKit
 typealias FetchMovieDetailFromSourceCompletionHandler = (Source, Movie?)->(Void)
 
 protocol IMovieDetailViewPresenter {
-    func setFavourite(movieId: Int, isFavourite: Bool)
-    func loadMovieDetails(movieId: Int, handler: @escaping FetchMovieDetailFromSourceCompletionHandler)
+    func setFavourite(movieId: Int32, isFavourite: Bool)
+    func loadMovieDetails(movieId: Int32, handler: @escaping (IMovie?)->Void)
 }
 
 class MovieDetailViewPresenter {
@@ -21,10 +21,16 @@ class MovieDetailViewPresenter {
     var posterImagePath : String
     var title       : String
     
-    fileprivate var modelLayer : ModelLayer
+    fileprivate var movieRepository: IMovieRepository
+    fileprivate var movieDetailService: IMovieDetailsService
+    fileprivate var translator: ITranslationLayer
     
-    init(modelLayer: ModelLayer) {
-        self.modelLayer  = modelLayer
+    init(movieRepository: IMovieRepository,
+         movieDetailService: IMovieDetailsService,
+         translator: ITranslationLayer) {
+        self.movieRepository = movieRepository
+        self.movieDetailService = movieDetailService
+        self.translator = translator
         self.posterImagePath = ""
         self.title       = ""
     }
@@ -33,33 +39,32 @@ class MovieDetailViewPresenter {
 }
 
 extension MovieDetailViewPresenter: IMovieDetailViewPresenter{
-    func setFavourite(movieId: Int, isFavourite: Bool) {
-        self.modelLayer.loadMovieDetails(from: .local, movieId: movieId) { (movie, source, error) -> (Void) in
-            if let mov = movie {
-                mov.isFavourite = isFavourite
-                try? mov.managedObjectContext?.save()
-            }
-        }
+    func setFavourite(movieId: Int32, isFavourite: Bool) {
+        self.movieRepository.bookmarkMovie(with: movieId, bookmark: isFavourite)
     }
     
     
     
-    func loadMovieDetails(movieId: Int, handler: @escaping FetchMovieDetailFromSourceCompletionHandler) {
-            modelLayer.loadMovieDetails(from: .local, movieId: movieId) { (movie, source, error) -> (Void) in
-                if (error == nil) {
-                    self.posterImagePath = movie?.poster_path ?? ""
-                    self.title  = movie?.title ?? ""
-                    handler(.local, movie)
-                }
+    func loadMovieDetails(movieId: Int32, handler: @escaping (IMovie?) -> Void) {
+        
+        if let movie = movieRepository.fetchMovie(using: movieId) {
+            self.posterImagePath = movie.imageLink
+            self.title  = movie.title
+            handler(movie)
+        }else {
+            movieDetailService.fetchMovieDetailsFromServer(movieId: movieId, successHandler: {[weak self] (data) -> (Void) in
+                guard let cdMovie = self?.translator.getUnsavedCoreDataObject(type: Movie.self, data: data, context: DataLayer.viewContext) else { handler(nil); return }
+                DataLayer.saveContext(context: DataLayer.viewContext)
+                let nMovie = NMovie(movie: cdMovie)
+                handler(nMovie)
+                
+            }) { (error) -> (Void) in
+                print(error)
             }
-            
-    //        modelLayer.loadMovieDetails(from: .network, movieId: movieId) { (movie, source, error) -> (Void) in
-    //            if (error == nil) {
-    //                self.posterImage = UIImage(contentsOfFile: movie?.poster_path ?? "") ?? UIImage()
-    //                self.title  = movie?.title ?? ""
-    //                handler(.network)
-    //            }
-    //        }
-            
         }
+        
+        
+        
+        
+    }
 }

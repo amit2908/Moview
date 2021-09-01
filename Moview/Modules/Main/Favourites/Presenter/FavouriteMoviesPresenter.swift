@@ -9,30 +9,20 @@
 import Foundation
 
 protocol IFavouriteMoviesPresenter {
-    func loadFavouriteMoviesFromNetwork(handler: @escaping FetchMoviesFromNetworkCompletionHandler)
-    func loadFavouriteMoviesFromLocal(handler: @escaping FetchMoviesFromLocalDBCompletionHandler)
+    func loadFavouriteMovies(handler: @escaping ([IMovie]) -> Void)
 }
 
 class FavouriteMoviesPresenter{
-    let networkLayer: INetworkLayer
-    let coreDataWorker: IMoviesCoreDataWorker
+    let movieRepository: IMovieRepository
     
-    init(networkLayer: INetworkLayer, coreDataWorker: IMoviesCoreDataWorker) {
-        self.networkLayer = networkLayer
-        self.coreDataWorker = coreDataWorker
+    init(movieRepository: IMovieRepository) {
+        self.movieRepository = movieRepository
     }
 }
 
 extension FavouriteMoviesPresenter: IFavouriteMoviesPresenter {
-    func loadFavouriteMoviesFromNetwork(handler: @escaping FetchMoviesFromNetworkCompletionHandler) {
-        
-    }
-    
-    func loadFavouriteMoviesFromLocal(handler: @escaping FetchMoviesFromLocalDBCompletionHandler) {
-        coreDataWorker.fetchNowPlayingMoviesFromLocalDB { (movies) -> (Void) in
-            handler(movies)
-        }
-    }
-    
-    
+    func loadFavouriteMovies(handler: @escaping ([IMovie]) -> Void) {
+        let movies = movieRepository.fetchFavouriteMovies()
+        handler(movies)
+    }    
 }

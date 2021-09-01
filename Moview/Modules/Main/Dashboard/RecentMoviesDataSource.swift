@@ -49,7 +49,7 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
-        movieDetailVC?.movieId = Int(self.presenter.nowPlayingMovies[indexPath.row].id)
+        movieDetailVC?.movieId = self.presenter.nowPlayingMovies[indexPath.row].id
 //        self.navigationController?.pushViewController(movieDetailVC!, animated: true)
     }
     

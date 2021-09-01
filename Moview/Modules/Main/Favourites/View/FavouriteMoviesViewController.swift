@@ -22,13 +22,17 @@ class FavouriteMoviesViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(FavouriteMovieTableCell.nib, forCellReuseIdentifier: FavouriteMovieTableCell.reuseID)
         self.title = "My Favourites"
+        configure()
         
-        presenter = FavouriteMoviesPresenter(networkLayer: NetworkLayer(), coreDataWorker: MoviesCoreDataWorker(dataLayer: DataLayer()))
         fetchMovies()
     }
     
+    private func configure(){
+        presenter = FavouriteMoviesPresenter(movieRepository: MovieRepository.shared)
+    }
+    
     private func fetchMovies(){
-        self.presenter?.loadFavouriteMoviesFromLocal(handler: { [weak self] (movies) -> (Void) in
+        self.presenter?.loadFavouriteMovies(handler: { [weak self] (movies) -> (Void) in
             self?.delegate = TableViewConfigurator(tableConfiguration: FavouritesListConfiguration(movies: movies))
             
             self?.tableView.dataSource = self?.delegate

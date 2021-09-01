@@ -34,7 +34,7 @@ struct Navigation {
         self.makeWindowKeyAndVisible()
     }
     
-    func navigateToMovieDetail(movieId: Int){
+    func navigateToMovieDetail(movieId: Int32){
         let movieDetail = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as! MovieDetailViewController
         movieDetail.movieId = movieId
         UIApplication.currentViewController()?.navigationController?.pushViewController(movieDetail, animated: true)

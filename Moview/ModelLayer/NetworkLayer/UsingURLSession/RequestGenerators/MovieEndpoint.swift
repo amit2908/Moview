@@ -33,8 +33,7 @@ enum MovieEndpoint : APIConfig {
         switch self {
         case .nowPlaying:
             return K.Server.API_VERSION + K.APIEndpoint.GET_MOVIES_IN_THEATRES_END_URL
-//        case .upcomingMovies(let fromDate, let toDate):
-//            return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL, fromDate, toDate);
+
         case .upcomingMovies:
             return String(format: K.Server.API_VERSION + K.APIEndpoint.GET_UPCOMING_MOVIES_END_URL);
             
@@ -102,19 +101,16 @@ enum MovieEndpoint : APIConfig {
         if let urlQueryItems = queryParams {
             urlComponents.queryItems = urlQueryItems
         }
-        //        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         
         var urlRequest = URLRequest(url: urlComponents.url!)
         
         urlRequest.httpMethod = method.rawValue
-        //        urlRequest.setValue(ContentType.json.rawValue
-        //            , forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
+        
         
         if let parameters = parameters {
             do {
                 urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: []);
             }catch {
-//                throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
                 print("Parameter encoding failed with error: ", error)
             }
         }

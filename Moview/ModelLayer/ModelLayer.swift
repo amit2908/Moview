@@ -170,7 +170,7 @@ class ModelLayer {
     /// - Parameter source: The source from where the movies are being fetched, i.e from Network or Local DB
     /// - Parameter movieId: Unique id of movie at server side
     /// - Parameter handler: The handler method called after the movies have been fetched.
-    func loadMovieDetails(from source: Source, movieId: Int, handler : @escaping MovieFetchDetailHandlerWithSource){
+    func loadMovieDetails(from source: Source, movieId: Int32, handler : @escaping MovieFetchDetailHandlerWithSource){
         if (source == .local) {
             self.dataLayer.fetchMovieDetailFromLocalDB(movieId: movieId) { (movie) -> (Void) in
                 handler(movie, .local, nil)

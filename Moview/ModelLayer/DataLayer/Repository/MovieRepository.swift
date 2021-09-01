@@ -11,8 +11,8 @@ import CoreData
 
 protocol IMovieRepository {
     func storeMovie(movie: IMovie)
-    func fetchMovie(using id: Int) -> IMovie?
-    func bookmarkMovie(with id: Int)
+    func fetchMovie(using id: Int32) -> IMovie?
+    func bookmarkMovie(with id: Int32, bookmark: Bool)
 }
 
 extension IMovieRepository {
@@ -29,52 +29,83 @@ protocol IMovie {
     var title: String { get set }
     var overview: String { get set }
     var imageLink: String { get set }
+    var isBookmarked: Bool { get set }
+}
+
+struct NMovie: IMovie {
+    var id: Int
+    var title: String
+    var overview: String
+    var imageLink: String
+    var isBookmarked: Bool
+    
+    init(movie: Movie){
+        self.id = Int(movie.id)
+        self.title = movie.title ?? ""
+        self.overview = movie.overview ?? ""
+        self.imageLink = movie.poster_path ?? ""
+        self.isBookmarked = movie.isFavourite
+    }
+    
 }
 
 
 struct MovieRepository: IMovieRepository {
     
-    struct Movie: IMovie {
-        var id: Int
-        
-        var title: String
-        
-        var overview: String
-        
-        var imageLink: String
-        
-    }
-
+    static let shared = MovieRepository()
     
+    private init() { }
     
     func storeMovie(movie: IMovie) {
+        let bgContext = DataLayer.backgroundContext
+        let cdMovie = Movie.init(context: bgContext)
+        cdMovie.id = Int32(movie.id)
+        cdMovie.title = movie.title
+        cdMovie.overview = movie.overview
+        cdMovie.poster_path = movie.imageLink
         
+        DataLayer.saveContext(context: bgContext)
     }
     
-    func fetchMovie(using id: Int) -> IMovie? {
-        let fetchRequest = NSFetchRequest<Moview.Movie>.init()
-        fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
-        fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSPredicate.init(format: "id == %d", id)
-        do {
-            let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
-            let coreDataMovie = (fetchResults.count > 0 ? fetchResults.first : nil)
-            
-            let movie : MovieRepository.Movie = Movie(id: id,
-                                                      title: coreDataMovie?.title ?? "",
-                                                      overview: coreDataMovie?.overview ?? "",
-                                                      imageLink: coreDataMovie?.poster_path ?? "")
-            
+    func fetchMovie(using id: Int32) -> IMovie? {
+        let cdMovie: Movie? = DataLayer.fetchMovie(with: id, entityName: "Movie", in: DataLayer.viewContext)
+        
+        if let cdMovie = cdMovie {
+            let movie : NMovie = NMovie(movie: cdMovie)
             return movie
-        }catch {
-            print(error)
         }
+        
         return nil
     }
     
-    func bookmarkMovie(with id: Int) {
+    func bookmarkMovie(with id: Int32, bookmark: Bool) {
+        let viewContext = DataLayer.viewContext
         
+        let cdMovie: Movie? = DataLayer.fetchMovie(with: id, entityName: "Movie", in: viewContext)
+        
+        if let cdMovie = cdMovie {
+            cdMovie.isFavourite = bookmark
+        }
+        
+        DataLayer.saveContext(context: viewContext)
     }
 }
 
 
+extension MovieRepository {
+    func fetchFavouriteMovies() -> [IMovie] {
+        let fetchRequest: NSFetchRequest = Movie.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "isFavourite == true")
+        
+        do {
+            let cdMovies = try fetchRequest.execute()
+            let nMovies = cdMovies.map{ NMovie(movie: $0) }
+            return nMovies
+        }
+        catch {
+            print(error)
+        }
+        
+        return []
+    }
+}

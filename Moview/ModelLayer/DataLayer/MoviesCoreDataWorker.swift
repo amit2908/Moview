@@ -12,22 +12,17 @@ import CoreData
 typealias fetchMovieHandler = ([Movie]) -> (Void)
 typealias fetchMovieDetailHandler = (Movie?) -> (Void)
 
+
+
 protocol IMoviesCoreDataWorker {
-    var dataLayer: DataLayer { get set }
-    
     func fetchNowPlayingMoviesFromLocalDB(handler: fetchMovieHandler)
     func fetchUpcomingMoviesFromLocalDB(handler: fetchMovieHandler)
     func fetchTopRatedMoviesFromLocalDB(handler: fetchMovieHandler)
     func fetchLatestMoviesFromLocalDB(handler: fetchMovieHandler)
-    func fetchMovieDetailFromLocalDB(movieId: Int, handler: fetchMovieDetailHandler)
+    func fetchMovieDetailFromLocalDB(movieId: Int32, handler: fetchMovieDetailHandler)
 }
 
 struct MoviesCoreDataWorker: IMoviesCoreDataWorker {
-    var dataLayer: DataLayer
-    
-    init(dataLayer: DataLayer) {
-        self.dataLayer = dataLayer
-    }
     
     func fetchNowPlayingMoviesFromLocalDB(handler: fetchMovieHandler){
         let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
@@ -87,7 +82,7 @@ struct MoviesCoreDataWorker: IMoviesCoreDataWorker {
     }
     
     
-    func fetchMovieDetailFromLocalDB(movieId: Int, handler: fetchMovieDetailHandler){
+    func fetchMovieDetailFromLocalDB(movieId: Int32, handler: fetchMovieDetailHandler){
         let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
         fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
         fetchRequest.fetchLimit = 1

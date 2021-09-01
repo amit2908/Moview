@@ -15,25 +15,28 @@ import CoreData
 public class ProductionCountry: NSManagedObject, Codable {
     @NSManaged var iso3166_1, name: String
     
-    
-    
     required convenience public init(from decoder: Decoder) throws {
-        guard let codingUserInfoKeyManagedObjectContext = CodingUserInfoKey.managedObjectContext,
-            let managedObjectContext = decoder.userInfo[codingUserInfoKeyManagedObjectContext] as? NSManagedObjectContext,
-            let entity = NSEntityDescription.entity(forEntityName: "ProductionCountry", in: managedObjectContext) else {
+        guard let managedObjectContext = decoder.userInfo[CodingUserInfoKey.managedObjectContext!] as? NSManagedObjectContext else {
+            throw DecoderConfigurationError.missingManagedObjectContext
+        }
+         guard let entity = NSEntityDescription.entity(forEntityName: "ProductionCountry", in: managedObjectContext) else {
                 fatalError("Failed to decode Configuration")
         }
         
         self.init(entity: entity, insertInto: managedObjectContext)
-        let container               = try decoder.container(keyedBy: CodingKeys.self)
-        self.iso3166_1              = try (container.decodeIfPresent(String.self, forKey: .iso3166_1) ?? "")
-        self.name                   = try container.decodeIfPresent(String.self,   forKey: .name) ?? ""
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.iso3166_1 = try (container.decodeIfPresent(String.self, forKey: .iso3166_1) ?? "")
+            self.name = try container.decodeIfPresent(String.self,   forKey: .name) ?? ""
+        } catch {
+            print("Exception in decoding >>>>-------->",error.localizedDescription)
+        }
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.name                  , forKey: .name)
-        try container.encode(self.iso3166_1             , forKey: .iso3166_1)
+        try container.encode(self.name      , forKey: .name)
+        try container.encode(self.iso3166_1 , forKey: .iso3166_1)
     }
     
 }

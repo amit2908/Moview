@@ -27,7 +27,7 @@ class DataLayer: NSObject, IDataLayer {
          */
         let container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            print(storeDescription)
+            print("Store Description: =================>", storeDescription)
             
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -51,8 +51,9 @@ class DataLayer: NSObject, IDataLayer {
         return DataLayer.persistentContainer.viewContext
     }()
     
-    static var backgroundContext = {
-        return DataLayer.persistentContainer.newBackgroundContext()
+    static var backgroundContext = { () -> NSManagedObjectContext in
+        let bgContext = DataLayer.persistentContainer.newBackgroundContext()
+        return bgContext
     }()
     
     // MARK: - Core Data Saving support
@@ -87,17 +88,16 @@ class DataLayer: NSObject, IDataLayer {
 extension DataLayer {
     //MARK: FIND OR CREATE ALGORITHM
     
-    func findObject<T: NSFetchRequestResult>(entity: T,
-                                                     entityName: String,
-                                                     with identifier: String,
+   static func fetchMovie<T: NSFetchRequestResult>(with identifier: Int32,
+                                                   entityName: String,
                                                      in context: NSManagedObjectContext) -> T? {
-        let fetchRequest : NSFetchRequest<T> = NSFetchRequest<T>(entityName: entityName)
+        let fetchRequest : NSFetchRequest<T> = NSFetchRequest<T>.init(entityName: entityName)
         fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSPredicate(format: "%K == %@","id", identifier)
+        fetchRequest.predicate = NSPredicate(format: "%K == %d","id", identifier)
         
         if let objects = try? context.fetch(fetchRequest) {
             let object = objects.last
-            return object!
+            return object
         }
         return nil
     }
@@ -165,7 +165,7 @@ extension DataLayer {
     }
     
     
-    func fetchMovieDetailFromLocalDB(movieId: Int, handler: fetchMovieDetailHandler){
+    func fetchMovieDetailFromLocalDB(movieId: Int32, handler: fetchMovieDetailHandler){
         let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
         fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
         fetchRequest.fetchLimit = 1

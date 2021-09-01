@@ -20,8 +20,9 @@ struct MovieTypes: OptionSet {
     static let ALL              = [MovieTypes.TOP_RATED, .LATEST, .FAVOURITES, .ACTION, .ROMANTIC]
 }
 
-final class MovieListViewController: UICollectionViewController {
+final class MovieListViewController: UIViewController {
     
+    @IBOutlet var collectionView: UICollectionView!
     
     var dataSource : MovieListDataSource?
     var typeOfMovies : MovieTypes?

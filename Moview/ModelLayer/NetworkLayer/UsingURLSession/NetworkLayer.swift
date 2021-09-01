@@ -27,7 +27,7 @@ protocol INetworkLayer {
     failureHandler: @escaping FetchDataFromNetworkFailureHandler)
     
     
-    func fetchMovieDetailsFromServer(movieId: Int,
+    func fetchMovieDetailsFromServer(movieId: Int32,
     successHandler: @escaping FetchDataFromNetworkSuccessHandler,
     failureHandler: @escaping FetchDataFromNetworkFailureHandler)
 }
@@ -103,7 +103,7 @@ class NetworkLayer: INetworkLayer {
     }
     
     
-    func fetchMovieDetailsFromServer(movieId: Int,
+    func fetchMovieDetailsFromServer(movieId: Int32,
                                        successHandler: @escaping FetchDataFromNetworkSuccessHandler,
                                        failureHandler: @escaping FetchDataFromNetworkFailureHandler) {
         
@@ -120,4 +120,30 @@ class NetworkLayer: INetworkLayer {
         
     }
     
+}
+
+
+protocol IMovieDetailsService {
+    func fetchMovieDetailsFromServer(movieId: Int32,
+    successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+    failureHandler: @escaping FetchDataFromNetworkFailureHandler)
+}
+
+struct MovieDetailsService: IMovieDetailsService {
+    func fetchMovieDetailsFromServer(movieId: Int32,
+                                       successHandler: @escaping FetchDataFromNetworkSuccessHandler,
+                                       failureHandler: @escaping FetchDataFromNetworkFailureHandler) {
+        
+        let urlRequest = MovieEndpoint.movieDetails(movieId: String(movieId)).urlRequest!
+        
+        APIClient.shared.GET(entity: Movie.self, urlRequest: urlRequest, completionHandler: { (movieData) -> (Void) in
+            
+            successHandler(movieData)
+            
+        }) { (error) -> (Void) in
+            //                print("Error occured: \(errCode) \(errMsg)")
+            failureHandler(error)
+        }
+        
+    }
 }

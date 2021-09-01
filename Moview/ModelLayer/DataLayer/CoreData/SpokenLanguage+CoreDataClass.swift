@@ -17,9 +17,10 @@ public class SpokenLanguage: NSManagedObject, Codable {
     @NSManaged var iso639_1, name: String
     
     required convenience public init(from decoder: Decoder) throws {
-        guard let codingUserInfoKeyManagedObjectContext = CodingUserInfoKey.managedObjectContext,
-            let managedObjectContext = decoder.userInfo[codingUserInfoKeyManagedObjectContext] as? NSManagedObjectContext,
-            let entity = NSEntityDescription.entity(forEntityName: "SpokenLanguage", in: managedObjectContext) else {
+        guard let managedObjectContext = decoder.userInfo[CodingUserInfoKey.managedObjectContext!] as? NSManagedObjectContext else {
+            throw DecoderConfigurationError.missingManagedObjectContext
+        }
+         guard let entity = NSEntityDescription.entity(forEntityName: "SpokenLanguage", in: managedObjectContext) else {
                 fatalError("Failed to decode Configuration")
         }
         

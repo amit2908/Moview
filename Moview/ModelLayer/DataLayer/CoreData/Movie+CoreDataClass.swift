@@ -14,9 +14,11 @@ import CoreData
 public class Movie: NSManagedObject, Codable {
     
     required convenience public init(from decoder: Decoder) throws {
-        guard let codingUserInfoKeyManagedObjectContext = CodingUserInfoKey.managedObjectContext,
-            let managedObjectContext = decoder.userInfo[codingUserInfoKeyManagedObjectContext] as? NSManagedObjectContext,
-            let entity = NSEntityDescription.entity(forEntityName: "Movie", in: managedObjectContext) else {
+        guard let managedObjectContextKey = CodingUserInfoKey.managedObjectContext,
+            let managedObjectContext = decoder.userInfo[managedObjectContextKey] as? NSManagedObjectContext else {
+            throw DecoderConfigurationError.missingManagedObjectContext
+        }
+         guard let entity = NSEntityDescription.entity(forEntityName: "Movie", in: managedObjectContext) else {
                 fatalError("Failed to decode Configuration")
         }
         
@@ -52,6 +54,7 @@ public class Movie: NSManagedObject, Codable {
         self.isNowPlaying           = false
         self.isUpcoming             = false
         self.isTopRated             = false
+        self.isFavourite            = false
     }
     
     public func encode(to encoder: Encoder) throws {
