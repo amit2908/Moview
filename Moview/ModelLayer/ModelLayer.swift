@@ -45,17 +45,17 @@ class ModelLayer {
                 
                 //clear old results
 //                DataLayer.clearOldResults(entityName: "Movie")
-                let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.viewContext)
+                let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.backgroundContext)
                 
                 for movie in coreDataObjects?.results ?? [] {
                     movie.isNowPlaying = true
                 }
 //                //save data to local
-//                if coreDataObjects?.results.count ?? 0 > 0 {
-//                    DataLayer.viewContext.perform {
-//                        DataLayer.saveContext(context: DataLayer.viewContext)
-//                    }
-//                }
+                if coreDataObjects?.results.count ?? 0 > 0 {
+                    DataLayer.backgroundContext.perform {
+                        DataLayer.saveContext(context: DataLayer.backgroundContext)
+                    }
+                }
 //
 //                //fetch again
 //                self.dataLayer.fetchNowPlayingMoviesFromLocalDB(handler: { (movies) -> (Void) in

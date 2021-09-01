@@ -13,6 +13,7 @@ protocol IMovieRepository {
     func storeMovie(movie: IMovie)
     func fetchMovie(using id: Int32) -> IMovie?
     func bookmarkMovie(with id: Int32, bookmark: Bool)
+    func fetchFavouriteMovies()     -> [IMovie]
 }
 
 extension IMovieRepository {
@@ -20,7 +21,9 @@ extension IMovieRepository {
     func fetchUpcomingMovies()      -> [IMovie] { return [] }
     func fetchLatest()              -> [IMovie] { return [] }
     func fetchTopRates()            -> [IMovie] { return [] }
-    func fetchFavouriteMovies()     -> [IMovie] { return [] }
+    func fetchFavouriteMovies()     -> [IMovie] {
+        return []
+    }
     func fetchMostWatchedMovies()   -> [IMovie] { return [] }
 }
 
@@ -92,12 +95,12 @@ struct MovieRepository: IMovieRepository {
 
 
 extension MovieRepository {
-    func fetchFavouriteMovies() -> [IMovie] {
+    func fetchFavouriteMovies()  -> [IMovie] {
         let fetchRequest: NSFetchRequest = Movie.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "isFavourite == true")
+        fetchRequest.predicate = NSPredicate(format: "isFavourite == %@", NSNumber.init(value: true))
         
         do {
-            let cdMovies = try fetchRequest.execute()
+            let cdMovies = try DataLayer.viewContext.fetch(fetchRequest)
             let nMovies = cdMovies.map{ NMovie(movie: $0) }
             return nMovies
         }

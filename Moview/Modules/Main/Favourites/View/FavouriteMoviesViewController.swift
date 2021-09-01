@@ -23,7 +23,9 @@ class FavouriteMoviesViewController: UIViewController {
         tableView.register(FavouriteMovieTableCell.nib, forCellReuseIdentifier: FavouriteMovieTableCell.reuseID)
         self.title = "My Favourites"
         configure()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         fetchMovies()
     }
     

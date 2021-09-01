@@ -63,8 +63,8 @@ class GenericListCellConfiguration<CellData>: ITableCellConfiguration {
         self.cellIdentifier = FavouriteMovieTableCell.reuseID
         self.cellHeight = 100.0
         self.cellDidSelectCallback = { indexPath in
-            if let movie = data as? Movie {
-                Navigation.shared.navigateToMovieDetail(movieId: movie.id)
+            if let movie = data as? IMovie {
+                Navigation.shared.navigateToMovieDetail(movieId: Int32(movie.id))
             }
         }
     }

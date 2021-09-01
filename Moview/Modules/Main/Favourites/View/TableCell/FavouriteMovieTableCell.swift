@@ -15,15 +15,12 @@ class FavouriteMovieTableCell: UITableViewCell, GenericTableCell {
     @IBOutlet var lblDescription: UILabel!
     
     func configure(withData data: Any?) {
-        if let movie = data as? Movie {
-            self.lblTitle?.text = movie.original_title
-            self.lblSubTitle?.text = movie.status
+        if let movie = data as? IMovie {
+            self.lblTitle?.text = movie.title
+            self.lblSubTitle?.text = ""
             self.lblDescription.text = movie.overview
-            
-            if var posterPath = movie.poster_path  {
-                posterPath = "https://image.tmdb.org/t/p/w92" + posterPath
-                imgV_poster.sd_setImage(with: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png"))
-            }
+            let posterPath = "https://image.tmdb.org/t/p/w92" + movie.imageLink
+            imgV_poster.sd_setImage(with: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png"))
         }
     }
     
