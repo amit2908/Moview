@@ -11,17 +11,17 @@ import CoreData
 
 class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-   final var movies : [Movie]
+   final var movies : [IMovie]
 //    final var vc : UIViewController
     
-    init(movies: [Movie]) {
+    init(movies: [IMovie]) {
         self.movies = movies
 //        self.vc = vc
         super.init()
     }
     
     convenience override init() {
-        self.init(movies: [Movie]())
+        self.init(movies: [IMovie]())
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -41,10 +41,10 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
             newCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
             return newCell
         }
-        movieCell.lbl_title.text = self.movies[indexPath.row].original_title
+        movieCell.lbl_title.text = self.movies[indexPath.row].title
         movieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
         
-        let posterPath = movies[indexPath.row].poster_path != nil ? K.Server.imageBaseURL + "/\(ImageSize.small)/" + movies[indexPath.row].poster_path! : ""
+        let posterPath = K.Server.imageBaseURL + "/\(ImageSize.small)/" + movies[indexPath.row].imageLink
         movieCell.imgV_movie.sd_setImage(with: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), completed: nil)
         
         return movieCell
@@ -57,7 +57,7 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
-        movieDetailVC?.movieId = self.movies[indexPath.row].id
+        movieDetailVC?.movieId = Int32(truncatingIfNeeded: self.movies[indexPath.row].id)
         UIApplication.currentViewController()?.navigationController?.pushViewController(movieDetailVC!, animated: true)
     }
     

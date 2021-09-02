@@ -11,17 +11,17 @@ import CoreData
 
 class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    let presenter : RecentMoviesCollectionPresenter
+    let nowPlayingMovies: [IMovie]
     let collectionView : UICollectionView
     
-    init(presenter: RecentMoviesCollectionPresenter, collectionView: UICollectionView) {
-        self.presenter = presenter
+    init(nowPlayingMovies: [IMovie], collectionView: UICollectionView) {
+        self.nowPlayingMovies = nowPlayingMovies
         self.collectionView = collectionView
         super.init()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.nowPlayingMovies.count
+        return nowPlayingMovies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -30,9 +30,9 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
             let newCell = NowPlayingCollectionViewCell.init()
             return newCell
         }
+        nowPlayingCell.configure(withData: nowPlayingMovies[indexPath.row])
         nowPlayingCell.btn_favourite.tag = indexPath.row
         nowPlayingCell.btn_favourite.addTarget(self, action: #selector(setAsFavourite(sender:)), for: .touchUpInside);
-        nowPlayingCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
         
         return nowPlayingCell
     }
@@ -41,16 +41,17 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
 //        self.pageControl_recent.currentPage = indexPath.row
         let collectionCell = cell as? NowPlayingCollectionViewCell
         
-        let posterPath = presenter.nowPlayingMovies[indexPath.row].poster_path != nil ? K.Server.imageBaseURL + "/\(ImageSize.xLarge)" +    presenter.nowPlayingMovies[indexPath.row].poster_path! : ""
+        let imageLink = nowPlayingMovies[indexPath.row].imageLink
+        let posterPath = K.Server.imageBaseURL + "/\(ImageSize.xLarge)" + imageLink
+        
         collectionCell?.imgV_poster.sd_setImage(with: URL.init(string: posterPath), completed: nil)
-        collectionCell?.lbl_name.text = presenter.nowPlayingMovies[indexPath.row].original_title
+        collectionCell?.lbl_name.text = nowPlayingMovies[indexPath.row].title
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
-        movieDetailVC?.movieId = self.presenter.nowPlayingMovies[indexPath.row].id
-//        self.navigationController?.pushViewController(movieDetailVC!, animated: true)
+        movieDetailVC?.movieId = Int32.init(truncatingIfNeeded: self.nowPlayingMovies[indexPath.row].id)
     }
     
     @objc func setAsFavourite(sender: UIButton) {

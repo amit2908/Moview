@@ -9,7 +9,13 @@
 import UIKit
 import RAMAnimatedTabBarController
 
+struct OtherMoviesCollectionViewModel {
+    var dataSources : [MovieCollectionDataSource]
+    var sections    : [String]
+}
+
 class DashboardViewController: UIViewController {
+    
     @IBOutlet weak var navBar: CustomNavigationBar!
     @IBOutlet weak var collection_recent: UICollectionView!
     @IBOutlet weak var pageControl_recent: UIPageControl!
@@ -19,42 +25,32 @@ class DashboardViewController: UIViewController {
     var otherMovieDataSource : OtherMoviesDataSource?
     var recentMovieDataSource : RecentMoviesDataSource?
     
-    let recentMoviesPresenter : RecentMoviesCollectionPresenter
-    let otherMoviesPresenter  : OtherMoviesCollectionPresenter
+    var recentMoviesPresenter : IRecentMoviesPresenter?
+    var otherMoviesPresenter  : IOtherMoviesPresenter?
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        let networkLayer     = NetworkLayer()
-        let dataLayer        = DataLayer()
-        let translationLayer = TranslationLayer()
-        let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
-        self.recentMoviesPresenter       = RecentMoviesCollectionPresenter(modelLayer: modelLayer)
-        self.otherMoviesPresenter        = OtherMoviesCollectionPresenter(modelLayer: modelLayer)
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
+    let configurator: DashboardConfigurator = DashboardConfigurator()
     
+    private let dispatchGroup = DispatchGroup.init()
     
-    required init?(coder aDecoder: NSCoder) {
-        let networkLayer     = NetworkLayer()
-        let dataLayer        = DataLayer()
-        let translationLayer = TranslationLayer()
-        let modelLayer       = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: translationLayer)
-        self.recentMoviesPresenter       = RecentMoviesCollectionPresenter(modelLayer: modelLayer)
-        self.otherMoviesPresenter        = OtherMoviesCollectionPresenter(modelLayer: modelLayer)
-        super.init(coder: aDecoder)
+    private var otherMoviesViewModel : OtherMoviesCollectionViewModel?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        configurator.configure(viewController: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        recentMovieDataSource = RecentMoviesDataSource(presenter: recentMoviesPresenter, collectionView: collection_recent)
-        self.collection_recent.dataSource = recentMovieDataSource
-        self.collection_recent.delegate = recentMovieDataSource
-        
-        otherMovieDataSource = OtherMoviesDataSource(presenter: otherMoviesPresenter, vc: self)
-        self.collection_other.dataSource = otherMovieDataSource
-        self.collection_other.delegate = otherMovieDataSource
 
         self.loadData()
+        dispatchGroup.notify(queue: .main) {
+            self.otherMovieDataSource = OtherMoviesDataSource.init(otherMoviesViewModel: self.otherMoviesViewModel!, vc: self)
+            self.collection_other.dataSource = self.otherMovieDataSource
+            self.collection_other.delegate = self.otherMovieDataSource
+            
+            self.collection_recent.reloadData()
+            self.collection_other.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,36 +79,33 @@ class DashboardViewController: UIViewController {
     
     
     @objc func loadData(){
-        self.recentMoviesPresenter.loadNowPlayingMovies { [unowned self] (_) -> (Void) in
-            DispatchQueue.main.async {
-                self.collection_recent.performBatchUpdates({
-                     self.collection_recent.reloadData()
-//                    UIView.animate(withDuration: 1.5) {
-//                        cell.frame.origin = CGPoint(x: cell.frame.origin.x + CGFloat(indexPath.item * 10) , y: cell.frame.origin.y)
-//                    }
-                }) { (success) in
-                    
-                }
+        
+        otherMoviesViewModel = OtherMoviesCollectionViewModel(dataSources: [], sections: [])
+        
+        dispatchGroup.enter()
+        self.recentMoviesPresenter?.loadNowPlayingMovies { [unowned self] (movies) -> (Void) in
+            
+                self.recentMovieDataSource = RecentMoviesDataSource.init(nowPlayingMovies: movies, collectionView: self.collection_recent)
+                
+                self.collection_recent.dataSource = self.recentMovieDataSource
+                self.collection_recent.delegate = self.recentMovieDataSource
                
-            }
+            self.dispatchGroup.leave()
         }
-        self.otherMoviesPresenter.loadUpcomingMovies(page: 1) { (_) -> (Void) in
-            DispatchQueue.main.async {
-                self.collection_other.reloadData()
-            }
-        }
-        
-        self.otherMoviesPresenter.loadTopRatedMovies(page: 1) { (_) -> (Void) in
-            DispatchQueue.main.async {
-                self.collection_other.reloadData()
-            }
+
+        dispatchGroup.enter()
+        self.otherMoviesPresenter?.loadTopRatedMovies(page: 1) { [unowned self] (movies) in
+            self.otherMoviesViewModel?.sections.append("Top Rated")
+            self.otherMoviesViewModel?.dataSources.append(MovieCollectionDataSource(movies: movies))
+            self.dispatchGroup.leave()
         }
         
-//        self.otherMoviesPresenter.loadLatestMovie() { (_) -> (Void) in
-//            DispatchQueue.main.async {
-//                self.collection_other.reloadData()
-//            }
-//        }
+        dispatchGroup.enter()
+        self.otherMoviesPresenter?.loadLatestMovie() {  [unowned self] (movies) in
+            self.otherMoviesViewModel?.sections.append("Latest Movies")
+            self.otherMoviesViewModel?.dataSources.append(MovieCollectionDataSource(movies: movies))
+            self.dispatchGroup.leave()
+        }
     }
     
     
@@ -130,8 +123,10 @@ class DashboardViewController: UIViewController {
 extension DashboardViewController {
     @objc func showMoreBtnClicked(button: UIButton) {
         
-        var movies = [Movie]()
-        movies = self.otherMoviesPresenter.movieDataSources[button.tag].movies
+        var movies = [IMovie]()
+        if let mov = self.otherMoviesPresenter?.movieDataSources[button.tag].movies {
+            movies = mov
+        }
         
         Navigation.shared.navigateToMovieList(navigationController: self.navigationController!, movieTypes: MovieTypes(rawValue: button.tag), movies: movies)
     }

@@ -10,22 +10,16 @@ import Foundation
 import CoreData
 
 protocol IMovieRepository {
-    func storeMovie(movie: IMovie)
     func fetchMovie(using id: Int32) -> IMovie?
-    func bookmarkMovie(with id: Int32, bookmark: Bool)
-    func fetchFavouriteMovies()     -> [IMovie]
+    func fetchMovies(withType type: MovieTypes)  -> [IMovie]
 }
 
-extension IMovieRepository {
-    func fetchNowPlayingMovies()    -> [IMovie] { return [] }
-    func fetchUpcomingMovies()      -> [IMovie] { return [] }
-    func fetchLatest()              -> [IMovie] { return [] }
-    func fetchTopRates()            -> [IMovie] { return [] }
-    func fetchFavouriteMovies()     -> [IMovie] {
-        return []
-    }
-    func fetchMostWatchedMovies()   -> [IMovie] { return [] }
+protocol IMovieCoreDataRepository: IMovieRepository {
+    func storeMovie(movie: IMovie)
+    func bookmarkMovie(with id: Int32, bookmark: Bool)
+    func fetchFavouriteMovies() -> [IMovie]
 }
+
 
 protocol IMovie {
     var id: Int { get set }
@@ -53,7 +47,7 @@ struct NMovie: IMovie {
 }
 
 
-struct MovieRepository: IMovieRepository {
+struct MovieRepository: IMovieCoreDataRepository {
     
     static let shared = MovieRepository()
     
@@ -91,13 +85,29 @@ struct MovieRepository: IMovieRepository {
         
         DataLayer.saveContext(context: bgContext)
     }
+    
+    func fetchFavouriteMovies() -> [IMovie] {
+        let fetchRequest: NSFetchRequest = Movie.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%K == %@", "isFavourite" ,NSNumber.init(value: true))
+        
+        do {
+            let cdMovies = try DataLayer.viewContext.fetch(fetchRequest)
+            let nMovies = cdMovies.map{ NMovie(movie: $0) }
+            return nMovies
+        }
+        catch {
+            print(error)
+        }
+        
+        return []
+    }
 }
 
 
 extension MovieRepository {
-    func fetchFavouriteMovies()  -> [IMovie] {
+    func fetchMovies(withType type: MovieTypes)  -> [IMovie] {
         let fetchRequest: NSFetchRequest = Movie.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "isFavourite == %@", NSNumber.init(value: true))
+        fetchRequest.predicate = NSPredicate(format: "%K == %d", "type" ,type.rawValue)
         
         do {
             let cdMovies = try DataLayer.viewContext.fetch(fetchRequest)

@@ -12,12 +12,14 @@ struct MovieTypes: OptionSet {
     
     let rawValue: Int
     
-    static let TOP_RATED        = MovieTypes(rawValue: 1 << 0)
-    static let LATEST           = MovieTypes(rawValue: 1 << 1)
-    static let FAVOURITES       = MovieTypes(rawValue: 1 << 2)
-    static let ACTION           = MovieTypes(rawValue: 1 << 3)
-    static let ROMANTIC         = MovieTypes(rawValue: 1 << 4)
-    static let ALL              = [MovieTypes.TOP_RATED, .LATEST, .FAVOURITES, .ACTION, .ROMANTIC]
+    static let UNCATEGORISED    =   MovieTypes(rawValue: 1 << 0)
+    static let TOP_RATED        =   MovieTypes(rawValue: 1 << 1)
+    static let LATEST           =   MovieTypes(rawValue: 1 << 2)
+    static let FAVOURITES       =   MovieTypes(rawValue: 1 << 3)
+    static let ACTION           =   MovieTypes(rawValue: 1 << 4)
+    static let ROMANTIC         =   MovieTypes(rawValue: 1 << 5)
+    static let NOW_PLAYING      =   MovieTypes(rawValue: 1 << 6)
+    static let ALL              =   [MovieTypes.TOP_RATED, .LATEST, .FAVOURITES, .ACTION, .ROMANTIC]
 }
 
 final class MovieListViewController: UIViewController {
@@ -26,7 +28,7 @@ final class MovieListViewController: UIViewController {
     
     var dataSource : MovieListDataSource?
     var typeOfMovies : MovieTypes?
-    var movies = [Movie]()
+    var movies = [IMovie]()
     var movieListViewModel : MovieListViewModel!
     
     override func viewDidLoad() {

@@ -66,10 +66,6 @@ extension Movie {
     @NSManaged public var revenue, runtime: Int64
     @NSManaged public var spokenLanguages: [SpokenLanguage]?
     @NSManaged public var status, tagline: String?
-    
-    @NSManaged public var isLatest : Bool
-    @NSManaged public var isNowPlaying : Bool
-    @NSManaged public var isUpcoming : Bool
-    @NSManaged public var isTopRated : Bool
+    @NSManaged public var type: Int64
     @NSManaged public var isFavourite: Bool
 }

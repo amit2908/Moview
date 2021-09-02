@@ -38,7 +38,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     func setupArchitecture(){
-        self.presenter       = MovieDetailViewPresenter(movieRepository: MovieRepository.shared, movieDetailService: MovieDetailsService(), translator: TranslationLayer())
+        self.presenter = MovieDetailViewPresenter(movieRepository: MovieRepository.shared, movieDetailService: MovieDetailsService(apiClient: APIClient.shared), translator: TranslationLayer.shared)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,10 +48,10 @@ class MovieDetailViewController: UIViewController {
     }
     
     private func customizeNavigationBar() {
-        self.navBar.leftItem.isHidden = false
-        self.navBar.btn_left.isHidden = false
-        self.navBar.rightItem.isHidden = false
-        self.navBar.btn_right.isHidden = false
+        guard let navBar = self.navBar else { return }
+        
+        UIView.unhide(views: [navBar.leftItem, navBar.btn_left, navBar.rightItem, navBar.btn_right])
+        
         self.navBar.btn_left.addTarget(self, action: #selector(self.backButtonAction(sender:)), for: .touchUpInside)
         self.navBar.btn_left.setImage(UIImage(named: "back-button"), for: .normal);
         

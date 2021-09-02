@@ -84,6 +84,27 @@ class DataLayer: NSObject, IDataLayer {
             print("Detele all data in \(entityName) error :", error)
         }
     }
+    
+    static func batchInsert(entityName: String, objects: [[String : Any]])  {
+        
+        persistentContainer.performBackgroundTask { (context) in
+            
+            context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+            
+            if #available(iOS 13.0, *) {
+                do {
+                    let insertRequest = NSBatchInsertRequest(entityName: entityName, objects: objects)
+                    try context.execute(insertRequest)
+                }catch let error {
+                    print("Insert all data in store \(entityName) error :", error)
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+            
+        }
+        
+    }
 }
 
 extension DataLayer {

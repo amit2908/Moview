@@ -50,11 +50,7 @@ public class Movie: NSManagedObject, Codable {
         self.status                 = try container.decodeIfPresent(String.self, forKey: .status)
         self.tagline                = try container.decodeIfPresent(String.self, forKey: .tagline)
         
-        self.isLatest               = false
-        self.isNowPlaying           = false
-        self.isUpcoming             = false
-        self.isTopRated             = false
-        self.isFavourite            = false
+        self.type = Int64.init(truncatingIfNeeded: MovieTypes.UNCATEGORISED.rawValue)
     }
     
     public func encode(to encoder: Encoder) throws {

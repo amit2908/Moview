@@ -13,9 +13,9 @@ protocol IFavouriteMoviesPresenter {
 }
 
 class FavouriteMoviesPresenter{
-    let movieRepository: IMovieRepository
+    let movieRepository: IMovieCoreDataRepository
     
-    init(movieRepository: IMovieRepository) {
+    init(movieRepository: IMovieCoreDataRepository) {
         self.movieRepository = movieRepository
     }
 }

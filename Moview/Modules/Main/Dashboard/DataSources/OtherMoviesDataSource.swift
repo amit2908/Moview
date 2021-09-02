@@ -12,14 +12,15 @@ import CoreData
 class OtherMoviesDataSource: NSObject {
     
     //MARK: Public Properties
-    let presenter : OtherMoviesCollectionPresenter
+//    let presenter : IOtherMoviesPresenter
+    var otherMoviesViewModel : OtherMoviesCollectionViewModel
 //    final var collectionOfCollectionOfMovies : [[Movie]]
     final weak var vc : DashboardViewController?
     
     //MARK: Private Properties
     
-    init(presenter: OtherMoviesCollectionPresenter, vc: DashboardViewController) {
-        self.presenter = presenter
+    init(otherMoviesViewModel : OtherMoviesCollectionViewModel, vc: DashboardViewController) {
+        self.otherMoviesViewModel = otherMoviesViewModel
         self.vc = vc
         super.init()
     }
@@ -28,7 +29,7 @@ class OtherMoviesDataSource: NSObject {
 
 extension OtherMoviesDataSource: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-            return presenter.sections.count
+            return otherMoviesViewModel.sections.count
         }
         
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -37,7 +38,7 @@ extension OtherMoviesDataSource: UICollectionViewDataSource {
         
         func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
             if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionHeader", for: indexPath) as? SectionHeader{
-                sectionHeader.sectionHeaderLabel.text = presenter.sections[indexPath.section]
+                sectionHeader.sectionHeaderLabel.text = otherMoviesViewModel.sections[indexPath.section]
                 sectionHeader.btn_showMore.addTarget(vc, action: #selector(vc?.showMoreBtnClicked(button:)), for: .touchDown)
                 sectionHeader.btn_showMore.tag = indexPath.section
                 return sectionHeader
@@ -59,7 +60,7 @@ extension OtherMoviesDataSource: UICollectionViewDataSource {
             
             otherMovieCell.backgroundColor = UIColor.init(red: CGFloat(indexPath.row/5), green: CGFloat(indexPath.row/5), blue: CGFloat(indexPath.row/5), alpha: 1)
             
-            otherMovieCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self.presenter.movieDataSources[indexPath.section], forRow: indexPath.section)
+            otherMovieCell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self.otherMoviesViewModel.dataSources[indexPath.section], forRow: indexPath.section)
             
             return otherMovieCell
             

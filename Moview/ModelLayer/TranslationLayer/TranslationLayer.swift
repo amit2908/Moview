@@ -16,6 +16,10 @@ protocol ITranslationLayer {
 
 
 class TranslationLayer: ITranslationLayer{
+    
+    static let shared = TranslationLayer()
+    
+    private init() { }
 
     func getUnsavedCoreDataObject<T: Decodable>(type: T.Type, data: Data, context: NSManagedObjectContext) -> T? {
         let jsonDecoder = JSONDecoder()

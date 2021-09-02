@@ -8,7 +8,8 @@
 
 import UIKit
 
-class NowPlayingCollectionViewCell: UICollectionViewCell {
+class NowPlayingCollectionViewCell: UICollectionViewCell, GenericCollectionCell {
+   
     @IBOutlet weak var imgV_poster: UIImageView!
     @IBOutlet weak var lbl_name: UILabel!
     @IBOutlet weak var btn_favourite: UIButton!
@@ -17,4 +18,12 @@ class NowPlayingCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.btn_favourite.setImage(UIImage.init(named: "favourite-unselected"), for: .normal)
     }
+    
+    func configure(withData data: Any?) {
+        if let movie = data as? IMovie {
+//            self.imgV_poster.image = UIImage.init(contentsOfFile: movie.imageLink)
+            lbl_name.text = movie.title
+        }
+    }
+    
 }

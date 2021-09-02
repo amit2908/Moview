@@ -43,9 +43,10 @@ class MovieListDataSource: NSObject, UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let collectionCell = cell as? MovieListCollectionViewCell
-        let posterPath = movieListViewModel.movies[indexPath.row].poster_path != nil ? "https://image.tmdb.org/t/p/w200/" + movieListViewModel.movies[indexPath.row].poster_path! : ""
+        let posterPath =  "https://image.tmdb.org/t/p/w200/" + movieListViewModel.movies[indexPath.row].imageLink
+        
         collectionCell?.imgV_movie.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
-        collectionCell?.lbl_title.text = movieListViewModel.movies[indexPath.row].original_title
+        collectionCell?.lbl_title.text = movieListViewModel.movies[indexPath.row].title
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -39,6 +39,10 @@ protocol GenericTableCell: UITableViewCell {
     func configure(withData data: Any?)
 }
 
+protocol GenericCollectionCell: UICollectionViewCell {
+    func configure(withData data: Any?)
+}
+
 
 class TableViewConfigurator: NSObject, ITableViewConfigurator, UITableViewDataSource, UITableViewDelegate {
     

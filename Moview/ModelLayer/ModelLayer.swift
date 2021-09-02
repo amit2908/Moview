@@ -18,18 +18,18 @@ enum Source: Int {
 class ModelLayer {
     
     //MARK: Private Properties
-    private let networkLayer     : NetworkLayer
-    private let dataLayer        : DataLayer
-    private let translationLayer : TranslationLayer
+//    private let networkLayer     : NetworkLayer
+//    private let dataLayer        : DataLayer
+//    private let translationLayer : TranslationLayer
     
     
     //MARK: Public Methods
-    init(networkLayer: NetworkLayer, dataLayer: DataLayer, translationLayer: TranslationLayer) {
-        self.dataLayer        = dataLayer
-        self.networkLayer     = networkLayer
-        self.translationLayer = translationLayer
-    }
-    
+//    init(networkLayer: NetworkLayer, dataLayer: DataLayer, translationLayer: TranslationLayer) {
+//        self.dataLayer        = dataLayer
+////        self.networkLayer     = networkLayer
+//        self.translationLayer = translationLayer
+//    }
+    /*
     /// Loads Movies that are currently running in theaters
     /// - Parameter source: The source from where the movies are being fetched, i.e from Network or Local DB
     /// - Parameter handler: The handler method called after the movies have been fetched.
@@ -69,7 +69,8 @@ class ModelLayer {
             }
         }
     }
-    
+    */
+    /*
     /// Loads all the upcoming movies
     /// - Parameter source: The source from where the movies are being fetched, i.e from Network or Local DB
     /// - Parameter handler: The handler method called after the movies have been fetched.
@@ -200,4 +201,5 @@ class ModelLayer {
             }
         }
     }
+ */
 }

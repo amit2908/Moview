@@ -8,8 +8,6 @@
 
 import UIKit
 
-typealias FetchMovieDetailFromSourceCompletionHandler = (Source, Movie?)->(Void)
-
 protocol IMovieDetailViewPresenter {
     func setFavourite(movieId: Int32, isFavourite: Bool)
     func loadMovieDetails(movieId: Int32, handler: @escaping (IMovie?)->Void)
@@ -21,11 +19,11 @@ class MovieDetailViewPresenter {
     var posterImagePath : String
     var title       : String
     
-    fileprivate var movieRepository: IMovieRepository
+    fileprivate var movieRepository: IMovieCoreDataRepository
     fileprivate var movieDetailService: IMovieDetailsService
     fileprivate var translator: ITranslationLayer
     
-    init(movieRepository: IMovieRepository,
+    init(movieRepository: IMovieCoreDataRepository,
          movieDetailService: IMovieDetailsService,
          translator: ITranslationLayer) {
         self.movieRepository = movieRepository
@@ -44,7 +42,6 @@ extension MovieDetailViewPresenter: IMovieDetailViewPresenter{
     }
     
     
-    
     func loadMovieDetails(movieId: Int32, handler: @escaping (IMovie?) -> Void) {
         
         if let movie = movieRepository.fetchMovie(using: movieId) {
@@ -52,7 +49,7 @@ extension MovieDetailViewPresenter: IMovieDetailViewPresenter{
             self.title  = movie.title
             handler(movie)
         }else {
-            movieDetailService.fetchMovieDetailsFromServer(movieId: movieId, successHandler: {[weak self] (data) -> (Void) in
+            movieDetailService.fetchMovieDetails(movieId: movieId, successHandler: {[weak self] (data) -> (Void) in
                 guard let cdMovie = self?.translator.getUnsavedCoreDataObject(type: Movie.self, data: data, context: DataLayer.viewContext) else { handler(nil); return }
                 DataLayer.saveContext(context: DataLayer.viewContext)
                 let nMovie = NMovie(movie: cdMovie)
@@ -62,9 +59,6 @@ extension MovieDetailViewPresenter: IMovieDetailViewPresenter{
                 print(error)
             }
         }
-        
-        
-        
         
     }
 }

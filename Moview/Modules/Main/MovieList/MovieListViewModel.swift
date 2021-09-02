@@ -11,9 +11,9 @@ import Foundation
 typealias FetchMovieCompletionHandler = () -> (Void)
 
 final class MovieListViewModel : NSObject {
-    var movies : Array<Movie>
+    var movies : Array<IMovie>
     
-    init(movies: Array<Movie>) {
+    init(movies: Array<IMovie>) {
         self.movies = movies
         super.init()
     }
