@@ -45,7 +45,7 @@ class ModelLayer {
                 
                 //clear old results
 //                DataLayer.clearOldResults(entityName: "Movie")
-                let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: DataLayer.backgroundContext)
+                let coreDataObjects = self.translationLayer.getUnsavedCoreDataObject(type: MoviesResponse.self, data: data, context: DataLayer.backgroundContext)
                 
                 for movie in coreDataObjects?.results ?? [] {
                     movie.isNowPlaying = true

@@ -30,13 +30,11 @@ struct DashboardConfigurator: ICleanConfigurator {
         
         let latestMovieService = LatestMoviesService.init(apiClient: APIClient.shared)
         
+        let upcomingMovieService = UpcomingMoviesService.init(apiClient: APIClient.shared)
+        
         
         vc.recentMoviesPresenter = RecentMoviesPresenter(service: nowPlayingService, repository: MovieRepository.shared, translator: TranslationLayer.shared)
-        vc.otherMoviesPresenter = OtherMoviesPresenter.init(topRatedMoviesService: topRatedService, latestMoviesService: latestMovieService, repository: MovieRepository.shared, translator: TranslationLayer.shared)
+        vc.otherMoviesPresenter = OtherMoviesPresenter.init(topRatedMoviesService: topRatedService, latestMoviesService: latestMovieService, upcomingMoviesService: upcomingMovieService, repository: MovieRepository.shared, translator: TranslationLayer.shared)
         
-//        let networkLayer     = NetworkLayer()
-//        let dataLayer        = DataLayer()
-//        let _  = ModelLayer(networkLayer: networkLayer, dataLayer: dataLayer, translationLayer: TranslationLayer.shared)
-//        self.otherMoviesPresenter = OtherMoviesCollectionPresenter(modelLayer: modelLayer)
     }
 }

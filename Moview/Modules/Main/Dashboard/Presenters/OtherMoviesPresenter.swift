@@ -16,6 +16,7 @@ protocol IOtherMoviesPresenter {
     var movieDataSources        : [MovieCollectionDataSource]   { get set }
     func loadTopRatedMovies(page: Int, handler: @escaping FetchMoviesCompletionHandler)
     func loadLatestMovie(handler: @escaping FetchMoviesCompletionHandler)
+    func loadUpcomingMovies(page: Int, handler: @escaping FetchMoviesCompletionHandler)
 }
 
 class OtherMoviesPresenter: IOtherMoviesPresenter {
@@ -25,16 +26,19 @@ class OtherMoviesPresenter: IOtherMoviesPresenter {
     
     fileprivate var topRatedMoviesService: ITopRatedMoviesService
     fileprivate var latestMoviesService: ILatestMoviesService
+    fileprivate var upcomingMoviesService: IUpcomingMoviesService
     fileprivate var repository: IMovieCoreDataRepository
     fileprivate var translator: ITranslationLayer
     
     init(topRatedMoviesService: ITopRatedMoviesService,
          latestMoviesService: ILatestMoviesService,
+         upcomingMoviesService: IUpcomingMoviesService,
          repository: IMovieCoreDataRepository,
          translator: ITranslationLayer) {
         
         self.topRatedMoviesService = topRatedMoviesService
         self.latestMoviesService = latestMoviesService
+        self.upcomingMoviesService = upcomingMoviesService
         self.repository = repository
         self.translator = translator
      
@@ -47,6 +51,26 @@ class OtherMoviesPresenter: IOtherMoviesPresenter {
     
     func loadUpcomingMovies(page: Int, handler: @escaping FetchMoviesCompletionHandler) {
         
+        let movies = repository.fetchMovies(withType: .UPCOMING)
+        if movies.isEmpty {
+            upcomingMoviesService.fetchUpcomingMovies(page: page, successHandler: { [weak self] (data) -> (Void) in
+                
+                self?.repository.storeMovies(fromData: data, withType: .UPCOMING)
+                
+                if let movies = self?.repository.fetchMovies(withType: .UPCOMING) {
+                    handler(movies)
+                }
+                
+                return
+                
+            }) { (error) -> (Void) in
+                debugPrint("Error while fetching Top Rated movies >>>------>", error.localizedDescription)
+
+                handler([])
+            }
+        }else {
+            handler(movies)
+        }
         
     }
     
@@ -54,22 +78,14 @@ class OtherMoviesPresenter: IOtherMoviesPresenter {
         
         let movies = repository.fetchMovies(withType: .TOP_RATED)
         if movies.isEmpty {
-            topRatedMoviesService.fetchTopRatedMovies(page: page, successHandler: { (data) -> (Void) in
+            topRatedMoviesService.fetchTopRatedMovies(page: page, successHandler: { [weak self] (data) -> (Void) in
                 
-                DataLayer.persistentContainer.performBackgroundTask { (context) in
-                    context.mergePolicy = NSMergePolicy.init(merge: .mergeByPropertyObjectTrumpMergePolicyType)
-                    
-                    let response : NowPlayingResponse? = self.translator.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: context)
-                    
-                    response?.results.forEach {
-                        $0.type = Int64.init(truncatingIfNeeded: MovieTypes.TOP_RATED.rawValue)
-                    }
-                    
-                    DataLayer.saveContext(context: context)
+                self?.repository.storeMovies(fromData: data, withType: .TOP_RATED)
+                
+                if let movies = self?.repository.fetchMovies(withType: .TOP_RATED) {
+                    handler(movies)
                 }
                 
-                let movies = self.repository.fetchMovies(withType: .TOP_RATED)
-                handler(movies)
                 return
                 
             }) { (error) -> (Void) in
@@ -89,22 +105,14 @@ class OtherMoviesPresenter: IOtherMoviesPresenter {
         
         let movies = repository.fetchMovies(withType: .LATEST)
         if movies.isEmpty {
-            latestMoviesService.fetchLatestMovies(successHandler: { (data) -> (Void) in
+            latestMoviesService.fetchLatestMovies(successHandler: { [weak self] (data) -> (Void) in
                 
-                DataLayer.persistentContainer.performBackgroundTask { (context) in
-                    context.mergePolicy = NSMergePolicy.init(merge: .mergeByPropertyObjectTrumpMergePolicyType)
-                    
-                    let response : NowPlayingResponse? = self.translator.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: context)
-                    
-                    response?.results.forEach {
-                        $0.type = Int64.init(truncatingIfNeeded: MovieTypes.LATEST.rawValue)
-                    }
-                    
-                    DataLayer.saveContext(context: context)
+                self?.repository.storeMovies(fromData: data, withType: .LATEST)
+                
+                if let movies = self?.repository.fetchMovies(withType: .LATEST) {
+                    handler(movies)
                 }
                 
-                let movies = self.repository.fetchMovies(withType: .LATEST)
-                handler(movies)
                 return
                 
             }) { (error) -> (Void) in

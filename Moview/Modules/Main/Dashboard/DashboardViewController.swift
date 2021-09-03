@@ -22,13 +22,15 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var collection_other: UICollectionView!
     @IBOutlet var barItem: RAMAnimatedTabBarItem!
     
-    var otherMovieDataSource : OtherMoviesDataSource?
-    var recentMovieDataSource : RecentMoviesDataSource?
+   
     
     var recentMoviesPresenter : IRecentMoviesPresenter?
     var otherMoviesPresenter  : IOtherMoviesPresenter?
     
     let configurator: DashboardConfigurator = DashboardConfigurator()
+    
+    private var otherMovieDataSource : OtherMoviesDataSource?
+    private var recentMovieDataSource : RecentMoviesDataSource?
     
     private let dispatchGroup = DispatchGroup.init()
     
@@ -39,17 +41,26 @@ class DashboardViewController: UIViewController {
         configurator.configure(viewController: self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.loadData()
-        dispatchGroup.notify(queue: .main) {
+    fileprivate func reloadCollections() {
+        DispatchQueue.main.async {
+            self.collection_recent.dataSource = self.recentMovieDataSource
+            self.collection_recent.delegate = self.recentMovieDataSource
+            
             self.otherMovieDataSource = OtherMoviesDataSource.init(otherMoviesViewModel: self.otherMoviesViewModel!, vc: self)
             self.collection_other.dataSource = self.otherMovieDataSource
             self.collection_other.delegate = self.otherMovieDataSource
             
             self.collection_recent.reloadData()
             self.collection_other.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.loadData()
+        dispatchGroup.notify(queue: .main) {
+            self.reloadCollections()
         }
     }
     
@@ -82,30 +93,33 @@ class DashboardViewController: UIViewController {
         
         otherMoviesViewModel = OtherMoviesCollectionViewModel(dataSources: [], sections: [])
         
-        dispatchGroup.enter()
         self.recentMoviesPresenter?.loadNowPlayingMovies { [unowned self] (movies) -> (Void) in
             
-                self.recentMovieDataSource = RecentMoviesDataSource.init(nowPlayingMovies: movies, collectionView: self.collection_recent)
-                
-                self.collection_recent.dataSource = self.recentMovieDataSource
-                self.collection_recent.delegate = self.recentMovieDataSource
+            self.recentMovieDataSource = RecentMoviesDataSource.init(nowPlayingMovies: movies, collectionView: self.collection_recent)
                
-            self.dispatchGroup.leave()
+            self.reloadCollections()
         }
 
-        dispatchGroup.enter()
+        
         self.otherMoviesPresenter?.loadTopRatedMovies(page: 1) { [unowned self] (movies) in
             self.otherMoviesViewModel?.sections.append("Top Rated")
             self.otherMoviesViewModel?.dataSources.append(MovieCollectionDataSource(movies: movies))
-            self.dispatchGroup.leave()
+            self.reloadCollections()
         }
         
-        dispatchGroup.enter()
-        self.otherMoviesPresenter?.loadLatestMovie() {  [unowned self] (movies) in
-            self.otherMoviesViewModel?.sections.append("Latest Movies")
+//        dispatchGroup.enter()
+//        self.otherMoviesPresenter?.loadLatestMovie() {  [unowned self] (movies) in
+//            self.otherMoviesViewModel?.sections.append("Latest Movies")
+//            self.otherMoviesViewModel?.dataSources.append(MovieCollectionDataSource(movies: movies))
+//            self.reloadCollections()
+////            self.dispatchGroup.leave()
+//        }
+        
+        self.otherMoviesPresenter?.loadUpcomingMovies(page: 1, handler: { (movies) in
+            self.otherMoviesViewModel?.sections.append("Upcoming Movies")
             self.otherMoviesViewModel?.dataSources.append(MovieCollectionDataSource(movies: movies))
-            self.dispatchGroup.leave()
-        }
+            self.reloadCollections()
+        })
     }
     
     

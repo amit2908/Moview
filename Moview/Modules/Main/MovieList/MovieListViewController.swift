@@ -19,7 +19,8 @@ struct MovieTypes: OptionSet {
     static let ACTION           =   MovieTypes(rawValue: 1 << 4)
     static let ROMANTIC         =   MovieTypes(rawValue: 1 << 5)
     static let NOW_PLAYING      =   MovieTypes(rawValue: 1 << 6)
-    static let ALL              =   [MovieTypes.TOP_RATED, .LATEST, .FAVOURITES, .ACTION, .ROMANTIC]
+    static let UPCOMING         =   MovieTypes(rawValue: 1 << 7)
+    static let ALL              =   [MovieTypes.TOP_RATED, .LATEST, .FAVOURITES, .ACTION, .ROMANTIC, .NOW_PLAYING , .UPCOMING]
 }
 
 final class MovieListViewController: UIViewController {

@@ -30,7 +30,7 @@ struct TopRatedMoviesService: ITopRatedMoviesService{
         
         let urlRequest = MovieEndpoint.topRated(page: page).urlRequest!
         
-        apiClient.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
+        apiClient.GET(entity: MoviesResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
             
             successHandler(nowPlayingResponseData)
             
@@ -89,7 +89,7 @@ struct UpcomingMoviesService: IUpcomingMoviesService {
         
         let urlRequest = MovieEndpoint.upcomingMovies(page: page).urlRequest!
         
-        apiClient.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
+        apiClient.GET(entity: MoviesResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
             
             successHandler(nowPlayingResponseData)
             
@@ -144,7 +144,7 @@ struct NowPlayingDataService : INowPlayingDataService {
         
         let urlRequest = MovieEndpoint.nowPlaying.urlRequest!
         
-        apiClient.GET(entity: NowPlayingResponse.self, urlRequest: urlRequest, completionHandler: { (responseData) -> (Void) in
+        apiClient.GET(entity: MoviesResponse.self, urlRequest: urlRequest, completionHandler: { (responseData) -> (Void) in
             
             successHandler(responseData)
             

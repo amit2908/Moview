@@ -35,17 +35,7 @@ class RecentMoviesPresenter: IRecentMoviesPresenter {
         if movies.count == 0 {
             service.fetchNowPlayingData(successHandler: { [weak self] (data) -> (Void) in
 
-                DataLayer.persistentContainer.performBackgroundTask { (context) in
-                    
-                    context.mergePolicy = NSMergePolicy.init(merge: .mergeByPropertyObjectTrumpMergePolicyType)
-                    let response : NowPlayingResponse? = self?.translator.getUnsavedCoreDataObject(type: NowPlayingResponse.self, data: data, context: context)
-                    response?.results.forEach {
-                        $0.type = Int64.init(truncatingIfNeeded: MovieTypes.NOW_PLAYING.rawValue)
-                    }
-                    
-                    DataLayer.saveContext(context: context)
-                    
-                }
+                self?.repository.storeMovies(fromData: data, withType: .NOW_PLAYING)
                 
                 if let movies = self?.repository.fetchMovies(withType: MovieTypes.NOW_PLAYING){
                     handler(movies)

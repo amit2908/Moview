@@ -129,64 +129,6 @@ extension DataLayer {
 
 extension DataLayer {
     
-     func fetchNowPlayingMoviesFromLocalDB(handler: fetchMovieHandler){
-        let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
-        fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
-        fetchRequest.fetchLimit = 10
-        fetchRequest.predicate = NSPredicate(format: "isNowPlaying == true")
-        do {
-            let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
-            handler(fetchResults)
-        }catch {
-            print(error)
-            handler([Movie]())
-        }
-    }
-    
-    
-    func fetchUpcomingMoviesFromLocalDB(handler: fetchMovieHandler){
-        let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
-        fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
-        fetchRequest.fetchLimit = 10
-        fetchRequest.predicate = NSPredicate(format: "isUpcoming == true")
-        do {
-            let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
-            handler(fetchResults)
-        }catch {
-            print(error)
-            handler([Movie]())
-        }
-    }
-    
-    func fetchTopRatedMoviesFromLocalDB(handler: fetchMovieHandler){
-        let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
-        fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
-        fetchRequest.fetchLimit = 10
-        fetchRequest.predicate = NSPredicate(format: "isTopRated == true")
-        do {
-            let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
-            handler(fetchResults)
-        }catch {
-            print(error)
-            handler([Movie]())
-        }
-    }
-    
-    func fetchLatestMoviesFromLocalDB(handler: fetchMovieHandler){
-        let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
-        fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];
-        fetchRequest.fetchLimit = 10
-        fetchRequest.predicate = NSPredicate(format: "isLatest == true")
-        do {
-            let fetchResults = try DataLayer.viewContext.fetch(fetchRequest)
-            handler(fetchResults)
-        }catch {
-            print(error)
-            handler([Movie]())
-        }
-    }
-    
-    
     func fetchMovieDetailFromLocalDB(movieId: Int32, handler: fetchMovieDetailHandler){
         let fetchRequest = NSFetchRequest<Movie>.init(entityName: "Movie")
         fetchRequest.sortDescriptors = [.init(key: "title", ascending: true)];

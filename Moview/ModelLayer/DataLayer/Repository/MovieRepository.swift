@@ -16,6 +16,7 @@ protocol IMovieRepository {
 
 protocol IMovieCoreDataRepository: IMovieRepository {
     func storeMovie(movie: IMovie)
+    func storeMovies(fromData data: Data, withType type: MovieTypes)
     func bookmarkMovie(with id: Int32, bookmark: Bool)
     func fetchFavouriteMovies() -> [IMovie]
 }
@@ -53,6 +54,8 @@ struct MovieRepository: IMovieCoreDataRepository {
     
     private init() { }
     
+    private let translator = TranslationLayer.shared
+    
     func storeMovie(movie: IMovie) {
         let bgContext = DataLayer.backgroundContext
         let cdMovie = Movie.init(context: bgContext)
@@ -62,6 +65,21 @@ struct MovieRepository: IMovieCoreDataRepository {
         cdMovie.poster_path = movie.imageLink
         
         DataLayer.saveContext(context: bgContext)
+    }
+    
+    func storeMovies(fromData data: Data, withType type: MovieTypes) {
+        let backgroundContext = DataLayer.backgroundContext
+        backgroundContext.mergePolicy = NSMergePolicy.init(merge: .mergeByPropertyObjectTrumpMergePolicyType)
+        
+        backgroundContext.performAndWait {
+            let response = self.translator.getUnsavedCoreDataObject(type: MoviesResponse.self, data: data, context: backgroundContext)
+            
+            response?.results.forEach {
+                $0.type = Int64.init(truncatingIfNeeded: type.rawValue)
+            }
+            
+            DataLayer.saveContext(context: backgroundContext)
+        }
     }
     
     func fetchMovie(using id: Int32) -> IMovie? {

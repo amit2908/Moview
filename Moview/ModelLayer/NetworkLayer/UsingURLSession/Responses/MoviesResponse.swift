@@ -1,5 +1,5 @@
 //
-//  NowPlayingResponse.swift
+//  MoviesResponse.swift
 //  Moview
 //
 //  Created by Empower on 05/08/19.
@@ -9,8 +9,8 @@
 import Foundation
 
 
-// MARK: - NowPlayingResponse
-@objcMembers class NowPlayingResponse: NSObject, Codable {
+// MARK: - MoviesResponse
+@objcMembers class MoviesResponse: NSObject, Codable {
     let results: [Movie]
     let page, totalResults: Int
     let dates: Dates?
