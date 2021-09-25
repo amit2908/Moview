@@ -13,7 +13,6 @@ typealias FetchMoviesCompletionHandler = ([IMovie]) -> Void
 
 protocol IOtherMoviesPresenter {
     var sections                : [String]                      { get set }
-    var movieDataSources        : [MovieCollectionDataSource]   { get set }
     func loadTopRatedMovies(page: Int, handler: @escaping FetchMoviesCompletionHandler)
     func loadLatestMovie(handler: @escaping FetchMoviesCompletionHandler)
     func loadUpcomingMovies(page: Int, handler: @escaping FetchMoviesCompletionHandler)
@@ -44,8 +43,6 @@ class OtherMoviesPresenter: IOtherMoviesPresenter {
      
         self.sections.append("Latest Movies")
         self.sections.append("Top Rated Movies")
-        self.movieDataSources.append(MovieCollectionDataSource(movies: [IMovie]()))
-        self.movieDataSources.append(MovieCollectionDataSource(movies: [IMovie]()))
     }
     
     

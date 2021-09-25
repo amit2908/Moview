@@ -21,10 +21,6 @@ class MovieListDataSource: NSObject, UICollectionViewDataSource, UICollectionVie
         super.init()
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieListViewModel.movies.count
     }
@@ -46,7 +42,7 @@ class MovieListDataSource: NSObject, UICollectionViewDataSource, UICollectionVie
         let posterPath =  "https://image.tmdb.org/t/p/w200/" + movieListViewModel.movies[indexPath.row].imageLink
         
         collectionCell?.imgV_movie.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
-        collectionCell?.lbl_title.text = movieListViewModel.movies[indexPath.row].title
+        collectionCell?.lbl_title.text = movieListViewModel.movies[indexPath.row].overview
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

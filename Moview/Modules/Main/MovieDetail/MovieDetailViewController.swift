@@ -41,6 +41,12 @@ class MovieDetailViewController: UIViewController {
         self.presenter = MovieDetailViewPresenter(movieRepository: MovieRepository.shared, movieDetailService: MovieDetailsService(apiClient: APIClient.shared), translator: TranslationLayer.shared)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tv_movieDetails.delegate = self
+        tv_movieDetails.dataSource = self
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.loadData()
@@ -57,6 +63,7 @@ class MovieDetailViewController: UIViewController {
         
         self.navBar.btn_right.addTarget(self, action: #selector(self.favouriteButtonTapped), for: .touchUpInside)
         
+        
         self.navBar.btn_right.setImage(UIImage(named: "favourite-unselected")!, for: .normal)
     }
     
@@ -67,6 +74,12 @@ class MovieDetailViewController: UIViewController {
                     let posterPath =  K.Server.imageBaseURL + "/\(ImageSize.xLarge)/" + (movie.imageLink)
                     self.imgV_moviePoster.sd_setImage(with: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), completed: nil)
                         self.imgV_moviePoster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+                    if movie.isBookmarked {
+                        self.navBar.btn_right.setImage(UIImage(named: "favourite-selected")!, for: .normal)
+                    }else {
+                        self.navBar.btn_right.setImage(UIImage(named: "favourite-unselected")!, for: .normal)
+                    }
+                    
                 }
             }
         }
@@ -88,5 +101,21 @@ class MovieDetailViewController: UIViewController {
         }else {
             self.navBar.btn_right.setImage(UIImage(named: "favourite-unselected")!, for: .normal)
         }
+    }
+}
+
+extension MovieDetailViewController : UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = self.presenter.title
+        cell.textLabel?.numberOfLines = 0
+        return cell
     }
 }

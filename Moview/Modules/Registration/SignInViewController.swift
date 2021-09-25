@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import JVFloatLabeledTextField
 import RxSwift
 import RxCocoa
 
 class SignInViewController: UIViewController {
 
-    @IBOutlet weak var tf_username: JVFloatLabeledTextField!
-    @IBOutlet weak var tf_password: JVFloatLabeledTextField!
+    @IBOutlet weak var tf_username: UITextField!
+    @IBOutlet weak var tf_password: UITextField!
     @IBOutlet weak var btn_signin: UIButton!
     @IBOutlet weak var btn_signup: UIButton!
     
@@ -34,6 +33,12 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tf_username.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_username.bounds.height)))
+        self.tf_password.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_password.bounds.height)))
+        self.tf_username.leftViewMode = .always
+        self.tf_password.leftViewMode = .always
+        
         _ = tf_username.rx.text.map{ $0 ?? ""}.bind(to: signInPresenter.emailText)
         _ = tf_password.rx.text.map{ $0 ?? ""}.bind(to: signInPresenter.passwordText)
         _ = signInPresenter.isValid.bind(to: btn_signin.rx.isEnabled)
@@ -42,7 +47,7 @@ class SignInViewController: UIViewController {
             self.btn_signin.alpha = isValid ? 1.0 : 0.4;
         }).disposed(by: disposeBag)
         
-        self.addLiquidView()
+//        self.addLiquidView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,17 +58,20 @@ class SignInViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         self.animateMoviewTitle()
+        self.tf_username.becomeFirstResponder()
     }
     
     //MARK: Actions
     @IBAction func loginButtonTapped(_ sender: UIButton) {
+        /*
         if ApplicationManager.sharedInstance.isValidName(testStr: tf_username.text!) && ApplicationManager.sharedInstance.isValidPassword(strPassword: tf_password.text!) {
             let token = UserDefaults.standard.value(forKey: Keys.shared.REQUEST_TOKEN) as? String
 //            self.showProgress(status: "Please wait...")
             
             if (token == nil) {
-                self.liquidView.fillFull()
+//                self.liquidView.fillFull()
             }
             
            /* Service.shared.createSession(requestToken: token, username: tf_username.text!, password: tf_password.text!, completion: {
@@ -74,6 +82,9 @@ class SignInViewController: UIViewController {
                 ApplicationManager.sharedInstance.showAlertPicker(vc: self, title: "alert", buttonTitle: "Ok".localized(), message: errorMessage, handler: {})
             }*/
         }
+        */
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+        Navigation.shared.navigateToMainContainer(navigationController: self.navigationController!)
     }
     @IBAction func action_signUpButtonTapped(_ sender: Any) {
             Navigation.shared.navigateToSignUp(navigationController: self.navigationController!)
@@ -145,5 +156,20 @@ class SignInViewController: UIViewController {
 extension SignInViewController: FluidAnimationDelegate {
     func didFinishFilling() {
         Navigation.shared.navigateToMainContainer(navigationController: self.navigationController!)
+    }
+}
+
+
+extension SignInViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.borderColor = .black
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.borderColor = .systemPink
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
     }
 }

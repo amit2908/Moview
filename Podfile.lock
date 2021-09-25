@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (5.0.0-beta.4)
-  - JVFloatLabeledTextField (1.2.1)
+  - IQKeyboardManagerSwift (6.5.5)
   - lottie-ios (3.1.8)
   - RAMAnimatedTabBarController (4.0.2)
   - ReachabilitySwift (4.3.1)
@@ -15,12 +15,11 @@ PODS:
   - SDWebImage/Core (5.8.3)
   - SidebarOverlay (4.3.1)
   - SVProgressHUD (2.2.5)
-  - SwiftyJSON (4.2.0)
   - Toast-Swift (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (= 5.0.0-beta.4)
-  - JVFloatLabeledTextField
+  - IQKeyboardManagerSwift
   - lottie-ios
   - RAMAnimatedTabBarController (= 4.0.2)
   - ReachabilitySwift
@@ -29,22 +28,20 @@ DEPENDENCIES:
   - SDWebImage
   - SidebarOverlay (from `https://github.com/milosuzice/SidebarOverlay.git`, tag `4.3.1`)
   - SVProgressHUD
-  - SwiftyJSON (= 4.2)
   - Toast-Swift
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
-    - JVFloatLabeledTextField
     - RAMAnimatedTabBarController
     - ReachabilitySwift
     - RxCocoa
     - RxRelay
     - RxSwift
     - SVProgressHUD
-    - SwiftyJSON
     - Toast-Swift
   trunk:
+    - IQKeyboardManagerSwift
     - lottie-ios
     - SDWebImage
 
@@ -60,7 +57,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 6458d95477bc40adf10129f22c67cfb014162dc8
-  JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   RAMAnimatedTabBarController: 5c91e16a9c4be56a7e022182b64b192bc6865f20
   ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
@@ -70,9 +67,8 @@ SPEC CHECKSUMS:
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   SidebarOverlay: 3fe30428c903e9fdaeb78237b86ff0c2a242f4dd
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
 
-PODFILE CHECKSUM: bfebcd2f3559f5914072af5855fdb3b226492b4b
+PODFILE CHECKSUM: e517697ee9db8c499085493f4ec72132d3319b88
 
 COCOAPODS: 1.9.3

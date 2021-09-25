@@ -48,6 +48,7 @@ class CustomNavigationBar: UINavigationBar {
     override func awakeFromNib() {
         setupView()
         self.titleLabel.text = title
+        self.titleLabel.layer.zPosition = 100.0
     }
     
     override func layoutSublayers(of layer: CALayer) {

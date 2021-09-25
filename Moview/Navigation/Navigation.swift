@@ -40,11 +40,11 @@ struct Navigation {
         UIApplication.currentViewController()?.navigationController?.pushViewController(movieDetail, animated: true)
     }
     
-    func navigateToMovieList(navigationController: UINavigationController, movieTypes: MovieTypes, movies: [IMovie]? = [IMovie]()){
+    func navigateToMovieList(fromViewController: UIViewController, movieTypes: MovieTypes, movies: [IMovie]? = [IMovie]()){
         let movieListVC = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.movieList) as! MovieListViewController
         movieListVC.typeOfMovies             = movieTypes
         movieListVC.movies                   = movies ?? [IMovie]()
-        navigationController.show(movieListVC, sender: nil)
+        fromViewController.show(movieListVC, sender: nil)
         self.makeWindowKeyAndVisible()
     }
     

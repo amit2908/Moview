@@ -12,31 +12,65 @@ struct MovieTypes: OptionSet {
     
     let rawValue: Int
     
-    static let UNCATEGORISED    =   MovieTypes(rawValue: 1 << 0)
-    static let TOP_RATED        =   MovieTypes(rawValue: 1 << 1)
-    static let LATEST           =   MovieTypes(rawValue: 1 << 2)
-    static let FAVOURITES       =   MovieTypes(rawValue: 1 << 3)
-    static let ACTION           =   MovieTypes(rawValue: 1 << 4)
-    static let ROMANTIC         =   MovieTypes(rawValue: 1 << 5)
-    static let NOW_PLAYING      =   MovieTypes(rawValue: 1 << 6)
-    static let UPCOMING         =   MovieTypes(rawValue: 1 << 7)
+    
+    static let TOP_RATED        =   MovieTypes(rawValue: 1 << 0)
+    static let UPCOMING         =   MovieTypes(rawValue: 1 << 1)
+    static let FAVOURITES       =   MovieTypes(rawValue: 1 << 2)
+    static let ACTION           =   MovieTypes(rawValue: 1 << 3)
+    static let ROMANTIC         =   MovieTypes(rawValue: 1 << 4)
+    static let NOW_PLAYING      =   MovieTypes(rawValue: 1 << 5)
+    static let LATEST           =   MovieTypes(rawValue: 1 << 6)
+    static let UNCATEGORISED    =   MovieTypes(rawValue: 1 << 7)
     static let ALL              =   [MovieTypes.TOP_RATED, .LATEST, .FAVOURITES, .ACTION, .ROMANTIC, .NOW_PLAYING , .UPCOMING]
+    
+    func getTitle() -> String {
+        switch self {
+        case .TOP_RATED:
+            return "Top Rated Movies"
+        case .LATEST:
+            return "Latest Movies"
+        case .UPCOMING:
+            return "Upcoming Movies"
+            
+        default:
+            return ""
+        }
+    }
 }
 
 final class MovieListViewController: UIViewController {
     
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var navBar: CustomNavigationBar!
+    
     
     var dataSource : MovieListDataSource?
     var typeOfMovies : MovieTypes?
     var movies = [IMovie]()
     var movieListViewModel : MovieListViewModel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         movieListViewModel = MovieListViewModel(movies: movies)
         
+        setupCollectionDataSource()
+        setupView()
+    }
+    
+    private func setupView(){
+        self.navBar.top_Item.isHidden = false
+        self.navBar.titleLabel.isHidden = false
+        self.navBar.titleLabel.text = self.typeOfMovies?.getTitle()
+        
+        self.navBar.btn_left.isHidden = false
+        self.navBar.btn_left.setImage(UIImage(named: "back-button"), for: .normal)
+        self.navBar.btn_left.addTarget(self, action: #selector(self.backButtonAction(sender:)), for: .touchDown)
+        
+    }
+    
+    fileprivate func setupCollectionDataSource() {
         self.dataSource = MovieListDataSource(movieListViewModel: movieListViewModel, vc: self)
         
         self.collectionView.dataSource = dataSource

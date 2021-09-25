@@ -8,8 +8,6 @@ use_frameworks!
 def myPods
   pod 'ReachabilitySwift'
   pod 'Alamofire', '5.0.0-beta.4'
-  pod 'SwiftyJSON', '4.2'
-  pod 'JVFloatLabeledTextField'
   pod 'SVProgressHUD'
   pod 'RAMAnimatedTabBarController', '4.0.2'
   pod 'SidebarOverlay', :git => 'https://github.com/milosuzice/SidebarOverlay.git', :tag => '4.3.1'
@@ -17,6 +15,7 @@ def myPods
   pod 'RxCocoa', '~> 5'
   pod 'Toast-Swift'
   pod 'lottie-ios'
+  pod 'IQKeyboardManagerSwift'
   pod 'SDWebImage'
 end
 

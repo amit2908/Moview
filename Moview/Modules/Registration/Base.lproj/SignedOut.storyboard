@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jdl-SA-aFb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jdl-SA-aFb">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oiZ-Qv-UY7" customClass="JVFloatLabeledTextField">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oiZ-Qv-UY7">
                                 <rect key="frame" x="37.5" y="155" width="300" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="8zL-TW-FAm"/>
@@ -24,41 +24,39 @@
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="xJH-Jj-Dec"/>
+                                </connections>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h3v-hM-SBo">
-                                <rect key="frame" x="37.5" y="192" width="300" height="0.5"/>
-                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="0.5" id="XbW-Yf-Rwx"/>
-                                </constraints>
-                            </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lt8-mp-zm5" customClass="JVFloatLabeledTextField">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lt8-mp-zm5">
                                 <rect key="frame" x="37.5" y="225" width="300" height="44"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="AJC-SM-htL"/>
+                                </connections>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cwO-5G-SMQ">
-                                <rect key="frame" x="37.5" y="262" width="300" height="0.5"/>
-                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfl-PQ-1lr">
                                 <rect key="frame" x="37.5" y="313" width="300" height="44"/>
                                 <color key="backgroundColor" red="1" green="0.21174291829447334" blue="0.19800184626325834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,6 +66,11 @@
                                 <state key="normal" title="Sign in">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oVa-Ya-EGr"/>
                                 </connections>
@@ -81,6 +84,11 @@
                                 <state key="normal" title="Sign up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="action_signUpButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eOX-Tc-iaU"/>
                                 </connections>
@@ -131,24 +139,17 @@
                         <constraints>
                             <constraint firstItem="oiZ-Qv-UY7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="155" id="18v-I1-gja"/>
                             <constraint firstItem="2xZ-Al-aZf" firstAttribute="top" secondItem="bfl-PQ-1lr" secondAttribute="bottom" constant="20" id="5bi-fF-k6L"/>
-                            <constraint firstItem="h3v-hM-SBo" firstAttribute="leading" secondItem="oiZ-Qv-UY7" secondAttribute="leading" id="6Yy-Gh-QiA"/>
                             <constraint firstItem="2xZ-Al-aZf" firstAttribute="height" secondItem="bfl-PQ-1lr" secondAttribute="height" id="B8C-jO-IhU"/>
                             <constraint firstItem="DpI-py-FR9" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Bgz-aN-fF0"/>
                             <constraint firstItem="bfl-PQ-1lr" firstAttribute="width" secondItem="lt8-mp-zm5" secondAttribute="width" id="Bw0-zV-NwF"/>
-                            <constraint firstItem="h3v-hM-SBo" firstAttribute="top" secondItem="oiZ-Qv-UY7" secondAttribute="bottom" constant="-7" id="HGD-UC-z8I"/>
-                            <constraint firstItem="cwO-5G-SMQ" firstAttribute="trailing" secondItem="lt8-mp-zm5" secondAttribute="trailing" id="Khf-0j-kVh"/>
                             <constraint firstItem="oiZ-Qv-UY7" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="PGW-aE-XBp"/>
                             <constraint firstItem="DpI-py-FR9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="58" id="R5z-sM-Km7"/>
                             <constraint firstItem="2xZ-Al-aZf" firstAttribute="width" secondItem="bfl-PQ-1lr" secondAttribute="width" id="VQO-L6-NFA"/>
                             <constraint firstItem="bfl-PQ-1lr" firstAttribute="centerX" secondItem="lt8-mp-zm5" secondAttribute="centerX" id="VkV-cK-uwk"/>
-                            <constraint firstItem="h3v-hM-SBo" firstAttribute="trailing" secondItem="oiZ-Qv-UY7" secondAttribute="trailing" id="X1G-gf-ud9"/>
-                            <constraint firstItem="cwO-5G-SMQ" firstAttribute="top" secondItem="lt8-mp-zm5" secondAttribute="bottom" constant="-7" id="XJZ-zN-ZrD"/>
-                            <constraint firstItem="cwO-5G-SMQ" firstAttribute="leading" secondItem="lt8-mp-zm5" secondAttribute="leading" id="ZIT-3D-u8i"/>
                             <constraint firstItem="lt8-mp-zm5" firstAttribute="top" secondItem="oiZ-Qv-UY7" secondAttribute="bottom" constant="26" id="a73-8A-QBj"/>
                             <constraint firstItem="lt8-mp-zm5" firstAttribute="width" secondItem="oiZ-Qv-UY7" secondAttribute="width" id="irI-Ux-WHs"/>
                             <constraint firstItem="bfl-PQ-1lr" firstAttribute="centerX" secondItem="oiZ-Qv-UY7" secondAttribute="centerX" id="lBb-8H-Ly9"/>
                             <constraint firstItem="bfl-PQ-1lr" firstAttribute="top" secondItem="lt8-mp-zm5" secondAttribute="bottom" constant="44" id="mK0-BM-V92"/>
-                            <constraint firstItem="cwO-5G-SMQ" firstAttribute="height" secondItem="h3v-hM-SBo" secondAttribute="height" id="nyn-nH-0XA"/>
                             <constraint firstItem="2xZ-Al-aZf" firstAttribute="centerX" secondItem="bfl-PQ-1lr" secondAttribute="centerX" id="oBb-aj-Rh3"/>
                             <constraint firstItem="oiZ-Qv-UY7" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="tBz-bh-gwr"/>
                             <constraint firstItem="lt8-mp-zm5" firstAttribute="height" secondItem="oiZ-Qv-UY7" secondAttribute="height" id="vva-Pd-p9a"/>
@@ -167,8 +168,8 @@
                         <outlet property="lbl_o" destination="6a3-08-d81" id="mX5-2e-EbY"/>
                         <outlet property="lbl_v" destination="TtA-ok-qXp" id="9RQ-tc-YLU"/>
                         <outlet property="lbl_w" destination="fzt-1z-Mn1" id="S0a-75-oXq"/>
-                        <outlet property="tf_password" destination="lt8-mp-zm5" id="BJ6-PT-c2j"/>
-                        <outlet property="tf_username" destination="oiZ-Qv-UY7" id="84h-J3-zV6"/>
+                        <outlet property="tf_password" destination="lt8-mp-zm5" id="7qH-hM-Azg"/>
+                        <outlet property="tf_username" destination="oiZ-Qv-UY7" id="xr5-pg-uvm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -216,34 +217,90 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Rk7-U3-nvl">
-                                <rect key="frame" x="28" y="149" width="319" height="369"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Rk7-U3-nvl">
+                                <rect key="frame" x="28" y="139" width="319" height="389"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I8V-M7-vVa" customClass="JVFloatLabeledTextField">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I8V-M7-vVa">
                                         <rect key="frame" x="0.0" y="0.0" width="319" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="97W-Ut-TNI"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="XWU-ro-vLM" id="9U2-Cp-nRs"/>
+                                        </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d2b-cD-fwI" customClass="JVFloatLabeledTextField">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d2b-cD-fwI">
                                         <rect key="frame" x="0.0" y="69" width="319" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="XWU-ro-vLM" id="TnQ-66-pOz"/>
+                                        </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDg-ym-Ovk" customClass="JVFloatLabeledTextField">
-                                        <rect key="frame" x="0.0" y="138" width="319" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDg-ym-Ovk">
+                                        <rect key="frame" x="0.0" y="138" width="319" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="XWU-ro-vLM" id="opg-Me-pJv"/>
+                                        </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email/Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PdQ-Hh-pe3" customClass="JVFloatLabeledTextField">
-                                        <rect key="frame" x="0.0" y="197" width="319" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PdQ-Hh-pe3">
+                                        <rect key="frame" x="0.0" y="207" width="319" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="XWU-ro-vLM" id="ezC-dQ-a7s"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRp-Cs-PsJ">
-                                        <rect key="frame" x="0.0" y="256" width="319" height="44"/>
+                                        <rect key="frame" x="0.0" y="276" width="319" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.2117429183" blue="0.19800184630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="hO0-rB-BgC"/>
@@ -251,12 +308,17 @@
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="action_signup:" destination="XWU-ro-vLM" eventType="touchUpInside" id="qYS-hK-oJq"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mff-eP-04b" userLabel="Signup">
-                                        <rect key="frame" x="0.0" y="325" width="319" height="44"/>
+                                        <rect key="frame" x="0.0" y="345" width="319" height="44"/>
                                         <color key="backgroundColor" red="1" green="0.2117429183" blue="0.19800184630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="ufi-yi-lGE"/>
@@ -264,6 +326,11 @@
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="action_signin:" destination="XWU-ro-vLM" eventType="touchUpInside" id="9OK-vV-Rvm"/>
                                         </connections>
@@ -333,10 +400,10 @@
                     <connections>
                         <outlet property="btn_signin" destination="tRp-Cs-PsJ" id="7Qn-pL-jnw"/>
                         <outlet property="btn_signup" destination="Mff-eP-04b" id="AwC-zF-pvt"/>
-                        <outlet property="tf_emailOrPhone" destination="PdQ-Hh-pe3" id="4L8-zp-F1t"/>
-                        <outlet property="tf_password" destination="d2b-cD-fwI" id="eQl-7E-2l2"/>
-                        <outlet property="tf_repeatPassword" destination="UDg-ym-Ovk" id="tMY-Ff-Cfg"/>
-                        <outlet property="tf_username" destination="I8V-M7-vVa" id="3LY-Dg-q7t"/>
+                        <outlet property="tf_emailOrPhone" destination="PdQ-Hh-pe3" id="IFw-Pq-4aG"/>
+                        <outlet property="tf_password" destination="d2b-cD-fwI" id="v9f-2J-i2a"/>
+                        <outlet property="tf_repeatPassword" destination="UDg-ym-Ovk" id="afC-ze-4v9"/>
+                        <outlet property="tf_username" destination="I8V-M7-vVa" id="AyF-sN-hZi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bq1-sm-2ea" sceneMemberID="firstResponder"/>

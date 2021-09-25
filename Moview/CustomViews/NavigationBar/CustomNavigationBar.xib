@@ -30,10 +30,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="40" height="44"/>
                             <subviews>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ouy-Qg-SIP">
-                                    <rect key="frame" x="4" y="7" width="32" height="30"/>
+                                    <rect key="frame" x="7.5" y="9.5" width="25" height="25"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="g77-K7-05o"/>
-                                        <constraint firstAttribute="width" constant="32" id="xB6-Lr-g9B"/>
+                                        <constraint firstAttribute="height" constant="25" id="g77-K7-05o"/>
+                                        <constraint firstAttribute="width" constant="25" id="xB6-Lr-g9B"/>
                                     </constraints>
                                 </button>
                             </subviews>
@@ -48,10 +48,10 @@
                             <rect key="frame" x="335" y="0.0" width="40" height="44"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMO-mT-OVM">
-                                    <rect key="frame" x="4" y="7" width="32" height="30"/>
+                                    <rect key="frame" x="7.5" y="9.5" width="25" height="25"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="UJe-T7-fHE"/>
-                                        <constraint firstAttribute="width" constant="32" id="YZv-Vf-1df"/>
+                                        <constraint firstAttribute="height" constant="25" id="UJe-T7-fHE"/>
+                                        <constraint firstAttribute="width" constant="25" id="YZv-Vf-1df"/>
                                     </constraints>
                                 </button>
                             </subviews>

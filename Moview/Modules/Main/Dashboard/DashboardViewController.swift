@@ -137,12 +137,9 @@ class DashboardViewController: UIViewController {
 extension DashboardViewController {
     @objc func showMoreBtnClicked(button: UIButton) {
         
-        var movies = [IMovie]()
-        if let mov = self.otherMoviesPresenter?.movieDataSources[button.tag].movies {
-            movies = mov
-        }
-        
-        Navigation.shared.navigateToMovieList(navigationController: self.navigationController!, movieTypes: MovieTypes(rawValue: button.tag), movies: movies)
+        let dataSource = otherMoviesViewModel?.dataSources[button.tag]
+        let movieType = MovieTypes(rawValue: 1 << button.tag)
+        Navigation.shared.navigateToMovieList(fromViewController: self, movieTypes: movieType, movies: dataSource?.movies)
     }
 
 }

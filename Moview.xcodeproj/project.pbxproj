@@ -85,6 +85,8 @@
 		C898F771238DA6B7003004B8 /* Collection+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C898F770238DA6B6003004B8 /* Collection+CoreDataProperties.swift */; };
 		C898F773238DA9C4003004B8 /* SpokenLanguage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C898F772238DA9C4003004B8 /* SpokenLanguage+CoreDataClass.swift */; };
 		C898F775238DA9DB003004B8 /* SpokenLanguage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C898F774238DA9DB003004B8 /* SpokenLanguage+CoreDataProperties.swift */; };
+		C89D375026E4AE9B008607C0 /* SideBarTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89D374E26E4AE9B008607C0 /* SideBarTableCell.swift */; };
+		C89D375126E4AE9B008607C0 /* SideBarTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89D374F26E4AE9B008607C0 /* SideBarTableCell.xib */; };
 		C89EE2E622F67FFF00CBF839 /* MovieEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89EE2E522F67FFF00CBF839 /* MovieEndpoint.swift */; };
 		C89EE2E822F6802500CBF839 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89EE2E722F6802500CBF839 /* APIConfiguration.swift */; };
 		C8AC4E5626A3499100D168C9 /* UIViewController+Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC4E5526A3499100D168C9 /* UIViewController+Top.swift */; };
@@ -197,6 +199,8 @@
 		C898F770238DA6B6003004B8 /* Collection+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C898F772238DA9C4003004B8 /* SpokenLanguage+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpokenLanguage+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C898F774238DA9DB003004B8 /* SpokenLanguage+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpokenLanguage+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C89D374E26E4AE9B008607C0 /* SideBarTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarTableCell.swift; sourceTree = "<group>"; };
+		C89D374F26E4AE9B008607C0 /* SideBarTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideBarTableCell.xib; sourceTree = "<group>"; };
 		C89EE2E522F67FFF00CBF839 /* MovieEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndpoint.swift; sourceTree = "<group>"; };
 		C89EE2E722F6802500CBF839 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		C8AC4E5526A3499100D168C9 /* UIViewController+Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Top.swift"; sourceTree = "<group>"; };
@@ -408,6 +412,7 @@
 				C8511D43246EAB6E007C4A4E /* AnimatedTabBarViewController.swift */,
 				C8511D45246EAC5F007C4A4E /* MainContainerViewController.swift */,
 				C8511D47246EAF4B007C4A4E /* SidebarViewController.swift */,
+				C89D374926E4AD76008607C0 /* SideBar */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -587,6 +592,31 @@
 				930E82C4226D8675000C40E2 /* LaunchScreen.storyboard */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		C89D374926E4AD76008607C0 /* SideBar */ = {
+			isa = PBXGroup;
+			children = (
+				C89D374A26E4AD80008607C0 /* Views */,
+			);
+			path = SideBar;
+			sourceTree = "<group>";
+		};
+		C89D374A26E4AD80008607C0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C89D374B26E4AD88008607C0 /* TableViewCells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C89D374B26E4AD88008607C0 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				C89D374E26E4AE9B008607C0 /* SideBarTableCell.swift */,
+				C89D374F26E4AE9B008607C0 /* SideBarTableCell.xib */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		C89EE2E422F67FC000CBF839 /* UsingURLSession */ = {
@@ -806,6 +836,7 @@
 				930E82C3226D8675000C40E2 /* Assets.xcassets in Resources */,
 				930E82C1226D8672000C40E2 /* SignedOut.storyboard in Resources */,
 				930E831C226DDF17000C40E2 /* Main.storyboard in Resources */,
+				C89D375126E4AE9B008607C0 /* SideBarTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,6 +916,7 @@
 				C8511D46246EAC5F007C4A4E /* MainContainerViewController.swift in Sources */,
 				C8D3CE532356322F00F2B88C /* OtherMoviesPresenter.swift in Sources */,
 				C8CDA096231CE82D007FE82B /* MovieListViewController.swift in Sources */,
+				C89D375026E4AE9B008607C0 /* SideBarTableCell.swift in Sources */,
 				930E8305226DCD4F000C40E2 /* UIColor+AppColors.swift in Sources */,
 				932176D422FA8E2A0079F524 /* CodableHelpers.swift in Sources */,
 				C87B25BC231ED0C1001A224C /* Services.swift in Sources */,

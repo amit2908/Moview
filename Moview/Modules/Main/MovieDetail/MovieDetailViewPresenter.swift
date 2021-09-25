@@ -9,15 +9,19 @@
 import UIKit
 
 protocol IMovieDetailViewPresenter {
+    var posterImagePath : String { get set }
+    var title       : String   { get set }
+    var isBookmarked : Bool    { get set }
     func setFavourite(movieId: Int32, isFavourite: Bool)
     func loadMovieDetails(movieId: Int32, handler: @escaping (IMovie?)->Void)
 }
 
-class MovieDetailViewPresenter {
+class MovieDetailViewPresenter: IMovieDetailViewPresenter {
     
     //MARK: Public Properties
     var posterImagePath : String
     var title       : String
+    var isBookmarked : Bool
     
     fileprivate var movieRepository: IMovieCoreDataRepository
     fileprivate var movieDetailService: IMovieDetailsService
@@ -31,12 +35,13 @@ class MovieDetailViewPresenter {
         self.translator = translator
         self.posterImagePath = ""
         self.title       = ""
+        self.isBookmarked = false
     }
     
     
 }
 
-extension MovieDetailViewPresenter: IMovieDetailViewPresenter{
+extension MovieDetailViewPresenter {
     func setFavourite(movieId: Int32, isFavourite: Bool) {
         self.movieRepository.bookmarkMovie(with: movieId, bookmark: isFavourite)
     }
@@ -46,7 +51,8 @@ extension MovieDetailViewPresenter: IMovieDetailViewPresenter{
         
         if let movie = movieRepository.fetchMovie(using: movieId) {
             self.posterImagePath = movie.imageLink
-            self.title  = movie.title
+            self.title  = movie.overview
+            self.isBookmarked = movie.isBookmarked
             handler(movie)
         }else {
             movieDetailService.fetchMovieDetails(movieId: movieId, successHandler: {[weak self] (data) -> (Void) in
