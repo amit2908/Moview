@@ -16,6 +16,7 @@ protocol IOtherMoviesPresenter {
     func loadTopRatedMovies(page: Int, handler: @escaping FetchMoviesCompletionHandler)
     func loadLatestMovie(handler: @escaping FetchMoviesCompletionHandler)
     func loadUpcomingMovies(page: Int, handler: @escaping FetchMoviesCompletionHandler)
+    func loadNowPlayingMovies(page: Int, handler: @escaping FetchMoviesCompletionHandler)
 }
 
 class OtherMoviesPresenter: IOtherMoviesPresenter {
@@ -121,6 +122,29 @@ class OtherMoviesPresenter: IOtherMoviesPresenter {
             handler(movies)
         }
         
+    }
+    
+    func loadNowPlayingMovies(page: Int, handler: @escaping FetchMoviesCompletionHandler) {
+        let movies = repository.fetchMovies(withType: .NOW_PLAYING)
+        if movies.isEmpty {
+            latestMoviesService.fetchLatestMovies(successHandler: { [weak self] (data) -> (Void) in
+                
+                self?.repository.storeMovies(fromData: data, withType: .NOW_PLAYING)
+                
+                if let movies = self?.repository.fetchMovies(withType: .NOW_PLAYING) {
+                    handler(movies)
+                }
+                
+                return
+                
+            }) { (error) -> (Void) in
+                debugPrint("Error while fetching Top Rated movies >>>------>", error.localizedDescription)
+
+                handler([])
+            }
+        }else {
+            handler(movies)
+        }
     }
 }
 

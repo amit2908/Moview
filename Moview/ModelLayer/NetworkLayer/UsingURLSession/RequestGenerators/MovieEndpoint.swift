@@ -12,7 +12,6 @@ enum MovieEndpoint : APIConfig {
     
     case nowPlaying
     
-//    case upcomingMovies(fromDate: String, toDate: String)
     case upcomingMovies(page: Int)
     
     case topRated(page: Int)

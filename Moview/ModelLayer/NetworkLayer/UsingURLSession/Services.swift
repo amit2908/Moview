@@ -60,7 +60,7 @@ struct LatestMoviesService: ILatestMoviesService {
         
         let urlRequest = MovieEndpoint.latest.urlRequest!
         
-        apiClient.GET(entity: Movie.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
+        apiClient.GET(entity: MoviesResponse.self, urlRequest: urlRequest, completionHandler: { (nowPlayingResponseData) -> (Void) in
             
             successHandler(nowPlayingResponseData)
             

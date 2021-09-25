@@ -107,13 +107,12 @@ class DashboardViewController: UIViewController {
             self.reloadCollections()
         }
         
-//        dispatchGroup.enter()
-//        self.otherMoviesPresenter?.loadLatestMovie() {  [unowned self] (movies) in
-//            self.otherMoviesViewModel?.sections.append("Latest Movies")
-//            self.otherMoviesViewModel?.dataSources.append(MovieCollectionDataSource(movies: movies))
-//            self.reloadCollections()
-////            self.dispatchGroup.leave()
-//        }
+        
+        self.otherMoviesPresenter?.loadNowPlayingMovies(page: 2, handler: { (movies) in
+            self.otherMoviesViewModel?.sections.append("Now Playing")
+            self.otherMoviesViewModel?.dataSources.append(MovieCollectionDataSource(movies: movies))
+            self.reloadCollections()
+        })
         
         self.otherMoviesPresenter?.loadUpcomingMovies(page: 1, handler: { (movies) in
             self.otherMoviesViewModel?.sections.append("Upcoming Movies")
