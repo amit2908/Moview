@@ -1,31 +1,17 @@
 //
-//  LiquidAnimationView.swift
+//  GlassWaterLayer.swift
 //  Moview
 //
-//  Created by Shubham Ojha on 12/05/20.
-//  Copyright © 2020 Shubham. All rights reserved.
+//  Created by Shubham Ojha on 07/10/21.
+//  Copyright © 2021 Shubham. All rights reserved.
 //
 
 import UIKit
 
-enum FluidAnimationType: Int {
-    case wave = 0, glassOfWater
-}
-
-protocol FluidAnimationDelegate: class {
-    func didFinishFilling()
-}
-extension FluidAnimationDelegate {
-    func didFinishFilling(){}
-}
-
-class FluidAnimationView: UIView {
+class GlassWaterLayer: CAShapeLayer {
+    private var shapePath : UIBezierPath = UIBezierPath()
+    private var newPath : UIBezierPath = UIBezierPath()
     
-    
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    
-    // Height of the wave
     private var amplitude = 15.0
     
     // Number of h
@@ -36,69 +22,26 @@ class FluidAnimationView: UIView {
     
     private var offset  = CGFloat(20.0)
     
-    let shapeLayer = CAShapeLayer()
+    weak var fluidDelegate : FluidAnimationDelegate?
     
-    private var shapePath : UIBezierPath = UIBezierPath()
-    private var newPath : UIBezierPath = UIBezierPath()
-    
-    private(set) var animationType : FluidAnimationType
-    
-    private var affineTransform: CGAffineTransform?
-    
-    
-    weak var delegate : FluidAnimationDelegate?
-    
-    
-    init(animationType type: FluidAnimationType, frame: CGRect) {
-        self.animationType = type
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        
-        backgroundColor = UIColor.clear
-        
-        // initial path of the view
-        
-        if self.animationType == .wave {
-            shapePath = constructWavePath(amplitude: amplitude)
-            
-            shapeLayer.path = shapePath.cgPath
-            shapeLayer.strokeColor = UIColor.black.cgColor
-            shapeLayer.fillColor = UIColor.red.cgColor
-            layer.addSublayer(shapeLayer)
-            
-            offset = -offset
-            // final path
-            newPath = constructWavePath(amplitude: -amplitude)
-        }else if self.animationType == .glassOfWater {
-            
+    override var frame: CGRect {
+        didSet {
             frequency = 1
             waveLength = Double(SCREEN_WIDTH * 2)
-            let yAxisMax = 30.0
+            let yAxisMax: Double = Double(self.bounds.height * 2/3)
             let xCP = 30.0
             shapePath = constructGlassLiquidPath(amplitude: amplitude, xCP: xCP, y: yAxisMax)
             
-            shapeLayer.path = shapePath.cgPath
+            self.path = shapePath.cgPath
             //            shapeLayer.strokeColor = UIColor.black.cgColor
-            shapeLayer.fillColor = UIColor(displayP3Red: 1.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
-            layer.addSublayer(shapeLayer)
+            self.fillColor = UIColor(displayP3Red: 1.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
             
             offset = -offset
             // final path
-            newPath = constructGlassLiquidPath(amplitude: amplitude, xCP: Double(SCREEN_WIDTH) - xCP, y: -yAxisMax)
+            newPath = constructGlassLiquidPath(amplitude: amplitude, xCP: Double(SCREEN_WIDTH) - xCP, y: yAxisMax)
         }
-        
-        
-        
-        self.addAnimation()
     }
+    
     
     private func constructWavePath(amplitude: Double) -> UIBezierPath{
         let path = UIBezierPath()
@@ -137,11 +80,11 @@ class FluidAnimationView: UIView {
     private func constructGlassLiquidPath(amplitude: Double, xCP: Double, y: Double) -> UIBezierPath{
         let path = UIBezierPath()
         
-        let initialPoint = CGPoint(x: 0.0, y: -y)
+        let initialPoint = CGPoint(x: 0.0, y: y)
         path.move(to: initialPoint)
         
-        let halfLength = SCREEN_WIDTH
-        let nextPoint = CGPoint(x: Double(halfLength), y: y)
+        let fullLength = SCREEN_WIDTH
+        let nextPoint = CGPoint(x: Double(fullLength), y: y)
         
         path.addQuadCurve(to: nextPoint, controlPoint: CGPoint(x: xCP, y: Double(initialPoint.y + 100.0)))
         
@@ -180,96 +123,56 @@ class FluidAnimationView: UIView {
             animation.isRemovedOnCompletion = false
             
             DispatchQueue.main.async {
-                self.shapeLayer.add(animation, forKey: "startAnimation")
+                self.add(animation, forKey: "startAnimation")
             }
         }
         
-        
-    }
-    
-    func sizeAnimation() -> CABasicAnimation {
-        let animation = CABasicAnimation(keyPath: "bounds.size")
-        animation.delegate = self
-        animation.duration = 1
-        animation.autoreverses = false
-        // Your new shape here
-        animation.toValue = UIScreen.main.bounds.size
-        animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-        animation.isRemovedOnCompletion = false
-        
-        return animation
-        
-    }
-    
-    func scaleAnimation() -> CABasicAnimation {
-        let affineTransform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-        let animation = CABasicAnimation(keyPath: "transform.scale")
-        animation.delegate = self
-        animation.duration = 2
-        animation.autoreverses = false
-        // Your new shape here
-//        animation.toValue = NSValue(cgAffineTransform: affineTransform)
-        animation.byValue = 5
-        animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-        animation.isRemovedOnCompletion = false
-        
-        return animation
         
     }
     
     func boundsAnimation() -> CABasicAnimation {
-        let animation = CABasicAnimation(keyPath: "bounds.size.height")
+        let animation = CABasicAnimation(keyPath: "path")
         animation.delegate = self
         animation.duration = 1
         animation.autoreverses = false
         // Your new shape here
-        animation.toValue = UIScreen.main.bounds.size.height
+        animation.toValue = CGPath(rect: UIScreen.main.bounds, transform: nil)
         animation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-        animation.isRemovedOnCompletion = false
         
+        // The next two line preserves the final shape of animation,
+        // if you remove it the shape will return to the original shape after the animation finished
+        animation.fillMode = .forwards
+        animation.isRemovedOnCompletion = false
         return animation
         
     }
     
-    
     func fillFull() {
-        affineTransform = CGAffineTransform(scaleX: 5, y: 5)
         
         DispatchQueue.global(qos: .default).async {
-            
-            
-            // The next two line preserves the final shape of animation,
-            // if you remove it the shape will return to the original shape after the animation finished
-            //        animation.fillMode = .backwards
             let scaleAnim = self.boundsAnimation()
             
             DispatchQueue.main.async {
-//                UIView.animate(withDuration: 1.0) {
-//                    self.frame = UIScreen.main.bounds
                 let animationGroup = CAAnimationGroup.init()
                 animationGroup.animations = [scaleAnim]
-                    self.shapeLayer.add(scaleAnim, forKey: "fillAnimation")
-//                }
-                
-                
+                self.add(scaleAnim, forKey: "fillAnimation")
             }
             
         }
-        
     }
 }
 
-extension FluidAnimationView: CAAnimationDelegate {
+extension GlassWaterLayer: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         
-        guard let fillAnimation = (shapeLayer.animation(forKey: "fillAnimation")?.isEqual(anim)) else {
+        guard let fillAnimation = (self.animation(forKey: "fillAnimation")?.isEqual(anim)) else {
             return
         }
         
         if (fillAnimation) {
             DispatchQueue.main.async {
-                self.shapeLayer.removeAllAnimations()
-                self.delegate?.didFinishFilling()
+                self.removeAllAnimations()
+                self.fluidDelegate?.didFinishFilling()
             }
         }
     }

@@ -10,6 +10,12 @@ import UIKit
 import RAMAnimatedTabBarController
 
 class AnimatedTabBarViewController: RAMAnimatedTabBarController{
+    
+//    override var tabBar: UITabBar {
+//        return AppTabBar()
+//    }
+//    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,3 +32,10 @@ class AnimatedTabBarViewController: RAMAnimatedTabBarController{
     
 
 }
+
+//class AppTabBar: UITabBar {
+//    override func draw(_ rect: CGRect) {
+//        self.layer.cornerRadius = 10.0
+//        self.layer.masksToBounds = true
+//    }
+//}

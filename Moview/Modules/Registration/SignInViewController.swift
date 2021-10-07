@@ -26,18 +26,19 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var lbl_e: UILabel!
     @IBOutlet weak var lbl_w: UILabel!
     
-    var liquidView : FluidAnimationView!
+    
+    var glassWaterLayer : GlassWaterLayer!
     
     var signInPresenter = SignInPresenter()
+    var textFieldDelegate : UITextFieldDelegate!
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tf_username.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_username.bounds.height)))
-        self.tf_password.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_password.bounds.height)))
-        self.tf_username.leftViewMode = .always
-        self.tf_password.leftViewMode = .always
+        customizeUI()
+        setDelegate()
+        
         
         _ = tf_username.rx.text.map{ $0 ?? ""}.bind(to: signInPresenter.emailText)
         _ = tf_password.rx.text.map{ $0 ?? ""}.bind(to: signInPresenter.passwordText)
@@ -48,6 +49,20 @@ class SignInViewController: UIViewController {
         }).disposed(by: disposeBag)
         
 //        self.addLiquidView()
+        self.addGlassWaterAnimation()
+    }
+    
+    func setDelegate() {
+        textFieldDelegate = SignInViewTextFieldDelegate()
+        self.tf_username.delegate = textFieldDelegate
+        self.tf_password.delegate = textFieldDelegate
+    }
+    
+    func customizeUI(){
+        self.tf_username.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_username.bounds.height)))
+        self.tf_password.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_password.bounds.height)))
+        self.tf_username.leftViewMode = .always
+        self.tf_password.leftViewMode = .always
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +99,8 @@ class SignInViewController: UIViewController {
         }
         */
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
-        Navigation.shared.navigateToMainContainer(navigationController: self.navigationController!)
+        self.fillWater()
+//        Navigation.shared.navigateToMainContainer(navigationController: self.navigationController!)
     }
     @IBAction func action_signUpButtonTapped(_ sender: Any) {
             Navigation.shared.navigateToSignUp(navigationController: self.navigationController!)
@@ -134,20 +150,16 @@ class SignInViewController: UIViewController {
     
 
     
-    func addLiquidView(){
-        liquidView = FluidAnimationView(animationType: .glassOfWater, frame: UIDevice.current.orientation.isPortrait ? CGRect(x: 0, y: self.view.frame.size.height * 0.7 , width: self.view.frame.size.width, height: self.view.frame.size.height * 0.3)
-            : CGRect(x: 0, y: self.view.frame.size.width * 0.7 , width: self.view.frame.size.height, height: self.view.frame.size.width * 0.3)
-        )
-        liquidView.backgroundColor = .clear
-        liquidView.delegate = self
-        
-        self.view.addSubview(liquidView)
+    func addGlassWaterAnimation(){
+        glassWaterLayer = GlassWaterLayer()
+        glassWaterLayer.frame = self.view.bounds
+        glassWaterLayer.fluidDelegate = self
+        self.view.layer.addSublayer(glassWaterLayer)
+        glassWaterLayer.addAnimation()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-         super.viewWillTransition(to: size, with: coordinator)
-         liquidView?.removeFromSuperview()
-         self.addLiquidView()
+    func fillWater(){
+        glassWaterLayer.fillFull()
     }
     
     
@@ -155,21 +167,7 @@ class SignInViewController: UIViewController {
 
 extension SignInViewController: FluidAnimationDelegate {
     func didFinishFilling() {
+        self.glassWaterLayer.removeFromSuperlayer()
         Navigation.shared.navigateToMainContainer(navigationController: self.navigationController!)
-    }
-}
-
-
-extension SignInViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.borderColor = .black
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.borderColor = .systemPink
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return textField.resignFirstResponder()
     }
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		930E82BC226D8672000C40E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930E82BB226D8672000C40E2 /* AppDelegate.swift */; };
-		930E82BE226D8672000C40E2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930E82BD226D8672000C40E2 /* SignInViewController.swift */; };
 		930E82C1226D8672000C40E2 /* SignedOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930E82BF226D8672000C40E2 /* SignedOut.storyboard */; };
 		930E82C3226D8675000C40E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 930E82C2226D8675000C40E2 /* Assets.xcassets */; };
 		930E82C6226D8675000C40E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 930E82C4226D8675000C40E2 /* LaunchScreen.storyboard */; };
@@ -77,6 +76,7 @@
 		C87B25BA231ED093001A224C /* RecentMoviesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B25B9231ED093001A224C /* RecentMoviesPresenter.swift */; };
 		C87B25BC231ED0C1001A224C /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B25BB231ED0C1001A224C /* Services.swift */; };
 		C87B25BE231ED19C001A224C /* ModelLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87B25BD231ED19C001A224C /* ModelLayer.swift */; };
+		C88D5B08270E99F800620699 /* GlassWaterLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88D5B07270E99F800620699 /* GlassWaterLayer.swift */; };
 		C898F767238DA02E003004B8 /* ProductionCompany+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C898F766238DA02E003004B8 /* ProductionCompany+CoreDataClass.swift */; };
 		C898F769238DA05E003004B8 /* ProductionCompany+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C898F768238DA05E003004B8 /* ProductionCompany+CoreDataProperties.swift */; };
 		C898F76B238DA3D0003004B8 /* ProductionCountry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C898F76A238DA3D0003004B8 /* ProductionCountry+CoreDataClass.swift */; };
@@ -89,6 +89,7 @@
 		C89D375126E4AE9B008607C0 /* SideBarTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89D374F26E4AE9B008607C0 /* SideBarTableCell.xib */; };
 		C89EE2E622F67FFF00CBF839 /* MovieEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89EE2E522F67FFF00CBF839 /* MovieEndpoint.swift */; };
 		C89EE2E822F6802500CBF839 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89EE2E722F6802500CBF839 /* APIConfiguration.swift */; };
+		C8AC481A270C6BD3003726DE /* SignInViewTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC4819270C6BD3003726DE /* SignInViewTextFieldDelegate.swift */; };
 		C8AC4E5626A3499100D168C9 /* UIViewController+Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC4E5526A3499100D168C9 /* UIViewController+Top.swift */; };
 		C8B1C847243219E500198FB7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C8B1C846243219E500198FB7 /* Settings.bundle */; };
 		C8B2140726A2B56600162C67 /* FavouriteMovieTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B2140526A2B56600162C67 /* FavouriteMovieTableCell.swift */; };
@@ -108,6 +109,7 @@
 		C8F64501246C276B0026AF5C /* 22219-play-the-guitar.json in Resources */ = {isa = PBXBuildFile; fileRef = C8F64500246C276B0026AF5C /* 22219-play-the-guitar.json */; };
 		C8F64504246C28FE0026AF5C /* AnimatedLaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F64503246C28FE0026AF5C /* AnimatedLaunchScreenViewController.swift */; };
 		C8F77EA223033E6E00D397FF /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = C8F77EA123033E6D00D397FF /* picture.png */; };
+		C8F7A8DA270D4F97009F62A0 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F7A8D9270D4F97009F62A0 /* SignInViewController.swift */; };
 		FA340C4E460D69E4D4565796 /* Pods_Moview.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D2CAEA06E7C3F91795FBE60 /* Pods_Moview.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,7 +119,6 @@
 		7314DD893CDA2239E3DC9288 /* Pods-Moview.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moview.release.xcconfig"; path = "Target Support Files/Pods-Moview/Pods-Moview.release.xcconfig"; sourceTree = "<group>"; };
 		930E82B8226D8672000C40E2 /* Moview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		930E82BB226D8672000C40E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		930E82BD226D8672000C40E2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		930E82C0226D8672000C40E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SignedOut.storyboard; sourceTree = "<group>"; };
 		930E82C2226D8675000C40E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		930E82C5226D8675000C40E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 		C87B25B9231ED093001A224C /* RecentMoviesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMoviesPresenter.swift; sourceTree = "<group>"; };
 		C87B25BB231ED0C1001A224C /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		C87B25BD231ED19C001A224C /* ModelLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelLayer.swift; sourceTree = "<group>"; };
+		C88D5B07270E99F800620699 /* GlassWaterLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassWaterLayer.swift; sourceTree = "<group>"; };
 		C898F766238DA02E003004B8 /* ProductionCompany+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductionCompany+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C898F768238DA05E003004B8 /* ProductionCompany+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductionCompany+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C898F76A238DA3D0003004B8 /* ProductionCountry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProductionCountry+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 		C89D374F26E4AE9B008607C0 /* SideBarTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideBarTableCell.xib; sourceTree = "<group>"; };
 		C89EE2E522F67FFF00CBF839 /* MovieEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndpoint.swift; sourceTree = "<group>"; };
 		C89EE2E722F6802500CBF839 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		C8AC4819270C6BD3003726DE /* SignInViewTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewTextFieldDelegate.swift; sourceTree = "<group>"; };
 		C8AC4E5526A3499100D168C9 /* UIViewController+Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Top.swift"; sourceTree = "<group>"; };
 		C8B1C846243219E500198FB7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C8B1C848243240F700198FB7 /* Moview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Moview.entitlements; sourceTree = "<group>"; };
@@ -224,6 +227,7 @@
 		C8F64500246C276B0026AF5C /* 22219-play-the-guitar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "22219-play-the-guitar.json"; sourceTree = "<group>"; };
 		C8F64503246C28FE0026AF5C /* AnimatedLaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLaunchScreenViewController.swift; sourceTree = "<group>"; };
 		C8F77EA123033E6D00D397FF /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
+		C8F7A8D9270D4F97009F62A0 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -393,8 +397,9 @@
 		9346E921227078E900BE2B08 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				C8F7A8D9270D4F97009F62A0 /* SignInViewController.swift */,
+				C8AC4817270C6BB1003726DE /* Extras */,
 				930E82BF226D8672000C40E2 /* SignedOut.storyboard */,
-				930E82BD226D8672000C40E2 /* SignInViewController.swift */,
 				93E9C93D232A70AB00298A7B /* SignInPresenter.swift */,
 				93E9C93F232A71D200298A7B /* SignUpViewController.swift */,
 			);
@@ -423,6 +428,7 @@
 				C8AC4E5726A34DA100D168C9 /* NavigationBar */,
 				93F79EAB229EB65A00999BB7 /* CollectionViewCell */,
 				C8D85CCF246AD56900ABE380 /* FluidAnimationView.swift */,
+				C88D5B07270E99F800620699 /* GlassWaterLayer.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -639,6 +645,22 @@
 				93E207B12298026100261694 /* APIClient.swift */,
 			);
 			path = UsingAlamofire;
+			sourceTree = "<group>";
+		};
+		C8AC4817270C6BB1003726DE /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				C8AC4818270C6BB9003726DE /* Delegates */,
+			);
+			path = Extras;
+			sourceTree = "<group>";
+		};
+		C8AC4818270C6BB9003726DE /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				C8AC4819270C6BD3003726DE /* SignInViewTextFieldDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		C8AC4E5726A34DA100D168C9 /* NavigationBar */ = {
@@ -889,6 +911,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8AC481A270C6BD3003726DE /* SignInViewTextFieldDelegate.swift in Sources */,
 				93E9C940232A71D200298A7B /* SignUpViewController.swift in Sources */,
 				C898F767238DA02E003004B8 /* ProductionCompany+CoreDataClass.swift in Sources */,
 				C8F64504246C28FE0026AF5C /* AnimatedLaunchScreenViewController.swift in Sources */,
@@ -920,7 +943,6 @@
 				930E8305226DCD4F000C40E2 /* UIColor+AppColors.swift in Sources */,
 				932176D422FA8E2A0079F524 /* CodableHelpers.swift in Sources */,
 				C87B25BC231ED0C1001A224C /* Services.swift in Sources */,
-				930E82BE226D8672000C40E2 /* SignInViewController.swift in Sources */,
 				C898F769238DA05E003004B8 /* ProductionCompany+CoreDataProperties.swift in Sources */,
 				C8511D4A246EB216007C4A4E /* FavouriteMoviesViewController.swift in Sources */,
 				C8066EAD26ADACAD00BE0472 /* MovieRepository.swift in Sources */,
@@ -947,6 +969,8 @@
 				93D3D339229525B6006871B4 /* Movie+CoreDataClass.swift in Sources */,
 				930E82FE226DBCC5000C40E2 /* UIView+Constraints.swift in Sources */,
 				C825196126A2A690001B29A0 /* TableViewConfigurator.swift in Sources */,
+				C88D5B08270E99F800620699 /* GlassWaterLayer.swift in Sources */,
+				C8F7A8DA270D4F97009F62A0 /* SignInViewController.swift in Sources */,
 				930E830B226DD049000C40E2 /* ApplicationManager.swift in Sources */,
 				C8DF1A6F230F000000F4A5AB /* DataLayer.swift in Sources */,
 				C898F773238DA9C4003004B8 /* SpokenLanguage+CoreDataClass.swift in Sources */,
