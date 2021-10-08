@@ -12,8 +12,8 @@ import RxCocoa
 
 class SignInViewController: UIViewController {
 
-    @IBOutlet weak var tf_username: UITextField!
-    @IBOutlet weak var tf_password: UITextField!
+    @IBOutlet weak var tf_username: MoviewTextField!
+    @IBOutlet weak var tf_password: MoviewTextField!
     @IBOutlet weak var btn_signin: UIButton!
     @IBOutlet weak var btn_signup: UIButton!
     
@@ -36,7 +36,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customizeUI()
+//        customizeUI()
         setDelegate()
         
         
@@ -58,12 +58,6 @@ class SignInViewController: UIViewController {
         self.tf_password.delegate = textFieldDelegate
     }
     
-    func customizeUI(){
-        self.tf_username.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_username.bounds.height)))
-        self.tf_password.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_password.bounds.height)))
-        self.tf_username.leftViewMode = .always
-        self.tf_password.leftViewMode = .always
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

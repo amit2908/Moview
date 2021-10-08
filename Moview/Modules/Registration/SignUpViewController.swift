@@ -10,10 +10,10 @@ import UIKit
 
 class SignUpViewController: UIViewController {
     
-    @IBOutlet weak var tf_username: UITextField!
-    @IBOutlet weak var tf_password: UITextField!
-    @IBOutlet weak var tf_repeatPassword: UITextField!
-    @IBOutlet weak var tf_emailOrPhone: UITextField!
+    @IBOutlet weak var tf_username: MoviewTextField!
+    @IBOutlet weak var tf_password: MoviewTextField!
+    @IBOutlet weak var tf_repeatPassword: MoviewTextField!
+    @IBOutlet weak var tf_emailOrPhone: MoviewTextField!
     @IBOutlet weak var btn_signin: UIButton!
     @IBOutlet weak var btn_signup: UIButton!
     
@@ -21,16 +21,6 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.tf_username.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_username.bounds.height)))
-        self.tf_password.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_password.bounds.height)))
-        self.tf_repeatPassword.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_repeatPassword.bounds.height)))
-        self.tf_emailOrPhone.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: tf_emailOrPhone.bounds.height)))
-        
-        
-        self.tf_username.leftViewMode = .always
-        self.tf_password.leftViewMode = .always
-        self.tf_repeatPassword.leftViewMode = .always
-        self.tf_emailOrPhone.leftViewMode = .always
         
     }
     
