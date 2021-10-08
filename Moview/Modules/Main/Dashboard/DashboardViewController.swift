@@ -16,10 +16,10 @@ struct OtherMoviesCollectionViewModel {
 
 class DashboardViewController: UIViewController {
     
-    @IBOutlet weak var navBar: CustomNavigationBar!
-    @IBOutlet weak var collection_recent: UICollectionView!
-    @IBOutlet weak var pageControl_recent: UIPageControl!
-    @IBOutlet weak var collection_other: UICollectionView!
+    @IBOutlet var navBar: CustomNavigationBar!
+    @IBOutlet var collection_recent: UICollectionView!
+    @IBOutlet var pageControl_recent: UIPageControl!
+    @IBOutlet var collection_other: UICollectionView!
     @IBOutlet var barItem: RAMAnimatedTabBarItem!
     
    
@@ -75,7 +75,6 @@ class DashboardViewController: UIViewController {
         self.navBar.titleLabel.layer.zPosition = 10.0
         
         pageControl_recent.currentPage = 0
-        pageControl_recent.numberOfPages = 5
         pageControl_recent.hidesForSinglePage = true
         
         self.navBar.btn_right.setImage(UIImage(named: "refresh"), for: .normal)
@@ -96,7 +95,8 @@ class DashboardViewController: UIViewController {
         self.recentMoviesPresenter?.loadNowPlayingMovies { [unowned self] (movies) -> (Void) in
             
             self.recentMovieDataSource = RecentMoviesDataSource.init(nowPlayingMovies: movies, collectionView: self.collection_recent)
-               
+            self.recentMovieDataSource?.displayDelegate = self
+            self.pageControl_recent.numberOfPages = movies.count
             self.reloadCollections()
         }
 
@@ -154,5 +154,11 @@ extension UICollectionViewCell {
     
     func stopWiggling() {
         self.layer.removeAllAnimations()
+    }
+}
+
+extension DashboardViewController : DisplayDelegate {
+    func didDisplayCell(atIndex index: Int) {
+        self.pageControl_recent.currentPage = index
     }
 }

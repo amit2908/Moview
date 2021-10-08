@@ -74,6 +74,9 @@ class MovieDetailViewController: UIViewController {
                     let posterPath =  K.Server.imageBaseURL + "/\(ImageSize.xLarge)/" + (movie.imageLink)
                     self.imgV_moviePoster.sd_setImage(with: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), completed: nil)
                         self.imgV_moviePoster.downloaded(from: URL.init(string: posterPath) ?? URL.init(fileURLWithPath: "picture.png", isDirectory: false), contentMode: .top)
+                    self.navBar.top_Item.isHidden = false
+                    self.navBar.title = movie.title
+                    self.navBar.titleLabel.layer.zPosition = 10.0
                     if movie.isBookmarked {
                         self.navBar.btn_right.setImage(UIImage(named: "favourite-selected")!, for: .normal)
                     }else {

@@ -31,7 +31,11 @@ class CustomNavigationBar: UINavigationBar {
     }
     
     @IBInspectable
-    open var title: String?
+    open var title: String? {
+        didSet {
+            self.titleLabel?.text = title
+        }
+    }
     
     open var hasGradient: Bool = true {
         didSet {

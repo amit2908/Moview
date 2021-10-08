@@ -31,13 +31,13 @@ class RecentMoviesPresenter: IRecentMoviesPresenter {
     
     func loadNowPlayingMovies(handler: @escaping ([IMovie]) -> Void) {
         
-        let movies = repository.fetchMovies(withType: MovieTypes.NOW_PLAYING)
+        let movies = repository.fetchMovies(withType: MovieTypes.NOW_PLAYING, limit: 5)
         if movies.count == 0 {
             service.fetchNowPlayingData(successHandler: { [weak self] (data) -> (Void) in
 
                 self?.repository.storeMovies(fromData: data, withType: .NOW_PLAYING)
                 
-                if let movies = self?.repository.fetchMovies(withType: MovieTypes.NOW_PLAYING){
+                if let movies = self?.repository.fetchMovies(withType: MovieTypes.NOW_PLAYING, limit: 5){
                     handler(movies)
                 }
                 

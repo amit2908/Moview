@@ -102,7 +102,7 @@ enum MovieEndpoint : APIConfig {
         }
         
         var urlRequest = URLRequest(url: urlComponents.url!)
-        
+        print(urlComponents.url!)
         urlRequest.httpMethod = method.rawValue
         
         

@@ -62,7 +62,7 @@ final class MovieListViewController: UIViewController {
     private func setupView(){
         self.navBar.top_Item.isHidden = false
         self.navBar.titleLabel.isHidden = false
-        self.navBar.titleLabel.text = self.typeOfMovies?.getTitle()
+        self.navBar.title = self.typeOfMovies?.getTitle()
         
         self.navBar.btn_left.isHidden = false
         self.navBar.btn_left.setImage(UIImage(named: "back-button"), for: .normal)

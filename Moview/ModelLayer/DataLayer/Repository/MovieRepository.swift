@@ -12,6 +12,7 @@ import CoreData
 protocol IMovieRepository {
     func fetchMovie(using id: Int32) -> IMovie?
     func fetchMovies(withType type: MovieTypes)  -> [IMovie]
+    func fetchMovies(withType type: MovieTypes, limit: Int)  -> [IMovie]
 }
 
 protocol IMovieCoreDataRepository: IMovieRepository {
@@ -39,7 +40,7 @@ struct NMovie: IMovie {
     
     init(movie: Movie){
         self.id = Int(movie.id)
-        self.title = movie.title ?? ""
+        self.title = movie.original_title ?? ""
         self.overview = movie.overview ?? ""
         self.imageLink = movie.poster_path ?? ""
         self.isBookmarked = movie.isFavourite
@@ -138,4 +139,22 @@ extension MovieRepository {
         
         return []
     }
+    
+    func fetchMovies(withType type: MovieTypes, limit: Int) -> [IMovie] {
+        let fetchRequest: NSFetchRequest = Movie.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%K == %d", "type" ,type.rawValue)
+        fetchRequest.fetchLimit = limit
+        do {
+            let cdMovies = try DataLayer.viewContext.fetch(fetchRequest)
+            let nMovies = cdMovies.map{ NMovie(movie: $0) }
+            return nMovies
+        }
+        catch {
+            print(error)
+        }
+        
+        return []
+    }
+    
+    
 }

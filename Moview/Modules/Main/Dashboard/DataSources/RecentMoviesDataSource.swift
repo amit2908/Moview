@@ -9,10 +9,15 @@
 import UIKit
 import CoreData
 
+protocol DisplayDelegate {
+    func didDisplayCell(atIndex index: Int)
+}
+
 class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
     
     let nowPlayingMovies: [IMovie]
     let collectionView : UICollectionView
+    var displayDelegate : DisplayDelegate?
     
     init(nowPlayingMovies: [IMovie], collectionView: UICollectionView) {
         self.nowPlayingMovies = nowPlayingMovies
@@ -46,6 +51,10 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
         
         collectionCell?.imgV_poster.sd_setImage(with: URL.init(string: posterPath), completed: nil)
         collectionCell?.lbl_name.text = nowPlayingMovies[indexPath.row].title
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.displayDelegate?.didDisplayCell(atIndex: indexPath.item)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
