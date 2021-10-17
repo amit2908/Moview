@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -35,6 +36,7 @@
                                         <constraint firstAttribute="height" constant="25" id="g77-K7-05o"/>
                                         <constraint firstAttribute="width" constant="25" id="xB6-Lr-g9B"/>
                                     </constraints>
+                                    <color key="tintColor" name="Color"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -53,6 +55,7 @@
                                         <constraint firstAttribute="height" constant="25" id="UJe-T7-fHE"/>
                                         <constraint firstAttribute="width" constant="25" id="YZv-Vf-1df"/>
                                     </constraints>
+                                    <color key="tintColor" name="Color"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -107,4 +110,9 @@
             <point key="canvasLocation" x="121.59999999999999" y="-107.94602698650675"/>
         </view>
     </objects>
+    <resources>
+        <namedColor name="Color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

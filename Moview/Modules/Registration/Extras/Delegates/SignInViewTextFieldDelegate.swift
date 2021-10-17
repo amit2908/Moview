@@ -14,7 +14,7 @@ class SignInViewTextFieldDelegate: NSObject, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.borderColor = .systemPink
+        textField.borderColor = UIColor(named: "AppColor")?.withAlphaComponent(0.5)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -10,11 +10,12 @@ import UIKit
 import RAMAnimatedTabBarController
 
 class AnimatedTabBarViewController: RAMAnimatedTabBarController{
+    let customTabBar = TabBarWithCorners()
     
 //    override var tabBar: UITabBar {
-//        return AppTabBar()
+//        return customTabBar
 //    }
-    
+//
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +31,40 @@ class AnimatedTabBarViewController: RAMAnimatedTabBarController{
 
 }
 
-class AppTabBar: UITabBar {
+class TabBarWithCorners: UITabBar {
+    var color: UIColor = .red
+    var radii: CGFloat = 15.0
+
+    private var shapeLayer: CALayer?
     
     override func draw(_ rect: CGRect) {
-        self.layer.cornerRadius = 10.0
-        self.layer.masksToBounds = true
+        addShape()
+    }
+
+    private func addShape() {
+        
+        let shapeLayer = CAShapeLayer()
+    
+        shapeLayer.path = createPath()
+        shapeLayer.strokeColor = UIColor.red.withAlphaComponent(0.5).cgColor
+        shapeLayer.fillColor = color.cgColor
+        shapeLayer.lineWidth = 1
+    
+        if let oldShapeLayer = self.shapeLayer {
+            layer.replaceSublayer(oldShapeLayer, with: shapeLayer)
+        } else {
+            layer.insertSublayer(shapeLayer, at: 0)
+        }
+    
+        self.shapeLayer = shapeLayer
+    }
+
+    private func createPath() -> CGPath {
+        let path = UIBezierPath(
+            roundedRect: bounds,
+            byRoundingCorners: [.topLeft, .topRight],
+            cornerRadii: CGSize(width: radii, height: 0.0))
+    
+        return path.cgPath
     }
 }

@@ -30,11 +30,14 @@ class GlassWaterLayer: CAShapeLayer {
             waveLength = Double(SCREEN_WIDTH * 2)
             let yAxisMax: Double = Double(self.bounds.height * 2/3)
             let xCP = 30.0
+//            shapePath = constructGlassLiquidPath(amplitude: amplitude, xCP: xCP, y: yAxisMax)
             shapePath = constructGlassLiquidPath(amplitude: amplitude, xCP: xCP, y: yAxisMax)
             
             self.path = shapePath.cgPath
             //            shapeLayer.strokeColor = UIColor.black.cgColor
-            self.fillColor = UIColor(displayP3Red: 1.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
+//            self.fillColor = UIColor(displayP3Red: 1.0, green: 0.0, blue: 0.0, alpha: 0.3).cgColor
+            
+            self.fillColor = UIColor(named: "AppColor")?.withAlphaComponent(0.3).cgColor
             
             offset = -offset
             // final path

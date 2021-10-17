@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,7 +38,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfl-PQ-1lr">
                                 <rect key="frame" x="37.5" y="313" width="300" height="44"/>
-                                <color key="backgroundColor" red="1" green="0.21174291829447334" blue="0.19800184626325834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="AppColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="KY5-Q9-h3z"/>
                                 </constraints>
@@ -55,7 +56,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xZ-Al-aZf" userLabel="Signup">
                                 <rect key="frame" x="37.5" y="377" width="300" height="44"/>
-                                <color key="backgroundColor" red="1" green="0.21174291829447334" blue="0.19800184626325834" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="AppColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Isx-K7-Oxx"/>
                                 </constraints>
@@ -113,7 +114,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.86321722023567649" blue="0.85348253316354405" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Color"/>
                         <constraints>
                             <constraint firstItem="oiZ-Qv-UY7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="155" id="18v-I1-gja"/>
                             <constraint firstItem="2xZ-Al-aZf" firstAttribute="top" secondItem="bfl-PQ-1lr" secondAttribute="bottom" constant="20" id="5bi-fF-k6L"/>
@@ -247,7 +248,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tRp-Cs-PsJ">
                                         <rect key="frame" x="0.0" y="276" width="319" height="44"/>
-                                        <color key="backgroundColor" red="1" green="0.2117429183" blue="0.19800184630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="AppColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="hO0-rB-BgC"/>
                                         </constraints>
@@ -265,7 +266,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mff-eP-04b" userLabel="Signup">
                                         <rect key="frame" x="0.0" y="345" width="319" height="44"/>
-                                        <color key="backgroundColor" red="1" green="0.2117429183" blue="0.19800184630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" name="AppColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="ufi-yi-lGE"/>
                                         </constraints>
@@ -331,7 +332,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.86321722020000002" blue="0.8534825332" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Color"/>
                         <constraints>
                             <constraint firstItem="g5W-Lh-xFV" firstAttribute="centerX" secondItem="bUX-sh-2pe" secondAttribute="centerX" id="FdG-Jl-4fW"/>
                             <constraint firstItem="Rk7-U3-nvl" firstAttribute="centerX" secondItem="bUX-sh-2pe" secondAttribute="centerX" id="Out-zb-Tkb"/>
@@ -361,5 +362,11 @@
         <image name="email" width="32" height="32"/>
         <image name="padlock" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
+        <namedColor name="AppColor">
+            <color red="0.42352941176470588" green="0.32941176470588235" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

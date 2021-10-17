@@ -28,6 +28,7 @@
                                     <constraint firstAttribute="height" constant="25" id="JOV-x0-J0V"/>
                                     <constraint firstAttribute="width" constant="25" id="upj-RK-P1q"/>
                                 </constraints>
+                                <color key="tintColor" name="Color"/>
                                 <state key="normal" image="logout"/>
                                 <connections>
                                     <action selector="logout:" destination="KD6-EO-MSk" eventType="touchUpInside" id="KSF-W7-MqH"/>
@@ -35,6 +36,7 @@
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5q6-j5-u8A">
                                 <rect key="frame" x="103" y="35.000000000000007" width="94" height="92.666666666666686"/>
+                                <color key="tintColor" name="Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="5q6-j5-u8A" secondAttribute="height" multiplier="1:1" id="2mI-oG-Pds"/>
                                     <constraint firstAttribute="width" constant="94" id="P0z-Na-uSg"/>
@@ -45,16 +47,16 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d3i-R8-i3J">
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d3i-R8-i3J">
                                 <rect key="frame" x="0.0" y="159" width="300" height="653"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="KD6-EO-MSk" id="bCZ-KR-HsG"/>
                                     <outlet property="delegate" destination="KD6-EO-MSk" id="7ZR-Qk-MQx"/>
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="AppColor"/>
                         <constraints>
                             <constraint firstItem="z40-wl-ftf" firstAttribute="top" secondItem="baS-lw-44l" secondAttribute="top" constant="10" id="6pE-3N-18S"/>
                             <constraint firstItem="d3i-R8-i3J" firstAttribute="top" secondItem="5q6-j5-u8A" secondAttribute="bottom" constant="31" id="DJq-CN-BQl"/>
@@ -276,7 +278,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9NC-V3-dUz">
-                                                    <rect key="frame" x="8" y="8" width="359" height="34"/>
+                                                    <rect key="frame" x="18" y="8" width="339" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -295,8 +297,8 @@
                                                 <constraint firstItem="J5p-6k-edz" firstAttribute="bottom" secondItem="zjZ-Mb-Glk" secondAttribute="bottomMargin" id="SDH-DN-5Ny"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="J5p-6k-edz" secondAttribute="trailing" constant="10" id="h43-Py-SCG"/>
                                                 <constraint firstItem="J5p-6k-edz" firstAttribute="top" secondItem="zjZ-Mb-Glk" secondAttribute="topMargin" id="lXK-Zl-7Wb"/>
-                                                <constraint firstItem="9NC-V3-dUz" firstAttribute="leading" secondItem="zjZ-Mb-Glk" secondAttribute="leadingMargin" id="oHM-kq-sdI"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="9NC-V3-dUz" secondAttribute="trailing" id="q9h-ta-GNa"/>
+                                                <constraint firstItem="9NC-V3-dUz" firstAttribute="leading" secondItem="zjZ-Mb-Glk" secondAttribute="leadingMargin" constant="10" id="oHM-kq-sdI"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9NC-V3-dUz" secondAttribute="trailing" constant="10" id="q9h-ta-GNa"/>
                                             </constraints>
                                             <connections>
                                                 <outlet property="btn_showMore" destination="J5p-6k-edz" id="KgB-qe-iXC"/>
@@ -335,6 +337,14 @@
                         <viewLayoutGuide key="safeArea" id="KiZ-zP-5b0"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" selectedImage="house.fill" id="qPD-Qj-oBR" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="animation" destination="Mbe-UN-JBF" id="6gD-WN-GZF"/>
                         </connections>
@@ -350,7 +360,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wgw-OR-QRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="Mbe-UN-JBF" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="Mbe-UN-JBF" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="textSelectedColor">
+                            <color key="value" name="Color"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
+                            <color key="value" name="Color"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-698.39999999999998" y="153.69458128078819"/>
         </scene>
@@ -532,7 +551,7 @@
             </objects>
             <point key="canvasLocation" x="863" y="833"/>
         </scene>
-        <!--Favourite Movies View Controller-->
+        <!--My Favourites-->
         <scene sceneID="mSa-QT-SYB">
             <objects>
                 <viewController storyboardIdentifier="FavouriteMoviesViewController" id="nKK-pO-Bqb" customClass="FavouriteMoviesViewController" customModule="Moview" customModuleProvider="target" sceneMemberID="viewController">
@@ -567,7 +586,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3RZ-bN-cNm"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Lmd-Mk-9o2" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                    <tabBarItem key="tabBarItem" title="My Favourites" image="bookmark.fill" catalog="system" id="Lmd-Mk-9o2" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="animation" destination="5lA-F6-aPY" id="M2N-7P-z6x"/>
                         </connections>
@@ -579,16 +606,29 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Res-RR-lTr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <customObject id="5lA-F6-aPY" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController"/>
+                <customObject id="5lA-F6-aPY" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="textSelectedColor">
+                            <color key="value" name="Color"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="iconSelectedColor">
+                            <color key="value" name="Color"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1730.4000000000001" y="155.9113300492611"/>
         </scene>
     </scenes>
     <resources>
+        <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="logout" width="32" height="32"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="picture" width="32" height="32"/>
+        <namedColor name="AppColor">
+            <color red="0.42352941176470588" green="0.32941176470588235" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Color">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

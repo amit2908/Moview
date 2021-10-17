@@ -18,7 +18,8 @@ class SidebarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.view.backgroundColor = UIColor(named: <#T##String#>)
+        self.view.backgroundColor = UIColor(named: "AppColor")?.withAlphaComponent(0.5)
+        self.tvMenus.backgroundColor = .clear
         
         tvMenus.register(SideBarTableCell.nib, forCellReuseIdentifier: SideBarTableCell.reuseID)
         
@@ -26,6 +27,9 @@ class SidebarViewController: UIViewController {
             SideBarTableCell.ViewModel(title: "Home", icon: UIImage(named: "favourite-selected")!),
             SideBarTableCell.ViewModel(title: "My Profile", icon: UIImage(named: "favourite-selected")!),
             SideBarTableCell.ViewModel(title: "Book Tickets", icon: UIImage(named: "favourite-selected")!),
+            SideBarTableCell.ViewModel(title: "Invite Friends", icon: UIImage(named: "favourite-selected")!),
+            SideBarTableCell.ViewModel(title: "My Coupons", icon: UIImage(named: "favourite-selected")!),
+            SideBarTableCell.ViewModel(title: "Scheduled Events", icon: UIImage(named: "favourite-selected")!),
             SideBarTableCell.ViewModel(title: "Theatres near me", icon: UIImage(named: "favourite-selected")!)
         ]
 

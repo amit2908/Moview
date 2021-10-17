@@ -64,7 +64,6 @@ class CustomNavigationBar: UINavigationBar {
     
     private func setupView(){
         Bundle.main.loadNibNamed("CustomNavigationBar", owner: self, options: nil)
-        contentView.tintColor = UIColor.blue
         contentView.fixInView(self)
         setBackground()
         
@@ -72,8 +71,8 @@ class CustomNavigationBar: UINavigationBar {
     }
     
     func setBackground(){
-        self.backgroundColor = UIColor.clear
-        self.addGradientBackground()
+        self.barTintColor = UIColor(named: "AppColor")?.withAlphaComponent(0.7)
+//        self.addGradientBackground()
     }
     
     func addGradientBackground(){

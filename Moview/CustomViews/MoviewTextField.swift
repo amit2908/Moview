@@ -34,7 +34,9 @@ class MoviewTextField: UITextField {
         self.cornerRadius = 10.0
         self.borderStyle = .none
         self.borderWidth = 2.0
-        self.borderColor = UIColor.systemPink
+        let color = UIColor(named: "AppColor")
+        
+        self.borderColor = color?.withAlphaComponent(0.7)
         
         self.leftView = UIView.init(frame: CGRect(origin: .zero, size: CGSize(width: 30, height: self.bounds.height)))
         self.leftViewMode = .always

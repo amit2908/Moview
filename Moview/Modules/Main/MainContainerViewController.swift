@@ -17,8 +17,9 @@ class MainContainerViewController: SOContainerViewController {
         
         tabBarVC = AnimatedTabBarViewController(nibName: nil, bundle: nil)
         tabBarVC?.isBottomLineShow = true
-        tabBarVC?.bottomLineColor = .red
-        
+        tabBarVC?.bottomLineColor = .white
+        tabBarVC?.tabBar.barTintColor = UIColor(named: "AppColor")
+        tabBarVC?.tabBar.tintColor = .white
         
         self.menuSide = .left
         self.topViewController  = tabBarVC
