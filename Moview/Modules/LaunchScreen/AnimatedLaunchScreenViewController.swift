@@ -32,11 +32,7 @@ class AnimatedLaunchScreenViewController: UIViewController {
         view.addSubview(animationView!)
         animationView?.play { complete in
             if complete {
-                if let loggedIn = UserDefaults.standard.value(forKey: "isLoggedIn") as? Bool, loggedIn {
-                    Navigation.shared.navigateToMainContainer(navigationController: self.navigationController!)
-                }else {
-                    Navigation.shared.navigateToSignIn(navigationController: self.navigationController!)
-                }
+                Navigation.shared.navigateToSignIn(navigationController: self.navigationController!)
             }
         }
         

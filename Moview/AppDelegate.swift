@@ -22,11 +22,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.observeInternetConnection()
         
-        let animatedLaunchVC = AnimatedLaunchScreenViewController(nibName: nil, bundle: nil)
+        if let loggedIn = UserDefaults.standard.value(forKey: "isLoggedIn") as? Bool, loggedIn {
+            
+            let mainContainer = MainContainerViewController(nibName: nil, bundle: nil)
+            let navigationController = UINavigationController(rootViewController: mainContainer)
+            navigationController.navigationBar.isHidden = true
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.makeKeyAndVisible()
+            self.window?.rootViewController = navigationController
+            
+        }else {
+            let animatedLaunchVC = AnimatedLaunchScreenViewController(nibName: nil, bundle: nil)
+            
+            let navigationController = UINavigationController(rootViewController: animatedLaunchVC)
+            navigationController.navigationBar.isHidden = true
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            self.window?.makeKeyAndVisible()
+            self.window?.rootViewController = navigationController
+        }
         
-        let navigationController = UINavigationController(rootViewController: animatedLaunchVC)
         
-        self.window?.rootViewController = navigationController
         
         return true
     }
