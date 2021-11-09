@@ -58,7 +58,7 @@ class MovieDetailViewController: UIViewController {
         
         UIView.unhide(views: [navBar.leftItem, navBar.btn_left, navBar.rightItem, navBar.btn_right])
         
-        self.navBar.btn_left.addTarget(self, action: #selector(self.backButtonAction(sender:)), for: .touchUpInside)
+        self.navBar.btn_left.addTarget(self, action: #selector(self.dismissSelf(sender:)), for: .touchUpInside)
         self.navBar.btn_left.setImage(UIImage(named: "back-button"), for: .normal);
         
         self.navBar.btn_right.addTarget(self, action: #selector(self.favouriteButtonTapped), for: .touchUpInside)

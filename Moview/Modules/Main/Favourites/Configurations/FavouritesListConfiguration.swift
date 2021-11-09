@@ -13,10 +13,11 @@ class FavouritesListConfiguration: ITableConfiguration {
     var sectionConfigurations: [ISectionConfiguration]
     
     let movies : [IMovie]
-    init(movies: [IMovie]) {
+    
+    init(movies: [IMovie], cellDidSelectCallback: @escaping (IndexPath) -> Void) {
         self.movies = movies
         self.numberOfSections = 1
-        self.sectionConfigurations = [GenericTableSectionConfiguration(itemData: movies)]
+        self.sectionConfigurations = [GenericTableSectionConfiguration(itemData: movies, reusedID: FavouriteMovieTableCell.reuseID, cellDidSelectCallback: cellDidSelectCallback)]
     }
 }
 
@@ -35,13 +36,15 @@ class GenericTableSectionConfiguration<ItemData>: ISectionConfiguration {
     
     var cellConfigurations: [ITableCellConfiguration]
     
-    init(itemData: [ItemData]) {
+    init(itemData: [ItemData], reusedID: String, cellDidSelectCallback: @escaping (IndexPath) -> Void) {
         self.cellConfigurations =
-            itemData.map{ GenericListCellConfiguration(data: $0) }
+            itemData.map{ GenericListCellConfiguration(data: $0, cellReuseID: reusedID, callback: cellDidSelectCallback) }
     }
 }
 
 class GenericListCellConfiguration<CellData>: ITableCellConfiguration {
+    var estimatedCellHeight: CGFloat?
+    
     var data: Any?
     
     var cellIdentifier: String
@@ -58,15 +61,12 @@ class GenericListCellConfiguration<CellData>: ITableCellConfiguration {
     
     var cellDidSelectCallback: (IndexPath) -> Void
     
-    init(data: CellData){
+    init(data: CellData, cellReuseID: String, callback: @escaping (IndexPath) -> Void){
         self.data = data
-        self.cellIdentifier = FavouriteMovieTableCell.reuseID
-        self.cellHeight = 100.0
-        self.cellDidSelectCallback = { indexPath in
-            if let movie = data as? IMovie {
-                Navigation.shared.navigateToMovieDetail(movieId: Int32(movie.id))
-            }
-        }
+        self.cellIdentifier = cellReuseID
+        self.cellHeight = UITableView.automaticDimension
+        self.estimatedCellHeight = UITableView.automaticDimension
+        self.cellDidSelectCallback = callback
     }
     
     

@@ -164,6 +164,10 @@ extension UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc func dismissSelf(sender: UIButton){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func showProgress(status: String) {
         // Set ProgressHUD mask type
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.black)

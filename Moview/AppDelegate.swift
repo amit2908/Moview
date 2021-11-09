@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.enable = true
         
-        self.observeInternetConnection()
         
         if let loggedIn = UserDefaults.standard.value(forKey: "isLoggedIn") as? Bool, loggedIn {
             
@@ -39,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window = UIWindow(frame: UIScreen.main.bounds)
             self.window?.makeKeyAndVisible()
             self.window?.rootViewController = navigationController
+            self.observeInternetConnection()
         }
         
         

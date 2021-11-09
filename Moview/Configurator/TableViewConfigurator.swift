@@ -28,6 +28,7 @@ protocol ISectionConfiguration {
 protocol ITableCellConfiguration {
     var cellIdentifier          : String            { get set }
     var cellHeight              : CGFloat           { get set }
+    var estimatedCellHeight     : CGFloat?           { get set }
     var headerHeight            : CGFloat?          { get set }
     var footerHeight            : CGFloat?          { get set }
     var data                    : Any?              { get set }
@@ -84,6 +85,11 @@ class TableViewConfigurator: NSObject, ITableViewConfigurator, UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
         return cellConfig.cellHeight
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
+        return cellConfig.estimatedCellHeight ?? UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

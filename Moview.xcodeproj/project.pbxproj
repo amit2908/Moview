@@ -67,6 +67,8 @@
 		C825196426A2B0DC001B29A0 /* FavouritesListConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C825196326A2B0DC001B29A0 /* FavouritesListConfiguration.swift */; };
 		C82DAF1F232C035B00067BE8 /* TranslationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82DAF1E232C035B00067BE8 /* TranslationLayer.swift */; };
 		C830EBE526E0B99B007524AA /* DashboardConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C830EBE426E0B99B007524AA /* DashboardConfigurator.swift */; };
+		C834AD5E271C529C006F3638 /* TransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C834AD5D271C529C006F3638 /* TransitioningDelegate.swift */; };
+		C834AD60271C6DEF006F3638 /* FadeModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C834AD5F271C6DEF006F3638 /* FadeModalTransition.swift */; };
 		C8511D44246EAB6E007C4A4E /* AnimatedTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8511D43246EAB6E007C4A4E /* AnimatedTabBarViewController.swift */; };
 		C8511D46246EAC5F007C4A4E /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8511D45246EAC5F007C4A4E /* MainContainerViewController.swift */; };
 		C8511D48246EAF4B007C4A4E /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8511D47246EAF4B007C4A4E /* SidebarViewController.swift */; };
@@ -185,6 +187,8 @@
 		C825196326A2B0DC001B29A0 /* FavouritesListConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListConfiguration.swift; sourceTree = "<group>"; };
 		C82DAF1E232C035B00067BE8 /* TranslationLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationLayer.swift; sourceTree = "<group>"; };
 		C830EBE426E0B99B007524AA /* DashboardConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConfigurator.swift; sourceTree = "<group>"; };
+		C834AD5D271C529C006F3638 /* TransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitioningDelegate.swift; sourceTree = "<group>"; };
+		C834AD5F271C6DEF006F3638 /* FadeModalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeModalTransition.swift; sourceTree = "<group>"; };
 		C8511D43246EAB6E007C4A4E /* AnimatedTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTabBarViewController.swift; sourceTree = "<group>"; };
 		C8511D45246EAC5F007C4A4E /* MainContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
 		C8511D47246EAF4B007C4A4E /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -353,6 +357,8 @@
 			isa = PBXGroup;
 			children = (
 				930E8313226DD084000C40E2 /* LaunchViewTransition.swift */,
+				C834AD5D271C529C006F3638 /* TransitioningDelegate.swift */,
+				C834AD5F271C6DEF006F3638 /* FadeModalTransition.swift */,
 			);
 			path = ViewControllerTransitions;
 			sourceTree = "<group>";
@@ -938,7 +944,9 @@
 				C8B2140B26A2B61400162C67 /* UIView+Custom.swift in Sources */,
 				930E82E7226DA498000C40E2 /* Keys.swift in Sources */,
 				C87B25BA231ED093001A224C /* RecentMoviesPresenter.swift in Sources */,
+				C834AD5E271C529C006F3638 /* TransitioningDelegate.swift in Sources */,
 				C87B25BE231ED19C001A224C /* ModelLayer.swift in Sources */,
+				C834AD60271C6DEF006F3638 /* FadeModalTransition.swift in Sources */,
 				930E8303226DCCCB000C40E2 /* UIFont+AppFont.swift in Sources */,
 				C8AC4E5626A3499100D168C9 /* UIViewController+Top.swift in Sources */,
 				C825196426A2B0DC001B29A0 /* FavouritesListConfiguration.swift in Sources */,

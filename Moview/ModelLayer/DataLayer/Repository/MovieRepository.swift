@@ -81,6 +81,19 @@ struct MovieRepository: IMovieCoreDataRepository {
             
             DataLayer.saveContext(context: backgroundContext)
         }
+        
+        
+//        DataLayer.persistentContainer.performBackgroundTask { (backgroundContext) in
+//            backgroundContext.mergePolicy = NSMergePolicy.init(merge: .mergeByPropertyObjectTrumpMergePolicyType)
+//            
+//            if let response = self.translator.getUnsavedCoreDataObject(type: MoviesResponse.self, data: data, context: backgroundContext) {
+//                for item in response.results.makeIterator() {
+//                    item.type = Int64.init(truncatingIfNeeded: type.rawValue)
+//                }
+//                
+//                DataLayer.saveContext(context: backgroundContext)
+//            }
+//        }
     }
     
     func fetchMovie(using id: Int32) -> IMovie? {

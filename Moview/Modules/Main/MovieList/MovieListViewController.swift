@@ -8,20 +8,17 @@
 
 import UIKit
 
-struct MovieTypes: OptionSet {
-    
-    let rawValue: Int
+enum MovieTypes: Int {
     
     
-    static let TOP_RATED        =   MovieTypes(rawValue: 1 << 0)
-    static let UPCOMING         =   MovieTypes(rawValue: 1 << 1)
-    static let FAVOURITES       =   MovieTypes(rawValue: 1 << 2)
-    static let ACTION           =   MovieTypes(rawValue: 1 << 3)
-    static let ROMANTIC         =   MovieTypes(rawValue: 1 << 4)
-    static let NOW_PLAYING      =   MovieTypes(rawValue: 1 << 5)
-    static let LATEST           =   MovieTypes(rawValue: 1 << 6)
-    static let UNCATEGORISED    =   MovieTypes(rawValue: 1 << 7)
-    static let ALL              =   [MovieTypes.TOP_RATED, .LATEST, .FAVOURITES, .ACTION, .ROMANTIC, .NOW_PLAYING , .UPCOMING]
+    case NOW_PLAYING        =    0
+    case UPCOMING           =    1
+    case TOP_RATED          =    2
+    case ACTION             =    3
+    case ROMANTIC           =    4
+    case FAVOURITES         =    5
+    case LATEST             =    6
+    case UNCATEGORISED      =    7
     
     func getTitle() -> String {
         switch self {

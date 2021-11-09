@@ -96,7 +96,9 @@ class DashboardViewController: UIViewController {
             
             self.recentMovieDataSource = RecentMoviesDataSource.init(nowPlayingMovies: movies, collectionView: self.collection_recent)
             self.recentMovieDataSource?.displayDelegate = self
-            self.pageControl_recent.numberOfPages = movies.count
+            DispatchQueue.main.async {
+                self.pageControl_recent.numberOfPages = movies.count
+            }
             self.reloadCollections()
         }
 
@@ -137,7 +139,7 @@ extension DashboardViewController {
     @objc func showMoreBtnClicked(button: UIButton) {
         
         let dataSource = otherMoviesViewModel?.dataSources[button.tag]
-        let movieType = MovieTypes(rawValue: 1 << button.tag)
+        guard let movieType = MovieTypes(rawValue: button.tag) else { return }
         Navigation.shared.navigateToMovieList(fromViewController: self, movieTypes: movieType, movies: dataSource?.movies)
     }
 
