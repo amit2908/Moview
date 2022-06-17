@@ -58,6 +58,9 @@ class MovieCollectionDataSource: NSObject, UICollectionViewDataSource, UICollect
         let storyboard = UIStoryboard(name: Storyboards.shared.main, bundle: .main)
         let movieDetailVC = storyboard.instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as? MovieDetailViewController
         movieDetailVC?.movieId = Int32(truncatingIfNeeded: self.movies[indexPath.row].id)
+        movieDetailVC?.onBackButtonPress = {
+            movieDetailVC?.navigationController?.popViewController(animated: true)
+        }
         UIApplication.currentViewController()?.navigationController?.pushViewController(movieDetailVC!, animated: true)
     }
     

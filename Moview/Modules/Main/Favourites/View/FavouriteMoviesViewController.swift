@@ -45,6 +45,9 @@ class FavouriteMoviesViewController: UIViewController {
                 movieDetailVC.modalPresentationStyle = .fullScreen
                 movieDetailVC.transitioningDelegate = self?.customAnimatedTransitioningDelegate
                 movieDetailVC.movieId = Int32(movies[indexPath.row].id)
+                movieDetailVC.onBackButtonPress = {
+                    movieDetailVC.dismiss(animated: true, completion: nil)
+                }
                 self?.present(movieDetailVC, animated: true, completion: {
                     
                 })

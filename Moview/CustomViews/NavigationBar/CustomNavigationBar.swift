@@ -71,7 +71,8 @@ class CustomNavigationBar: UINavigationBar {
     }
     
     func setBackground(){
-        self.barTintColor = UIColor(named: "AppColor")?.withAlphaComponent(0.7)
+//        self.barTintColor = UIColor(named: "AppColor")?.withAlphaComponent(0.7)
+        self.backgroundColor = UIColor(named: "AppColor")
 //        self.addGradientBackground()
     }
     

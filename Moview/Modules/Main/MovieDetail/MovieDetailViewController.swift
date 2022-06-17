@@ -26,6 +26,10 @@ class MovieDetailViewController: UIViewController {
 
     var presenter : IMovieDetailViewPresenter!
     
+    var onBackButtonPress = {
+        
+    }
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setupArchitecture()
@@ -58,11 +62,10 @@ class MovieDetailViewController: UIViewController {
         
         UIView.unhide(views: [navBar.leftItem, navBar.btn_left, navBar.rightItem, navBar.btn_right])
         
-        self.navBar.btn_left.addTarget(self, action: #selector(self.dismissSelf(sender:)), for: .touchUpInside)
+        self.navBar.btn_left.addTarget(self, action: #selector(self.dismissViewController), for: .touchUpInside)
         self.navBar.btn_left.setImage(UIImage(named: "back-button"), for: .normal);
         
         self.navBar.btn_right.addTarget(self, action: #selector(self.favouriteButtonTapped), for: .touchUpInside)
-        
         
         self.navBar.btn_right.setImage(UIImage(named: "favourite-unselected")!, for: .normal)
     }
@@ -77,12 +80,7 @@ class MovieDetailViewController: UIViewController {
                     self.navBar.top_Item.isHidden = false
                     self.navBar.title = movie.title
                     self.navBar.titleLabel.layer.zPosition = 10.0
-                    if movie.isBookmarked {
-                        self.navBar.btn_right.setImage(UIImage(named: "favourite-selected")!, for: .normal)
-                    }else {
-                        self.navBar.btn_right.setImage(UIImage(named: "favourite-unselected")!, for: .normal)
-                    }
-                    
+                    self.isFavourite = movie.isBookmarked
                 }
             }
         }
@@ -104,6 +102,10 @@ class MovieDetailViewController: UIViewController {
         }else {
             self.navBar.btn_right.setImage(UIImage(named: "favourite-unselected")!, for: .normal)
         }
+    }
+    
+    @objc func dismissViewController(){
+        onBackButtonPress()
     }
 }
 
