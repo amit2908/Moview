@@ -28,7 +28,8 @@ enum MovieTypes: Int {
             return "Latest Movies"
         case .UPCOMING:
             return "Upcoming Movies"
-            
+        case .NOW_PLAYING:
+            return "Now Playing Movies"
         default:
             return ""
         }

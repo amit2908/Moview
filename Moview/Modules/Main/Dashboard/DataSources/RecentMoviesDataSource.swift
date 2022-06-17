@@ -35,8 +35,8 @@ class RecentMoviesDataSource: NSObject, UICollectionViewDataSource, UICollection
             let newCell = NowPlayingCollectionViewCell.init()
             return newCell
         }
-        nowPlayingCell.configure(withData: nowPlayingMovies[indexPath.row])
-        nowPlayingCell.btn_favourite.tag = indexPath.row
+        nowPlayingCell.configure(withData: nowPlayingMovies[indexPath.item])
+        nowPlayingCell.btn_favourite.tag = indexPath.item
         nowPlayingCell.btn_favourite.addTarget(self, action: #selector(setAsFavourite(sender:)), for: .touchUpInside);
         
         return nowPlayingCell

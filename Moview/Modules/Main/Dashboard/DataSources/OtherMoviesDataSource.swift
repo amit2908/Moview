@@ -38,9 +38,11 @@ extension OtherMoviesDataSource: UICollectionViewDataSource {
         
         func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
             if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "sectionHeader", for: indexPath) as? SectionHeader{
-                sectionHeader.sectionHeaderLabel.text = otherMoviesViewModel.sections[indexPath.section]
+                let movieType = otherMoviesViewModel.sections[indexPath.section]
+                let movieTypeTitle = movieType.getTitle()
+                sectionHeader.sectionHeaderLabel.text = movieTypeTitle
                 sectionHeader.btn_showMore.addTarget(vc, action: #selector(vc?.showMoreBtnClicked(button:)), for: .touchDown)
-                sectionHeader.btn_showMore.tag = indexPath.section
+                sectionHeader.btn_showMore.tag = movieType.rawValue
                 return sectionHeader
             }
             return SectionHeader()

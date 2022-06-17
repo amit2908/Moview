@@ -11,7 +11,7 @@ import RAMAnimatedTabBarController
 
 struct OtherMoviesCollectionViewModel {
     var dataSources : [MovieCollectionDataSource]
-    var sections    : [String]
+    var sections    : [MovieTypes]
 }
 
 class DashboardViewController: UIViewController {
@@ -104,20 +104,20 @@ class DashboardViewController: UIViewController {
 
         
         self.otherMoviesPresenter?.loadTopRatedMovies(page: 1) { [unowned self] (movies) in
-            self.otherMoviesViewModel?.sections.append("Top Rated")
+            self.otherMoviesViewModel?.sections.append(.TOP_RATED)
             self.otherMoviesViewModel?.dataSources.append(MovieCollectionDataSource(movies: movies))
             self.reloadCollections()
         }
         
         
         self.otherMoviesPresenter?.loadNowPlayingMovies(page: 2, handler: { (movies) in
-            self.otherMoviesViewModel?.sections.append("Now Playing")
+            self.otherMoviesViewModel?.sections.append(.NOW_PLAYING)
             self.otherMoviesViewModel?.dataSources.append(MovieCollectionDataSource(movies: movies))
             self.reloadCollections()
         })
         
         self.otherMoviesPresenter?.loadUpcomingMovies(page: 1, handler: { (movies) in
-            self.otherMoviesViewModel?.sections.append("Upcoming Movies")
+            self.otherMoviesViewModel?.sections.append(.UPCOMING)
             self.otherMoviesViewModel?.dataSources.append(MovieCollectionDataSource(movies: movies))
             self.reloadCollections()
         })
