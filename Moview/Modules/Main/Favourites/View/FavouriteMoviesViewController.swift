@@ -39,25 +39,27 @@ class FavouriteMoviesViewController: UIViewController {
     
     private func fetchMovies(){
         self.presenter?.loadFavouriteMovies(handler: { [weak self] (movies) -> (Void) in
-            self?.delegate = TableViewConfigurator(tableConfiguration: FavouritesListConfiguration(movies: movies, cellDidSelectCallback: { indexPath in
-        
-                let movieDetailVC = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as! MovieDetailViewController
-                movieDetailVC.modalPresentationStyle = .fullScreen
-                movieDetailVC.transitioningDelegate = self?.customAnimatedTransitioningDelegate
-                movieDetailVC.movieId = Int32(movies[indexPath.row].id)
-                movieDetailVC.onBackButtonPress = {
-                    movieDetailVC.dismiss(animated: true, completion: nil)
-                }
-                self?.present(movieDetailVC, animated: true, completion: {
-                    
-                })
-//                UIApplication.currentViewController()?.navigationController?.pushViewController(movieDetailVC, animated: true)
-                
-            }))
             
+            let tableConfiguration = FavouritesListConfiguration(movies: movies, cellDidSelectCallback: { indexPath in
+                guard let movieDetailVC = self?.getMovieDetailVC(movies: movies, indexPath: indexPath) else { return }
+                self?.present(movieDetailVC, animated: true, completion: {})
+            })
+            
+            self?.delegate = TableViewConfigurator(tableConfiguration: tableConfiguration)
             self?.tableView.dataSource = self?.delegate
             self?.tableView.delegate = self?.delegate
         })
+    }
+    
+    private func getMovieDetailVC(movies: [IMovie], indexPath: IndexPath) -> MovieDetailViewController {
+        let movieDetailVC = UIStoryboard(name: Storyboards.shared.main, bundle: .main).instantiateViewController(withIdentifier: ViewControllers.shared.movieDetail) as! MovieDetailViewController
+        movieDetailVC.modalPresentationStyle = .fullScreen
+        movieDetailVC.transitioningDelegate = self.customAnimatedTransitioningDelegate
+        movieDetailVC.movieId = Int32(movies[indexPath.row].id)
+        movieDetailVC.onBackButtonPress = {
+            movieDetailVC.dismiss(animated: true, completion: nil)
+        }
+        return movieDetailVC
     }
 
 }
