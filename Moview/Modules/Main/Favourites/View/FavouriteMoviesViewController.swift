@@ -43,12 +43,20 @@ class FavouriteMoviesViewController: UIViewController {
             let tableConfiguration = FavouritesListConfiguration(movies: movies, cellDidSelectCallback: { indexPath in
                 guard let movieDetailVC = self?.getMovieDetailVC(movies: movies, indexPath: indexPath) else { return }
                 self?.present(movieDetailVC, animated: true, completion: {})
+            }, leftSwipeCallback: { indexpath in
+                self?.handleLeftSwipe(indexPath: indexpath, movies: movies)
             })
             
-            self?.delegate = TableViewConfigurator(tableConfiguration: tableConfiguration)
+            self?.delegate = SwipableTableViewConfigurator(tableConfiguration: tableConfiguration)
             self?.tableView.dataSource = self?.delegate
             self?.tableView.delegate = self?.delegate
         })
+    }
+    
+    private func handleLeftSwipe(indexPath: IndexPath, movies: [IMovie]){
+        self.presenter?.removeMovie(withId: Int32(movies[indexPath.row].id))
+        self.fetchMovies()
+        self.tableView.reloadData()
     }
     
     private func getMovieDetailVC(movies: [IMovie], indexPath: IndexPath) -> MovieDetailViewController {

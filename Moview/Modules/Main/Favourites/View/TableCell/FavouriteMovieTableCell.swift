@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class FavouriteMovieTableCell: UITableViewCell, GenericTableCell {
+class FavouriteMovieTableCell: SwipeTableViewCell, GenericTableCell {
     @IBOutlet var imgV_poster: UIImageView!
     @IBOutlet var lblTitle: UILabel!
     @IBOutlet var lblDescription: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
     
     func configure(withData data: Any?) {
         if let movie = data as? IMovie {

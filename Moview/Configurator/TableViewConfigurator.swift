@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 protocol ITableConfiguration {
     var numberOfSections : Int { get set }
@@ -48,7 +49,7 @@ protocol GenericCollectionCell: UICollectionViewCell {
 class TableViewConfigurator: NSObject, ITableViewConfigurator, UITableViewDataSource, UITableViewDelegate {
     
     var tableConfiguration: ITableConfiguration
-    fileprivate var sectionConfigs : [ISectionConfiguration]
+    var sectionConfigs : [ISectionConfiguration]
     
     init(tableConfiguration: ITableConfiguration) {
         self.tableConfiguration = tableConfiguration
@@ -111,5 +112,40 @@ class TableViewConfigurator: NSObject, ITableViewConfigurator, UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let sectionConfig = self.sectionConfigs[section]
         return sectionConfig.footerViewConfig?.1 ?? 0.0
+    }
+}
+
+class SwipableTableViewConfigurator: TableViewConfigurator {
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        guard let swipeCell = cell as? SwipeTableViewCell else { return cell }
+        swipeCell.delegate = self
+        return swipeCell
+    }
+    
+    func updateTable(withConfiguration configuration: ITableConfiguration){
+        self.tableConfiguration = configuration
+    }
+}
+
+extension SwipableTableViewConfigurator: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+
+            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                // handle action by updating model with deletion
+                if let config = self.tableConfiguration.sectionConfigurations[indexPath.section] as? GenericSwipeableTableSectionConfiguration<IMovie>{
+                    let cellConfig = config.swipeableCellConfigurations[indexPath.row]
+                    cellConfig.swipeLeftCallback(indexPath)
+                    
+                }
+            }
+
+            // customize the action appearance
+        
+        deleteAction.image = UIImage(named: "delete")
+
+            return [deleteAction]
     }
 }

@@ -17,6 +17,9 @@ def myPods
   pod 'lottie-ios'
   pod 'IQKeyboardManagerSwift'
   pod 'SDWebImage'
+  pod 'SwipeCellKit', :git => 'https://github.com/SwipeCellKit/SwipeCellKit.git', :branch => 'develop'
+
+  
 end
 
 target 'Moview' do

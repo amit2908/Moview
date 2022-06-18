@@ -14,10 +14,12 @@ class FavouritesListConfiguration: ITableConfiguration {
     
     let movies : [IMovie]
     
-    init(movies: [IMovie], cellDidSelectCallback: @escaping (IndexPath) -> Void) {
+    init(movies: [IMovie],
+         cellDidSelectCallback: @escaping (IndexPath) -> Void,
+         leftSwipeCallback: @escaping (IndexPath) -> Void) {
         self.movies = movies
         self.numberOfSections = 1
-        self.sectionConfigurations = [GenericTableSectionConfiguration(itemData: movies, reusedID: FavouriteMovieTableCell.reuseID, cellDidSelectCallback: cellDidSelectCallback)]
+        self.sectionConfigurations = [GenericSwipeableTableSectionConfiguration(itemData: movies, reusedID: FavouriteMovieTableCell.reuseID, cellDidSelectCallback: cellDidSelectCallback, swipeLeftCallback: leftSwipeCallback)]
     }
 }
 

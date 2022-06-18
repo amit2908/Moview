@@ -10,6 +10,7 @@ import Foundation
 
 protocol IFavouriteMoviesPresenter {
     func loadFavouriteMovies(handler: @escaping ([IMovie]) -> Void)
+    func removeMovie(withId movieId: Int32)
 }
 
 class FavouriteMoviesPresenter{
@@ -21,8 +22,14 @@ class FavouriteMoviesPresenter{
 }
 
 extension FavouriteMoviesPresenter: IFavouriteMoviesPresenter {
+    
     func loadFavouriteMovies(handler: @escaping ([IMovie]) -> Void) {
         let movies = movieRepository.fetchFavouriteMovies()
         handler(movies)
-    }    
+    }
+    
+    func removeMovie(withId movieId: Int32) {
+        movieRepository.bookmarkMovie(with: movieId, bookmark: false)
+    }
+    
 }
