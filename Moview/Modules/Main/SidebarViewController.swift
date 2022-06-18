@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SidebarViewController: UIViewController {
     
@@ -45,7 +46,7 @@ class SidebarViewController: UIViewController {
 
 
 //MARK: UITableView data source
-extension SidebarViewController: UITableViewDataSource {
+extension SidebarViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellViewModels.count
@@ -57,5 +58,15 @@ extension SidebarViewController: UITableViewDataSource {
         cell.configure(withViewModel: cellViewModels[indexPath.row])
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 5:
+            let hostingController = UIHostingController(rootView: ScheduledEventsView(events: []))
+            self.navigationController?.show(hostingController, sender: nil)
+        default:
+            return
+        }
     }
 }

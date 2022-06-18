@@ -89,6 +89,9 @@
 		C89D375026E4AE9B008607C0 /* SideBarTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89D374E26E4AE9B008607C0 /* SideBarTableCell.swift */; };
 		C89D375126E4AE9B008607C0 /* SideBarTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C89D374F26E4AE9B008607C0 /* SideBarTableCell.xib */; };
 		C89E9F21285DAC6100B14BD0 /* SwipeableTableCellConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89E9F20285DAC6100B14BD0 /* SwipeableTableCellConfiguration.swift */; };
+		C89E9F24285DD67F00B14BD0 /* ScheduledEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89E9F23285DD67F00B14BD0 /* ScheduledEventsView.swift */; };
+		C89E9F26285DD79100B14BD0 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89E9F25285DD79100B14BD0 /* Event.swift */; };
+		C89E9F28285DDBC000B14BD0 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89E9F27285DDBC000B14BD0 /* EventView.swift */; };
 		C89EE2E622F67FFF00CBF839 /* MovieEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89EE2E522F67FFF00CBF839 /* MovieEndpoint.swift */; };
 		C89EE2E822F6802500CBF839 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89EE2E722F6802500CBF839 /* APIConfiguration.swift */; };
 		C8AC481A270C6BD3003726DE /* SignInViewTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC4819270C6BD3003726DE /* SignInViewTextFieldDelegate.swift */; };
@@ -212,6 +215,9 @@
 		C89D374E26E4AE9B008607C0 /* SideBarTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarTableCell.swift; sourceTree = "<group>"; };
 		C89D374F26E4AE9B008607C0 /* SideBarTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideBarTableCell.xib; sourceTree = "<group>"; };
 		C89E9F20285DAC6100B14BD0 /* SwipeableTableCellConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeableTableCellConfiguration.swift; sourceTree = "<group>"; };
+		C89E9F23285DD67F00B14BD0 /* ScheduledEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledEventsView.swift; sourceTree = "<group>"; };
+		C89E9F25285DD79100B14BD0 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		C89E9F27285DDBC000B14BD0 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		C89EE2E522F67FFF00CBF839 /* MovieEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEndpoint.swift; sourceTree = "<group>"; };
 		C89EE2E722F6802500CBF839 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		C8AC4819270C6BD3003726DE /* SignInViewTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewTextFieldDelegate.swift; sourceTree = "<group>"; };
@@ -427,6 +433,7 @@
 		9346E922227078F600BE2B08 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				C89E9F22285DD65D00B14BD0 /* Events */,
 				C825196526A2B41B001B29A0 /* Favourites */,
 				C8CDA099231D3941007FE82B /* MovieDetail */,
 				C8CDA094231CE7F6007FE82B /* MovieList */,
@@ -645,6 +652,16 @@
 				C89D374F26E4AE9B008607C0 /* SideBarTableCell.xib */,
 			);
 			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		C89E9F22285DD65D00B14BD0 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				C89E9F23285DD67F00B14BD0 /* ScheduledEventsView.swift */,
+				C89E9F25285DD79100B14BD0 /* Event.swift */,
+				C89E9F27285DDBC000B14BD0 /* EventView.swift */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 		C89EE2E422F67FC000CBF839 /* UsingURLSession */ = {
@@ -969,6 +986,7 @@
 				930E8316226DD084000C40E2 /* RAMPointUpAnimation.swift in Sources */,
 				C89EE2E822F6802500CBF839 /* APIConfiguration.swift in Sources */,
 				C8CAA250285CCEDE00014C19 /* MovieListViewConfiguration.swift in Sources */,
+				C89E9F26285DD79100B14BD0 /* Event.swift in Sources */,
 				C8B2140B26A2B61400162C67 /* UIView+Custom.swift in Sources */,
 				930E82E7226DA498000C40E2 /* Keys.swift in Sources */,
 				C87B25BA231ED093001A224C /* RecentMoviesPresenter.swift in Sources */,
@@ -1009,6 +1027,7 @@
 				93D3D33A229525B6006871B4 /* Movie+CoreDataProperties.swift in Sources */,
 				C89EE2E622F67FFF00CBF839 /* MovieEndpoint.swift in Sources */,
 				93E207AC2297BA8E00261694 /* MovieEndpoint_AF.swift in Sources */,
+				C89E9F24285DD67F00B14BD0 /* ScheduledEventsView.swift in Sources */,
 				C8B2141326A2C8BE00162C67 /* FavouriteMoviesPresenter.swift in Sources */,
 				C821EB4D26E11C3B00688EC9 /* UIView+CodeConcisers.swift in Sources */,
 				93D3D339229525B6006871B4 /* Movie+CoreDataClass.swift in Sources */,
@@ -1027,6 +1046,7 @@
 				930E8314226DD084000C40E2 /* Pulse.swift in Sources */,
 				C8511D44246EAB6E007C4A4E /* AnimatedTabBarViewController.swift in Sources */,
 				C8B2141526A2ECF100162C67 /* MoviesCoreDataWorker.swift in Sources */,
+				C89E9F28285DDBC000B14BD0 /* EventView.swift in Sources */,
 				C8D85CD0246AD56900ABE380 /* FluidAnimationView.swift in Sources */,
 				C898F771238DA6B7003004B8 /* Collection+CoreDataProperties.swift in Sources */,
 				930E82BC226D8672000C40E2 /* AppDelegate.swift in Sources */,
@@ -1200,7 +1220,7 @@
 				DEVELOPMENT_TEAM = 5VK968CZZ6;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Moview/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1225,7 +1245,7 @@
 				DEVELOPMENT_TEAM = 5VK968CZZ6;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Moview/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
