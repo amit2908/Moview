@@ -9,11 +9,6 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AcariSans-Regular.otf">
-            <string>AcariSans-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Sidebar View Controller-->
         <scene sceneID="3EI-WV-s9N">
@@ -461,75 +456,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" reuseIdentifier="MovieListCellIdentifier" id="roU-We-Ekk" customClass="MovieListCollectionViewCell" customModule="Moview" customModuleProvider="target">
-                                        <rect key="frame" x="3.6666666666666665" y="0.0" width="368" height="134"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="368" height="134"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRU-PI-TgH">
-                                                    <rect key="frame" x="0.0" y="0.0" width="368" height="134"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXy-Bi-e4c">
-                                                            <rect key="frame" x="5" y="20" width="80" height="114"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="80" id="enO-aN-iMJ"/>
-                                                            </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="5"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </imageView>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="UtZ-Ne-NHV">
-                                                            <rect key="frame" x="95" y="15" width="258" height="104"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xia-su-noQ">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="258" height="104"/>
-                                                                    <fontDescription key="fontDescription" name="AcariSans-Regular" family="Acari Sans" pointSize="16"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="unc-6G-Tr9">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="258" height="25"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="25" id="qtN-Oo-KMt"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" name="AcariSans-Regular" family="Acari Sans" pointSize="14"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                        </stackView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="UXy-Bi-e4c" secondAttribute="bottom" id="DDU-cS-koy"/>
-                                                        <constraint firstItem="UtZ-Ne-NHV" firstAttribute="leading" secondItem="UXy-Bi-e4c" secondAttribute="trailing" constant="10" id="Feu-l8-k8M"/>
-                                                        <constraint firstAttribute="bottom" secondItem="UtZ-Ne-NHV" secondAttribute="bottom" constant="15" id="WDo-dN-Adc"/>
-                                                        <constraint firstItem="UXy-Bi-e4c" firstAttribute="top" secondItem="DRU-PI-TgH" secondAttribute="top" constant="20" symbolic="YES" id="XfX-DL-rjQ"/>
-                                                        <constraint firstItem="UXy-Bi-e4c" firstAttribute="leading" secondItem="DRU-PI-TgH" secondAttribute="leading" constant="5" id="gMt-YY-xD2"/>
-                                                        <constraint firstItem="UtZ-Ne-NHV" firstAttribute="top" secondItem="DRU-PI-TgH" secondAttribute="top" constant="15" id="rAM-SL-OnP"/>
-                                                        <constraint firstAttribute="trailing" secondItem="UtZ-Ne-NHV" secondAttribute="trailing" constant="15" id="uM1-77-QgT"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="DRU-PI-TgH" firstAttribute="top" secondItem="roU-We-Ekk" secondAttribute="top" id="9Fc-eK-6su"/>
-                                            <constraint firstAttribute="bottom" secondItem="DRU-PI-TgH" secondAttribute="bottom" id="K2M-Fq-qrt"/>
-                                            <constraint firstItem="DRU-PI-TgH" firstAttribute="leading" secondItem="roU-We-Ekk" secondAttribute="leading" id="V4M-uz-Aay"/>
-                                            <constraint firstAttribute="trailing" secondItem="DRU-PI-TgH" secondAttribute="trailing" id="wz4-iT-AIa"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="imgV_movie" destination="UXy-Bi-e4c" id="C49-z0-jWf"/>
-                                            <outlet property="lbl_genre" destination="unc-6G-Tr9" id="neG-fy-GIV"/>
-                                            <outlet property="lbl_title" destination="xia-su-noQ" id="2Wh-rz-ISD"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ja1-ms-ANS"/>

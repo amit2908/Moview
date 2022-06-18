@@ -84,7 +84,7 @@ class TableViewConfigurator: NSObject, ITableViewConfigurator, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
-        return cellConfig.cellHeight
+        return cellConfig.cellHeight 
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
