@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Collection" representedClassName="Collection" syncable="YES">
         <attribute name="backdrop_path" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -67,11 +67,4 @@
         <attribute name="iso639_1" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
-    <elements>
-        <element name="Collection" positionX="-5579.14453125" positionY="-664.3359375" width="128" height="103"/>
-        <element name="Movie" positionX="-6251.1796875" positionY="-660.2890625" width="128" height="478"/>
-        <element name="ProductionCompany" positionX="-5805" positionY="-666" width="128" height="118"/>
-        <element name="ProductionCountry" positionX="-6021.89453125" positionY="-138.64453125" width="128" height="73"/>
-        <element name="SpokenLanguage" positionX="-5587.38671875" positionY="-469.3671875" width="128" height="73"/>
-    </elements>
 </model>

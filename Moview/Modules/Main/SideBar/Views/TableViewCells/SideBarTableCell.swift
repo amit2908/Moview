@@ -15,7 +15,7 @@ class SideBarTableCell: UITableViewCell {
 
     struct ViewModel {
         let title: String
-        let icon : UIImage
+        let icon : UIImage?
     }
     
     override func awakeFromNib() {

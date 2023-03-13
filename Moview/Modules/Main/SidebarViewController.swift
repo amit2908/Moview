@@ -23,15 +23,17 @@ class SidebarViewController: UIViewController {
         self.tvMenus.backgroundColor = .clear
         
         tvMenus.register(SideBarTableCell.nib, forCellReuseIdentifier: SideBarTableCell.reuseID)
+        let homeIcon = UIImage(named: "home")?.withTintColor(.white, renderingMode: .alwaysTemplate)
+        
         
         cellViewModels = [
-            SideBarTableCell.ViewModel(title: "Home", icon: UIImage(named: "favourite-selected")!),
-            SideBarTableCell.ViewModel(title: "My Profile", icon: UIImage(named: "favourite-selected")!),
-            SideBarTableCell.ViewModel(title: "Book Tickets", icon: UIImage(named: "favourite-selected")!),
-            SideBarTableCell.ViewModel(title: "Invite Friends", icon: UIImage(named: "favourite-selected")!),
-            SideBarTableCell.ViewModel(title: "My Coupons", icon: UIImage(named: "favourite-selected")!),
-            SideBarTableCell.ViewModel(title: "Scheduled Events", icon: UIImage(named: "favourite-selected")!),
-            SideBarTableCell.ViewModel(title: "Theatres near me", icon: UIImage(named: "favourite-selected")!)
+            SideBarTableCell.ViewModel(title: "Home", icon: homeIcon),
+            SideBarTableCell.ViewModel(title: "My Profile", icon: UIImage(named: "profile")!),
+            SideBarTableCell.ViewModel(title: "Book Tickets", icon: UIImage(named: "bookTicket")!),
+            SideBarTableCell.ViewModel(title: "Invite Friends", icon: UIImage(named: "invite")!),
+            SideBarTableCell.ViewModel(title: "My Coupons", icon: UIImage(named: "coupon")!),
+            SideBarTableCell.ViewModel(title: "Scheduled Events", icon: UIImage(named: "events")!),
+            SideBarTableCell.ViewModel(title: "Theatres near me", icon: UIImage(named: "film")!)
         ]
 
         tvMenus.reloadData()
@@ -63,8 +65,13 @@ extension SidebarViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 5:
-            let hostingController = UIHostingController(rootView: ScheduledEventsView(events: []))
-            self.navigationController?.show(hostingController, sender: nil)
+            let events = [Event(title: "Pathaan", time: "04:50 pm", movieId: ""),
+                          Event(title: "Pathaan", time: "04:50 pm", movieId: ""),
+                          Event(title: "Pathaan", time: "04:50 pm", movieId: "")]
+            
+            let hostingController = UIHostingController(rootView: ScheduledEventsView(events: events))
+            self.navigationController?.pushViewController(hostingController, animated: true)
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
         default:
             return
         }

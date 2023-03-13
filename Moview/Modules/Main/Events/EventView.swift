@@ -15,9 +15,9 @@ struct EventView: View {
         VStack(alignment: .center, spacing: 10.0) {
             HStack(alignment: .center) {
                 Text(event.title)
+                Spacer()
                 Text(event.time)
-            }
-            Text(event.movieId)
+            }.padding()
         }
         
     }

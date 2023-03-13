@@ -9,22 +9,71 @@
 import SwiftUI
 
 struct ScheduledEventsView: View {
-    let events: [Event]
+    @State var events: [Event]
     
     var body: some View {
         NavigationView {
             List {
                 ForEach(events){ event in
-                    Text(event.title)
+                        EventView(event: event)
                 }
-            }.navigationTitle("Events")
+                .onDelete(perform: delete)
+            }
+            .toolbar(content: {
+                EditButton()
+            })
+            .navigationTitle("Events")
         }
+    }
+    
+    func delete(at offsets: IndexSet){
+        self.events.remove(atOffsets: offsets)
     }
 }
 
 struct ScheduledEventsView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduledEventsView(events: [Event(title: "Finish 1st", time: "11:00 PM", movieId: "xyz"),
-                                     Event(title: "Finish 2nd", time: "11:00 PM", movieId: "xyz")])
+        let events = [Event(title: "Pathaan", time: "04:50 pm", movieId: ""),
+                      Event(title: "Pathaan", time: "04:50 pm", movieId: ""),
+                      Event(title: "Pathaan", time: "04:50 pm", movieId: "")]
+        ScheduledEventsView(events: events)
     }
 }
+
+struct TextButton: View
+{
+    @Binding var count: Int
+    
+    var body: some View {
+        Button("\(count) Text Button") {
+            count += 1
+        }
+    }
+}
+
+
+struct CountButton: View
+{
+    @Binding var count: Int
+    
+    var body: some View {
+        Button("\(count) times") {
+            count += 1
+        }
+    }
+}
+
+//Next, we’re creating a CounterView:
+
+struct CounterView: View
+{
+    @State private var swiftCount: Int = 0
+    
+    var body: some View {
+        HStack {
+            Text("Times spotted a purple-and-gold-striped swift: \(swiftCount)")
+            CountButton(count: $swiftCount)
+        }
+    }
+}
+
