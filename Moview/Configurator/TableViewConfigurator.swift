@@ -41,6 +41,10 @@ protocol GenericTableCell: UITableViewCell {
     func configure(withData data: Any?)
 }
 
+protocol GenericTableCellWithCallback: UITableViewCell {
+    func configure(withData data: Any?, callback: @escaping ()->Void)
+}
+
 protocol GenericCollectionCell: UICollectionViewCell {
     func configure(withData data: Any?)
 }
@@ -72,9 +76,8 @@ class TableViewConfigurator: NSObject, ITableViewConfigurator, UITableViewDataSo
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellConfig.cellIdentifier, for: indexPath) as? GenericTableCell else {
             return UITableViewCell()
         }
-        
         cell.configure(withData: cellConfig.data)
-        
+//        cell.updateConstraintsIfNeeded()
         return cell
     }
     
@@ -83,15 +86,15 @@ class TableViewConfigurator: NSObject, ITableViewConfigurator, UITableViewDataSo
         cellConfig.cellDidSelectCallback(indexPath)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
-        return cellConfig.cellHeight 
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
-        return cellConfig.estimatedCellHeight ?? UITableView.automaticDimension
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
+//        return UITableView.automaticDimension
+//    }
+//
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
+//        return cellConfig.estimatedCellHeight ?? UITableView.automaticDimension
+//    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionConfig = self.sectionConfigs[section]
@@ -118,10 +121,17 @@ class TableViewConfigurator: NSObject, ITableViewConfigurator, UITableViewDataSo
 class SwipableTableViewConfigurator: TableViewConfigurator {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        guard let swipeCell = cell as? SwipeTableViewCell else { return cell }
-        swipeCell.delegate = self
-        return swipeCell
+        let cellConfig = self.sectionConfigs[indexPath.section].cellConfigurations[indexPath.row]
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellConfig.cellIdentifier, for: indexPath) as? GenericTableCellWithCallback else {
+            return UITableViewCell()
+        }
+        cell.configure(withData: cellConfig.data) {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }
+//        cell.updateConstraintsIfNeeded()
+        return cell
     }
     
     func updateTable(withConfiguration configuration: ITableConfiguration){

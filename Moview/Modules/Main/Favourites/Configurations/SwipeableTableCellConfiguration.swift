@@ -18,11 +18,11 @@ class GenericSwipeableTableSectionConfiguration<ItemData>: GenericTableSectionCo
     
     var swipeableCellConfigurations: [ISwipeableTableCellConfiguration]
     
-    init(itemData: [ItemData], reusedID: String, cellDidSelectCallback: @escaping (IndexPath) -> Void, swipeLeftCallback: @escaping (IndexPath) -> Void) {
+    init(itemData: [ItemData], reusedID: String, estimatedCellHeight: CGFloat?, cellDidSelectCallback: @escaping (IndexPath) -> Void, swipeLeftCallback: @escaping (IndexPath) -> Void) {
         self.swipeableCellConfigurations = itemData.map{ GenericSwipeableListCellConfiguration(data: $0,
                                                                                                cellReuseID: reusedID,
-                                                                                               callback: cellDidSelectCallback, swipeLeftCallback: swipeLeftCallback) }
-        super.init(itemData: itemData, reusedID: reusedID, cellDidSelectCallback: cellDidSelectCallback)
+                                                                                               callback: cellDidSelectCallback, estimatedCellHeight: estimatedCellHeight, swipeLeftCallback: swipeLeftCallback) }
+        super.init(itemData: itemData, reusedID: reusedID, estimatedCellHeight: estimatedCellHeight, cellDidSelectCallback: cellDidSelectCallback)
     }
 }
 
@@ -32,8 +32,9 @@ class GenericSwipeableListCellConfiguration<CellData>: GenericListCellConfigurat
     init(data: CellData,
          cellReuseID: String,
          callback: @escaping (IndexPath) -> Void,
+         estimatedCellHeight: CGFloat?,
          swipeLeftCallback: @escaping (IndexPath) -> Void){
         self.swipeLeftCallback = swipeLeftCallback
-        super.init(data: data, cellReuseID: cellReuseID, callback: callback)
+        super.init(data: data, cellReuseID: cellReuseID, estimatedCellHeight: estimatedCellHeight, callback: callback)
     }
 }

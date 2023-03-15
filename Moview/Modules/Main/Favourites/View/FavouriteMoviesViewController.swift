@@ -12,8 +12,7 @@ import RAMAnimatedTabBarController
 class FavouriteMoviesViewController: UIViewController {
     @IBOutlet var barItem: RAMAnimatedTabBarItem!
     @IBOutlet var tableView: UITableView!
-    
-    
+   
     var presenter : IFavouriteMoviesPresenter?
     
     var delegate : TableViewConfigurator?
@@ -30,6 +29,7 @@ class FavouriteMoviesViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchMovies()
     }
     
@@ -50,6 +50,10 @@ class FavouriteMoviesViewController: UIViewController {
             self?.delegate = SwipableTableViewConfigurator(tableConfiguration: tableConfiguration)
             self?.tableView.dataSource = self?.delegate
             self?.tableView.delegate = self?.delegate
+            
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
         })
     }
     

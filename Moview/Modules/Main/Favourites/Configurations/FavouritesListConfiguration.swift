@@ -19,7 +19,7 @@ class FavouritesListConfiguration: ITableConfiguration {
          leftSwipeCallback: @escaping (IndexPath) -> Void) {
         self.movies = movies
         self.numberOfSections = 1
-        self.sectionConfigurations = [GenericSwipeableTableSectionConfiguration(itemData: movies, reusedID: FavouriteMovieTableCell.reuseID, cellDidSelectCallback: cellDidSelectCallback, swipeLeftCallback: leftSwipeCallback)]
+        self.sectionConfigurations = [GenericSwipeableTableSectionConfiguration(itemData: movies, reusedID: FavouriteMovieTableCell.reuseID, estimatedCellHeight: UITableView.automaticDimension, cellDidSelectCallback: cellDidSelectCallback, swipeLeftCallback: leftSwipeCallback)]
     }
 }
 
@@ -38,9 +38,11 @@ class GenericTableSectionConfiguration<ItemData>: ISectionConfiguration {
     
     var cellConfigurations: [ITableCellConfiguration]
     
-    init(itemData: [ItemData], reusedID: String, cellDidSelectCallback: @escaping (IndexPath) -> Void) {
+    init(itemData: [ItemData], reusedID: String,
+         estimatedCellHeight: CGFloat?,
+         cellDidSelectCallback: @escaping (IndexPath) -> Void) {
         self.cellConfigurations =
-            itemData.map{ GenericListCellConfiguration(data: $0, cellReuseID: reusedID, callback: cellDidSelectCallback) }
+        itemData.map{ GenericListCellConfiguration(data: $0, cellReuseID: reusedID, estimatedCellHeight: estimatedCellHeight, callback: cellDidSelectCallback) }
     }
 }
 
@@ -63,11 +65,14 @@ class GenericListCellConfiguration<CellData>: ITableCellConfiguration {
     
     var cellDidSelectCallback: (IndexPath) -> Void
     
-    init(data: CellData, cellReuseID: String, callback: @escaping (IndexPath) -> Void){
+    init(data: CellData,
+         cellReuseID: String,
+         estimatedCellHeight: CGFloat?,
+         callback: @escaping (IndexPath) -> Void){
         self.data = data
         self.cellIdentifier = cellReuseID
         self.cellHeight = UITableView.automaticDimension
-        self.estimatedCellHeight = UITableView.automaticDimension
+        self.estimatedCellHeight = estimatedCellHeight
         self.cellDidSelectCallback = callback
     }
     
